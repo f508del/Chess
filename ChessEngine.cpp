@@ -8,14 +8,11 @@
 
 #include "ChessEngine.hpp"
 #include "ChessMove.hpp"
+#include "CommandDefines.hpp"
 #include "I_InputSystem.hpp"
 #include "I_OutputSystem.hpp"
 
-namespace
-{
-const char* QUIT_COMMAND = "q";
-const char* NEW_GAME_COMMAND = "n";
-}
+using namespace CommandDefines;
 
 ChessEngine::ChessEngine(I_InputSystem& inputSystem,
                          I_OutputSystem& outputSystem)

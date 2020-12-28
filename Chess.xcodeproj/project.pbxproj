@@ -71,6 +71,7 @@
 		6962191B25980D67008E4DC8 /* testMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testMain.cpp; sourceTree = "<group>"; };
 		6962192125980DF1008E4DC8 /* TestChess */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestChess; sourceTree = BUILT_PRODUCTS_DIR; };
 		6962192925981084008E4DC8 /* TestChessMove.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestChessMove.cpp; sourceTree = "<group>"; };
+		69B66050259AA18400150835 /* CommandDefines.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CommandDefines.hpp; sourceTree = "<group>"; };
 		69D251CF259817B50059E592 /* ChessEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChessEngine.cpp; sourceTree = "<group>"; };
 		69D251D0259817B50059E592 /* ChessEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ChessEngine.hpp; sourceTree = "<group>"; };
 		69D251D325981B220059E592 /* I_InputSystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = I_InputSystem.hpp; sourceTree = "<group>"; };
@@ -168,6 +169,7 @@
 				69D251D0259817B50059E592 /* ChessEngine.hpp */,
 				69D251D325981B220059E592 /* I_InputSystem.hpp */,
 				694DF2052599457000195943 /* I_OutputSystem.hpp */,
+				69B66050259AA18400150835 /* CommandDefines.hpp */,
 			);
 			name = Sources;
 			sourceTree = "<group>";

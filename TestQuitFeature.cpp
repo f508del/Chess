@@ -8,6 +8,7 @@
 
 #include "catch.hpp"
 #include "ChessEngine.hpp"
+#include "CommandDefines.hpp"
 #include "FakeInputSystem.hpp"
 #include "FakeOutputSystem.hpp"
 
@@ -20,7 +21,7 @@ TEST_CASE("Testing the quit feature")
    ChessEngine engine(inputSystem, outputSystem);
 
    std::list<std::string> inputSequence;
-   inputSequence.push_back(std::string("q"));
+   inputSequence.push_back(CommandDefines::QUIT_COMMAND);
    inputSystem.setInputSequence(inputSequence);
 
    engine.runChessEngine();
