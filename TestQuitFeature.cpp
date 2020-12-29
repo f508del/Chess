@@ -8,6 +8,7 @@
 
 #include "catch.hpp"
 #include "ChessEngine.hpp"
+#include "ChessEngineTestHarness.hpp"
 #include "CommandDefines.hpp"
 #include "FakeInputSystem.hpp"
 #include "FakeOutputSystem.hpp"
@@ -16,16 +17,27 @@ TEST_CASE("Testing the quit feature")
 {
    SECTION("can quit from the main menu")
    {
-   FakeInputSystem inputSystem;
-   FakeOutputSystem outputSystem;
-   ChessEngine engine(inputSystem, outputSystem);
+   ChessEngineTestHarness testHarness;
 
    std::list<std::string> inputSequence;
    inputSequence.push_back(CommandDefines::QUIT_COMMAND);
-   inputSystem.setInputSequence(inputSequence);
+   testHarness.fakeInput().setInputSequence(inputSequence);
 
-   engine.runChessEngine();
+   testHarness.chessEngine().runChessEngine();
 
-   CHECK(outputSystem.mostRecentOutput() == "quitting chess...");
+   CHECK(testHarness.fakeOutput().mostRecentOutput() == "quitting chess...");
+   }
+
+   SECTION("can quit with uppper case version of command")
+   {
+   ChessEngineTestHarness testHarness;
+
+   std::list<std::string> inputSequence;
+   inputSequence.push_back("Q");
+   testHarness.fakeInput().setInputSequence(inputSequence);
+
+   testHarness.chessEngine().runChessEngine();
+
+   CHECK(testHarness.fakeOutput().mostRecentOutput() == "quitting chess...");
    }
 }

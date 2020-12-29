@@ -19,6 +19,7 @@
 		6962192825980DF8008E4DC8 /* testMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6962191B25980D67008E4DC8 /* testMain.cpp */; };
 		6962192A25981084008E4DC8 /* TestChessMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6962192925981084008E4DC8 /* TestChessMove.cpp */; };
 		6962192B25981113008E4DC8 /* ChessMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 696219162597F03F008E4DC8 /* ChessMove.cpp */; };
+		696EE2C3259AE27B00C5AAE4 /* ChessEngineTestHarness.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 696EE2C1259AE27B00C5AAE4 /* ChessEngineTestHarness.cpp */; };
 		69D251D1259817B50059E592 /* ChessEngine.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 69D251CF259817B50059E592 /* ChessEngine.cpp */; };
 		69D251D2259817B50059E592 /* ChessEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D251CF259817B50059E592 /* ChessEngine.cpp */; };
 		69D251D425981D190059E592 /* TerminalOutputSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 696219112596C873008E4DC8 /* TerminalOutputSystem.cpp */; };
@@ -71,6 +72,8 @@
 		6962191B25980D67008E4DC8 /* testMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testMain.cpp; sourceTree = "<group>"; };
 		6962192125980DF1008E4DC8 /* TestChess */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestChess; sourceTree = BUILT_PRODUCTS_DIR; };
 		6962192925981084008E4DC8 /* TestChessMove.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestChessMove.cpp; sourceTree = "<group>"; };
+		696EE2C1259AE27B00C5AAE4 /* ChessEngineTestHarness.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChessEngineTestHarness.cpp; sourceTree = "<group>"; };
+		696EE2C2259AE27B00C5AAE4 /* ChessEngineTestHarness.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ChessEngineTestHarness.hpp; sourceTree = "<group>"; };
 		69B66050259AA18400150835 /* CommandDefines.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CommandDefines.hpp; sourceTree = "<group>"; };
 		69D251CF259817B50059E592 /* ChessEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChessEngine.cpp; sourceTree = "<group>"; };
 		69D251D0259817B50059E592 /* ChessEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ChessEngine.hpp; sourceTree = "<group>"; };
@@ -126,13 +129,15 @@
 			isa = PBXGroup;
 			children = (
 				6962191A25980D2C008E4DC8 /* Catch.hpp */,
-				6962191B25980D67008E4DC8 /* testMain.cpp */,
-				6962192925981084008E4DC8 /* TestChessMove.cpp */,
 				694DF2062599468500195943 /* FakeInputSystem.cpp */,
 				694DF2072599468500195943 /* FakeInputSystem.hpp */,
-				694DF209259949C600195943 /* TestQuitFeature.cpp */,
 				694DF20B25994B4700195943 /* FakeOutputSystem.cpp */,
 				694DF20C25994B4700195943 /* FakeOutputSystem.hpp */,
+				6962192925981084008E4DC8 /* TestChessMove.cpp */,
+				6962191B25980D67008E4DC8 /* testMain.cpp */,
+				694DF209259949C600195943 /* TestQuitFeature.cpp */,
+				696EE2C1259AE27B00C5AAE4 /* ChessEngineTestHarness.cpp */,
+				696EE2C2259AE27B00C5AAE4 /* ChessEngineTestHarness.hpp */,
 			);
 			name = TestSources;
 			sourceTree = "<group>";
@@ -159,17 +164,17 @@
 			isa = PBXGroup;
 			children = (
 				42AC391D693BBBF4278A26F3 /* chess.cpp */,
-				696219102596C7DF008E4DC8 /* TerminalOutputSystem.hpp */,
-				696219112596C873008E4DC8 /* TerminalOutputSystem.cpp */,
-				696219132596CC16008E4DC8 /* TerminalInputSystem.cpp */,
-				696219142596CC16008E4DC8 /* TerminalInputSystem.hpp */,
-				696219162597F03F008E4DC8 /* ChessMove.cpp */,
-				696219172597F03F008E4DC8 /* ChessMove.hpp */,
 				69D251CF259817B50059E592 /* ChessEngine.cpp */,
 				69D251D0259817B50059E592 /* ChessEngine.hpp */,
+				696219162597F03F008E4DC8 /* ChessMove.cpp */,
+				696219172597F03F008E4DC8 /* ChessMove.hpp */,
+				69B66050259AA18400150835 /* CommandDefines.hpp */,
 				69D251D325981B220059E592 /* I_InputSystem.hpp */,
 				694DF2052599457000195943 /* I_OutputSystem.hpp */,
-				69B66050259AA18400150835 /* CommandDefines.hpp */,
+				696219132596CC16008E4DC8 /* TerminalInputSystem.cpp */,
+				696219142596CC16008E4DC8 /* TerminalInputSystem.hpp */,
+				696219112596C873008E4DC8 /* TerminalOutputSystem.cpp */,
+				696219102596C7DF008E4DC8 /* TerminalOutputSystem.hpp */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -286,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				69D251D2259817B50059E592 /* ChessEngine.cpp in Sources */,
+				696EE2C3259AE27B00C5AAE4 /* ChessEngineTestHarness.cpp in Sources */,
 				694DF20D25994B4700195943 /* FakeOutputSystem.cpp in Sources */,
 				69D251D425981D190059E592 /* TerminalOutputSystem.cpp in Sources */,
 				6962192825980DF8008E4DC8 /* testMain.cpp in Sources */,

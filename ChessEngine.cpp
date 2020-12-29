@@ -35,7 +35,8 @@ void ChessEngine::runChessEngine()
    while (true)
       {
       userInput = inputSystem_.readNextUserEntry();
-
+      std::transform(userInput.begin(), userInput.end(), userInput.begin(),
+                     [](unsigned char c){return std::tolower(c);});
       if (userInput == QUIT_COMMAND)
          {
          break;
