@@ -8,6 +8,7 @@
 
 #include "ChessEngine.hpp"
 #include "ChessMove.hpp"
+#include "ChessMoveValidator.hpp"
 #include "CommandDefines.hpp"
 #include "I_InputSystem.hpp"
 #include "I_OutputSystem.hpp"
@@ -18,6 +19,7 @@ ChessEngine::ChessEngine(I_InputSystem& inputSystem,
                          I_OutputSystem& outputSystem)
 : inputSystem_(inputSystem)
 , outputSystem_(outputSystem)
+, moveValidator_(new ChessMoveValidator())
 {
 
 }
@@ -53,6 +55,10 @@ void ChessEngine::runChessEngine()
          ChessMove move;
          move.populateFromString(userInput);
          outputSystem_.showTextToUser(move.toString().c_str());
+         if (!(*moveValidator_).isLegalMove(move))
+            {
+            outputSystem_.showTextToUser("No piece exists at these coordinates");
+            }
          }
       }
 

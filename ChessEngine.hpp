@@ -8,6 +8,9 @@
 
 #pragma once
 
+#include "ScopedPointer.hpp"
+
+class ChessMoveValidator;
 class I_InputSystem;
 class I_OutputSystem;
 
@@ -27,4 +30,5 @@ private:
 private:
    I_InputSystem& inputSystem_;
    I_OutputSystem& outputSystem_;
+   ScopedPointer<ChessMoveValidator> moveValidator_;
 };

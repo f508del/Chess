@@ -23,6 +23,6 @@ TerminalInputSystem::~TerminalInputSystem()
 std::string TerminalInputSystem::readNextUserEntry()
 {
    char inputString[64];
-   fscanf(stdin, "%64s", inputString);
+   fscanf(stdin, "%63s", inputString);
    return std::string(inputString);
 }

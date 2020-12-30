@@ -15,7 +15,7 @@
 
 TEST_CASE("Testing the 'new game' feature")
 {
-   SECTION("can start a new game at any time")
+   SECTION("can start a new game at startup")
    {
    ChessEngineTestHarness testHarness;
 
@@ -41,7 +41,20 @@ TEST_CASE("Testing the 'new game' feature")
    testHarness.chessEngine().runChessEngine();
 
    CHECK(testHarness.fakeOutput().contains("you are playing as white..."));
+   }
 
+   SECTION("will accept upper case version of new game command")
+   {
+   ChessEngineTestHarness testHarness;
+
+   std::list<std::string> inputSequence;
+   inputSequence.push_back("N");
+   inputSequence.push_back(CommandDefines::QUIT_COMMAND);
+   testHarness.fakeInput().setInputSequence(inputSequence);
+
+   testHarness.chessEngine().runChessEngine();
+
+   CHECK(testHarness.fakeOutput().contains("New game requested..."));
    }
 }
 
