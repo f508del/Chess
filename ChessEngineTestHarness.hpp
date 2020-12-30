@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include "ScopedPointer.hpp"
+
 class ChessEngine;
 class FakeInputSystem;
 class FakeOutputSystem;
@@ -24,8 +26,8 @@ public:
    ChessEngine& chessEngine();
 
 private:
-   FakeInputSystem* inputSystem_;
-   FakeOutputSystem* outputSystem_;
+   ScopedPointer<FakeInputSystem> inputSystem_;
+   ScopedPointer<FakeOutputSystem> outputSystem_;
 
-   ChessEngine* engine_;
+   ScopedPointer<ChessEngine> engine_;
 };

@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>ChessApp.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>TestChess.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +23,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>57DCC29DB600964414E10CCD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6909FB48259BB2D700629C34</key>
 		<dict>
 			<key>primary</key>
 			<true/>

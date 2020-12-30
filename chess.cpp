@@ -15,9 +15,9 @@
  */
 
 
-#include <ChessEngine.hpp>
-#include <TerminalOutputSystem.hpp>
-#include <TerminalInputSystem.hpp>
+#include "ChessEngine.hpp"
+#include "TerminalOutputSystem.hpp"
+#include "TerminalInputSystem.hpp"
 
 int main(int /*argc*/, char** /*argv*/)
 {

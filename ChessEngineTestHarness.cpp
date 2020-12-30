@@ -22,9 +22,7 @@ ChessEngineTestHarness::ChessEngineTestHarness()
 
 ChessEngineTestHarness::~ChessEngineTestHarness()
 {
-   delete engine_;
-   delete outputSystem_;
-   delete inputSystem_;
+   
 }
 
 FakeInputSystem& ChessEngineTestHarness::fakeInput()

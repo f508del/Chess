@@ -7,28 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4EAB9B275DAF5B280B6B1B32 /* chess.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 42AC391D693BBBF4278A26F3 /* chess.cpp */; settings = {ATTRIBUTES = (); }; };
-		51D4DBF7CB8537BE86EBD055 /* AppKit.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 821416211D63F190AAAD016A /* AppKit.framework */; };
-		6933DF220EF8AA3A0023AEE9 /* Chess.app in Project Copy */ = {isa = PBXBuildFile; fileRef = 6933DF1F0EF8AA3A0023AEE9 /* Chess.app */; };
+		6909FB50259BB2E700629C34 /* chess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 42AC391D693BBBF4278A26F3 /* chess.cpp */; };
+		6909FB51259BB2EC00629C34 /* ChessEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D251CF259817B50059E592 /* ChessEngine.cpp */; };
+		6909FB52259BB2F300629C34 /* ChessMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 696219162597F03F008E4DC8 /* ChessMove.cpp */; };
+		6909FB53259BB2FC00629C34 /* TerminalInputSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 696219132596CC16008E4DC8 /* TerminalInputSystem.cpp */; };
+		6909FB54259BB30100629C34 /* TerminalOutputSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 696219112596C873008E4DC8 /* TerminalOutputSystem.cpp */; };
+		6909FB56259BB4EB00629C34 /* TestNewGameFeature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6909FB55259BB4EB00629C34 /* TestNewGameFeature.cpp */; };
 		694DF2082599468500195943 /* FakeInputSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 694DF2062599468500195943 /* FakeInputSystem.cpp */; };
 		694DF20A259949C600195943 /* TestQuitFeature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 694DF209259949C600195943 /* TestQuitFeature.cpp */; };
 		694DF20D25994B4700195943 /* FakeOutputSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 694DF20B25994B4700195943 /* FakeOutputSystem.cpp */; };
-		696219122596C873008E4DC8 /* TerminalOutputSystem.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 696219112596C873008E4DC8 /* TerminalOutputSystem.cpp */; };
-		696219152596CC16008E4DC8 /* TerminalInputSystem.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 696219132596CC16008E4DC8 /* TerminalInputSystem.cpp */; };
-		696219182597F03F008E4DC8 /* ChessMove.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 696219162597F03F008E4DC8 /* ChessMove.cpp */; };
 		6962192825980DF8008E4DC8 /* testMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6962191B25980D67008E4DC8 /* testMain.cpp */; };
 		6962192A25981084008E4DC8 /* TestChessMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6962192925981084008E4DC8 /* TestChessMove.cpp */; };
 		6962192B25981113008E4DC8 /* ChessMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 696219162597F03F008E4DC8 /* ChessMove.cpp */; };
 		696EE2C3259AE27B00C5AAE4 /* ChessEngineTestHarness.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 696EE2C1259AE27B00C5AAE4 /* ChessEngineTestHarness.cpp */; };
-		69D251D1259817B50059E592 /* ChessEngine.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 69D251CF259817B50059E592 /* ChessEngine.cpp */; };
 		69D251D2259817B50059E592 /* ChessEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D251CF259817B50059E592 /* ChessEngine.cpp */; };
 		69D251D425981D190059E592 /* TerminalOutputSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 696219112596C873008E4DC8 /* TerminalOutputSystem.cpp */; };
 		69D251D525981D1D0059E592 /* TerminalInputSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 696219132596CC16008E4DC8 /* TerminalInputSystem.cpp */; };
-		C8FD4A1AAA37CF2CA2824CCF /* Carbon.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = DA138F75C9F545CDAE7FB264 /* Carbon.framework */; };
-		F9E76E570E10AF14870553A7 /* ApplicationServices.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 27AE7A480FD6C52FCA80FECD /* ApplicationServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		6909FB47259BB2D700629C34 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		6962191F25980DF1008E4DC8 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -38,24 +44,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
-		F6069D5A5DA8AA28EDB8B3C6 /* Project Copy */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /Users/trevor/Documents/programs/Chess;
-			dstSubfolderSpec = 0;
-			files = (
-				6933DF220EF8AA3A0023AEE9 /* Chess.app in Project Copy */,
-			);
-			name = "Project Copy";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1D6A312C28FFE341451A6E38 /* Chess.pro */ = {isa = PBXFileReference; lastKnownFileType = text; path = Chess.pro; sourceTree = "<group>"; };
 		27AE7A480FD6C52FCA80FECD /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
 		42AC391D693BBBF4278A26F3 /* chess.cpp */ = {isa = PBXFileReference; indentWidth = 3; lastKnownFileType = sourcecode.cpp.cpp; path = chess.cpp; sourceTree = "<group>"; tabWidth = 3; usesTabs = 1; };
-		6933DF1F0EF8AA3A0023AEE9 /* Chess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chess.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6909FB49259BB2D700629C34 /* ChessApp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChessApp; sourceTree = BUILT_PRODUCTS_DIR; };
+		6909FB55259BB4EB00629C34 /* TestNewGameFeature.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestNewGameFeature.cpp; sourceTree = "<group>"; };
 		694DF2052599457000195943 /* I_OutputSystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = I_OutputSystem.hpp; sourceTree = "<group>"; };
 		694DF2062599468500195943 /* FakeInputSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FakeInputSystem.cpp; sourceTree = "<group>"; };
 		694DF2072599468500195943 /* FakeInputSystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FakeInputSystem.hpp; sourceTree = "<group>"; };
@@ -74,6 +70,7 @@
 		6962192925981084008E4DC8 /* TestChessMove.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestChessMove.cpp; sourceTree = "<group>"; };
 		696EE2C1259AE27B00C5AAE4 /* ChessEngineTestHarness.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChessEngineTestHarness.cpp; sourceTree = "<group>"; };
 		696EE2C2259AE27B00C5AAE4 /* ChessEngineTestHarness.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ChessEngineTestHarness.hpp; sourceTree = "<group>"; };
+		696EE2C5259AE56E00C5AAE4 /* ScopedPointer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ScopedPointer.hpp; sourceTree = "<group>"; };
 		69B66050259AA18400150835 /* CommandDefines.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CommandDefines.hpp; sourceTree = "<group>"; };
 		69D251CF259817B50059E592 /* ChessEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChessEngine.cpp; sourceTree = "<group>"; };
 		69D251D0259817B50059E592 /* ChessEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ChessEngine.hpp; sourceTree = "<group>"; };
@@ -83,15 +80,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2A1043669E6E5A7426EA502A /* Frameworks & Libraries */ = {
+		6909FB46259BB2D700629C34 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8FD4A1AAA37CF2CA2824CCF /* Carbon.framework in Frameworks & Libraries */,
-				51D4DBF7CB8537BE86EBD055 /* AppKit.framework in Frameworks & Libraries */,
-				F9E76E570E10AF14870553A7 /* ApplicationServices.framework in Frameworks & Libraries */,
 			);
-			name = "Frameworks & Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		6962191E25980DF1008E4DC8 /* Frameworks */ = {
@@ -119,8 +112,8 @@
 		6933DF200EF8AA3A0023AEE9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6933DF1F0EF8AA3A0023AEE9 /* Chess.app */,
 				6962192125980DF1008E4DC8 /* TestChess */,
+				6909FB49259BB2D700629C34 /* ChessApp */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -138,6 +131,7 @@
 				694DF209259949C600195943 /* TestQuitFeature.cpp */,
 				696EE2C1259AE27B00C5AAE4 /* ChessEngineTestHarness.cpp */,
 				696EE2C2259AE27B00C5AAE4 /* ChessEngineTestHarness.hpp */,
+				6909FB55259BB4EB00629C34 /* TestNewGameFeature.cpp */,
 			);
 			name = TestSources;
 			sourceTree = "<group>";
@@ -175,6 +169,7 @@
 				696219142596CC16008E4DC8 /* TerminalInputSystem.hpp */,
 				696219112596C873008E4DC8 /* TerminalOutputSystem.cpp */,
 				696219102596C7DF008E4DC8 /* TerminalOutputSystem.hpp */,
+				696EE2C5259AE56E00C5AAE4 /* ScopedPointer.hpp */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -182,25 +177,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		57DCC29DB600964414E10CCD /* Chess */ = {
+		6909FB48259BB2D700629C34 /* ChessApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6933DF350EF8AA7C0023AEE9 /* Build configuration list for PBXNativeTarget "Chess" */;
+			buildConfigurationList = 6909FB4D259BB2D700629C34 /* Build configuration list for PBXNativeTarget "ChessApp" */;
 			buildPhases = (
-				D7BA7D76DAB5DD13389D6332 /* Qt Qmake */,
-				A0A52A2ADF7A1E2A99738674 /* Qt Preprocessors */,
-				F6069D5A5DA8AA28EDB8B3C6 /* Project Copy */,
-				C29B8785722055ED95EF7B57 /* Build Sources */,
-				2A1043669E6E5A7426EA502A /* Frameworks & Libraries */,
-				3787F99312C85FF0073FD7BA /* Bundle Resources */,
+				6909FB45259BB2D700629C34 /* Sources */,
+				6909FB46259BB2D700629C34 /* Frameworks */,
+				6909FB47259BB2D700629C34 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Chess;
-			productName = Chess;
-			productReference = 6933DF1F0EF8AA3A0023AEE9 /* Chess.app */;
-			productType = "com.apple.product-type.application";
+			name = ChessApp;
+			productName = ChessApp;
+			productReference = 6909FB49259BB2D700629C34 /* ChessApp */;
+			productType = "com.apple.product-type.tool";
 		};
 		6962192025980DF1008E4DC8 /* TestChess */ = {
 			isa = PBXNativeTarget;
@@ -227,6 +219,10 @@
 			attributes = {
 				LastUpgradeCheck = 0820;
 				TargetAttributes = {
+					6909FB48259BB2D700629C34 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
 					6962192025980DF1008E4DC8 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
@@ -245,47 +241,25 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				57DCC29DB600964414E10CCD /* Chess */,
 				6962192025980DF1008E4DC8 /* TestChess */,
+				6909FB48259BB2D700629C34 /* ChessApp */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		3787F99312C85FF0073FD7BA /* Bundle Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			name = "Bundle Resources";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		A0A52A2ADF7A1E2A99738674 /* Qt Preprocessors */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			name = "Qt Preprocessors";
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "make -C /Users/trevor/Documents/programs/Chess -f Chess.xcodeproj/qt_preprocess.mak";
-		};
-		D7BA7D76DAB5DD13389D6332 /* Qt Qmake */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			name = "Qt Qmake";
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "make -C /Users/trevor/Documents/programs/Chess -f Chess.xcodeproj/qt_makeqmake.mak";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
+		6909FB45259BB2D700629C34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6909FB51259BB2EC00629C34 /* ChessEngine.cpp in Sources */,
+				6909FB54259BB30100629C34 /* TerminalOutputSystem.cpp in Sources */,
+				6909FB50259BB2E700629C34 /* chess.cpp in Sources */,
+				6909FB53259BB2FC00629C34 /* TerminalInputSystem.cpp in Sources */,
+				6909FB52259BB2F300629C34 /* ChessMove.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6962191D25980DF1008E4DC8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -295,6 +269,7 @@
 				694DF20D25994B4700195943 /* FakeOutputSystem.cpp in Sources */,
 				69D251D425981D190059E592 /* TerminalOutputSystem.cpp in Sources */,
 				6962192825980DF8008E4DC8 /* testMain.cpp in Sources */,
+				6909FB56259BB4EB00629C34 /* TestNewGameFeature.cpp in Sources */,
 				694DF20A259949C600195943 /* TestQuitFeature.cpp in Sources */,
 				69D251D525981D1D0059E592 /* TerminalInputSystem.cpp in Sources */,
 				694DF2082599468500195943 /* FakeInputSystem.cpp in Sources */,
@@ -303,206 +278,63 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C29B8785722055ED95EF7B57 /* Build Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				69D251D1259817B50059E592 /* ChessEngine.cpp in Build Sources */,
-				696219152596CC16008E4DC8 /* TerminalInputSystem.cpp in Build Sources */,
-				4EAB9B275DAF5B280B6B1B32 /* chess.cpp in Build Sources */,
-				696219122596C873008E4DC8 /* TerminalOutputSystem.cpp in Build Sources */,
-				696219182597F03F008E4DC8 /* ChessMove.cpp in Build Sources */,
-			);
-			name = "Build Sources";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		6933DF2D0EF8AA3A0023AEE9 /* Debug */ = {
+		6909FB4E259BB2D700629C34 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUILD_ROOT = /Users/trevor/Documents/programs/Chess;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				DYLIB_COMPATIBILITY_VERSION = 1.0;
-				DYLIB_CURRENT_VERSION = 1.0.0;
-				FRAMEWORK_SEARCH_PATHS = (
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CODE_SIGN_IDENTITY = "-";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
 				);
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				HEADER_SEARCH_PATHS = (
-					.,
-					/usr/local/include,
-					/Developer/,
-					/System/Library/Frameworks/CarbonCore.framework/Headers,
-					/Library/Frameworks/QtCore.framework/Headers,
-					/Library/Frameworks/QtGui.framework/Headers,
-				);
-				INFOPLIST_FILE = Info.plist;
-				LEXFLAGS = "";
-				LIBRARY_SEARCH_PATHS = (
-					/System/Library/Frameworks/,
-					/Library/Frameworks/,
-					/Library/Frameworks/QtGui.framework/Versions/4,
-					/Library/Frameworks/QtCore.framework/Versions/4,
-				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				OTHER_CFLAGS = (
-					"-pipe",
-					"-g",
-					"-Wall",
-					"-W",
-					"-DQT_GUI_LIB",
-					"-DQT_CORE_LIB",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-pipe",
-					"-g",
-					"-Wall",
-					"-W",
-					"-DQT_GUI_LIB",
-					"-DQT_CORE_LIB",
-				);
-				OTHER_LDFLAGS = (
-					"-headerpad_max_install_names",
-					"-lz",
-					"-lm",
-					"-L/Library/Frameworks/QtCore.framework/Versions/4",
-					"-L/Library/Frameworks/QtGui.framework/Versions/4",
-				);
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = Chess;
-				SECTORDER_FLAGS = "";
-				VALID_ARCHS = "x86_64 i386";
-				WARNING_CFLAGS = "";
-				YACCFLAGS = "-d";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
-		6933DF2E0EF8AA3A0023AEE9 /* Release */ = {
+		6909FB4F259BB2D700629C34 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUILD_ROOT = /Users/trevor/Documents/programs/Chess;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1.0;
-				DYLIB_CURRENT_VERSION = 1.0.0;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)\"",
-				);
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				HEADER_SEARCH_PATHS = (
-					.,
-					/usr/local/include,
-					/Developer/,
-					/System/Library/Frameworks/CarbonCore.framework/Headers,
-					/Library/Frameworks/QtCore.framework/Headers,
-					/Library/Frameworks/QtGui.framework/Headers,
-				);
-				INFOPLIST_FILE = Info.plist;
-				LEXFLAGS = "";
-				LIBRARY_SEARCH_PATHS = (
-					/System/Library/Frameworks/,
-					/Library/Frameworks/,
-					/Library/Frameworks/QtGui.framework/Versions/4,
-					/Library/Frameworks/QtCore.framework/Versions/4,
-				);
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				OTHER_CFLAGS = (
-					"-pipe",
-					"-g",
-					"-Wall",
-					"-W",
-					"-DQT_GUI_LIB",
-					"-DQT_CORE_LIB",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-pipe",
-					"-g",
-					"-Wall",
-					"-W",
-					"-DQT_GUI_LIB",
-					"-DQT_CORE_LIB",
-				);
-				OTHER_LDFLAGS = (
-					"-headerpad_max_install_names",
-					"-lz",
-					"-lm",
-					"-L/Library/Frameworks/QtCore.framework/Versions/4",
-					"-L/Library/Frameworks/QtGui.framework/Versions/4",
-				);
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = Chess;
-				SECTORDER_FLAGS = "";
-				VALID_ARCHS = "x86_64 i386";
-				WARNING_CFLAGS = "";
-				YACCFLAGS = "-d";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 			};
 			name = Release;
-		};
-		6933DF2F0EF8AA3A0023AEE9 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUILD_ROOT = /Users/trevor/Documents/programs/Chess;
-				COMBINE_HIDPI_IMAGES = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1.0;
-				DYLIB_CURRENT_VERSION = 1.0.0;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)\"",
-				);
-				HEADER_SEARCH_PATHS = (
-					.,
-					/usr/local/include,
-					/Developer/,
-					/System/Library/Frameworks/CarbonCore.framework/Headers,
-					/Library/Frameworks/QtCore.framework/Headers,
-					/Library/Frameworks/QtGui.framework/Headers,
-				);
-				INFOPLIST_FILE = Info.plist;
-				LEXFLAGS = "";
-				LIBRARY_SEARCH_PATHS = (
-					/System/Library/Frameworks/,
-					/Library/Frameworks/,
-					/Library/Frameworks/QtGui.framework/Versions/4,
-					/Library/Frameworks/QtCore.framework/Versions/4,
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				OTHER_CFLAGS = (
-					"-pipe",
-					"-g",
-					"-Wall",
-					"-W",
-					"-DQT_GUI_LIB",
-					"-DQT_CORE_LIB",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-pipe",
-					"-g",
-					"-Wall",
-					"-W",
-					"-DQT_GUI_LIB",
-					"-DQT_CORE_LIB",
-				);
-				OTHER_LDFLAGS = (
-					"-headerpad_max_install_names",
-					"-lz",
-					"-lm",
-					"-L/Library/Frameworks/QtCore.framework/Versions/4",
-					"-L/Library/Frameworks/QtGui.framework/Versions/4",
-				);
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = Chess;
-				SECTORDER_FLAGS = "";
-				VALID_ARCHS = "x86_64 i386";
-				WARNING_CFLAGS = "";
-				YACCFLAGS = "-d";
-			};
-			name = Default;
 		};
 		6962192625980DF1008E4DC8 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -624,15 +456,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6933DF350EF8AA7C0023AEE9 /* Build configuration list for PBXNativeTarget "Chess" */ = {
+		6909FB4D259BB2D700629C34 /* Build configuration list for PBXNativeTarget "ChessApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6933DF2D0EF8AA3A0023AEE9 /* Debug */,
-				6933DF2E0EF8AA3A0023AEE9 /* Release */,
-				6933DF2F0EF8AA3A0023AEE9 /* Default */,
+				6909FB4E259BB2D700629C34 /* Debug */,
+				6909FB4F259BB2D700629C34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
 		};
 		6962192525980DF1008E4DC8 /* Build configuration list for PBXNativeTarget "TestChess" */ = {
 			isa = XCConfigurationList;
