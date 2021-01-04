@@ -9,6 +9,8 @@
 #pragma once
 
 #include "ScopedPointer.hpp"
+#include <list>
+#include <string>
 
 class ChessEngine;
 class FakeInputSystem;
@@ -24,6 +26,10 @@ public:
    FakeOutputSystem& fakeOutput();
 
    ChessEngine& chessEngine();
+
+   // Convenience interfaces
+   void setInputSequenceAppendingQuit(const std::list<std::string>& inputSequence);
+   bool isLastOutputBeforeQuittingEqualTo(const std::string& outputString);
 
 private:
    ScopedPointer<FakeInputSystem> inputSystem_;

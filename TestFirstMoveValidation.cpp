@@ -13,20 +13,21 @@
 #include "FakeInputSystem.hpp"
 #include "FakeOutputSystem.hpp"
 
+using namespace std;
+
 namespace {
-   void runTestWithOpeningMoveAndDisplayedResponse(const char* moveString, std::string response)
+   void runTestWithOpeningMoveAndDisplayedResponse(const char* moveString, string response)
    {
    ChessEngineTestHarness testHarness;
 
-   std::list<std::string> inputSequence;
+   list<string> inputSequence;
    inputSequence.push_back(CommandDefines::NEW_GAME_COMMAND);
    inputSequence.push_back(moveString);
-   inputSequence.push_back(CommandDefines::QUIT_COMMAND);
-   testHarness.fakeInput().setInputSequence(inputSequence);
+   testHarness.setInputSequenceAppendingQuit(inputSequence);
 
    testHarness.chessEngine().runChessEngine();
 
-   CHECK(testHarness.fakeOutput().contains(response));
+   CHECK(testHarness.isLastOutputBeforeQuittingEqualTo(response));
    }
 
    void runTestWithOpeningInvalidMoveOffOfBoard(const char* moveString)
@@ -45,7 +46,12 @@ namespace {
    {
       runTestWithOpeningMoveAndDisplayedResponse(moveString,
                                                 "No piece exists at these coordinates");
+   }
 
+   void runTestWithMoveThatAttemptsToMoveOpposingPiece(const char* moveString)
+   {
+      runTestWithOpeningMoveAndDisplayedResponse(moveString,
+                                                "Nice try, that's the other players piece!");
    }
 }
 
@@ -86,8 +92,21 @@ TEST_CASE("Testing the validation of the user's opening move")
       runTestWithMoveThatDoesNotStartOnAnExistingPiece("a5a6");
    }
 
-   SECTION("will echo back the requested move when opening move is valid")
+   SECTION("will detect a move that attempts to move the opposing players pieces")
+   {
+      runTestWithMoveThatAttemptsToMoveOpposingPiece("a7a6");
+      runTestWithMoveThatAttemptsToMoveOpposingPiece("b8a6");
+   }
+
+   SECTION("will echo back the requested move when opening move is valid (pawn)")
    {
       runTestWithValidOpeningMove("a2a3");
+      runTestWithValidOpeningMove("a2a4");
+   }
+
+   SECTION("will echo back the requested move when opening move is valid (knight)")
+   {
+      runTestWithValidOpeningMove("b1a3");
+      runTestWithValidOpeningMove("b1c3");
    }
 }

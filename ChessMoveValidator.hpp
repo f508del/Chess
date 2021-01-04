@@ -7,6 +7,7 @@
 //
 
 #pragma once
+#include "string"
 
 class ChessMove;
 
@@ -17,4 +18,13 @@ public:
    virtual ~ChessMoveValidator();
 
    bool isLegalMove(const ChessMove& currentMove);
+
+   std::string commentOnLastMove() const;
+
+private:
+   bool isTouchingWhitePiece(const ChessMove& currentMove) const;
+   bool isTouchingBlackPiece(const ChessMove& currentMove) const;
+
+private:
+   std::string commentOnLastMove_;
 };

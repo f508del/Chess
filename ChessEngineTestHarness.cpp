@@ -11,6 +11,9 @@
 #include "FakeInputSystem.hpp"
 #include "FakeOutputSystem.hpp"
 #include "ChessEngine.hpp"
+#include "CommandDefines.hpp"
+
+using namespace std;
 
 ChessEngineTestHarness::ChessEngineTestHarness()
 : inputSystem_(new FakeInputSystem())
@@ -38,4 +41,22 @@ FakeOutputSystem& ChessEngineTestHarness::fakeOutput()
 ChessEngine& ChessEngineTestHarness::chessEngine()
 {
    return *engine_;
+}
+
+void ChessEngineTestHarness::setInputSequenceAppendingQuit(const list<string>& inputSequence)
+{
+   list<string> finalInputSequence = inputSequence;
+   finalInputSequence.push_back(CommandDefines::QUIT_COMMAND);
+
+   fakeInput().setInputSequence(finalInputSequence);
+}
+
+bool ChessEngineTestHarness::isLastOutputBeforeQuittingEqualTo(const string &outputString)
+{
+   if (fakeOutput().size() < 2)
+      {
+         return false;
+      }
+
+   return (fakeOutput().secondLastOutput() == outputString);
 }

@@ -8,6 +8,8 @@
 
 #include "FakeOutputSystem.hpp"
 
+using namespace std;
+
 FakeOutputSystem::FakeOutputSystem()
 {
 
@@ -24,14 +26,31 @@ void FakeOutputSystem::showTextToUser(const char* displayString)
    capturedOutput_.push_back(displayString);
 }
 
-std::string FakeOutputSystem::mostRecentOutput() const
+size_t FakeOutputSystem::size() const
+{
+   return capturedOutput_.size();
+}
+
+string FakeOutputSystem::mostRecentOutput() const
 {
    return mostRecentOutput_;
 }
 
-bool FakeOutputSystem::contains(const std::string& outputEntry) const
+string FakeOutputSystem::secondLastOutput() const
 {
-   for (std::list<std::string>::const_iterator it = capturedOutput_.begin(); it != capturedOutput_.end(); it++)
+   if (size() < 2)
+      {
+      return "";
+      }
+   list<string>::const_iterator it = capturedOutput_.end();
+   it--;
+   it--;
+   return *it;
+}
+
+bool FakeOutputSystem::contains(const string& outputEntry) const
+{
+   for (list<string>::const_iterator it = capturedOutput_.begin(); it != capturedOutput_.end(); it++)
       {
          if (*it == outputEntry)
          {

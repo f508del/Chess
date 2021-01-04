@@ -13,16 +13,17 @@
 #include "FakeInputSystem.hpp"
 #include "FakeOutputSystem.hpp"
 
+using namespace std;
+
 TEST_CASE("Testing the 'new game' feature")
 {
    SECTION("can start a new game at startup")
    {
    ChessEngineTestHarness testHarness;
 
-   std::list<std::string> inputSequence;
+   list<string> inputSequence;
    inputSequence.push_back(CommandDefines::NEW_GAME_COMMAND);
-   inputSequence.push_back(CommandDefines::QUIT_COMMAND);
-   testHarness.fakeInput().setInputSequence(inputSequence);
+   testHarness.setInputSequenceAppendingQuit(inputSequence);
 
    testHarness.chessEngine().runChessEngine();
 
@@ -33,10 +34,9 @@ TEST_CASE("Testing the 'new game' feature")
    {
    ChessEngineTestHarness testHarness;
 
-   std::list<std::string> inputSequence;
+   list<string> inputSequence;
    inputSequence.push_back(CommandDefines::NEW_GAME_COMMAND);
-   inputSequence.push_back(CommandDefines::QUIT_COMMAND);
-   testHarness.fakeInput().setInputSequence(inputSequence);
+   testHarness.setInputSequenceAppendingQuit(inputSequence);
 
    testHarness.chessEngine().runChessEngine();
 
@@ -47,10 +47,9 @@ TEST_CASE("Testing the 'new game' feature")
    {
    ChessEngineTestHarness testHarness;
 
-   std::list<std::string> inputSequence;
+   list<string> inputSequence;
    inputSequence.push_back("N");
-   inputSequence.push_back(CommandDefines::QUIT_COMMAND);
-   testHarness.fakeInput().setInputSequence(inputSequence);
+   testHarness.setInputSequenceAppendingQuit(inputSequence);
 
    testHarness.chessEngine().runChessEngine();
 

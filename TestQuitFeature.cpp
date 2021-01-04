@@ -13,13 +13,15 @@
 #include "FakeInputSystem.hpp"
 #include "FakeOutputSystem.hpp"
 
+using namespace std;
+
 TEST_CASE("Testing the quit feature")
 {
    SECTION("can quit from the main menu")
    {
    ChessEngineTestHarness testHarness;
 
-   std::list<std::string> inputSequence;
+   list<string> inputSequence;
    inputSequence.push_back(CommandDefines::QUIT_COMMAND);
    testHarness.fakeInput().setInputSequence(inputSequence);
 
@@ -32,7 +34,7 @@ TEST_CASE("Testing the quit feature")
    {
    ChessEngineTestHarness testHarness;
 
-   std::list<std::string> inputSequence;
+   list<string> inputSequence;
    inputSequence.push_back("Q");
    testHarness.fakeInput().setInputSequence(inputSequence);
 

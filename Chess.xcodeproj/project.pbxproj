@@ -183,18 +183,18 @@
 		FB61758D0F0FDA4BA867C3D5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				6999D687259D079900412205 /* External */,
 				42AC391D693BBBF4278A26F3 /* chess.cpp */,
 				69D251CF259817B50059E592 /* ChessEngine.cpp */,
 				69D251D0259817B50059E592 /* ChessEngine.hpp */,
 				696219162597F03F008E4DC8 /* ChessMove.cpp */,
 				696219172597F03F008E4DC8 /* ChessMove.hpp */,
+				6999D68A259D10C000412205 /* ChessMoveValidator.cpp */,
+				6999D68B259D10C000412205 /* ChessMoveValidator.hpp */,
 				69B66050259AA18400150835 /* CommandDefines.hpp */,
+				6999D687259D079900412205 /* External */,
 				69D251D325981B220059E592 /* I_InputSystem.hpp */,
 				694DF2052599457000195943 /* I_OutputSystem.hpp */,
 				696EE2C5259AE56E00C5AAE4 /* ScopedPointer.hpp */,
-				6999D68A259D10C000412205 /* ChessMoveValidator.cpp */,
-				6999D68B259D10C000412205 /* ChessMoveValidator.hpp */,
 			);
 			name = Sources;
 			sourceTree = "<group>";

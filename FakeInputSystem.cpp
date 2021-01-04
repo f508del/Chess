@@ -8,6 +8,8 @@
 
 #include "FakeInputSystem.hpp"
 
+using namespace std;
+
 FakeInputSystem::FakeInputSystem()
 : inputBuffer_()
 {
@@ -19,18 +21,18 @@ FakeInputSystem::~FakeInputSystem()
 
 }
 
-std::string FakeInputSystem::readNextUserEntry()
+string FakeInputSystem::readNextUserEntry()
 {
    if (!inputBuffer_.empty())
       {
-      std::string nextInput = inputBuffer_.front();
+      string nextInput = inputBuffer_.front();
       inputBuffer_.pop_front();
       return nextInput;
       }
-   return std::string();
+   return string();
 }
 
-void FakeInputSystem::setInputSequence(std::list<std::string> &inputSequence)
+void FakeInputSystem::setInputSequence(list<string> &inputSequence)
 {
    inputBuffer_ = inputSequence;
 }

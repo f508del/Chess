@@ -8,12 +8,14 @@
 
 #include "ChessMove.hpp"
 
+using namespace std;
+
 ChessMove::ChessMove()
 {
    resetState();
 }
 
-std::string ChessMove::toString() const
+string ChessMove::toString() const
 {
    if (!isOnTheBoard())
       {
@@ -21,13 +23,12 @@ std::string ChessMove::toString() const
       }
 
    char resultString[5];
-   resultString[0] = startingFile;
    sprintf(resultString, "%c%u%c%u", startingFile, startingRank, endingFile, endingRank);
    resultString[4] = '\0';
    return resultString;
 }
 
-bool ChessMove::populateFromString(const std::string& moveString)
+bool ChessMove::populateFromString(const string& moveString)
 {
    resetState();
    if (moveString.length() != 4)

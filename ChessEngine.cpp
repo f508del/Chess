@@ -14,6 +14,7 @@
 #include "I_OutputSystem.hpp"
 
 using namespace CommandDefines;
+using namespace std;
 
 ChessEngine::ChessEngine(I_InputSystem& inputSystem,
                          I_OutputSystem& outputSystem)
@@ -33,17 +34,17 @@ void ChessEngine::runChessEngine()
 {
    displayMainMenu();
    
-   std::string userInput;
+   string userInput;
    while (true)
       {
       userInput = inputSystem_.readNextUserEntry();
-      std::transform(userInput.begin(), userInput.end(), userInput.begin(),
-                     [](unsigned char c){return std::tolower(c);});
+      transform(userInput.begin(), userInput.end(), userInput.begin(),
+                     [](unsigned char c){return tolower(c);});
       if (userInput == QUIT_COMMAND)
          {
          break;
          }
-      else if (NEW_GAME_COMMAND == userInput)
+      else if (userInput == NEW_GAME_COMMAND)
          {
          outputSystem_.showTextToUser("New game requested...");
          outputSystem_.showTextToUser("you are playing as white...");
@@ -54,10 +55,13 @@ void ChessEngine::runChessEngine()
          // attempt to read in the input as a move...
          ChessMove move;
          move.populateFromString(userInput);
-         outputSystem_.showTextToUser(move.toString().c_str());
          if (!(*moveValidator_).isLegalMove(move))
             {
-            outputSystem_.showTextToUser("No piece exists at these coordinates");
+            outputSystem_.showTextToUser((*moveValidator_).commentOnLastMove().c_str());
+            }
+         else
+            {
+            outputSystem_.showTextToUser(move.toString().c_str());
             }
          }
       }
