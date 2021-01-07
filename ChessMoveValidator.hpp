@@ -10,11 +10,12 @@
 #include "string"
 
 class ChessMove;
+class ChessBoard;
 
 class ChessMoveValidator
 {
 public:
-   ChessMoveValidator();
+   ChessMoveValidator(const ChessBoard& board);
    virtual ~ChessMoveValidator();
 
    bool isLegalMove(const ChessMove& currentMove);
@@ -22,9 +23,6 @@ public:
    std::string commentOnLastMove() const;
 
 private:
-   bool isTouchingWhitePiece(const ChessMove& currentMove) const;
-   bool isTouchingBlackPiece(const ChessMove& currentMove) const;
-
-private:
    std::string commentOnLastMove_;
+   const ChessBoard& board_;
 };

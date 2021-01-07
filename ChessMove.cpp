@@ -7,6 +7,7 @@
 //
 
 #include "ChessMove.hpp"
+#include "OutputErrorDefines.hpp"
 
 using namespace std;
 
@@ -18,9 +19,9 @@ ChessMove::ChessMove()
 string ChessMove::toString() const
 {
    if (!isOnTheBoard())
-      {
-         return "Move is not validly on the board";
-      }
+   {
+      return OutputErrorDefines::MOVE_NOT_ON_BOARD_ERROR;
+   }
 
    char resultString[5];
    sprintf(resultString, "%c%u%c%u", startingFile, startingRank, endingFile, endingRank);
@@ -32,7 +33,9 @@ bool ChessMove::populateFromString(const string& moveString)
 {
    resetState();
    if (moveString.length() != 4)
+   {
       return false;
+   }
    sscanf(moveString.c_str(), "%c%u%c%u", &startingFile, &startingRank, &endingFile, &endingRank);
 
    return isOnTheBoard();

@@ -26,6 +26,8 @@
 		69D251D2259817B50059E592 /* ChessEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D251CF259817B50059E592 /* ChessEngine.cpp */; };
 		69D251D425981D190059E592 /* TerminalOutputSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 696219112596C873008E4DC8 /* TerminalOutputSystem.cpp */; };
 		69D251D525981D1D0059E592 /* TerminalInputSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 696219132596CC16008E4DC8 /* TerminalInputSystem.cpp */; };
+		69F4984A25A6B438005A9D9B /* ChessBoard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F4984825A6B438005A9D9B /* ChessBoard.cpp */; };
+		69F4984B25A6B438005A9D9B /* ChessBoard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F4984825A6B438005A9D9B /* ChessBoard.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -81,6 +83,9 @@
 		69D251CF259817B50059E592 /* ChessEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChessEngine.cpp; sourceTree = "<group>"; };
 		69D251D0259817B50059E592 /* ChessEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ChessEngine.hpp; sourceTree = "<group>"; };
 		69D251D325981B220059E592 /* I_InputSystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = I_InputSystem.hpp; sourceTree = "<group>"; };
+		69F4984725A6AB41005A9D9B /* OutputErrorDefines.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OutputErrorDefines.hpp; sourceTree = "<group>"; };
+		69F4984825A6B438005A9D9B /* ChessBoard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChessBoard.cpp; sourceTree = "<group>"; };
+		69F4984925A6B438005A9D9B /* ChessBoard.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ChessBoard.hpp; sourceTree = "<group>"; };
 		821416211D63F190AAAD016A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		DA138F75C9F545CDAE7FB264 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
@@ -195,6 +200,9 @@
 				69D251D325981B220059E592 /* I_InputSystem.hpp */,
 				694DF2052599457000195943 /* I_OutputSystem.hpp */,
 				696EE2C5259AE56E00C5AAE4 /* ScopedPointer.hpp */,
+				69F4984725A6AB41005A9D9B /* OutputErrorDefines.hpp */,
+				69F4984825A6B438005A9D9B /* ChessBoard.cpp */,
+				69F4984925A6B438005A9D9B /* ChessBoard.hpp */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -278,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6999D68D259D10C000412205 /* ChessMoveValidator.cpp in Sources */,
+				69F4984B25A6B438005A9D9B /* ChessBoard.cpp in Sources */,
 				6909FB51259BB2EC00629C34 /* ChessEngine.cpp in Sources */,
 				6909FB54259BB30100629C34 /* TerminalOutputSystem.cpp in Sources */,
 				6909FB50259BB2E700629C34 /* chess.cpp in Sources */,
@@ -291,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				69D251D2259817B50059E592 /* ChessEngine.cpp in Sources */,
+				69F4984A25A6B438005A9D9B /* ChessBoard.cpp in Sources */,
 				696EE2C3259AE27B00C5AAE4 /* ChessEngineTestHarness.cpp in Sources */,
 				694DF20D25994B4700195943 /* FakeOutputSystem.cpp in Sources */,
 				69D251D425981D190059E592 /* TerminalOutputSystem.cpp in Sources */,

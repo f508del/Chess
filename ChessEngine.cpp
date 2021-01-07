@@ -6,6 +6,7 @@
 //
 //
 
+#include "ChessBoard.hpp"
 #include "ChessEngine.hpp"
 #include "ChessMove.hpp"
 #include "ChessMoveValidator.hpp"
@@ -20,7 +21,8 @@ ChessEngine::ChessEngine(I_InputSystem& inputSystem,
                          I_OutputSystem& outputSystem)
 : inputSystem_(inputSystem)
 , outputSystem_(outputSystem)
-, moveValidator_(new ChessMoveValidator())
+, board_(new ChessBoard())
+, moveValidator_(new ChessMoveValidator(*board_))
 {
 
 }

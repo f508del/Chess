@@ -12,8 +12,10 @@
 #include "CommandDefines.hpp"
 #include "FakeInputSystem.hpp"
 #include "FakeOutputSystem.hpp"
+#include "OutputErrorDefines.hpp"
 
 using namespace std;
+using namespace OutputErrorDefines;
 
 namespace {
    void runTestWithOpeningMoveAndDisplayedResponse(const char* moveString, string response)
@@ -33,7 +35,7 @@ namespace {
    void runTestWithOpeningInvalidMoveOffOfBoard(const char* moveString)
    {
       runTestWithOpeningMoveAndDisplayedResponse(moveString,
-                                                 "Move is not validly on the board");
+                                                 MOVE_NOT_ON_BOARD_ERROR);
    }
 
    void runTestWithValidOpeningMove(const char* moveString)
@@ -45,13 +47,13 @@ namespace {
    void runTestWithMoveThatDoesNotStartOnAnExistingPiece(const char* moveString)
    {
       runTestWithOpeningMoveAndDisplayedResponse(moveString,
-                                                "No piece exists at these coordinates");
+                                                NO_PIECE_AT_COORDINATES_ERROR);
    }
 
    void runTestWithMoveThatAttemptsToMoveOpposingPiece(const char* moveString)
    {
       runTestWithOpeningMoveAndDisplayedResponse(moveString,
-                                                "Nice try, that's the other players piece!");
+                                                OPPOSING_PLAYERS_PIECE_ERROR);
    }
 }
 

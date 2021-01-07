@@ -10,6 +10,7 @@
 
 #include "ScopedPointer.hpp"
 
+class ChessBoard;
 class ChessMoveValidator;
 class I_InputSystem;
 class I_OutputSystem;
@@ -30,5 +31,6 @@ private:
 private:
    I_InputSystem& inputSystem_;
    I_OutputSystem& outputSystem_;
+   ScopedPointer<ChessBoard> board_;
    ScopedPointer<ChessMoveValidator> moveValidator_;
 };

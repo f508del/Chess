@@ -42,4 +42,19 @@ TEST_CASE("Testing the quit feature")
 
    CHECK(testHarness.fakeOutput().mostRecentOutput() == "quitting chess...");
    }
+
+   SECTION("can quit after having started a new game and made a move")
+   {
+   ChessEngineTestHarness testHarness;
+
+   list<string> inputSequence;
+   inputSequence.push_back(CommandDefines::NEW_GAME_COMMAND);
+   inputSequence.push_back("a2a3");
+   inputSequence.push_back(CommandDefines::QUIT_COMMAND);
+   testHarness.fakeInput().setInputSequence(inputSequence);
+
+   testHarness.chessEngine().runChessEngine();
+
+   CHECK(testHarness.fakeOutput().mostRecentOutput() == "quitting chess...");
+   }
 }

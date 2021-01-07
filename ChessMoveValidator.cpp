@@ -7,12 +7,17 @@
 //
 
 #include "ChessMoveValidator.hpp"
+
+#include "ChessBoard.hpp"
 #include "ChessMove.hpp"
+#include "OutputErrorDefines.hpp"
 
 using namespace std;
+using namespace OutputErrorDefines;
 
-ChessMoveValidator::ChessMoveValidator()
+ChessMoveValidator::ChessMoveValidator(const ChessBoard& board)
 : commentOnLastMove_()
+, board_(board)
 {
 
 }
@@ -29,14 +34,14 @@ bool ChessMoveValidator::isLegalMove(const ChessMove& currentMove)
       commentOnLastMove_ = currentMove.toString();
       return false;
    }
-   if (isTouchingBlackPiece(currentMove))
+   if (board_.blackPieceExistsAt(currentMove.startingFile, currentMove.startingRank))
    {
-      commentOnLastMove_ = "Nice try, that's the other players piece!";
+      commentOnLastMove_ = OPPOSING_PLAYERS_PIECE_ERROR;
       return false;
    }
-   if (!isTouchingWhitePiece(currentMove))
+   if (!board_.anyPieceExistsAt(currentMove.startingFile, currentMove.startingRank))
    {
-      commentOnLastMove_ = "No piece exists at these coordinates";
+      commentOnLastMove_ = NO_PIECE_AT_COORDINATES_ERROR;
       return false;
    }
    commentOnLastMove_ = currentMove.toString();
@@ -46,24 +51,4 @@ bool ChessMoveValidator::isLegalMove(const ChessMove& currentMove)
 string ChessMoveValidator::commentOnLastMove() const
 {
    return commentOnLastMove_;
-}
-
-bool ChessMoveValidator::isTouchingWhitePiece(const ChessMove& currentMove) const
-{
-   // Assume starting board setup for now, expand later.
-   if (2 >= currentMove.startingRank)
-      {
-      return true;
-      }
-   return false;
-}
-
-bool ChessMoveValidator::isTouchingBlackPiece(const ChessMove &currentMove) const
-{
-   // Assume starting board setup for now, expand later.
-   if (7 <= currentMove.startingRank)
-      {
-      return true;
-      }
-   return false;
 }
