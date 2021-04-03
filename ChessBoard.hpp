@@ -8,13 +8,15 @@
 
 #pragma once
 
+class ChessSquare;
+
 class ChessBoard
 {
 public:
    explicit ChessBoard();
    virtual ~ChessBoard();
 
-   bool anyPieceExistsAt(char file, unsigned int rank) const;
-   bool whitePieceExistsAt(char file, unsigned int rank) const;
-   bool blackPieceExistsAt(char file, unsigned int rank) const;
+   bool anyPieceExistsAt(const ChessSquare& square) const;
+   bool whitePieceExistsAt(const ChessSquare& square) const;
+   bool blackPieceExistsAt(const ChessSquare& square) const;
 };

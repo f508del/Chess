@@ -24,7 +24,8 @@ string ChessMove::toString() const
    }
 
    char resultString[5];
-   sprintf(resultString, "%c%u%c%u", startingFile, startingRank, endingFile, endingRank);
+   sprintf(resultString, "%c%u%c%u", startingSquare_.file(),
+           startingSquare_.rank(), endingSquare_.file(), endingSquare_.rank());
    resultString[4] = '\0';
    return resultString;
 }
@@ -36,31 +37,35 @@ bool ChessMove::populateFromString(const string& moveString)
    {
       return false;
    }
+   char startingFile = '\0';
+   unsigned int startingRank = 0;
+   char endingFile = '\0';
+   unsigned int endingRank = 0;
    sscanf(moveString.c_str(), "%c%u%c%u", &startingFile, &startingRank, &endingFile, &endingRank);
+
+   startingSquare_ = ChessSquare(startingFile, startingRank);
+   endingSquare_ = ChessSquare(endingFile, endingRank);
 
    return isOnTheBoard();
 }
 
+const ChessSquare& ChessMove::startingSquare() const
+{
+   return startingSquare_;
+}
+
+const ChessSquare& ChessMove::endingSquare() const
+{
+   return endingSquare_;
+}
+
 bool ChessMove::isOnTheBoard() const
 {
-   return (isValidFile(startingFile) && isValidRank(startingRank) && isValidFile(endingFile) &&
-           isValidRank(endingRank));
-}
-
-bool ChessMove::isValidFile(char file) const
-{
-   return (file >= 'a' && file <= 'h');
-}
-
-bool ChessMove::isValidRank(unsigned int rank) const
-{
-   return (rank >= 1 && rank <= 8);
+   return (startingSquare_.isSquareOnTheBoard() && endingSquare_.isSquareOnTheBoard());
 }
 
 void ChessMove::resetState()
 {
-   startingFile = '\0';
-   startingRank = 0;
-   endingFile = '\0';
-   endingRank = 0;
+   startingSquare_ = ChessSquare();
+   endingSquare_ = ChessSquare();
 }

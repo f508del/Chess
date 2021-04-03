@@ -7,6 +7,7 @@
 //
 
 #include "ChessBoard.hpp"
+#include "ChessSquare.hpp"
 
 ChessBoard::ChessBoard()
 {
@@ -18,20 +19,20 @@ ChessBoard::~ChessBoard()
 
 }
 
-bool ChessBoard::anyPieceExistsAt(char file, unsigned int rank) const
+bool ChessBoard::anyPieceExistsAt(const ChessSquare& square) const
 {
    // initial board state
-   return whitePieceExistsAt(file, rank) || blackPieceExistsAt(file, rank);
+   return whitePieceExistsAt(square) || blackPieceExistsAt(square);
 }
 
-bool ChessBoard::whitePieceExistsAt(char file, unsigned int rank) const
+bool ChessBoard::whitePieceExistsAt(const ChessSquare& square) const
 {
    // initial board state
-   return (rank <= 2);
+   return (square.rank() <= 2);
 }
 
-bool ChessBoard::blackPieceExistsAt(char file, unsigned int rank) const
+bool ChessBoard::blackPieceExistsAt(const ChessSquare& square) const
 {
    // initial board state
-   return (rank >= 7);
+   return (square.rank() >= 7);
 }

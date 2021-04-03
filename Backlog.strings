@@ -1,0 +1,11 @@
+/* 
+  Backlog.strings
+  Chess
+
+  Created by Trevor Phillips on 2021-04-02.
+
+This is meant as a simple backlog of what refactorings and features are upcoming
+ 
+ 1. Introduce and integrate a ChessSquare object to capture the idea of a rank&file pair: DONE
+
+*/

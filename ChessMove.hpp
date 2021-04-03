@@ -9,6 +9,8 @@
 #pragma once
 
 #include <string>
+#include "ScopedPointer.hpp"
+#include "ChessSquare.hpp"
 
 struct ChessMove
 {
@@ -18,14 +20,13 @@ public:
    std::string toString() const;
    bool populateFromString(const std::string& moveString);
 
-   char startingFile;
-   unsigned int startingRank;
-
-   char endingFile;
-   unsigned int endingRank;
+   const ChessSquare& startingSquare() const;
+   const ChessSquare& endingSquare() const;
 
 private:
-   bool isValidFile(char file) const;
-   bool isValidRank(unsigned int rank) const;
    void resetState();
+
+private:
+   ChessSquare startingSquare_;
+   ChessSquare endingSquare_;
 };

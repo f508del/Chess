@@ -10,6 +10,7 @@
 
 #include "ChessBoard.hpp"
 #include "ChessMove.hpp"
+#include "ChessSquare.hpp"
 #include "OutputErrorDefines.hpp"
 
 using namespace std;
@@ -34,12 +35,12 @@ bool ChessMoveValidator::isLegalMove(const ChessMove& currentMove)
       commentOnLastMove_ = currentMove.toString();
       return false;
    }
-   if (board_.blackPieceExistsAt(currentMove.startingFile, currentMove.startingRank))
+   if (board_.blackPieceExistsAt(currentMove.startingSquare()))
    {
       commentOnLastMove_ = OPPOSING_PLAYERS_PIECE_ERROR;
       return false;
    }
-   if (!board_.anyPieceExistsAt(currentMove.startingFile, currentMove.startingRank))
+   if (!board_.anyPieceExistsAt(currentMove.startingSquare()))
    {
       commentOnLastMove_ = NO_PIECE_AT_COORDINATES_ERROR;
       return false;
