@@ -55,9 +55,15 @@ namespace {
       runTestWithOpeningMoveAndDisplayedResponse(moveString,
                                                 OPPOSING_PLAYERS_PIECE_ERROR);
    }
+
+   void runTestWithMoveThatAttemptsToMoveAPieceThatCantCurrentlyMove(const char* moveString)
+   {
+      runTestWithOpeningMoveAndDisplayedResponse(moveString,
+                                                 PIECE_CANNOT_CURRENTLY_MOVE_ERROR);
+   }
 }
 
-TEST_CASE("Testing the validation of the user's opening move")
+TEST_CASE("Testing the validation of the user's opening move when invalid")
 {
    SECTION("will detect when the first coordinate file is not on the board")
    {
@@ -100,6 +106,37 @@ TEST_CASE("Testing the validation of the user's opening move")
       runTestWithMoveThatAttemptsToMoveOpposingPiece("b8a6");
    }
 
+   SECTION("will detect a move that attempts to move a rook")
+   {
+      runTestWithMoveThatAttemptsToMoveAPieceThatCantCurrentlyMove("a1a3");
+      runTestWithMoveThatAttemptsToMoveAPieceThatCantCurrentlyMove("h1a4");
+   }
+
+   SECTION("will detect a move that attempts to move a bishop")
+   {
+      runTestWithMoveThatAttemptsToMoveAPieceThatCantCurrentlyMove("c1a3");
+      runTestWithMoveThatAttemptsToMoveAPieceThatCantCurrentlyMove("f1h3");
+   }
+
+   SECTION("will detect a move that attempts to move the queen")
+   {
+      runTestWithMoveThatAttemptsToMoveAPieceThatCantCurrentlyMove("d1d3");
+   }
+
+   SECTION("will detect a move that attempts to move the king")
+   {
+      runTestWithMoveThatAttemptsToMoveAPieceThatCantCurrentlyMove("e1d2");
+   }
+
+   SECTION("will detect a move that moves a knight to an occupied square")
+   {
+      runTestWithMoveThatAttemptsToMoveAPieceThatCantCurrentlyMove("b1d2");
+      runTestWithMoveThatAttemptsToMoveAPieceThatCantCurrentlyMove("g1e2");
+   }
+}
+
+TEST_CASE("Testing the validation of the user's opening move when valid")
+{
    SECTION("will echo back the requested move when opening move is valid (pawn)")
    {
       runTestWithValidOpeningMove("a2a3");
@@ -110,5 +147,8 @@ TEST_CASE("Testing the validation of the user's opening move")
    {
       runTestWithValidOpeningMove("b1a3");
       runTestWithValidOpeningMove("b1c3");
+
+      runTestWithValidOpeningMove("g1h3");
+      runTestWithValidOpeningMove("g1f3");
    }
 }

@@ -30,7 +30,7 @@ TEST_CASE("Testing the quit feature")
    CHECK(testHarness.fakeOutput().mostRecentOutput() == "quitting chess...");
    }
 
-   SECTION("can quit with uppper case version of command")
+   SECTION("can quit with upper case version of command")
    {
    ChessEngineTestHarness testHarness;
 

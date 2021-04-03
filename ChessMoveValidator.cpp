@@ -45,6 +45,26 @@ bool ChessMoveValidator::isLegalMove(const ChessMove& currentMove)
       commentOnLastMove_ = NO_PIECE_AT_COORDINATES_ERROR;
       return false;
    }
+
+   // TODO: create new domain abstractions for ChessPiece...Hacky solution:
+   // Pawns:
+   if (currentMove.startingSquare().rank() == 2)
+   {
+      commentOnLastMove_ = currentMove.toString();
+      return true;
+   }
+   // non-knight, non-pawn moves:
+   if (currentMove.startingSquare().file() != 'b' && currentMove.startingSquare().file() != 'g')
+   {
+      commentOnLastMove_ = PIECE_CANNOT_CURRENTLY_MOVE_ERROR;
+      return false;
+   }
+   // Invalid knight moves
+   if (currentMove.endingSquare().rank() == 2)
+   {
+      commentOnLastMove_ = PIECE_CANNOT_CURRENTLY_MOVE_ERROR;
+      return false;
+   }
    commentOnLastMove_ = currentMove.toString();
    return true;
 }

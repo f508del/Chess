@@ -10,7 +10,9 @@
 
 namespace OutputErrorDefines
 {
-   static const char* MOVE_NOT_ON_BOARD_ERROR = "Move is not validly on the board";
-   static const char* NO_PIECE_AT_COORDINATES_ERROR = "No piece exists at these coordinates";
+   static const char* MOVE_NOT_ON_BOARD_ERROR = "Move is not validly on the board.";
+   static const char* NO_PIECE_AT_COORDINATES_ERROR = "No piece exists at these coordinates.";
    static const char* OPPOSING_PLAYERS_PIECE_ERROR = "Nice try, that's the other players piece!";
+   static const char* PIECE_CANNOT_CURRENTLY_MOVE_ERROR =
+      "This piece can't be moved to that square right now.";
 }

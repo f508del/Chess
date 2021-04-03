@@ -25,7 +25,16 @@ public:
 
    operator T* ()
    {
-   return targetPointer_;
+      return targetPointer_;
+   }
+
+   void reset(T* newValue)
+   {
+      if (targetPointer_ != nullptr)
+      {
+         delete targetPointer_;
+      }
+      targetPointer_ = newValue;
    }
 
 private:
