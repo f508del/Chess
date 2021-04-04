@@ -20,6 +20,8 @@ public:
    char file() const;
    unsigned int rank() const;
 
+   bool operator< (const ChessSquare& otherSquare) const;
+
 private:
    bool isValidFile() const;
    bool isValidRank() const;

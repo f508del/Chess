@@ -11,6 +11,7 @@
 #include "ChessBoard.hpp"
 #include "ChessMove.hpp"
 #include "ChessSquare.hpp"
+#include "I_ChessPiece.hpp"
 #include "OutputErrorDefines.hpp"
 
 using namespace std;
@@ -40,31 +41,21 @@ bool ChessMoveValidator::isLegalMove(const ChessMove& currentMove)
       commentOnLastMove_ = OPPOSING_PLAYERS_PIECE_ERROR;
       return false;
    }
-   if (!board_.anyPieceExistsAt(currentMove.startingSquare()))
+   I_ChessPiece* currentPiece = board_.pieceAt(currentMove.startingSquare());
+   if (nullptr == currentPiece)
    {
       commentOnLastMove_ = NO_PIECE_AT_COORDINATES_ERROR;
       return false;
    }
 
-   // TODO: create new domain abstractions for ChessPiece...Hacky solution:
-   // Pawns:
-   if (currentMove.startingSquare().rank() == 2)
-   {
-      commentOnLastMove_ = currentMove.toString();
-      return true;
-   }
-   // non-knight, non-pawn moves:
-   if (currentMove.startingSquare().file() != 'b' && currentMove.startingSquare().file() != 'g')
+   set<ChessSquare> potentialEmptyBoardMoves = currentPiece->potentialEmptyBoardMovesFrom(currentMove.startingSquare());
+
+   if (potentialEmptyBoardMoves.find(currentMove.endingSquare()) == potentialEmptyBoardMoves.end())
    {
       commentOnLastMove_ = PIECE_CANNOT_CURRENTLY_MOVE_ERROR;
       return false;
    }
-   // Invalid knight moves
-   if (currentMove.endingSquare().rank() == 2)
-   {
-      commentOnLastMove_ = PIECE_CANNOT_CURRENTLY_MOVE_ERROR;
-      return false;
-   }
+
    commentOnLastMove_ = currentMove.toString();
    return true;
 }

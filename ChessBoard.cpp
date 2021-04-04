@@ -8,6 +8,8 @@
 
 #include "ChessBoard.hpp"
 #include "ChessSquare.hpp"
+#include "Pawn.hpp"
+#include "Knight.hpp"
 
 ChessBoard::ChessBoard()
 {
@@ -35,4 +37,20 @@ bool ChessBoard::blackPieceExistsAt(const ChessSquare& square) const
 {
    // initial board state
    return (square.rank() >= 7);
+}
+
+I_ChessPiece* ChessBoard::pieceAt(const ChessSquare& square) const
+{
+   static Pawn pawn;
+   static Knight knight;
+
+   if (square.rank() == 1 && (square.file() == 'b' || square.file() == 'g'))
+   {
+      return &knight;
+   }
+   else if(square.rank() <= 2)
+   {
+      return &pawn;
+   }
+   return nullptr;
 }

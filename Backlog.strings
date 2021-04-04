@@ -7,9 +7,10 @@
 This is meant as a simple backlog of what refactorings and features are upcoming
  
  1. Introduce a ChessPiece abstraction that simplifies the logic of which opening move is legal in
-    the ChessMoveValidator
+    the ChessMoveValidator: IN PROGRESS
  2. Improve the opening move validator to handle cases when a pawn is moved to an illegal square.
  3. Improve the feature that echoes back the given valid move to describe which piece was moved.
  4. Review the input system / output system, should strings be formulated and parsed entirely in the 'External' library? Probably yes.
+ 5. Write custom set class extention that adds "contains" to simplify the find() != end() paradigm.
 
 */

@@ -36,6 +36,13 @@ unsigned int ChessSquare::rank() const
    return rank_;
 }
 
+bool ChessSquare::operator<(const ChessSquare& otherSquare) const
+{
+   int hashNumber = (file_ << 8) + rank_;
+   int otherHashNumber = (otherSquare.file() << 8) + otherSquare.rank();
+   return hashNumber < otherHashNumber;
+}
+
 bool ChessSquare::isValidFile() const
 {
    return (file_ >= 'a' && file_ <= 'h');
