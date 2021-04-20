@@ -48,9 +48,9 @@ bool ChessMoveValidator::isLegalMove(const ChessMove& currentMove)
       return false;
    }
 
-   set<ChessSquare> potentialEmptyBoardMoves = currentPiece->potentialEmptyBoardMovesFrom(currentMove.startingSquare());
+   ExtendedSet<ChessSquare> potentialEmptyBoardMoves = currentPiece->potentialEmptyBoardMovesFrom(currentMove.startingSquare());
 
-   if (potentialEmptyBoardMoves.find(currentMove.endingSquare()) == potentialEmptyBoardMoves.end())
+   if (!potentialEmptyBoardMoves.contains(currentMove.endingSquare()))
    {
       commentOnLastMove_ = PIECE_CANNOT_CURRENTLY_MOVE_ERROR;
       return false;

@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include <set>
+#include "ExtendedSet.hpp"
 #include "ChessSquare.hpp"
 
 class I_ChessPiece
@@ -16,5 +16,5 @@ class I_ChessPiece
 public:
    virtual ~I_ChessPiece();
 
-   virtual std::set<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) = 0;
+   virtual ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) = 0;
 };

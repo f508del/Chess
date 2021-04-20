@@ -8,8 +8,6 @@
 
 #include "Pawn.hpp"
 
-using namespace std;
-
 Pawn::Pawn()
 {
 }
@@ -18,9 +16,9 @@ Pawn::~Pawn()
 {
 }
 
-set<ChessSquare> Pawn::potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare)
+ExtendedSet<ChessSquare> Pawn::potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare)
 {
-   set<ChessSquare> potentialMoves;
+   ExtendedSet<ChessSquare> potentialMoves;
    if (!startingSquare.isSquareOnTheBoard() || startingSquare.rank() == 1 ||
        startingSquare.rank() == 8)
    {

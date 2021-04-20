@@ -8,8 +8,6 @@
 
 #include "Knight.hpp"
 
-using namespace std;
-
 Knight::Knight()
 {
 }
@@ -18,9 +16,9 @@ Knight::~Knight()
 {
 }
 
-set<ChessSquare> Knight::potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare)
+ExtendedSet<ChessSquare> Knight::potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare)
 {
-   set<ChessSquare> potentialMoves;
+   ExtendedSet<ChessSquare> potentialMoves;
 
    // forward "L"s:
    ChessSquare destinationSquare(startingSquare.file() + 1, startingSquare.rank() + 2);

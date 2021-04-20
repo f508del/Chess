@@ -89,6 +89,7 @@
 		696EE2C1259AE27B00C5AAE4 /* ChessEngineTestHarness.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChessEngineTestHarness.cpp; sourceTree = "<group>"; };
 		696EE2C2259AE27B00C5AAE4 /* ChessEngineTestHarness.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ChessEngineTestHarness.hpp; sourceTree = "<group>"; };
 		696EE2C5259AE56E00C5AAE4 /* ScopedPointer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ScopedPointer.hpp; sourceTree = "<group>"; };
+		6993CEBF262E74A5009AFD7F /* ExtendedSet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ExtendedSet.hpp; sourceTree = "<group>"; };
 		6999D688259D0B3500412205 /* TestFirstMoveValidation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestFirstMoveValidation.cpp; sourceTree = "<group>"; };
 		6999D68A259D10C000412205 /* ChessMoveValidator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChessMoveValidator.cpp; sourceTree = "<group>"; };
 		6999D68B259D10C000412205 /* ChessMoveValidator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ChessMoveValidator.hpp; sourceTree = "<group>"; };
@@ -146,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				696EE2C5259AE56E00C5AAE4 /* ScopedPointer.hpp */,
+				6993CEBF262E74A5009AFD7F /* ExtendedSet.hpp */,
 			);
 			name = Toolkit;
 			sourceTree = "<group>";

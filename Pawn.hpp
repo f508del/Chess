@@ -16,6 +16,6 @@ public:
    Pawn();
    virtual ~Pawn();
 
-   std::set<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) override;
+   ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) override;
 };
 
