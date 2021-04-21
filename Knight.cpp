@@ -8,7 +8,8 @@
 
 #include "Knight.hpp"
 
-Knight::Knight()
+Knight::Knight(ChessPieceAffiliation affiliation)
+: affiliation_(affiliation)
 {
 }
 
@@ -73,4 +74,9 @@ ExtendedSet<ChessSquare> Knight::potentialEmptyBoardMovesFrom(const ChessSquare&
       potentialMoves.insert(destinationSquare);
    }
    return potentialMoves;
+}
+
+ChessPieceAffiliation Knight::affiliation() const
+{
+   return affiliation_;
 }

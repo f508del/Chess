@@ -10,6 +10,7 @@
 
 #include "ExtendedSet.hpp"
 #include "ChessSquare.hpp"
+#include "ChessPieceAffiliation.hpp"
 
 class I_ChessPiece
 {
@@ -17,4 +18,5 @@ public:
    virtual ~I_ChessPiece();
 
    virtual ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) = 0;
+   virtual ChessPieceAffiliation affiliation() const = 0;
 };

@@ -56,6 +56,12 @@ bool ChessMoveValidator::isLegalMove(const ChessMove& currentMove)
       return false;
    }
 
+   if (board_.whitePieceExistsAt(currentMove.endingSquare()))
+   {
+      commentOnLastMove_ = PIECE_CANNOT_CURRENTLY_MOVE_ERROR;
+      return false;
+   }
+
    commentOnLastMove_ = currentMove.toString();
    return true;
 }

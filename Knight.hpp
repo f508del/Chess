@@ -13,8 +13,12 @@
 class Knight : public I_ChessPiece
 {
 public:
-   Knight();
+   Knight(ChessPieceAffiliation affiliation);
    virtual ~Knight();
 
    ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) override;
+   ChessPieceAffiliation affiliation() const override;
+
+private:
+   const ChessPieceAffiliation affiliation_;
 };

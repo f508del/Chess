@@ -13,9 +13,13 @@
 class Pawn : public I_ChessPiece
 {
 public:
-   Pawn();
+   Pawn(ChessPieceAffiliation affiliation);
    virtual ~Pawn();
 
    ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) override;
+   ChessPieceAffiliation affiliation() const override;
+
+private:
+   const ChessPieceAffiliation affiliation_;
 };
 

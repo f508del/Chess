@@ -8,7 +8,8 @@
 
 #include "Pawn.hpp"
 
-Pawn::Pawn()
+Pawn::Pawn(ChessPieceAffiliation affiliation)
+: affiliation_(affiliation)
 {
 }
 
@@ -31,4 +32,9 @@ ExtendedSet<ChessSquare> Pawn::potentialEmptyBoardMovesFrom(const ChessSquare& s
       potentialMoves.insert(ChessSquare(startingSquare.file(), startingSquare.rank() + 2));
    }
    return potentialMoves;
+}
+
+ChessPieceAffiliation Pawn::affiliation() const
+{
+   return affiliation_;
 }

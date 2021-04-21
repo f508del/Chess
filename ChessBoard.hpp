@@ -8,8 +8,14 @@
 
 #pragma once
 
+#include "ScopedPointer.hpp"
+#include <map>
+
 class ChessSquare;
 class I_ChessPiece;
+class Knight;
+class Pawn;
+
 
 class ChessBoard
 {
@@ -22,4 +28,12 @@ public:
    bool blackPieceExistsAt(const ChessSquare& square) const;
 
    I_ChessPiece* pieceAt(const ChessSquare& square) const;
+
+   void resetBoard();
+
+private:
+   ScopedPointer<Pawn> pawnCapabilities_;
+   ScopedPointer<Knight> knightCapabilities_;
+
+   std::map<ChessSquare, I_ChessPiece*> boardState_;
 };

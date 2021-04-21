@@ -37,6 +37,11 @@ public:
       targetPointer_ = newValue;
    }
 
+   T* data() const
+   {
+      return targetPointer_;
+   }
+
 private:
    T* targetPointer_;
 };
