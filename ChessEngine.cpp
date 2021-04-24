@@ -9,6 +9,7 @@
 #include "ChessBoard.hpp"
 #include "ChessEngine.hpp"
 #include "ChessMove.hpp"
+#include "ChessMoveDescriber.hpp"
 #include "ChessMoveValidator.hpp"
 #include "CommandDefines.hpp"
 #include "I_InputSystem.hpp"
@@ -23,6 +24,7 @@ ChessEngine::ChessEngine(I_InputSystem& inputSystem,
 , outputSystem_(outputSystem)
 , board_(new ChessBoard())
 , moveValidator_(new ChessMoveValidator(*board_))
+, moveDescriber_(new ChessMoveDescriber())
 {
 
 }
@@ -63,7 +65,7 @@ void ChessEngine::runChessEngine()
             }
          else
             {
-            outputSystem_.showTextToUser(move.toString().c_str());
+            outputSystem_.showTextToUser((*moveDescriber_).describeMove(move,*board_).c_str());
             }
          }
       }

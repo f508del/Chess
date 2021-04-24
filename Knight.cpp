@@ -80,3 +80,9 @@ ChessPieceAffiliation Knight::affiliation() const
 {
    return affiliation_;
 }
+
+std::string Knight::pieceName() const
+{
+   return std::string("Knight");
+}
+

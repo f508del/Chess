@@ -38,10 +38,10 @@ namespace {
                                                  MOVE_NOT_ON_BOARD_ERROR);
    }
 
-   void runTestWithValidOpeningMove(const char* moveString)
+   void runTestWithValidOpeningMove(const char* moveString, const char* moveResponse)
    {
       runTestWithOpeningMoveAndDisplayedResponse(moveString,
-                                                 moveString);
+                                                 moveResponse);
    }
 
    void runTestWithMoveThatDoesNotStartOnAnExistingPiece(const char* moveString)
@@ -133,22 +133,27 @@ TEST_CASE("Testing the validation of the user's opening move when invalid")
       runTestWithMoveThatAttemptsToMoveAPieceThatCantCurrentlyMove("b1d2");
       runTestWithMoveThatAttemptsToMoveAPieceThatCantCurrentlyMove("g1e2");
    }
+
+   SECTION("will detect a move that attempts to use a pawn to capture a nonexisting piece")
+   {
+      runTestWithMoveThatAttemptsToMoveAPieceThatCantCurrentlyMove("c2d3");
+   }
 }
 
 TEST_CASE("Testing the validation of the user's opening move when valid")
 {
    SECTION("will echo back the requested move when opening move is valid (pawn)")
    {
-      runTestWithValidOpeningMove("a2a3");
-      runTestWithValidOpeningMove("a2a4");
+      runTestWithValidOpeningMove("a2a3", "Moving Pawn a2a3");
+      runTestWithValidOpeningMove("a2a4", "Moving Pawn a2a4");
    }
 
    SECTION("will echo back the requested move when opening move is valid (knight)")
    {
-      runTestWithValidOpeningMove("b1a3");
-      runTestWithValidOpeningMove("b1c3");
+      runTestWithValidOpeningMove("b1a3", "Moving Knight b1a3");
+      runTestWithValidOpeningMove("b1c3", "Moving Knight b1c3");
 
-      runTestWithValidOpeningMove("g1h3");
-      runTestWithValidOpeningMove("g1f3");
+      runTestWithValidOpeningMove("g1h3", "Moving Knight g1h3");
+      runTestWithValidOpeningMove("g1f3", "Moving Knight g1f3");
    }
 }

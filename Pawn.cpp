@@ -38,3 +38,8 @@ ChessPieceAffiliation Pawn::affiliation() const
 {
    return affiliation_;
 }
+
+std::string Pawn::pieceName() const
+{
+   return std::string("Pawn");
+}

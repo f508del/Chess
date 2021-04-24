@@ -15,6 +15,8 @@
 		6909FB56259BB4EB00629C34 /* TestNewGameFeature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6909FB55259BB4EB00629C34 /* TestNewGameFeature.cpp */; };
 		69230D462617FD1E000C3301 /* ChessSquare.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69230D452617FD1E000C3301 /* ChessSquare.cpp */; };
 		69230D472617FD1E000C3301 /* ChessSquare.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69230D452617FD1E000C3301 /* ChessSquare.cpp */; };
+		694D04B92634BDC0005DE8F2 /* ChessMoveDescriber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 694D04B72634BDC0005DE8F2 /* ChessMoveDescriber.cpp */; };
+		694D04BA2634BDC0005DE8F2 /* ChessMoveDescriber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 694D04B72634BDC0005DE8F2 /* ChessMoveDescriber.cpp */; };
 		694DF2082599468500195943 /* FakeInputSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 694DF2062599468500195943 /* FakeInputSystem.cpp */; };
 		694DF20A259949C600195943 /* TestQuitFeature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 694DF209259949C600195943 /* TestQuitFeature.cpp */; };
 		694DF20D25994B4700195943 /* FakeOutputSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 694DF20B25994B4700195943 /* FakeOutputSystem.cpp */; };
@@ -70,6 +72,8 @@
 		69230D432617FA50000C3301 /* Backlog.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Backlog.strings; sourceTree = "<group>"; };
 		69230D442617FC38000C3301 /* ChessSquare.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ChessSquare.hpp; sourceTree = "<group>"; };
 		69230D452617FD1E000C3301 /* ChessSquare.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChessSquare.cpp; sourceTree = "<group>"; };
+		694D04B72634BDC0005DE8F2 /* ChessMoveDescriber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChessMoveDescriber.cpp; sourceTree = "<group>"; };
+		694D04B82634BDC0005DE8F2 /* ChessMoveDescriber.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ChessMoveDescriber.hpp; sourceTree = "<group>"; };
 		694DF2052599457000195943 /* I_OutputSystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = I_OutputSystem.hpp; sourceTree = "<group>"; };
 		694DF2062599468500195943 /* FakeInputSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FakeInputSystem.cpp; sourceTree = "<group>"; };
 		694DF2072599468500195943 /* FakeInputSystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FakeInputSystem.hpp; sourceTree = "<group>"; };
@@ -247,6 +251,8 @@
 				69CDC10B261A79CB0060F52C /* Knight.cpp */,
 				69CDC10C261A79CB0060F52C /* Knight.hpp */,
 				69741BC1262FC78700276273 /* ChessPieceAffiliation.hpp */,
+				694D04B72634BDC0005DE8F2 /* ChessMoveDescriber.cpp */,
+				694D04B82634BDC0005DE8F2 /* ChessMoveDescriber.hpp */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -336,6 +342,7 @@
 				6909FB54259BB30100629C34 /* TerminalOutputSystem.cpp in Sources */,
 				69CDC10E261A79CB0060F52C /* Knight.cpp in Sources */,
 				6909FB50259BB2E700629C34 /* chess.cpp in Sources */,
+				694D04BA2634BDC0005DE8F2 /* ChessMoveDescriber.cpp in Sources */,
 				6909FB53259BB2FC00629C34 /* TerminalInputSystem.cpp in Sources */,
 				6909FB52259BB2F300629C34 /* ChessMove.cpp in Sources */,
 				69230D472617FD1E000C3301 /* ChessSquare.cpp in Sources */,
@@ -354,6 +361,7 @@
 				69CDC110261A7A9B0060F52C /* TestKnight.cpp in Sources */,
 				69D251D425981D190059E592 /* TerminalOutputSystem.cpp in Sources */,
 				69CDC103261A6C800060F52C /* I_ChessPiece.cpp in Sources */,
+				694D04B92634BDC0005DE8F2 /* ChessMoveDescriber.cpp in Sources */,
 				69CDC107261A6E070060F52C /* Pawn.cpp in Sources */,
 				6962192825980DF8008E4DC8 /* testMain.cpp in Sources */,
 				6909FB56259BB4EB00629C34 /* TestNewGameFeature.cpp in Sources */,
