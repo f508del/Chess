@@ -12,8 +12,10 @@
 #include "Knight.hpp"
 
 ChessBoard::ChessBoard()
-: pawnCapabilities_(new Pawn(WHITE_PIECE))
-, knightCapabilities_(new Knight(WHITE_PIECE))
+: whitePawnCapabilities_(new Pawn(WHITE_PIECE))
+, blackPawnCapabilities_(new Pawn(BLACK_PIECE))
+, whiteKnightCapabilities_(new Knight(WHITE_PIECE))
+, blackKnightCapabilities_(new Knight(BLACK_PIECE))
 {
    resetBoard();
 }
@@ -39,9 +41,11 @@ bool ChessBoard::whitePieceExistsAt(const ChessSquare& square) const
 
 bool ChessBoard::blackPieceExistsAt(const ChessSquare& square) const
 {
-   // TODO: initial board state
-   return (square.rank() >= 7);
-}
+   if (anyPieceExistsAt(square))
+   {
+      return (pieceAt(square)->affiliation() == BLACK_PIECE);
+   }
+   return false;}
 
 I_ChessPiece* ChessBoard::pieceAt(const ChessSquare& square) const
 {
@@ -57,19 +61,19 @@ void ChessBoard::resetBoard()
    boardState_.clear();
    for (char file = 'a'; file <= 'h'; file++)
    {
-      boardState_[ChessSquare(file, 2)] = pawnCapabilities_.data();
-      boardState_[ChessSquare(file, 7)] = pawnCapabilities_.data();
+      boardState_[ChessSquare(file, 2)] = whitePawnCapabilities_.data();
+      boardState_[ChessSquare(file, 7)] = blackPawnCapabilities_.data();
    }
 
    // make back rows pawns for now, until all pieces are implemented.
    for (char file = 'a'; file <= 'h'; file++)
    {
-      boardState_[ChessSquare(file, 1)] = pawnCapabilities_.data();
-      boardState_[ChessSquare(file, 8)] = pawnCapabilities_.data();
+      boardState_[ChessSquare(file, 1)] = whitePawnCapabilities_.data();
+      boardState_[ChessSquare(file, 8)] = blackPawnCapabilities_.data();
    }
 
-   boardState_[ChessSquare('b', 1)] = knightCapabilities_.data();
-   boardState_[ChessSquare('g', 1)] = knightCapabilities_.data();
-   boardState_[ChessSquare('b', 8)] = knightCapabilities_.data();
-   boardState_[ChessSquare('g', 8)] = knightCapabilities_.data();
+   boardState_[ChessSquare('b', 1)] = whiteKnightCapabilities_.data();
+   boardState_[ChessSquare('g', 1)] = whiteKnightCapabilities_.data();
+   boardState_[ChessSquare('b', 8)] = blackKnightCapabilities_.data();
+   boardState_[ChessSquare('g', 8)] = blackKnightCapabilities_.data();
 }

@@ -32,8 +32,10 @@ public:
    void resetBoard();
 
 private:
-   ScopedPointer<Pawn> pawnCapabilities_;
-   ScopedPointer<Knight> knightCapabilities_;
+   ScopedPointer<Pawn> whitePawnCapabilities_;
+   ScopedPointer<Pawn> blackPawnCapabilities_;
+   ScopedPointer<Knight> whiteKnightCapabilities_;
+   ScopedPointer<Knight> blackKnightCapabilities_;
 
    std::map<ChessSquare, I_ChessPiece*> boardState_;
 };
