@@ -59,13 +59,13 @@ void ChessEngine::runChessEngine()
          // attempt to read in the input as a move...
          ChessMove move;
          move.populateFromString(userInput);
-         if (!(*moveValidator_).isLegalMove(move))
+         if (!moveValidator_->isLegalMove(move))
             {
-            outputSystem_.showTextToUser((*moveValidator_).commentOnLastMove().c_str());
+            outputSystem_.showTextToUser(moveValidator_->commentOnLastMove().c_str());
             }
          else
             {
-            outputSystem_.showTextToUser((*moveDescriber_).describeMove(move,*board_).c_str());
+            outputSystem_.showTextToUser(moveDescriber_->describeMove(move,*board_).c_str());
             }
          }
       }

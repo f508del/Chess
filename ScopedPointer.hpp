@@ -42,6 +42,11 @@ public:
       return targetPointer_;
    }
 
+   T* operator->()
+   {
+      return targetPointer_;
+   }
+
 private:
    T* targetPointer_;
 };
