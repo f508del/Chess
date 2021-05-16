@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include "ChessPieceAffiliation.hpp"
 #include "ScopedPointer.hpp"
 #include <map>
 
@@ -31,6 +32,9 @@ public:
 
    void resetBoard();
 
+   ChessPieceAffiliation playerToMakeNextMove() const;
+   void togglePlayerInitiative();
+
 private:
    ScopedPointer<Pawn> whitePawnCapabilities_;
    ScopedPointer<Pawn> blackPawnCapabilities_;
@@ -38,4 +42,6 @@ private:
    ScopedPointer<Knight> blackKnightCapabilities_;
 
    std::map<ChessSquare, I_ChessPiece*> boardState_;
+
+   ChessPieceAffiliation playerToMakeNextMove_;
 };

@@ -36,15 +36,17 @@ bool ChessMoveValidator::isLegalMove(const ChessMove& currentMove)
       commentOnLastMove_ = currentMove.toString();
       return false;
    }
-   if (board_.blackPieceExistsAt(currentMove.startingSquare()))
-   {
-      commentOnLastMove_ = OPPOSING_PLAYERS_PIECE_ERROR;
-      return false;
-   }
+
    I_ChessPiece* currentPiece = board_.pieceAt(currentMove.startingSquare());
    if (nullptr == currentPiece)
    {
       commentOnLastMove_ = NO_PIECE_AT_COORDINATES_ERROR;
+      return false;
+   }
+
+   if (currentPiece->affiliation() != board_.playerToMakeNextMove())
+   {
+      commentOnLastMove_ = OPPOSING_PLAYERS_PIECE_ERROR;
       return false;
    }
 
@@ -56,17 +58,18 @@ bool ChessMoveValidator::isLegalMove(const ChessMove& currentMove)
       return false;
    }
 
-   if (board_.whitePieceExistsAt(currentMove.endingSquare()))
+   if (board_.anyPieceExistsAt(currentMove.endingSquare()))
    {
+      // TODO: fix this to allow pieces to be taken at some point...
       commentOnLastMove_ = PIECE_CANNOT_CURRENTLY_MOVE_ERROR;
       return false;
    }
 
-   commentOnLastMove_ = currentMove.toString();
+   commentOnLastMove_ = "";
    return true;
 }
 
-string ChessMoveValidator::commentOnLastMove() const
+string ChessMoveValidator::reasonLastMoveWasIllegal() const
 {
    return commentOnLastMove_;
 }

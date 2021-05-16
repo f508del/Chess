@@ -40,35 +40,36 @@ void ChessEngine::runChessEngine()
    
    string userInput;
    while (true)
-      {
+   {
       userInput = inputSystem_.readNextUserEntry();
       transform(userInput.begin(), userInput.end(), userInput.begin(),
                      [](unsigned char c){return tolower(c);});
       if (userInput == QUIT_COMMAND)
-         {
+      {
          break;
-         }
+      }
       else if (userInput == NEW_GAME_COMMAND)
-         {
+      {
          outputSystem_.showTextToUser("New game requested...");
          outputSystem_.showTextToUser("you are playing as white...");
          outputSystem_.showTextToUser("please enter a move in fully specified notation...");
-         }
+      }
       else
-         {
+      {
          // attempt to read in the input as a move...
          ChessMove move;
          move.populateFromString(userInput);
          if (!moveValidator_->isLegalMove(move))
-            {
-            outputSystem_.showTextToUser(moveValidator_->commentOnLastMove().c_str());
-            }
+         {
+            outputSystem_.showTextToUser(moveValidator_->reasonLastMoveWasIllegal().c_str());
+         }
          else
-            {
+         {
+            board_->togglePlayerInitiative();
             outputSystem_.showTextToUser(moveDescriber_->describeMove(move,*board_).c_str());
-            }
          }
       }
+   }
 
    outputSystem_.showTextToUser("quitting chess...");
 }

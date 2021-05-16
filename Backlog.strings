@@ -13,5 +13,9 @@ This is meant as a simple backlog of what refactorings and features are upcoming
  5. Add Rook class
  6. Add Queen class
  7. Add King class
+ 8. REFACTOR: add test harness helper that add a new game and quit to sequence, not just quit...
+ 9. REFACTOR: Try to replace the isLastOutputBeforeQuittingEqualTo with just returning that string so
+              maybe a comparison can be made that will give meaningful error output.
+ 10. Ensure starting a new game mid game will reset all pieces and the initiative of who goes next
 
 */

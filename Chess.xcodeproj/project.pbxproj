@@ -20,6 +20,8 @@
 		694DF2082599468500195943 /* FakeInputSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 694DF2062599468500195943 /* FakeInputSystem.cpp */; };
 		694DF20A259949C600195943 /* TestQuitFeature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 694DF209259949C600195943 /* TestQuitFeature.cpp */; };
 		694DF20D25994B4700195943 /* FakeOutputSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 694DF20B25994B4700195943 /* FakeOutputSystem.cpp */; };
+		69569C862650B44A00A99BEB /* TestAlternatingMovesFeature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69569C852650B44A00A99BEB /* TestAlternatingMovesFeature.cpp */; };
+		69569C882650C0AE00A99BEB /* TestBlackPawn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69569C872650C0AE00A99BEB /* TestBlackPawn.cpp */; };
 		6962192825980DF8008E4DC8 /* testMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6962191B25980D67008E4DC8 /* testMain.cpp */; };
 		6962192A25981084008E4DC8 /* TestChessMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6962192925981084008E4DC8 /* TestChessMove.cpp */; };
 		6962192B25981113008E4DC8 /* ChessMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 696219162597F03F008E4DC8 /* ChessMove.cpp */; };
@@ -31,7 +33,7 @@
 		69CDC104261A6C800060F52C /* I_ChessPiece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69CDC101261A6C800060F52C /* I_ChessPiece.cpp */; };
 		69CDC107261A6E070060F52C /* Pawn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69CDC105261A6E070060F52C /* Pawn.cpp */; };
 		69CDC108261A6E070060F52C /* Pawn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69CDC105261A6E070060F52C /* Pawn.cpp */; };
-		69CDC10A261A6F320060F52C /* TestPawn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69CDC109261A6F320060F52C /* TestPawn.cpp */; };
+		69CDC10A261A6F320060F52C /* TestWhitePawn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69CDC109261A6F320060F52C /* TestWhitePawn.cpp */; };
 		69CDC10D261A79CB0060F52C /* Knight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69CDC10B261A79CB0060F52C /* Knight.cpp */; };
 		69CDC10E261A79CB0060F52C /* Knight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69CDC10B261A79CB0060F52C /* Knight.cpp */; };
 		69CDC110261A7A9B0060F52C /* TestKnight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69CDC10F261A7A9B0060F52C /* TestKnight.cpp */; };
@@ -80,6 +82,8 @@
 		694DF209259949C600195943 /* TestQuitFeature.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestQuitFeature.cpp; sourceTree = "<group>"; };
 		694DF20B25994B4700195943 /* FakeOutputSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FakeOutputSystem.cpp; sourceTree = "<group>"; };
 		694DF20C25994B4700195943 /* FakeOutputSystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FakeOutputSystem.hpp; sourceTree = "<group>"; };
+		69569C852650B44A00A99BEB /* TestAlternatingMovesFeature.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestAlternatingMovesFeature.cpp; sourceTree = "<group>"; };
+		69569C872650C0AE00A99BEB /* TestBlackPawn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestBlackPawn.cpp; sourceTree = "<group>"; };
 		696219102596C7DF008E4DC8 /* TerminalOutputSystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TerminalOutputSystem.hpp; sourceTree = "<group>"; };
 		696219112596C873008E4DC8 /* TerminalOutputSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TerminalOutputSystem.cpp; sourceTree = "<group>"; };
 		696219132596CC16008E4DC8 /* TerminalInputSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TerminalInputSystem.cpp; sourceTree = "<group>"; };
@@ -103,7 +107,7 @@
 		69CDC102261A6C800060F52C /* I_ChessPiece.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = I_ChessPiece.hpp; sourceTree = "<group>"; };
 		69CDC105261A6E070060F52C /* Pawn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pawn.cpp; sourceTree = "<group>"; };
 		69CDC106261A6E070060F52C /* Pawn.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Pawn.hpp; sourceTree = "<group>"; };
-		69CDC109261A6F320060F52C /* TestPawn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestPawn.cpp; sourceTree = "<group>"; };
+		69CDC109261A6F320060F52C /* TestWhitePawn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestWhitePawn.cpp; sourceTree = "<group>"; };
 		69CDC10B261A79CB0060F52C /* Knight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Knight.cpp; sourceTree = "<group>"; };
 		69CDC10C261A79CB0060F52C /* Knight.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Knight.hpp; sourceTree = "<group>"; };
 		69CDC10F261A7A9B0060F52C /* TestKnight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestKnight.cpp; sourceTree = "<group>"; };
@@ -175,8 +179,10 @@
 				694DF209259949C600195943 /* TestQuitFeature.cpp */,
 				6909FB55259BB4EB00629C34 /* TestNewGameFeature.cpp */,
 				6999D688259D0B3500412205 /* TestFirstMoveValidation.cpp */,
-				69CDC109261A6F320060F52C /* TestPawn.cpp */,
+				69CDC109261A6F320060F52C /* TestWhitePawn.cpp */,
 				69CDC10F261A7A9B0060F52C /* TestKnight.cpp */,
+				69569C852650B44A00A99BEB /* TestAlternatingMovesFeature.cpp */,
+				69569C872650C0AE00A99BEB /* TestBlackPawn.cpp */,
 			);
 			name = TestSources;
 			sourceTree = "<group>";
@@ -357,6 +363,7 @@
 				69D251D2259817B50059E592 /* ChessEngine.cpp in Sources */,
 				69F4984A25A6B438005A9D9B /* ChessBoard.cpp in Sources */,
 				696EE2C3259AE27B00C5AAE4 /* ChessEngineTestHarness.cpp in Sources */,
+				69569C862650B44A00A99BEB /* TestAlternatingMovesFeature.cpp in Sources */,
 				694DF20D25994B4700195943 /* FakeOutputSystem.cpp in Sources */,
 				69CDC110261A7A9B0060F52C /* TestKnight.cpp in Sources */,
 				69D251D425981D190059E592 /* TerminalOutputSystem.cpp in Sources */,
@@ -368,10 +375,11 @@
 				6999D68C259D10C000412205 /* ChessMoveValidator.cpp in Sources */,
 				694DF20A259949C600195943 /* TestQuitFeature.cpp in Sources */,
 				69D251D525981D1D0059E592 /* TerminalInputSystem.cpp in Sources */,
+				69569C882650C0AE00A99BEB /* TestBlackPawn.cpp in Sources */,
 				694DF2082599468500195943 /* FakeInputSystem.cpp in Sources */,
 				69230D462617FD1E000C3301 /* ChessSquare.cpp in Sources */,
 				6962192A25981084008E4DC8 /* TestChessMove.cpp in Sources */,
-				69CDC10A261A6F320060F52C /* TestPawn.cpp in Sources */,
+				69CDC10A261A6F320060F52C /* TestWhitePawn.cpp in Sources */,
 				6999D689259D0B3500412205 /* TestFirstMoveValidation.cpp in Sources */,
 				6962192B25981113008E4DC8 /* ChessMove.cpp in Sources */,
 				69CDC10D261A79CB0060F52C /* Knight.cpp in Sources */,

@@ -26,10 +26,12 @@ ExtendedSet<ChessSquare> Pawn::potentialEmptyBoardMovesFrom(const ChessSquare& s
       return potentialMoves;
    }
 
-   potentialMoves.insert(ChessSquare(startingSquare.file(), startingSquare.rank() + 1));
-   if (startingSquare.rank() == 2)
+   potentialMoves.insert(ChessSquare(startingSquare.file(), startingSquare.rank()
+                                     + (1 * movementDirectionForCurrentAffiliation())));
+   if (startingSquare.rank() == startingRankForCurrentAffiliation())
    {
-      potentialMoves.insert(ChessSquare(startingSquare.file(), startingSquare.rank() + 2));
+      potentialMoves.insert(ChessSquare(startingSquare.file(), startingSquare.rank()
+                                        + (2 * movementDirectionForCurrentAffiliation())));
    }
    return potentialMoves;
 }
@@ -42,4 +44,22 @@ ChessPieceAffiliation Pawn::affiliation() const
 std::string Pawn::pieceName() const
 {
    return std::string("Pawn");
+}
+
+int Pawn::movementDirectionForCurrentAffiliation() const
+{
+   if (affiliation_ == WHITE_PIECE)
+   {
+      return 1;
+   }
+   return -1;
+}
+
+unsigned int Pawn::startingRankForCurrentAffiliation() const
+{
+   if (affiliation_ == WHITE_PIECE)
+   {
+      return 2u;
+   }
+   return 7u;
 }

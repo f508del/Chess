@@ -20,7 +20,7 @@ public:
 
    bool isLegalMove(const ChessMove& currentMove);
 
-   std::string commentOnLastMove() const;
+   std::string reasonLastMoveWasIllegal() const;
 
 private:
    std::string commentOnLastMove_;

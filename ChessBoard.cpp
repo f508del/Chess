@@ -16,6 +16,7 @@ ChessBoard::ChessBoard()
 , blackPawnCapabilities_(new Pawn(BLACK_PIECE))
 , whiteKnightCapabilities_(new Knight(WHITE_PIECE))
 , blackKnightCapabilities_(new Knight(BLACK_PIECE))
+, playerToMakeNextMove_(WHITE_PIECE)
 {
    resetBoard();
 }
@@ -76,4 +77,21 @@ void ChessBoard::resetBoard()
    boardState_[ChessSquare('g', 1)] = whiteKnightCapabilities_.data();
    boardState_[ChessSquare('b', 8)] = blackKnightCapabilities_.data();
    boardState_[ChessSquare('g', 8)] = blackKnightCapabilities_.data();
+}
+
+ChessPieceAffiliation ChessBoard::playerToMakeNextMove() const
+{
+   return playerToMakeNextMove_;
+}
+
+void ChessBoard::togglePlayerInitiative()
+{
+   if (playerToMakeNextMove_ == WHITE_PIECE)
+   {
+      playerToMakeNextMove_ = BLACK_PIECE;
+   }
+   else
+   {
+      playerToMakeNextMove_ = WHITE_PIECE;
+   }
 }

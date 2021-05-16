@@ -21,6 +21,10 @@ public:
    std::string pieceName() const override;
 
 private:
+   int movementDirectionForCurrentAffiliation() const;
+   unsigned int startingRankForCurrentAffiliation() const;
+
+private:
    const ChessPieceAffiliation affiliation_;
 };
 
