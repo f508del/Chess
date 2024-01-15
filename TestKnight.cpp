@@ -6,7 +6,7 @@
 //
 //
 
-#include "catch.hpp"
+#include "Catch.hpp"
 #include "Knight.hpp"
 #include "ChessSquare.hpp"
 

@@ -6,7 +6,7 @@
 //
 //
 
-#include "catch.hpp"
+#include "Catch.hpp"
 #include "ChessEngine.hpp"
 #include "ChessEngineTestHarness.hpp"
 #include "CommandDefines.hpp"

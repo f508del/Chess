@@ -6,7 +6,7 @@
 //
 //
 
-#include "catch.hpp"
+#include "Catch.hpp"
 #include "ChessMove.hpp"
 
 TEST_CASE("Testing the ChessMove object")
