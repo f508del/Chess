@@ -24,7 +24,7 @@ string ChessMove::toString() const
    }
 
    char resultString[5];
-   printf(resultString, "%c%u%c%u", startingSquare_.file(),
+   sprintf(resultString, "%c%u%c%u", startingSquare_.file(),
            startingSquare_.rank(), endingSquare_.file(), endingSquare_.rank());
    resultString[4] = '\0';
    return resultString;
