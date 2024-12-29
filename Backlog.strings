@@ -7,7 +7,6 @@
 This is meant as a simple backlog of what refactorings and features are upcoming
  
  1. Ensure system will know when a piece is moved so that it can be successfully moved again later.
- 2. Ensure System enforces alternating move order (can't move two white moves in a row, etc)
  3. Review the input system / output system, should strings be formulated and parsed entirely in the 'External' library? Probably yes.
  4. Add Bishop class
  5. Add Rook class
@@ -17,5 +16,6 @@ This is meant as a simple backlog of what refactorings and features are upcoming
  9. REFACTOR: Try to replace the isLastOutputBeforeQuittingEqualTo with just returning that string so
               maybe a comparison can be made that will give meaningful error output.
  10. Ensure starting a new game mid game will reset all pieces and the initiative of who goes next
+ 11. Allow Pieces to be captured
 
 */
