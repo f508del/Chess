@@ -9,10 +9,12 @@
 #include "ChessEngine.hpp"
 #include "ChessEngineTestHarness.hpp"
 #include "CommandDefines.hpp"
+#include "OutputErrorDefines.hpp"
 
 using namespace std;
+using namespace OutputErrorDefines;
 
-TEST_CASE("Testing that a moved piece can be moved again later, from its new location")
+TEST_CASE("Testing that a moved piece is now only seen at its new location")
 {
     SECTION("White pawn locations will update")
     {
@@ -26,7 +28,21 @@ TEST_CASE("Testing that a moved piece can be moved again later, from its new loc
 
         testHarness.chessEngine().runChessEngine();
 
-        fprintf(stderr, "Failing test for white pawn movement persistence\n");
-        //CHECK(testHarness.isLastOutputBeforeQuittingEqualTo("Moving Pawn a3a4"));
+        CHECK(testHarness.isLastOutputBeforeQuittingEqualTo("Moving Pawn a3a4"));
+    }
+    
+    SECTION("Cannot make the same move twice in a row")
+    {
+        ChessEngineTestHarness testHarness;
+        list<string> inputSequence;
+        inputSequence.push_back(CommandDefines::NEW_GAME_COMMAND);
+        inputSequence.push_back("a2a3");
+        inputSequence.push_back("c7c6");
+        inputSequence.push_back("a2a3");
+        testHarness.setInputSequenceAppendingQuit(inputSequence);
+
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(testHarness.isLastOutputBeforeQuittingEqualTo(NO_PIECE_AT_COORDINATES_ERROR));
     }
 }

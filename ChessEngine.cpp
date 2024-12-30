@@ -65,8 +65,11 @@ void ChessEngine::runChessEngine()
          }
          else
          {
+            // order here matters, as describer needs access to board state before move is applied.
+            string moveDescription = moveDescriber_->describeMove(move,*board_);
+            board_->applyMove(move);
             board_->togglePlayerInitiative();
-            outputSystem_.showTextToUser(moveDescriber_->describeMove(move,*board_).c_str());
+            outputSystem_.showTextToUser(moveDescription.c_str());
          }
       }
    }

@@ -13,6 +13,7 @@
 #include <map>
 
 class ChessSquare;
+class ChessMove;
 class I_ChessPiece;
 class Knight;
 class Pawn;
@@ -30,6 +31,7 @@ public:
 
    I_ChessPiece* pieceAt(const ChessSquare& square) const;
 
+   void applyMove(const ChessMove& move);
    void resetBoard();
 
    ChessPieceAffiliation playerToMakeNextMove() const;

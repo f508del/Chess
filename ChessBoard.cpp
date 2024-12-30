@@ -7,6 +7,7 @@
 //
 
 #include "ChessBoard.hpp"
+#include "ChessMove.hpp"
 #include "ChessSquare.hpp"
 #include "Pawn.hpp"
 #include "Knight.hpp"
@@ -95,3 +96,11 @@ void ChessBoard::togglePlayerInitiative()
       playerToMakeNextMove_ = WHITE_PIECE;
    }
 }
+
+void ChessBoard::applyMove(const ChessMove &move) { 
+    I_ChessPiece* movingPiece = pieceAt(move.startingSquare());
+    boardState_[move.endingSquare()] = movingPiece;
+    boardState_.erase(boardState_.find(move.startingSquare()));
+    return;
+}
+
