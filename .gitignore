@@ -1,3 +1,5 @@
 build/*
 Chess.app
 .DS_Store
+Chess.xcodeproj/**
+Chess.xcodeproj/xcshareddata/*
