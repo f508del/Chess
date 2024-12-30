@@ -57,6 +57,10 @@ bool ChessEngineTestHarness::isLastOutputBeforeQuittingEqualTo(const string &out
       {
          return false;
       }
-
-   return (fakeOutput().secondLastOutput() == outputString);
+    bool stringsCompareAsEqual = (fakeOutput().secondLastOutput() == outputString);
+    if (!stringsCompareAsEqual)
+    {
+        fprintf(stderr, "Expected: %s\nActual:   %s", outputString.c_str(), fakeOutput().secondLastOutput().c_str());
+    }
+   return stringsCompareAsEqual;
 }

@@ -6,7 +6,6 @@
 
 This is meant as a simple backlog of what refactorings and features are upcoming
  
- 1. Ensure system will know when a piece is moved so that it can be successfully moved again later.
  3. Review the input system / output system, should strings be formulated and parsed entirely in the 'External' library? Probably yes.
  4. Add Bishop class
  5. Add Rook class
