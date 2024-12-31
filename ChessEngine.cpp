@@ -46,31 +46,35 @@ void ChessEngine::runChessEngine()
                      [](unsigned char c){return tolower(c);});
       if (userInput == QUIT_COMMAND)
       {
-         break;
+          break;
       }
       else if (userInput == NEW_GAME_COMMAND)
       {
-         outputSystem_.showTextToUser("New game requested...");
-         outputSystem_.showTextToUser("you are playing as white...");
-         outputSystem_.showTextToUser("please enter a move in fully specified notation...");
+          if (ChessPieceAffiliation::BLACK_PIECE == board_->playerToMakeNextMove() )
+          {
+              board_->togglePlayerInitiative();
+          }
+          outputSystem_.showTextToUser("New game requested...");
+          outputSystem_.showTextToUser("you are playing as white...");
+          outputSystem_.showTextToUser("please enter a move in fully specified notation...");
       }
       else
       {
-         // attempt to read in the input as a move...
-         ChessMove move;
-         move.populateFromString(userInput);
-         if (!moveValidator_->isLegalMove(move))
-         {
-            outputSystem_.showTextToUser(moveValidator_->reasonLastMoveWasIllegal().c_str());
-         }
-         else
-         {
-            // order here matters, as describer needs access to board state before move is applied.
-            string moveDescription = moveDescriber_->describeMove(move,*board_);
-            board_->applyMove(move);
-            board_->togglePlayerInitiative();
-            outputSystem_.showTextToUser(moveDescription.c_str());
-         }
+          // attempt to read in the input as a move...
+          ChessMove move;
+          move.populateFromString(userInput);
+          if (!moveValidator_->isLegalMove(move))
+          {
+             outputSystem_.showTextToUser(moveValidator_->reasonLastMoveWasIllegal().c_str());
+          }
+          else
+          {
+             // order here matters, as describer needs access to board state before move is applied.
+             string moveDescription = moveDescriber_->describeMove(move,*board_);
+             board_->applyMove(move);
+             board_->togglePlayerInitiative();
+             outputSystem_.showTextToUser(moveDescription.c_str());
+          }
       }
    }
 

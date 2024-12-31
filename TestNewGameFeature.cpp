@@ -46,5 +46,15 @@ TEST_CASE("Testing the 'new game' feature")
 
        CHECK(testHarness.fakeOutput().contains("New game requested..."));
    }
+    
+    SECTION("Will revert initiative to white when new game is invoked mid game")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.fakeInput().setInputSequence({CommandDefines::NEW_GAME_COMMAND, "a2a3", CommandDefines::NEW_GAME_COMMAND, "b2b4", CommandDefines::QUIT_COMMAND});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(testHarness.isLastOutputBeforeQuittingEqualTo("Moving Pawn b2b4"));
+    }
 }
 
