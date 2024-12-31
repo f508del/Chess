@@ -21,7 +21,7 @@ namespace {
    void runTestWithOpeningMoveAndDisplayedResponse(const char* moveString, string response)
    {
    ChessEngineTestHarness testHarness;
-   testHarness.setInputSequenceAppendingQuit({CommandDefines::NEW_GAME_COMMAND, moveString});
+   testHarness.setInputSequenceWithinANewGame({moveString});
 
    testHarness.chessEngine().runChessEngine();
 

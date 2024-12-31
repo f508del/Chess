@@ -19,17 +19,17 @@ class FakeOutputSystem;
 class ChessEngineTestHarness
 {
 public:
-   ChessEngineTestHarness();
-   virtual ~ChessEngineTestHarness();
+    ChessEngineTestHarness();
+    virtual ~ChessEngineTestHarness();
 
-   FakeInputSystem& fakeInput();
-   FakeOutputSystem& fakeOutput();
+    FakeInputSystem& fakeInput();
+    FakeOutputSystem& fakeOutput();
 
-   ChessEngine& chessEngine();
+    ChessEngine& chessEngine();
 
-   // Convenience interfaces
-   void setInputSequenceAppendingQuit(const std::list<std::string>& inputSequence);
-   bool isLastOutputBeforeQuittingEqualTo(const std::string& outputString);
+    // Convenience interfaces
+    void setInputSequenceWithinANewGame(const std::list<std::string>& inputSequence);
+    bool isLastOutputBeforeQuittingEqualTo(const std::string& outputString);
 
 private:
    ScopedPointer<FakeInputSystem> inputSystem_;

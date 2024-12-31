@@ -43,12 +43,13 @@ ChessEngine& ChessEngineTestHarness::chessEngine()
    return *engine_;
 }
 
-void ChessEngineTestHarness::setInputSequenceAppendingQuit(const list<string>& inputSequence)
+void ChessEngineTestHarness::setInputSequenceWithinANewGame(const std::list<std::string>& inputSequence)
 {
-   list<string> finalInputSequence = inputSequence;
-   finalInputSequence.push_back(CommandDefines::QUIT_COMMAND);
+    list<string> finalInputSequence = inputSequence;
+    finalInputSequence.push_back(CommandDefines::QUIT_COMMAND);
+    finalInputSequence.push_front(CommandDefines::NEW_GAME_COMMAND);
 
-   fakeInput().setInputSequence(finalInputSequence);
+    fakeInput().setInputSequence(finalInputSequence);
 }
 
 bool ChessEngineTestHarness::isLastOutputBeforeQuittingEqualTo(const string &outputString)
@@ -64,3 +65,5 @@ bool ChessEngineTestHarness::isLastOutputBeforeQuittingEqualTo(const string &out
     }
    return stringsCompareAsEqual;
 }
+
+

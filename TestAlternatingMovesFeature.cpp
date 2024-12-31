@@ -20,7 +20,7 @@ TEST_CASE("Testing the enforcement of alternating move order")
    SECTION("will accept an opening move from white")
    {
        ChessEngineTestHarness testHarness;
-       testHarness.setInputSequenceAppendingQuit({CommandDefines::NEW_GAME_COMMAND, "c2c3"});
+       testHarness.setInputSequenceWithinANewGame({"c2c3"});
 
        testHarness.chessEngine().runChessEngine();
 
@@ -30,7 +30,7 @@ TEST_CASE("Testing the enforcement of alternating move order")
    SECTION("will reject an attempt to move a black piece first")
    {
       ChessEngineTestHarness testHarness;
-      testHarness.setInputSequenceAppendingQuit({CommandDefines::NEW_GAME_COMMAND, "c7c6"});
+      testHarness.setInputSequenceWithinANewGame({"c7c6"});
 
       testHarness.chessEngine().runChessEngine();
 
@@ -40,7 +40,7 @@ TEST_CASE("Testing the enforcement of alternating move order")
    SECTION("will accept the second move of the game to come from black")
    {
       ChessEngineTestHarness testHarness;
-      testHarness.setInputSequenceAppendingQuit({CommandDefines::NEW_GAME_COMMAND, "c2c3", "c7c6"});
+      testHarness.setInputSequenceWithinANewGame({"c2c3", "c7c6"});
 
       testHarness.chessEngine().runChessEngine();
 
@@ -50,7 +50,7 @@ TEST_CASE("Testing the enforcement of alternating move order")
    SECTION("will reject a second move of the game to come from white")
    {
       ChessEngineTestHarness testHarness;
-      testHarness.setInputSequenceAppendingQuit({CommandDefines::NEW_GAME_COMMAND, "c2c3", "d2d4"});
+      testHarness.setInputSequenceWithinANewGame({"c2c3", "d2d4"});
 
       testHarness.chessEngine().runChessEngine();
 
@@ -60,7 +60,7 @@ TEST_CASE("Testing the enforcement of alternating move order")
    SECTION("will accept the third move of the game to come from white")
    {
       ChessEngineTestHarness testHarness;
-      testHarness.setInputSequenceAppendingQuit({CommandDefines::NEW_GAME_COMMAND, "c2c3", "c7c6", "d2d4"});
+      testHarness.setInputSequenceWithinANewGame({"c2c3", "c7c6", "d2d4"});
 
       testHarness.chessEngine().runChessEngine();
 
@@ -70,7 +70,7 @@ TEST_CASE("Testing the enforcement of alternating move order")
    SECTION("will reject the third move of the game to come from black")
    {
        ChessEngineTestHarness testHarness;
-       testHarness.setInputSequenceAppendingQuit({CommandDefines::NEW_GAME_COMMAND, "c2c3", "c7c6", "d7d6"});
+       testHarness.setInputSequenceWithinANewGame({"c2c3", "c7c6", "d7d6"});
 
        testHarness.chessEngine().runChessEngine();
 

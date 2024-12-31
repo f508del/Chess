@@ -19,7 +19,7 @@ TEST_CASE("Testing that a moved piece is now only seen at its new location")
     SECTION("White pawn locations will update")
     {
         ChessEngineTestHarness testHarness;
-        testHarness.setInputSequenceAppendingQuit({CommandDefines::NEW_GAME_COMMAND, "a2a3", "c7c6", "a3a4"});
+        testHarness.setInputSequenceWithinANewGame({"a2a3", "c7c6", "a3a4"});
 
         testHarness.chessEngine().runChessEngine();
 
@@ -29,7 +29,7 @@ TEST_CASE("Testing that a moved piece is now only seen at its new location")
     SECTION("Cannot make the same move twice in a row")
     {
         ChessEngineTestHarness testHarness;
-        testHarness.setInputSequenceAppendingQuit({CommandDefines::NEW_GAME_COMMAND, "a2a3", "c7c6", "a2a3"});
+        testHarness.setInputSequenceWithinANewGame({"a2a3", "c7c6", "a2a3"});
 
         testHarness.chessEngine().runChessEngine();
         

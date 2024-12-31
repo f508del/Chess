@@ -19,32 +19,32 @@ TEST_CASE("Testing the 'new game' feature")
 {
    SECTION("can start a new game at startup")
    {
-   ChessEngineTestHarness testHarness;
-   testHarness.setInputSequenceAppendingQuit({CommandDefines::NEW_GAME_COMMAND});
+       ChessEngineTestHarness testHarness;
+       testHarness.setInputSequenceWithinANewGame({});
 
-   testHarness.chessEngine().runChessEngine();
+       testHarness.chessEngine().runChessEngine();
 
-   CHECK(testHarness.fakeOutput().contains("New game requested..."));
+       CHECK(testHarness.fakeOutput().contains("New game requested..."));
    }
 
    SECTION("will inform user what color piece they play as")
    {
-   ChessEngineTestHarness testHarness;
-   testHarness.setInputSequenceAppendingQuit({CommandDefines::NEW_GAME_COMMAND});
+       ChessEngineTestHarness testHarness;
+       testHarness.setInputSequenceWithinANewGame({});
 
-   testHarness.chessEngine().runChessEngine();
+       testHarness.chessEngine().runChessEngine();
 
-   CHECK(testHarness.fakeOutput().contains("you are playing as white..."));
+       CHECK(testHarness.fakeOutput().contains("you are playing as white..."));
    }
 
    SECTION("will accept upper case version of new game command")
    {
-   ChessEngineTestHarness testHarness;
-   testHarness.setInputSequenceAppendingQuit({"N"});
+       ChessEngineTestHarness testHarness;
+       testHarness.fakeInput().setInputSequence({"N", CommandDefines::QUIT_COMMAND});
 
-   testHarness.chessEngine().runChessEngine();
+       testHarness.chessEngine().runChessEngine();
 
-   CHECK(testHarness.fakeOutput().contains("New game requested..."));
+       CHECK(testHarness.fakeOutput().contains("New game requested..."));
    }
 }
 
