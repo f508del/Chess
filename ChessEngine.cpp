@@ -54,6 +54,7 @@ void ChessEngine::runChessEngine()
           {
               board_->togglePlayerInitiative();
           }
+          board_->resetBoard();
           outputSystem_.showTextToUser("New game requested...");
           outputSystem_.showTextToUser("you are playing as white...");
           outputSystem_.showTextToUser("please enter a move in fully specified notation...");

@@ -56,5 +56,45 @@ TEST_CASE("Testing the 'new game' feature")
         
         CHECK(testHarness.isLastOutputBeforeQuittingEqualTo("Moving Pawn b2b4"));
     }
+    
+    SECTION("Will move white pawns back to starting position if invoked mid game")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.fakeInput().setInputSequence({CommandDefines::NEW_GAME_COMMAND, "a2a3", CommandDefines::NEW_GAME_COMMAND, "a2a4", CommandDefines::QUIT_COMMAND});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(testHarness.isLastOutputBeforeQuittingEqualTo("Moving Pawn a2a4"));
+    }
+    
+    SECTION("Will move white knights back to starting position if invoked mid game")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.fakeInput().setInputSequence({CommandDefines::NEW_GAME_COMMAND, "b1a3", CommandDefines::NEW_GAME_COMMAND, "b1a3", CommandDefines::QUIT_COMMAND});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(testHarness.isLastOutputBeforeQuittingEqualTo("Moving Knight b1a3"));
+    }
+    
+    SECTION("Will move black pawns back to starting position if invoked mid game")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.fakeInput().setInputSequence({CommandDefines::NEW_GAME_COMMAND, "a2a3","a7a6", CommandDefines::NEW_GAME_COMMAND, "a2a3", "a7a6", CommandDefines::QUIT_COMMAND});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(testHarness.isLastOutputBeforeQuittingEqualTo("Moving Pawn a7a6"));
+    }
+    
+    SECTION("Will move black knights back to starting position if invoked mid game")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.fakeInput().setInputSequence({CommandDefines::NEW_GAME_COMMAND, "b1a3","b8a6", CommandDefines::NEW_GAME_COMMAND, "b1a3", "b8a6", CommandDefines::QUIT_COMMAND});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(testHarness.isLastOutputBeforeQuittingEqualTo("Moving Knight b8a6"));
+    }
 }
 
