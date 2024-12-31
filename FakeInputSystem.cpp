@@ -32,7 +32,7 @@ string FakeInputSystem::readNextUserEntry()
    return string();
 }
 
-void FakeInputSystem::setInputSequence(list<string> &inputSequence)
+void FakeInputSystem::setInputSequence(const list<string> &inputSequence)
 {
    inputBuffer_ = inputSequence;
 }

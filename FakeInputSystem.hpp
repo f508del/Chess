@@ -21,7 +21,7 @@ public:
    std::string readNextUserEntry() override;
 
    // Helpers
-   void setInputSequence(std::list<std::string>& inputSequence);
+   void setInputSequence(const std::list<std::string>& inputSequence);
    void clearInputSequence();
 
 private:

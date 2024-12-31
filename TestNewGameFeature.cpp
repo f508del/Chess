@@ -20,10 +20,7 @@ TEST_CASE("Testing the 'new game' feature")
    SECTION("can start a new game at startup")
    {
    ChessEngineTestHarness testHarness;
-
-   list<string> inputSequence;
-   inputSequence.push_back(CommandDefines::NEW_GAME_COMMAND);
-   testHarness.setInputSequenceAppendingQuit(inputSequence);
+   testHarness.setInputSequenceAppendingQuit({CommandDefines::NEW_GAME_COMMAND});
 
    testHarness.chessEngine().runChessEngine();
 
@@ -33,10 +30,7 @@ TEST_CASE("Testing the 'new game' feature")
    SECTION("will inform user what color piece they play as")
    {
    ChessEngineTestHarness testHarness;
-
-   list<string> inputSequence;
-   inputSequence.push_back(CommandDefines::NEW_GAME_COMMAND);
-   testHarness.setInputSequenceAppendingQuit(inputSequence);
+   testHarness.setInputSequenceAppendingQuit({CommandDefines::NEW_GAME_COMMAND});
 
    testHarness.chessEngine().runChessEngine();
 
@@ -46,10 +40,7 @@ TEST_CASE("Testing the 'new game' feature")
    SECTION("will accept upper case version of new game command")
    {
    ChessEngineTestHarness testHarness;
-
-   list<string> inputSequence;
-   inputSequence.push_back("N");
-   testHarness.setInputSequenceAppendingQuit(inputSequence);
+   testHarness.setInputSequenceAppendingQuit({"N"});
 
    testHarness.chessEngine().runChessEngine();
 

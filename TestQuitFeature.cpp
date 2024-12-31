@@ -20,10 +20,7 @@ TEST_CASE("Testing the quit feature")
    SECTION("can quit from the main menu")
    {
    ChessEngineTestHarness testHarness;
-
-   list<string> inputSequence;
-   inputSequence.push_back(CommandDefines::QUIT_COMMAND);
-   testHarness.fakeInput().setInputSequence(inputSequence);
+   testHarness.fakeInput().setInputSequence({CommandDefines::QUIT_COMMAND});
 
    testHarness.chessEngine().runChessEngine();
 
@@ -33,10 +30,7 @@ TEST_CASE("Testing the quit feature")
    SECTION("can quit with upper case version of command")
    {
    ChessEngineTestHarness testHarness;
-
-   list<string> inputSequence;
-   inputSequence.push_back("Q");
-   testHarness.fakeInput().setInputSequence(inputSequence);
+   testHarness.fakeInput().setInputSequence({"Q"});
 
    testHarness.chessEngine().runChessEngine();
 
@@ -46,12 +40,7 @@ TEST_CASE("Testing the quit feature")
    SECTION("can quit after having started a new game and made a move")
    {
    ChessEngineTestHarness testHarness;
-
-   list<string> inputSequence;
-   inputSequence.push_back(CommandDefines::NEW_GAME_COMMAND);
-   inputSequence.push_back("a2a3");
-   inputSequence.push_back(CommandDefines::QUIT_COMMAND);
-   testHarness.fakeInput().setInputSequence(inputSequence);
+   testHarness.fakeInput().setInputSequence({CommandDefines::NEW_GAME_COMMAND, "a2a3", CommandDefines::QUIT_COMMAND });
 
    testHarness.chessEngine().runChessEngine();
 
