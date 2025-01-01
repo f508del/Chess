@@ -7,11 +7,10 @@
 This is meant as a simple backlog of what refactorings and features are upcoming
  
  3. Review the input system / output system, should strings be formulated and parsed entirely in the 'External' library? Probably yes.
- 4. Add Bishop class
  5. Add Rook class
  6. Add Queen class
  7. Add King class
  11. Allow Pieces to be captured
  12. Ensure that pieces blocked by other pieces can't jump them unless they are a knight
-
+ 13. Integrate Bishop class into system.
 */
