@@ -6,6 +6,7 @@
 //
 //
 
+#include "Bishop.hpp"
 #include "ChessBoard.hpp"
 #include "ChessMove.hpp"
 #include "ChessSquare.hpp"
@@ -17,6 +18,8 @@ ChessBoard::ChessBoard()
 , blackPawnCapabilities_(new Pawn(BLACK_PIECE))
 , whiteKnightCapabilities_(new Knight(WHITE_PIECE))
 , blackKnightCapabilities_(new Knight(BLACK_PIECE))
+, whiteBishopCapabilities_(new Bishop(WHITE_PIECE))
+, blackBishopCapabilities_(new Bishop(BLACK_PIECE))
 , playerToMakeNextMove_(WHITE_PIECE)
 {
    resetBoard();
@@ -60,29 +63,36 @@ I_ChessPiece* ChessBoard::pieceAt(const ChessSquare& square) const
 
 void ChessBoard::resetBoard()
 {
-   boardState_.clear();
-   for (char file = 'a'; file <= 'h'; file++)
-   {
-      boardState_[ChessSquare(file, 2)] = whitePawnCapabilities_.data();
-      boardState_[ChessSquare(file, 7)] = blackPawnCapabilities_.data();
-   }
+    boardState_.clear();
+    for (char file = 'a'; file <= 'h'; file++)
+    {
+       boardState_[ChessSquare(file, 2)] = whitePawnCapabilities_.data();
+       boardState_[ChessSquare(file, 7)] = blackPawnCapabilities_.data();
+    }
 
-   // make back rows pawns for now, until all pieces are implemented.
-   for (char file = 'a'; file <= 'h'; file++)
-   {
-      boardState_[ChessSquare(file, 1)] = whitePawnCapabilities_.data();
-      boardState_[ChessSquare(file, 8)] = blackPawnCapabilities_.data();
-   }
+    // make back rows pawns for now, until all pieces are implemented.
+    for (char file = 'a'; file <= 'h'; file++)
+    {
+       boardState_[ChessSquare(file, 1)] = whitePawnCapabilities_.data();
+       boardState_[ChessSquare(file, 8)] = blackPawnCapabilities_.data();
+    }
 
-   boardState_[ChessSquare('b', 1)] = whiteKnightCapabilities_.data();
-   boardState_[ChessSquare('g', 1)] = whiteKnightCapabilities_.data();
-   boardState_[ChessSquare('b', 8)] = blackKnightCapabilities_.data();
-   boardState_[ChessSquare('g', 8)] = blackKnightCapabilities_.data();
+    // setup the knights
+    boardState_[ChessSquare('b', 1)] = whiteKnightCapabilities_.data();
+    boardState_[ChessSquare('g', 1)] = whiteKnightCapabilities_.data();
+    boardState_[ChessSquare('b', 8)] = blackKnightCapabilities_.data();
+    boardState_[ChessSquare('g', 8)] = blackKnightCapabilities_.data();
+    
+    // setup the bishops
+    boardState_[ChessSquare('c', 1)] = whiteBishopCapabilities_.data();
+    boardState_[ChessSquare('f', 1)] = whiteBishopCapabilities_.data();
+    boardState_[ChessSquare('c', 8)] = whiteBishopCapabilities_.data();
+    boardState_[ChessSquare('f', 8)] = whiteBishopCapabilities_.data();
 }
 
 ChessPieceAffiliation ChessBoard::playerToMakeNextMove() const
 {
-   return playerToMakeNextMove_;
+    return playerToMakeNextMove_;
 }
 
 void ChessBoard::togglePlayerInitiative()

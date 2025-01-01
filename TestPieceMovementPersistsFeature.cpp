@@ -35,4 +35,14 @@ TEST_CASE("Testing that a moved piece is now only seen at its new location")
         
         CHECK(testHarness.isLastOutputBeforeQuittingEqualTo(NO_PIECE_AT_COORDINATES_ERROR));
     }
+    
+    SECTION("Bishops movement will persist")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.setInputSequenceWithinANewGame({"b2b3", "g7g6", "c1a3", "g6g5", "a3c5"});
+
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(testHarness.isLastOutputBeforeQuittingEqualTo("Moving Bishop a3c5"));
+    }
 }

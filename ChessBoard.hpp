@@ -12,6 +12,7 @@
 #include "ScopedPointer.hpp"
 #include <map>
 
+class Bishop;
 class ChessSquare;
 class ChessMove;
 class I_ChessPiece;
@@ -38,10 +39,12 @@ public:
    void togglePlayerInitiative();
 
 private:
-   ScopedPointer<Pawn> whitePawnCapabilities_;
-   ScopedPointer<Pawn> blackPawnCapabilities_;
-   ScopedPointer<Knight> whiteKnightCapabilities_;
-   ScopedPointer<Knight> blackKnightCapabilities_;
+    ScopedPointer<Pawn> whitePawnCapabilities_;
+    ScopedPointer<Pawn> blackPawnCapabilities_;
+    ScopedPointer<Knight> whiteKnightCapabilities_;
+    ScopedPointer<Knight> blackKnightCapabilities_;
+    ScopedPointer<Bishop> whiteBishopCapabilities_;
+    ScopedPointer<Bishop> blackBishopCapabilities_;
 
    std::map<ChessSquare, I_ChessPiece*> boardState_;
 
