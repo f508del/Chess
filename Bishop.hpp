@@ -15,11 +15,13 @@ public:
     Bishop(ChessPieceAffiliation affiliation);
     virtual ~Bishop();
     
-    virtual ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) override;
+    ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) override;
     
-    virtual ChessPieceAffiliation affiliation() const override;
+    ChessPieceAffiliation affiliation() const override;
     
-    virtual std::string pieceName() const override;
+    std::string pieceName() const override;
+    
+    bool pieceCanJumpOtherPieces() const override;
     
 private:
    const ChessPieceAffiliation affiliation_;

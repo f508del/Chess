@@ -16,9 +16,10 @@
 class I_ChessPiece
 {
 public:
-   virtual ~I_ChessPiece();
+    virtual ~I_ChessPiece();
 
-   virtual ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) = 0;
-   virtual ChessPieceAffiliation affiliation() const = 0;
-   virtual std::string pieceName() const = 0;
+    virtual ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) = 0;
+    virtual ChessPieceAffiliation affiliation() const = 0;
+    virtual std::string pieceName() const = 0;
+    virtual bool pieceCanJumpOtherPieces() const = 0;
 };

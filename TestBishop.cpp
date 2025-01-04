@@ -58,4 +58,10 @@ TEST_CASE("Testing the Bishop object")
         CHECK(!allowedMoves.contains(ChessSquare('c', 4)));
         CHECK(!allowedMoves.contains(ChessSquare('e', 4)));
     }
+    
+    SECTION("Will not allow bishop to jump other pieces")
+    {
+        Bishop bishop(WHITE_PIECE);
+        CHECK(bishop.pieceCanJumpOtherPieces() == false);
+    }
 }

@@ -71,4 +71,9 @@ TEST_CASE("Testing the Pawn object when playing as black")
    CHECK(allowedMoves.empty());
    }
 
+    SECTION("will not allow pawns to jump other pieces")
+    {
+        Pawn pawn(BLACK_PIECE);
+        CHECK(pawn.pieceCanJumpOtherPieces() == false);
+    }
 }

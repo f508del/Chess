@@ -69,4 +69,10 @@ TEST_CASE("Testing the Knight object")
       allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare('d', 8));
       CHECK(allowedMoves.size() == 4);
    }
+    
+    SECTION("will allow knights to jump other pieces")
+    {
+        Knight knight(WHITE_PIECE);
+        CHECK(knight.pieceCanJumpOtherPieces() == true);
+    }
 }

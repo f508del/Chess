@@ -13,13 +13,14 @@
 class Knight : public I_ChessPiece
 {
 public:
-   Knight(ChessPieceAffiliation affiliation);
-   virtual ~Knight();
+    Knight(ChessPieceAffiliation affiliation);
+    virtual ~Knight();
 
-   ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) override;
-   ChessPieceAffiliation affiliation() const override;
-   std::string pieceName() const override;
+    ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) override;
+    ChessPieceAffiliation affiliation() const override;
+    std::string pieceName() const override;
+    bool pieceCanJumpOtherPieces() const override;
 
 private:
-   const ChessPieceAffiliation affiliation_;
+    const ChessPieceAffiliation affiliation_;
 };

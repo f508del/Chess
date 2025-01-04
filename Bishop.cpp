@@ -64,3 +64,8 @@ std::string Bishop::pieceName() const
 {
     return std::string("Bishop");
 }
+
+bool Bishop::pieceCanJumpOtherPieces() const
+{
+    return false;
+}

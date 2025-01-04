@@ -70,4 +70,10 @@ TEST_CASE("Testing the Pawn object when playing as white")
       ExtendedSet<ChessSquare> allowedMoves = pawn.potentialEmptyBoardMovesFrom(ChessSquare('d', 8));
       CHECK(allowedMoves.empty());
    }
+    
+    SECTION("will not allow pawns to jump other pieces")
+    {
+        Pawn pawn(WHITE_PIECE);
+        CHECK(pawn.pieceCanJumpOtherPieces() == false);
+    }
 }

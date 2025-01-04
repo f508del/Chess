@@ -86,3 +86,9 @@ std::string Knight::pieceName() const
    return std::string("Knight");
 }
 
+bool Knight::pieceCanJumpOtherPieces() const
+{
+    return true;
+}
+
+

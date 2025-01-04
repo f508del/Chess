@@ -63,3 +63,9 @@ unsigned int Pawn::startingRankForCurrentAffiliation() const
    }
    return 7u;
 }
+
+bool Pawn::pieceCanJumpOtherPieces() const
+{
+    return false;
+}
+
