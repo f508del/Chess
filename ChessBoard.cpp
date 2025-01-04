@@ -114,3 +114,27 @@ void ChessBoard::applyMove(const ChessMove &move) {
     return;
 }
 
+bool ChessBoard::squaresBetweenEndPointsAreEmpty(const ChessMove &move) const
+{
+    int rankDifference = move.endingSquare().rank() - move.startingSquare().rank();
+    int fileDifference = move.endingSquare().file() - move.startingSquare().file();
+    
+    // Will yeild an increment of -1, 0, or 1 only.
+    int rankIncrement = (rankDifference == 0) ? 0 : (rankDifference / abs(rankDifference));
+    int fileIncrement = (fileDifference == 0) ? 0 : (fileDifference / abs(fileDifference));
+    
+    unsigned int currentRank = move.startingSquare().rank() + rankIncrement;
+    char currentFile = move.startingSquare().file() + fileIncrement;
+    while ((currentRank != move.endingSquare().rank()) || (currentFile != move.endingSquare().file()))
+    {
+        if (anyPieceExistsAt(ChessSquare(currentFile, currentRank)))
+        {
+            return false;
+        }
+        currentRank += rankIncrement;
+        currentFile += fileIncrement;
+    }
+    return true;
+}
+
+

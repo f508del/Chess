@@ -23,20 +23,21 @@ class Pawn;
 class ChessBoard
 {
 public:
-   explicit ChessBoard();
-   virtual ~ChessBoard();
+    explicit ChessBoard();
+    virtual ~ChessBoard();
 
-   bool anyPieceExistsAt(const ChessSquare& square) const;
-   bool whitePieceExistsAt(const ChessSquare& square) const;
-   bool blackPieceExistsAt(const ChessSquare& square) const;
+    bool anyPieceExistsAt(const ChessSquare& square) const;
+    bool whitePieceExistsAt(const ChessSquare& square) const;
+    bool blackPieceExistsAt(const ChessSquare& square) const;
 
-   I_ChessPiece* pieceAt(const ChessSquare& square) const;
+    I_ChessPiece* pieceAt(const ChessSquare& square) const;
 
-   void applyMove(const ChessMove& move);
-   void resetBoard();
+    bool squaresBetweenEndPointsAreEmpty(const ChessMove& move) const;
+    void applyMove(const ChessMove& move);
+    void resetBoard();
 
-   ChessPieceAffiliation playerToMakeNextMove() const;
-   void togglePlayerInitiative();
+    ChessPieceAffiliation playerToMakeNextMove() const;
+    void togglePlayerInitiative();
 
 private:
     ScopedPointer<Pawn> whitePawnCapabilities_;
