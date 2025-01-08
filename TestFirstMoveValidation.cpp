@@ -57,6 +57,11 @@ namespace {
       runTestWithOpeningMoveAndDisplayedResponse(moveString,
                                                  PIECE_CANNOT_CURRENTLY_MOVE_ERROR);
    }
+
+   void runTestWithMoveThatIsBlockedByAnotherPiece(const char* moveString)
+   {
+       runTestWithOpeningMoveAndDisplayedResponse(moveString, MOVE_IS_BLOCKED_ERROR);
+   }
 }
 
 TEST_CASE("Testing the validation of the user's opening move when invalid")
@@ -110,9 +115,8 @@ TEST_CASE("Testing the validation of the user's opening move when invalid")
 
    SECTION("will detect a move that attempts to move a bishop")
    {
-       fprintf(stderr, "SKIPPED TEST that relies on piece blocking logic for bishops...\n");
-       //runTestWithMoveThatAttemptsToMoveAPieceThatCantCurrentlyMove("c1a3");
-       //runTestWithMoveThatAttemptsToMoveAPieceThatCantCurrentlyMove("f1h3");
+       runTestWithMoveThatIsBlockedByAnotherPiece("c1a3");
+       runTestWithMoveThatIsBlockedByAnotherPiece("f1h3");
    }
 
    SECTION("will detect a move that attempts to move the queen")

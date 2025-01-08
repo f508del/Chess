@@ -57,6 +57,12 @@ bool ChessMoveValidator::isLegalMove(const ChessMove& currentMove)
       commentOnLastMove_ = PIECE_CANNOT_CURRENTLY_MOVE_ERROR;
       return false;
    }
+    
+    if (!board_.squaresBetweenEndPointsAreEmpty(currentMove) && !currentPiece->pieceCanJumpOtherPieces())
+    {
+        commentOnLastMove_ = MOVE_IS_BLOCKED_ERROR;
+        return false;
+    }
 
    if (board_.anyPieceExistsAt(currentMove.endingSquare()))
    {
