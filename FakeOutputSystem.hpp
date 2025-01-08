@@ -20,12 +20,14 @@ public:
 
    // inherited
    void showTextToUser(const char* displayString) override;
-
+   void initializeChessUserInterface() override;
+    
    // helpers
    size_t size() const;
    std::string mostRecentOutput() const;
    std::string secondLastOutput() const;
    bool contains(const std::string& outputEntry) const;
+    
 
 private:
    std::string mostRecentOutput_;

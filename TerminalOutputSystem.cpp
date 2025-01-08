@@ -21,5 +21,13 @@ TerminalOutputSystem::~TerminalOutputSystem()
 
 void TerminalOutputSystem::showTextToUser(const char* displayString)
 {
-   fprintf(stdout, "%s\n", displayString);
+    fprintf(stdout, "%s\n", displayString);
 }
+
+void TerminalOutputSystem::initializeChessUserInterface()
+{
+    showTextToUser("===============Main menu ================");
+    showTextToUser("Press 'q' to quit.");
+    showTextToUser("Press 'n' for a new game.");
+}
+

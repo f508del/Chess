@@ -60,3 +60,9 @@ bool FakeOutputSystem::contains(const string& outputEntry) const
 
    return false;
 }
+
+void FakeOutputSystem::initializeChessUserInterface()
+{ 
+    return;
+}
+

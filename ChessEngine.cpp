@@ -36,7 +36,7 @@ ChessEngine::~ChessEngine()
 
 void ChessEngine::runChessEngine()
 {
-   displayMainMenu();
+   outputSystem_.initializeChessUserInterface();
    
    string userInput;
    while (true)
@@ -82,9 +82,3 @@ void ChessEngine::runChessEngine()
    outputSystem_.showTextToUser("quitting chess...");
 }
 
-void ChessEngine::displayMainMenu()
-{
-   outputSystem_.showTextToUser("===============Main menu ================");
-   outputSystem_.showTextToUser("Press 'q' to quit.");
-   outputSystem_.showTextToUser("Press 'n' for a new game.");
-}

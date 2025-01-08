@@ -27,9 +27,6 @@ public:
    void runChessEngine();
 
 private:
-   void displayMainMenu();
-
-private:
    I_InputSystem& inputSystem_;
    I_OutputSystem& outputSystem_;
    ScopedPointer<ChessBoard> board_;

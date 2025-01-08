@@ -16,5 +16,6 @@ public:
    explicit TerminalOutputSystem();
    virtual ~TerminalOutputSystem();
 
-   void showTextToUser(const char* displayString);
+    void showTextToUser(const char* displayString) override;
+    void initializeChessUserInterface() override;
 };
