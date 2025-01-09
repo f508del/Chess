@@ -18,4 +18,5 @@ public:
 
     void showTextToUser(const char* displayString) override;
     void initializeChessUserInterface() override;
+    void endUserInteraction() override;
 };

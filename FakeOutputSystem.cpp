@@ -66,3 +66,7 @@ void FakeOutputSystem::initializeChessUserInterface()
     return;
 }
 
+void FakeOutputSystem::endUserInteraction()
+{
+    showTextToUser("quitting chess...");
+}

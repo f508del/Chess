@@ -31,3 +31,9 @@ void TerminalOutputSystem::initializeChessUserInterface()
     showTextToUser("Press 'n' for a new game.");
 }
 
+void TerminalOutputSystem::endUserInteraction()
+{
+    showTextToUser("quitting chess...");
+}
+
+
