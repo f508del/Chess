@@ -70,3 +70,11 @@ void FakeOutputSystem::endUserInteraction()
 {
     showTextToUser("quitting chess...");
 }
+
+void FakeOutputSystem::resetUxForNewGame()
+{
+    showTextToUser("New game requested...");
+    showTextToUser("you are playing as white...");
+    showTextToUser("please enter a move in fully specified notation...");
+}
+

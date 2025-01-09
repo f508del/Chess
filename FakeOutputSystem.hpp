@@ -22,6 +22,7 @@ public:
     void showTextToUser(const char* displayString) override;
     void initializeChessUserInterface() override;
     void endUserInteraction() override;
+    void resetUxForNewGame() override;
     
     // helpers
     size_t size() const;
