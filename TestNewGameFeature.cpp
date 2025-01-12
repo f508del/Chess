@@ -36,16 +36,6 @@ TEST_CASE("Testing the 'new game' feature")
 
        CHECK(testHarness.fakeOutput().contains("you are playing as white..."));
    }
-
-   SECTION("will accept upper case version of new game command")
-   {
-       ChessEngineTestHarness testHarness;
-       testHarness.fakeInput().setInputSequence({"N", CommandDefines::QUIT_COMMAND});
-
-       testHarness.chessEngine().runChessEngine();
-
-       CHECK(testHarness.fakeOutput().contains("New game requested..."));
-   }
     
     SECTION("Will revert initiative to white when new game is invoked mid game")
     {

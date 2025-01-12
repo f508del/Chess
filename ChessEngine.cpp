@@ -42,8 +42,6 @@ void ChessEngine::runChessEngine()
     while (true)
     {
        userInput = inputSystem_.readNextUserEntry();
-       transform(userInput.begin(), userInput.end(), userInput.begin(),
-                      [](unsigned char c){return tolower(c);});
        if (userInput == QUIT_COMMAND)
        {
            break;

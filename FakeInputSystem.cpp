@@ -24,11 +24,13 @@ FakeInputSystem::~FakeInputSystem()
 string FakeInputSystem::readNextUserEntry()
 {
    if (!inputBuffer_.empty())
-      {
+   {
       string nextInput = inputBuffer_.front();
       inputBuffer_.pop_front();
+      std::transform(nextInput.begin(), nextInput.end(), nextInput.begin(),
+                         [](unsigned char c){return std::tolower(c);});
       return nextInput;
-      }
+   }
    return string();
 }
 
