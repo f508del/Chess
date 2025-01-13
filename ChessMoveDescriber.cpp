@@ -8,7 +8,7 @@
 
 #include "ChessMoveDescriber.hpp"
 #include "ChessMove.hpp"
-#include "ChessBoard.hpp"
+#include "I_ReadOnlyChessBoard.hpp"
 #include "I_ChessPiece.hpp"
 
 
@@ -20,7 +20,7 @@ ChessMoveDescriber::~ChessMoveDescriber()
 {
 }
 
-std::string ChessMoveDescriber::describeMove(const ChessMove& move, const ChessBoard& board) const
+std::string ChessMoveDescriber::describeMove(const ChessMove& move, const I_ReadOnlyChessBoard& board) const
 {
    std::string description("Moving ");
    if (board.anyPieceExistsAt(move.startingSquare()))

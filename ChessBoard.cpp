@@ -52,7 +52,7 @@ bool ChessBoard::blackPieceExistsAt(const ChessSquare& square) const
    }
    return false;}
 
-I_ChessPiece* ChessBoard::pieceAt(const ChessSquare& square) const
+const I_ChessPiece* ChessBoard::pieceAt(const ChessSquare& square) const
 {
    if (anyPieceExistsAt(square))
    {
@@ -108,7 +108,7 @@ void ChessBoard::togglePlayerInitiative()
 }
 
 void ChessBoard::applyMove(const ChessMove &move) { 
-    I_ChessPiece* movingPiece = pieceAt(move.startingSquare());
+    const I_ChessPiece* movingPiece = pieceAt(move.startingSquare());
     boardState_[move.endingSquare()] = movingPiece;
     boardState_.erase(boardState_.find(move.startingSquare()));
     return;

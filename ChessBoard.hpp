@@ -10,6 +10,7 @@
 
 #include "ChessPieceAffiliation.hpp"
 #include "ScopedPointer.hpp"
+#include "I_ReadOnlyChessBoard.hpp"
 #include <map>
 
 class Bishop;
@@ -20,7 +21,7 @@ class Knight;
 class Pawn;
 
 
-class ChessBoard
+class ChessBoard : public I_ReadOnlyChessBoard
 {
 public:
     explicit ChessBoard();
@@ -30,13 +31,13 @@ public:
     bool whitePieceExistsAt(const ChessSquare& square) const;
     bool blackPieceExistsAt(const ChessSquare& square) const;
 
-    I_ChessPiece* pieceAt(const ChessSquare& square) const;
+    const I_ChessPiece* pieceAt(const ChessSquare& square) const;
 
     bool squaresBetweenEndPointsAreEmpty(const ChessMove& move) const;
+    ChessPieceAffiliation playerToMakeNextMove() const;
+    
     void applyMove(const ChessMove& move);
     void resetBoard();
-
-    ChessPieceAffiliation playerToMakeNextMove() const;
     void togglePlayerInitiative();
 
 private:
@@ -47,7 +48,7 @@ private:
     ScopedPointer<Bishop> whiteBishopCapabilities_;
     ScopedPointer<Bishop> blackBishopCapabilities_;
 
-   std::map<ChessSquare, I_ChessPiece*> boardState_;
+   std::map<ChessSquare, const I_ChessPiece*> boardState_;
 
    ChessPieceAffiliation playerToMakeNextMove_;
 };

@@ -37,7 +37,7 @@ bool ChessMoveValidator::isLegalMove(const ChessMove& currentMove)
       return false;
    }
 
-   I_ChessPiece* currentPiece = board_.pieceAt(currentMove.startingSquare());
+   const I_ChessPiece* currentPiece = board_.pieceAt(currentMove.startingSquare());
    if (nullptr == currentPiece)
    {
       commentOnLastMove_ = NO_PIECE_AT_COORDINATES_ERROR;

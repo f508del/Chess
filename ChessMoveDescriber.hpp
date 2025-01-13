@@ -11,7 +11,7 @@
 #include <string>
 
 class ChessMove;
-class ChessBoard;
+class I_ReadOnlyChessBoard;
 
 class ChessMoveDescriber
 {
@@ -19,5 +19,5 @@ public:
    ChessMoveDescriber();
    virtual ~ChessMoveDescriber();
 
-   std::string describeMove(const ChessMove& move, const ChessBoard& board) const;
+   std::string describeMove(const ChessMove& move, const I_ReadOnlyChessBoard& board) const;
 };
