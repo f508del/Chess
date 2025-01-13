@@ -16,7 +16,7 @@ public:
    Pawn(ChessPieceAffiliation affiliation);
    virtual ~Pawn();
 
-   ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) override;
+   ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) const override;
    ChessPieceAffiliation affiliation() const override;
    std::string pieceName() const override;
    bool pieceCanJumpOtherPieces() const override;

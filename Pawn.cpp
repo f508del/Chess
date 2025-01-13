@@ -17,7 +17,7 @@ Pawn::~Pawn()
 {
 }
 
-ExtendedSet<ChessSquare> Pawn::potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare)
+ExtendedSet<ChessSquare> Pawn::potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) const
 {
    ExtendedSet<ChessSquare> potentialMoves;
    if (!startingSquare.isSquareOnTheBoard() || startingSquare.rank() == 1 ||

@@ -15,7 +15,7 @@ public:
     Bishop(ChessPieceAffiliation affiliation);
     virtual ~Bishop();
     
-    ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) override;
+    ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) const override;
     
     ChessPieceAffiliation affiliation() const override;
     

@@ -16,7 +16,7 @@ public:
     Knight(ChessPieceAffiliation affiliation);
     virtual ~Knight();
 
-    ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) override;
+    ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) const override;
     ChessPieceAffiliation affiliation() const override;
     std::string pieceName() const override;
     bool pieceCanJumpOtherPieces() const override;

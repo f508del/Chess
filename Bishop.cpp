@@ -18,7 +18,7 @@ Bishop::~Bishop()
     
 }
 
-ExtendedSet<ChessSquare> Bishop::potentialEmptyBoardMovesFrom(const ChessSquare &startingSquare)
+ExtendedSet<ChessSquare> Bishop::potentialEmptyBoardMovesFrom(const ChessSquare &startingSquare) const
 {
     ExtendedSet<ChessSquare> potentialMoves;
     

@@ -17,7 +17,7 @@ Knight::~Knight()
 {
 }
 
-ExtendedSet<ChessSquare> Knight::potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare)
+ExtendedSet<ChessSquare> Knight::potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) const
 {
    ExtendedSet<ChessSquare> potentialMoves;
 
