@@ -8,6 +8,9 @@
 
 #pragma once
 
+class ChessMove;
+class I_ReadOnlyChessBoard;
+
 class I_OutputSystem
 {
 public:
@@ -16,5 +19,6 @@ public:
     virtual void initializeChessUserInterface() = 0;
     virtual void endUserInteraction() = 0;
     virtual void resetUxForNewGame() = 0;
+    virtual void displayMoveToUser(const ChessMove& move, const I_ReadOnlyChessBoard& board) = 0;
 
 };

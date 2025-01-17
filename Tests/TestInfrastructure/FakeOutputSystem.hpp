@@ -23,6 +23,7 @@ public:
     void initializeChessUserInterface() override;
     void endUserInteraction() override;
     void resetUxForNewGame() override;
+    void displayMoveToUser(const ChessMove& move, const I_ReadOnlyChessBoard& board) override;
     
     // helpers
     size_t size() const;

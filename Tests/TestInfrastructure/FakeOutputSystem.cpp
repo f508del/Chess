@@ -78,3 +78,9 @@ void FakeOutputSystem::resetUxForNewGame()
     showTextToUser("please enter a move in fully specified notation...");
 }
 
+void FakeOutputSystem::displayMoveToUser(const ChessMove &/*move*/, const I_ReadOnlyChessBoard &/*board*/)
+{
+    
+}
+
+
