@@ -7,6 +7,8 @@
 //
 
 #include "FakeOutputSystem.hpp"
+#include "I_ChessPiece.hpp"
+#include "I_ReadOnlyChessBoard.hpp"
 
 using namespace std;
 
@@ -78,9 +80,27 @@ void FakeOutputSystem::resetUxForNewGame()
     showTextToUser("please enter a move in fully specified notation...");
 }
 
-void FakeOutputSystem::displayMoveToUser(const ChessMove &/*move*/, const I_ReadOnlyChessBoard &/*board*/)
+void FakeOutputSystem::displayMoveToUser(const ChessMove &move, const I_ReadOnlyChessBoard & board)
 {
+    mostRecentMove_ = move;
+    const I_ChessPiece* piece = board.pieceAt(move.startingSquare());
+    if (piece != nullptr)
+    {
+        lastPieceMoved_ = piece->pieceName();
+    }
+    else
+    {
+        lastPieceMoved_ = std::string();
+    }
     
 }
 
+ChessMove FakeOutputSystem::lastMoveDisplayedToUser() const
+{
+    return mostRecentMove_;
+}
 
+std::string FakeOutputSystem::lastPieceMoved() const
+{
+    return lastPieceMoved_;
+}

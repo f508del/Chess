@@ -7,9 +7,11 @@
 //
 
 #include "TerminalOutputSystem.hpp"
+#include "ChessMoveDescriber.hpp"
 #include <cstdio>
 
 TerminalOutputSystem::TerminalOutputSystem()
+: moveDescriber_(new ChessMoveDescriber())
 {
 
 }

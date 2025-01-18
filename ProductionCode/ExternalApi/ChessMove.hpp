@@ -22,6 +22,8 @@ public:
 
    const ChessSquare& startingSquare() const;
    const ChessSquare& endingSquare() const;
+    
+    bool operator==(const ChessMove& move) const;
 
 private:
    void resetState();

@@ -66,4 +66,10 @@ bool ChessEngineTestHarness::isLastOutputBeforeQuittingEqualTo(const string &out
    return stringsCompareAsEqual;
 }
 
+bool ChessEngineTestHarness::lastMoveDisplayedMatches(const ChessMove &move)
+{
+    return (fakeOutput().lastMoveDisplayedToUser() == move);
+}
+
+
 

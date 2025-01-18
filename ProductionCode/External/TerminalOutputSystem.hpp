@@ -8,7 +8,10 @@
 
 #pragma once
 
+class ChessMoveDescriber;
+
 #include "I_OutputSystem.hpp"
+#include "ScopedPointer.hpp"
 
 class TerminalOutputSystem : public I_OutputSystem
 {
@@ -21,4 +24,7 @@ public:
     void endUserInteraction() override;
     void resetUxForNewGame() override;
     void displayMoveToUser(const ChessMove& move, const I_ReadOnlyChessBoard& board) override;
+    
+private:
+    ScopedPointer<ChessMoveDescriber> moveDescriber_;
 };

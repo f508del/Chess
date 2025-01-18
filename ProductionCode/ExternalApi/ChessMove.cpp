@@ -69,3 +69,11 @@ void ChessMove::resetState()
    startingSquare_ = ChessSquare();
    endingSquare_ = ChessSquare();
 }
+
+bool ChessMove::operator==(const ChessMove& move) const
+{
+    return (startingSquare_.file() == move.startingSquare_.file()) &&
+    (startingSquare_.rank() == move.startingSquare_.rank()) &&
+    (endingSquare_.file() == move.endingSquare_.file()) &&
+    (endingSquare_.rank() == move.endingSquare_.rank());
+}

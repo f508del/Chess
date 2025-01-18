@@ -13,6 +13,7 @@
 #include <string>
 
 class ChessEngine;
+class ChessMove;
 class FakeInputSystem;
 class FakeOutputSystem;
 
@@ -30,6 +31,7 @@ public:
     // Convenience interfaces
     void setInputSequenceWithinANewGame(const std::list<std::string>& inputSequence);
     bool isLastOutputBeforeQuittingEqualTo(const std::string& outputString);
+    bool lastMoveDisplayedMatches(const ChessMove& move);
 
 private:
    ScopedPointer<FakeInputSystem> inputSystem_;
