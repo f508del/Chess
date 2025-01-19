@@ -9,6 +9,7 @@
 #pragma once
 
 #include "ScopedPointer.hpp"
+#include "ChessPieceType.hpp"
 #include <list>
 #include <string>
 
@@ -32,6 +33,7 @@ public:
     void setInputSequenceWithinANewGame(const std::list<std::string>& inputSequence);
     bool isLastOutputBeforeQuittingEqualTo(const std::string& outputString);
     bool lastMoveDisplayedMatches(const ChessMove& move);
+    Chess::PieceType lastKindOfPieceMoved();
 
 private:
    ScopedPointer<FakeInputSystem> inputSystem_;

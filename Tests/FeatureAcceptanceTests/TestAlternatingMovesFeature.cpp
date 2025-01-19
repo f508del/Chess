@@ -9,6 +9,7 @@
 #include "Catch.hpp"
 #include "ChessEngine.hpp"
 #include "ChessEngineTestHarness.hpp"
+#include "ChessMove.hpp"
 #include "CommandDefines.hpp"
 #include "OutputErrorDefines.hpp"
 
@@ -24,7 +25,8 @@ TEST_CASE("Testing the enforcement of alternating move order")
 
        testHarness.chessEngine().runChessEngine();
 
-       CHECK(testHarness.isLastOutputBeforeQuittingEqualTo("Moving Pawn c2c3"));
+       CHECK(testHarness.lastKindOfPieceMoved() == Chess::PieceType::PAWN);
+       CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("c2c3")));
    }
 
    SECTION("will reject an attempt to move a black piece first")
@@ -39,12 +41,13 @@ TEST_CASE("Testing the enforcement of alternating move order")
 
    SECTION("will accept the second move of the game to come from black")
    {
-      ChessEngineTestHarness testHarness;
-      testHarness.setInputSequenceWithinANewGame({"c2c3", "c7c6"});
+       ChessEngineTestHarness testHarness;
+       testHarness.setInputSequenceWithinANewGame({"c2c3", "c7c6"});
 
-      testHarness.chessEngine().runChessEngine();
+       testHarness.chessEngine().runChessEngine();
 
-      CHECK(testHarness.isLastOutputBeforeQuittingEqualTo("Moving Pawn c7c6"));
+       CHECK(testHarness.lastKindOfPieceMoved() == Chess::PieceType::PAWN);
+       CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("c7c6")));
    }
 
    SECTION("will reject a second move of the game to come from white")
@@ -59,12 +62,13 @@ TEST_CASE("Testing the enforcement of alternating move order")
 
    SECTION("will accept the third move of the game to come from white")
    {
-      ChessEngineTestHarness testHarness;
-      testHarness.setInputSequenceWithinANewGame({"c2c3", "c7c6", "d2d4"});
+       ChessEngineTestHarness testHarness;
+       testHarness.setInputSequenceWithinANewGame({"c2c3", "c7c6", "d2d4"});
 
-      testHarness.chessEngine().runChessEngine();
+       testHarness.chessEngine().runChessEngine();
 
-      CHECK(testHarness.isLastOutputBeforeQuittingEqualTo("Moving Pawn d2d4"));
+       CHECK(testHarness.lastKindOfPieceMoved() == Chess::PieceType::PAWN);
+       CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("d2d4")));
    }
 
    SECTION("will reject the third move of the game to come from black")

@@ -71,5 +71,8 @@ bool ChessEngineTestHarness::lastMoveDisplayedMatches(const ChessMove &move)
     return (fakeOutput().lastMoveDisplayedToUser() == move);
 }
 
-
+Chess::PieceType ChessEngineTestHarness::lastKindOfPieceMoved()
+{
+    return (fakeOutput().lastPieceMoved());
+}
 

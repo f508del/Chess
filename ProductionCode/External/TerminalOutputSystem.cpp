@@ -45,7 +45,8 @@ void TerminalOutputSystem::resetUxForNewGame()
     showTextToUser("please enter a move in fully specified notation...");
 }
 
-void TerminalOutputSystem::displayMoveToUser(const ChessMove &/*move*/, const I_ReadOnlyChessBoard &/*board*/) { 
+void TerminalOutputSystem::displayMoveToUser(const ChessMove &/*move*/, const I_ReadOnlyChessBoard &/*board*/)
+{ 
 
 }
 

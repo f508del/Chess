@@ -16,6 +16,14 @@ ChessMove::ChessMove()
    resetState();
 }
 
+ChessMove::ChessMove(const std::string& moveString)
+{
+    if (!populateFromString(moveString))
+    {
+        resetState();
+    }
+}
+
 string ChessMove::toString() const
 {
    if (!isOnTheBoard())

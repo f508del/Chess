@@ -34,10 +34,15 @@ namespace {
                                                  MOVE_NOT_ON_BOARD_ERROR);
    }
 
-   void runTestWithValidOpeningMove(const char* moveString, const char* moveResponse)
+   void runTestWithValidOpeningMove(const char* moveString, Chess::PieceType type)
    {
-      runTestWithOpeningMoveAndDisplayedResponse(moveString,
-                                                 moveResponse);
+       ChessEngineTestHarness testHarness;
+       testHarness.setInputSequenceWithinANewGame({moveString});
+
+       testHarness.chessEngine().runChessEngine();
+
+       CHECK(testHarness.lastKindOfPieceMoved() == type);
+       CHECK(testHarness.lastMoveDisplayedMatches(ChessMove(moveString)));
    }
 
    void runTestWithMoveThatDoesNotStartOnAnExistingPiece(const char* moveString)
@@ -145,16 +150,16 @@ TEST_CASE("Testing the validation of the user's opening move when valid")
 {
    SECTION("will echo back the requested move when opening move is valid (pawn)")
    {
-      runTestWithValidOpeningMove("a2a3", "Moving Pawn a2a3");
-      runTestWithValidOpeningMove("a2a4", "Moving Pawn a2a4");
+      runTestWithValidOpeningMove("a2a3", Chess::PieceType::PAWN);
+      runTestWithValidOpeningMove("a2a4", Chess::PieceType::PAWN);
    }
 
    SECTION("will echo back the requested move when opening move is valid (knight)")
    {
-      runTestWithValidOpeningMove("b1a3", "Moving Knight b1a3");
-      runTestWithValidOpeningMove("b1c3", "Moving Knight b1c3");
+      runTestWithValidOpeningMove("b1a3", Chess::PieceType::KNIGHT);
+      runTestWithValidOpeningMove("b1c3", Chess::PieceType::KNIGHT);
 
-      runTestWithValidOpeningMove("g1h3", "Moving Knight g1h3");
-      runTestWithValidOpeningMove("g1f3", "Moving Knight g1f3");
+      runTestWithValidOpeningMove("g1h3", Chess::PieceType::KNIGHT);
+      runTestWithValidOpeningMove("g1f3", Chess::PieceType::KNIGHT);
    }
 }

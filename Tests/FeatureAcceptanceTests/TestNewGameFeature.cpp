@@ -44,7 +44,8 @@ TEST_CASE("Testing the 'new game' feature")
         
         testHarness.chessEngine().runChessEngine();
         
-        CHECK(testHarness.isLastOutputBeforeQuittingEqualTo("Moving Pawn b2b4"));
+        CHECK(testHarness.lastKindOfPieceMoved() == Chess::PieceType::PAWN);
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("b2b4")));
     }
     
     SECTION("Will move white pawns back to starting position if invoked mid game")
@@ -54,7 +55,8 @@ TEST_CASE("Testing the 'new game' feature")
         
         testHarness.chessEngine().runChessEngine();
         
-        CHECK(testHarness.isLastOutputBeforeQuittingEqualTo("Moving Pawn a2a4"));
+        CHECK(testHarness.lastKindOfPieceMoved() == Chess::PieceType::PAWN);
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("a2a4")));
     }
     
     SECTION("Will move white knights back to starting position if invoked mid game")
@@ -64,7 +66,8 @@ TEST_CASE("Testing the 'new game' feature")
         
         testHarness.chessEngine().runChessEngine();
         
-        CHECK(testHarness.isLastOutputBeforeQuittingEqualTo("Moving Knight b1a3"));
+        CHECK(testHarness.lastKindOfPieceMoved() == Chess::PieceType::KNIGHT);
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("b1a3")));
     }
     
     SECTION("Will move black pawns back to starting position if invoked mid game")
@@ -74,7 +77,8 @@ TEST_CASE("Testing the 'new game' feature")
         
         testHarness.chessEngine().runChessEngine();
         
-        CHECK(testHarness.isLastOutputBeforeQuittingEqualTo("Moving Pawn a7a6"));
+        CHECK(testHarness.lastKindOfPieceMoved() == Chess::PieceType::PAWN);
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("a7a6")));
     }
     
     SECTION("Will move black knights back to starting position if invoked mid game")
@@ -84,7 +88,8 @@ TEST_CASE("Testing the 'new game' feature")
         
         testHarness.chessEngine().runChessEngine();
         
-        CHECK(testHarness.isLastOutputBeforeQuittingEqualTo("Moving Knight b8a6"));
+        CHECK(testHarness.lastKindOfPieceMoved() == Chess::PieceType::KNIGHT);
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("b8a6")));
     }
 }
 

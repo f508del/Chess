@@ -15,20 +15,21 @@
 struct ChessMove
 {
 public:
-   ChessMove();
-   bool isOnTheBoard() const;
-   std::string toString() const;
-   bool populateFromString(const std::string& moveString);
+    ChessMove();
+    ChessMove(const std::string& moveString);
+    bool isOnTheBoard() const;
+    std::string toString() const;
+    bool populateFromString(const std::string& moveString);
 
-   const ChessSquare& startingSquare() const;
-   const ChessSquare& endingSquare() const;
+    const ChessSquare& startingSquare() const;
+    const ChessSquare& endingSquare() const;
     
     bool operator==(const ChessMove& move) const;
 
 private:
-   void resetState();
+    void resetState();
 
 private:
-   ChessSquare startingSquare_;
-   ChessSquare endingSquare_;
+    ChessSquare startingSquare_;
+    ChessSquare endingSquare_;
 };
