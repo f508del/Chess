@@ -41,9 +41,9 @@ ChessPieceAffiliation Pawn::affiliation() const
    return affiliation_;
 }
 
-std::string Pawn::pieceName() const
+Chess::PieceType Pawn::pieceType() const
 {
-   return std::string("Pawn");
+    return Chess::PieceType::PAWN;
 }
 
 int Pawn::movementDirectionForCurrentAffiliation() const

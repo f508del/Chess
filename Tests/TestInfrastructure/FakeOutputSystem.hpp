@@ -9,6 +9,7 @@
 #pragma once
 
 #include "ChessMove.hpp"
+#include "ChessPieceType.hpp"
 #include "I_OutputSystem.hpp"
 #include <list>
 #include <string>
@@ -32,12 +33,11 @@ public:
     std::string secondLastOutput() const;
     bool contains(const std::string& outputEntry) const;
     ChessMove lastMoveDisplayedToUser() const;
-    std::string lastPieceMoved() const;
-    
+    Chess::PieceType lastPieceMoved() const;
 
 private:
     std::string mostRecentOutput_;
     std::list<std::string> capturedOutput_;
     ChessMove mostRecentMove_;
-    std::string lastPieceMoved_;
+    Chess::PieceType lastPieceMoved_;
 };

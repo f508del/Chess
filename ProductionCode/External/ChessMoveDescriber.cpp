@@ -25,8 +25,47 @@ std::string ChessMoveDescriber::describeMove(const ChessMove& move, const I_Read
    std::string description("Moving ");
    if (board.anyPieceExistsAt(move.startingSquare()))
    {
-      description.append(board.pieceAt(move.startingSquare())->pieceName());
+       const I_ChessPiece* currentPiece = board.pieceAt(move.startingSquare());
+       Chess::PieceType pieceType = currentPiece->pieceType();
+       std::string typeName = chessPieceTypeName(pieceType);
+       description.append(typeName);
    }
 
    return description.append(" ").append(move.toString());
+}
+
+std::string ChessMoveDescriber::chessPieceTypeName(Chess::PieceType type) const
+{
+    switch (type)
+    {
+        case Chess::PieceType::PAWN:
+        {
+            return "Pawn";
+        }
+        case Chess::PieceType::BISHOP:
+        {
+            return "Bishop";
+        }
+        case Chess::PieceType::KNIGHT:
+        {
+            return "Knight";
+        }
+        case Chess::PieceType::ROOK:
+        {
+            return "Rook";
+        }
+        case Chess::PieceType::QUEEN:
+        {
+            return "Queen";
+        }
+        case Chess::PieceType::KING:
+        {
+            return "King";
+        }
+        default:
+        {
+            break;
+        }
+    }
+    return "Invalid Piece Type";
 }

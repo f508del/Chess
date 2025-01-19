@@ -13,6 +13,7 @@
 using namespace std;
 
 FakeOutputSystem::FakeOutputSystem()
+: lastPieceMoved_(Chess::PieceType::NONE)
 {
 
 }
@@ -86,11 +87,11 @@ void FakeOutputSystem::displayMoveToUser(const ChessMove &move, const I_ReadOnly
     const I_ChessPiece* piece = board.pieceAt(move.startingSquare());
     if (piece != nullptr)
     {
-        lastPieceMoved_ = piece->pieceName();
+        lastPieceMoved_ = piece->pieceType();
     }
     else
     {
-        lastPieceMoved_ = std::string();
+        lastPieceMoved_ = Chess::PieceType::NONE;
     }
     
 }
@@ -100,7 +101,7 @@ ChessMove FakeOutputSystem::lastMoveDisplayedToUser() const
     return mostRecentMove_;
 }
 
-std::string FakeOutputSystem::lastPieceMoved() const
+Chess::PieceType FakeOutputSystem::lastPieceMoved() const
 {
     return lastPieceMoved_;
 }

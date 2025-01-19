@@ -18,7 +18,7 @@ public:
 
     ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) const override;
     ChessPieceAffiliation affiliation() const override;
-    std::string pieceName() const override;
+    Chess::PieceType pieceType() const override;
     bool pieceCanJumpOtherPieces() const override;
 
 private:

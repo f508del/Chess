@@ -19,7 +19,7 @@ public:
     
     ChessPieceAffiliation affiliation() const override;
     
-    std::string pieceName() const override;
+    Chess::PieceType pieceType() const override;
     
     bool pieceCanJumpOtherPieces() const override;
     

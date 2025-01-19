@@ -13,7 +13,7 @@ TEST_CASE("Testing the Bishop object")
     SECTION("Piece knows it is a bishop")
     {
         Bishop piece(WHITE_PIECE);
-        CHECK(piece.pieceName() == "Bishop");
+        CHECK(piece.pieceType() == Chess::PieceType::BISHOP);
     }
     
     SECTION("Will allow bishop to move diagonally towards the top right")

@@ -13,19 +13,19 @@
 class Pawn : public I_ChessPiece
 {
 public:
-   Pawn(ChessPieceAffiliation affiliation);
-   virtual ~Pawn();
+    Pawn(ChessPieceAffiliation affiliation);
+    virtual ~Pawn();
 
-   ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) const override;
-   ChessPieceAffiliation affiliation() const override;
-   std::string pieceName() const override;
-   bool pieceCanJumpOtherPieces() const override;
-
-private:
-   int movementDirectionForCurrentAffiliation() const;
-   unsigned int startingRankForCurrentAffiliation() const;
+    ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) const override;
+    ChessPieceAffiliation affiliation() const override;
+    Chess::PieceType pieceType() const override;
+    bool pieceCanJumpOtherPieces() const override;
 
 private:
-   const ChessPieceAffiliation affiliation_;
+    int movementDirectionForCurrentAffiliation() const;
+    unsigned int startingRankForCurrentAffiliation() const;
+
+private:
+    const ChessPieceAffiliation affiliation_;
 };
 

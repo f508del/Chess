@@ -81,9 +81,9 @@ ChessPieceAffiliation Knight::affiliation() const
    return affiliation_;
 }
 
-std::string Knight::pieceName() const
+Chess::PieceType Knight::pieceType() const
 {
-   return std::string("Knight");
+    return Chess::PieceType::KNIGHT;
 }
 
 bool Knight::pieceCanJumpOtherPieces() const

@@ -11,6 +11,7 @@
 #include "ExtendedSet.hpp"
 #include "ChessSquare.hpp"
 #include "ChessPieceAffiliation.hpp"
+#include "ChessPieceType.hpp"
 #include <string>
 
 class I_ChessPiece
@@ -20,6 +21,6 @@ public:
 
     virtual ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) const = 0;
     virtual ChessPieceAffiliation affiliation() const = 0;
-    virtual std::string pieceName() const = 0;
+    virtual Chess::PieceType pieceType() const = 0;
     virtual bool pieceCanJumpOtherPieces() const = 0;
 };

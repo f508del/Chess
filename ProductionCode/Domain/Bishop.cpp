@@ -60,9 +60,9 @@ ChessPieceAffiliation Bishop::affiliation() const
     return affiliation_;
 }
 
-std::string Bishop::pieceName() const
+Chess::PieceType Bishop::pieceType() const
 {
-    return std::string("Bishop");
+    return Chess::PieceType::BISHOP;
 }
 
 bool Bishop::pieceCanJumpOtherPieces() const
