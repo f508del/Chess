@@ -8,10 +8,12 @@
 
 #include "TerminalOutputSystem.hpp"
 #include "ChessMoveDescriber.hpp"
+#include "TerminalWrapper.hpp"
 #include <cstdio>
 
-TerminalOutputSystem::TerminalOutputSystem()
+TerminalOutputSystem::TerminalOutputSystem(TerminalWrapper* newWrapperToOwn)
 : moveDescriber_(new ChessMoveDescriber())
+, terminalWrapper_(newWrapperToOwn)
 {
 
 }
@@ -23,7 +25,7 @@ TerminalOutputSystem::~TerminalOutputSystem()
 
 void TerminalOutputSystem::showTextToUser(const char* displayString)
 {
-    fprintf(stdout, "%s\n", displayString);
+    terminalWrapper_->writeToTerminal(displayString);
 }
 
 void TerminalOutputSystem::initializeChessUserInterface()
@@ -45,9 +47,10 @@ void TerminalOutputSystem::resetUxForNewGame()
     showTextToUser("please enter a move in fully specified notation...");
 }
 
-void TerminalOutputSystem::displayMoveToUser(const ChessMove &/*move*/, const I_ReadOnlyChessBoard &/*board*/)
-{ 
-
+void TerminalOutputSystem::displayMoveToUser(const ChessMove & move, const I_ReadOnlyChessBoard & board)
+{
+    std::string moveDescription = moveDescriber_->describeMove(move, board);
+    showTextToUser(moveDescription.c_str());
 }
 
 

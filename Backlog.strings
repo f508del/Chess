@@ -7,7 +7,7 @@
 This is meant as a simple backlog of what refactorings and features are upcoming
  
  3. Review the input system / output system, should strings be formulated and parsed entirely in the 'External' library? Probably yes.
-    3A: Status here: next step is to move ownership of the ChessMoveDescriber from the ChessEngine to the ExternalOutputSystem
+    3A: Status here: next step is to eliminate the last usage of showTextToUser from ChessEngine
  5. Add Rook class
  6. Add Queen class
  7. Add King class

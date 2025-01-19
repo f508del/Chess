@@ -11,7 +11,6 @@
 #include "ScopedPointer.hpp"
 
 class ChessBoard;
-class ChessMoveDescriber;
 class ChessMoveValidator;
 class I_InputSystem;
 class I_OutputSystem;
@@ -31,5 +30,4 @@ private:
    I_OutputSystem& outputSystem_;
    ScopedPointer<ChessBoard> board_;
    ScopedPointer<ChessMoveValidator> moveValidator_;
-   ScopedPointer<ChessMoveDescriber> moveDescriber_;
 };

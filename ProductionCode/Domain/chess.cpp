@@ -18,10 +18,11 @@
 #include "ChessEngine.hpp"
 #include "TerminalOutputSystem.hpp"
 #include "TerminalInputSystem.hpp"
+#include "TerminalWrapper.hpp"
 
 int main(int /*argc*/, char** /*argv*/)
 {
-	TerminalOutputSystem outputSystem;
+    TerminalOutputSystem outputSystem(new TerminalWrapper);
 	TerminalInputSystem inputSystem;
 
 	ChessEngine engine(inputSystem, outputSystem);
