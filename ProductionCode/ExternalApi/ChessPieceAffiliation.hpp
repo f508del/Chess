@@ -8,8 +8,11 @@
 
 #pragma once
 
-enum ChessPieceAffiliation
+namespace Chess
 {
-   WHITE_PIECE,
-   BLACK_PIECE
+enum class PieceAffiliation
+{
+    WHITE_PIECE = 0,
+    BLACK_PIECE
 };
+}

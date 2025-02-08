@@ -13,14 +13,16 @@
 #include "Pawn.hpp"
 #include "Knight.hpp"
 
+using namespace Chess;
+
 ChessBoard::ChessBoard()
-: whitePawnCapabilities_(new Pawn(WHITE_PIECE))
-, blackPawnCapabilities_(new Pawn(BLACK_PIECE))
-, whiteKnightCapabilities_(new Knight(WHITE_PIECE))
-, blackKnightCapabilities_(new Knight(BLACK_PIECE))
-, whiteBishopCapabilities_(new Bishop(WHITE_PIECE))
-, blackBishopCapabilities_(new Bishop(BLACK_PIECE))
-, playerToMakeNextMove_(WHITE_PIECE)
+: whitePawnCapabilities_(new Pawn(PieceAffiliation::WHITE_PIECE))
+, blackPawnCapabilities_(new Pawn(PieceAffiliation::BLACK_PIECE))
+, whiteKnightCapabilities_(new Knight(PieceAffiliation::WHITE_PIECE))
+, blackKnightCapabilities_(new Knight(PieceAffiliation::BLACK_PIECE))
+, whiteBishopCapabilities_(new Bishop(PieceAffiliation::WHITE_PIECE))
+, blackBishopCapabilities_(new Bishop(PieceAffiliation::BLACK_PIECE))
+, playerToMakeNextMove_(PieceAffiliation::WHITE_PIECE)
 {
    resetBoard();
 }
@@ -39,7 +41,7 @@ bool ChessBoard::whitePieceExistsAt(const ChessSquare& square) const
 {
    if (anyPieceExistsAt(square))
    {
-      return (pieceAt(square)->affiliation() == WHITE_PIECE);
+      return (pieceAt(square)->affiliation() == PieceAffiliation::WHITE_PIECE);
    }
    return false;
 }
@@ -48,7 +50,7 @@ bool ChessBoard::blackPieceExistsAt(const ChessSquare& square) const
 {
    if (anyPieceExistsAt(square))
    {
-      return (pieceAt(square)->affiliation() == BLACK_PIECE);
+      return (pieceAt(square)->affiliation() == PieceAffiliation::BLACK_PIECE);
    }
    return false;}
 
@@ -90,20 +92,20 @@ void ChessBoard::resetBoard()
     boardState_[ChessSquare('f', 8)] = whiteBishopCapabilities_.data();
 }
 
-ChessPieceAffiliation ChessBoard::playerToMakeNextMove() const
+Chess::PieceAffiliation ChessBoard::playerToMakeNextMove() const
 {
     return playerToMakeNextMove_;
 }
 
 void ChessBoard::togglePlayerInitiative()
 {
-   if (playerToMakeNextMove_ == WHITE_PIECE)
+   if (playerToMakeNextMove_ == PieceAffiliation::WHITE_PIECE)
    {
-      playerToMakeNextMove_ = BLACK_PIECE;
+      playerToMakeNextMove_ = PieceAffiliation::BLACK_PIECE;
    }
    else
    {
-      playerToMakeNextMove_ = WHITE_PIECE;
+      playerToMakeNextMove_ = PieceAffiliation::WHITE_PIECE;
    }
 }
 

@@ -8,7 +8,7 @@
 
 #include "Pawn.hpp"
 
-Pawn::Pawn(ChessPieceAffiliation affiliation)
+Pawn::Pawn(Chess::PieceAffiliation affiliation)
 : affiliation_(affiliation)
 {
 }
@@ -36,7 +36,7 @@ ExtendedSet<ChessSquare> Pawn::potentialEmptyBoardMovesFrom(const ChessSquare& s
    return potentialMoves;
 }
 
-ChessPieceAffiliation Pawn::affiliation() const
+Chess::PieceAffiliation Pawn::affiliation() const
 {
    return affiliation_;
 }
@@ -48,7 +48,7 @@ Chess::PieceType Pawn::pieceType() const
 
 int Pawn::movementDirectionForCurrentAffiliation() const
 {
-   if (affiliation_ == WHITE_PIECE)
+   if (affiliation_ == Chess::PieceAffiliation::WHITE_PIECE)
    {
       return 1;
    }
@@ -57,7 +57,7 @@ int Pawn::movementDirectionForCurrentAffiliation() const
 
 unsigned int Pawn::startingRankForCurrentAffiliation() const
 {
-   if (affiliation_ == WHITE_PIECE)
+   if (affiliation_ == Chess::PieceAffiliation::WHITE_PIECE)
    {
       return 2u;
    }

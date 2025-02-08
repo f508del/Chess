@@ -12,17 +12,17 @@
 class Bishop : public I_ChessPiece
 {
 public:
-    Bishop(ChessPieceAffiliation affiliation);
+    Bishop(Chess::PieceAffiliation affiliation);
     virtual ~Bishop();
     
     ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) const override;
     
-    ChessPieceAffiliation affiliation() const override;
+    Chess::PieceAffiliation affiliation() const override;
     
     Chess::PieceType pieceType() const override;
     
     bool pieceCanJumpOtherPieces() const override;
     
 private:
-   const ChessPieceAffiliation affiliation_;
+   const Chess::PieceAffiliation affiliation_;
 };

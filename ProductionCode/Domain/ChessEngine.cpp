@@ -46,7 +46,7 @@ void ChessEngine::runChessEngine()
        }
        else if (userInput == NEW_GAME_COMMAND)
        {
-           if (ChessPieceAffiliation::BLACK_PIECE == board_->playerToMakeNextMove() )
+           if (Chess::PieceAffiliation::BLACK_PIECE == board_->playerToMakeNextMove() )
            {
                board_->togglePlayerInitiative();
            }

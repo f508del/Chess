@@ -34,7 +34,7 @@ public:
     const I_ChessPiece* pieceAt(const ChessSquare& square) const;
 
     bool squaresBetweenEndPointsAreEmpty(const ChessMove& move) const;
-    ChessPieceAffiliation playerToMakeNextMove() const;
+    Chess::PieceAffiliation playerToMakeNextMove() const;
     
     void applyMove(const ChessMove& move);
     void resetBoard();
@@ -50,5 +50,5 @@ private:
 
    std::map<ChessSquare, const I_ChessPiece*> boardState_;
 
-   ChessPieceAffiliation playerToMakeNextMove_;
+   Chess::PieceAffiliation playerToMakeNextMove_;
 };
