@@ -16,6 +16,7 @@
 
 using namespace std;
 using namespace OutputErrorDefines;
+using namespace Chess;
 
 ChessMoveValidator::ChessMoveValidator(const ChessBoard& board)
 : commentOnLastMove_()
@@ -29,50 +30,50 @@ ChessMoveValidator::~ChessMoveValidator()
 
 }
 
-bool ChessMoveValidator::isLegalMove(const ChessMove& currentMove)
+MoveValidity ChessMoveValidator::validateMove(const ChessMove& currentMove)
 {
    if (!currentMove.isOnTheBoard())
    {
-      commentOnLastMove_ = currentMove.toString();
-      return false;
+       commentOnLastMove_ = currentMove.toString();
+       return MoveValidity::END_SQUARE_NOT_ON_BOARD;
    }
 
    const I_ChessPiece* currentPiece = board_.pieceAt(currentMove.startingSquare());
    if (nullptr == currentPiece)
    {
-      commentOnLastMove_ = NO_PIECE_AT_COORDINATES_ERROR;
-      return false;
+       commentOnLastMove_ = NO_PIECE_AT_COORDINATES_ERROR;
+       return MoveValidity::NO_PIECE_AT_STARTING_LOCATION;
    }
 
    if (currentPiece->affiliation() != board_.playerToMakeNextMove())
    {
-      commentOnLastMove_ = OPPOSING_PLAYERS_PIECE_ERROR;
-      return false;
+       commentOnLastMove_ = OPPOSING_PLAYERS_PIECE_ERROR;
+       return MoveValidity::OPPOSING_PLAYERS_PIECE;
    }
 
    ExtendedSet<ChessSquare> potentialEmptyBoardMoves = currentPiece->potentialEmptyBoardMovesFrom(currentMove.startingSquare());
 
    if (!potentialEmptyBoardMoves.contains(currentMove.endingSquare()))
    {
-      commentOnLastMove_ = PIECE_CANNOT_CURRENTLY_MOVE_ERROR;
-      return false;
+       commentOnLastMove_ = PIECE_CANNOT_CURRENTLY_MOVE_ERROR;
+       return MoveValidity::NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE;
    }
     
     if (!board_.squaresBetweenEndPointsAreEmpty(currentMove) && !currentPiece->pieceCanJumpOtherPieces())
     {
         commentOnLastMove_ = MOVE_IS_BLOCKED_ERROR;
-        return false;
+        return MoveValidity::PATH_BLOCKED_BY_OTHER_PIECES;
     }
 
    if (board_.anyPieceExistsAt(currentMove.endingSquare()))
    {
-      // TODO: fix this to allow pieces to be taken at some point...
-      commentOnLastMove_ = PIECE_CANNOT_CURRENTLY_MOVE_ERROR;
-      return false;
+       // TODO: fix this to allow pieces to be taken at some point...
+       commentOnLastMove_ = PIECE_CANNOT_CURRENTLY_MOVE_ERROR;
+       return MoveValidity::DESTINATION_BLOCKED_BY_EXISTING_PIECE;
    }
 
    commentOnLastMove_ = "";
-   return true;
+   return MoveValidity::VALID_MOVE;
 }
 
 string ChessMoveValidator::reasonLastMoveWasIllegal() const

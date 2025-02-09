@@ -59,7 +59,7 @@ void ChessEngine::runChessEngine()
            // attempt to read in the input as a move...
            ChessMove move;
            move.populateFromString(userInput);
-           if (!moveValidator_->isLegalMove(move))
+           if (moveValidator_->validateMove(move) != MoveValidity::VALID_MOVE)
            {
                outputSystem_.showTextToUser(moveValidator_->reasonLastMoveWasIllegal().c_str());
            }

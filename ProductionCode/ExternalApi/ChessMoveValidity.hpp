@@ -1,0 +1,22 @@
+//
+//  ChessMoveError.hpp
+//  Chess
+//
+//  Created by Trevor Phillips on 2025-02-08.
+//
+
+#pragma once
+
+namespace Chess
+{
+enum class MoveValidity
+{
+    VALID_MOVE = 0,
+    END_SQUARE_NOT_ON_BOARD,
+    NO_PIECE_AT_STARTING_LOCATION,
+    OPPOSING_PLAYERS_PIECE,
+    NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE,
+    PATH_BLOCKED_BY_OTHER_PIECES,
+    DESTINATION_BLOCKED_BY_EXISTING_PIECE
+};
+}

@@ -8,6 +8,7 @@
 
 #pragma once
 #include "string"
+#include "ChessMoveValidity.hpp"
 
 class ChessMove;
 class ChessBoard;
@@ -18,7 +19,7 @@ public:
    ChessMoveValidator(const ChessBoard& board);
    virtual ~ChessMoveValidator();
 
-   bool isLegalMove(const ChessMove& currentMove);
+   Chess::MoveValidity validateMove(const ChessMove& currentMove);
 
    std::string reasonLastMoveWasIllegal() const;
 
