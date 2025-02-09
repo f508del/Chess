@@ -11,6 +11,7 @@
 #include "I_ReadOnlyChessBoard.hpp"
 #include "I_ChessPiece.hpp"
 
+using namespace Chess;
 
 ChessMoveDescriber::ChessMoveDescriber()
 {
@@ -26,7 +27,7 @@ std::string ChessMoveDescriber::describeMove(const ChessMove& move, const I_Read
    if (board.anyPieceExistsAt(move.startingSquare()))
    {
        const I_ChessPiece* currentPiece = board.pieceAt(move.startingSquare());
-       Chess::PieceType pieceType = currentPiece->pieceType();
+       PieceType pieceType = currentPiece->pieceType();
        std::string typeName = chessPieceTypeName(pieceType);
        description.append(typeName);
    }
@@ -34,31 +35,31 @@ std::string ChessMoveDescriber::describeMove(const ChessMove& move, const I_Read
    return description.append(" ").append(move.toString());
 }
 
-std::string ChessMoveDescriber::chessPieceTypeName(Chess::PieceType type) const
+std::string ChessMoveDescriber::chessPieceTypeName(PieceType type) const
 {
     switch (type)
     {
-        case Chess::PieceType::PAWN:
+        case PieceType::PAWN:
         {
             return "Pawn";
         }
-        case Chess::PieceType::BISHOP:
+        case PieceType::BISHOP:
         {
             return "Bishop";
         }
-        case Chess::PieceType::KNIGHT:
+        case PieceType::KNIGHT:
         {
             return "Knight";
         }
-        case Chess::PieceType::ROOK:
+        case PieceType::ROOK:
         {
             return "Rook";
         }
-        case Chess::PieceType::QUEEN:
+        case PieceType::QUEEN:
         {
             return "Queen";
         }
-        case Chess::PieceType::KING:
+        case PieceType::KING:
         {
             return "King";
         }

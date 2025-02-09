@@ -14,6 +14,7 @@
 #include "CommandDefines.hpp"
 
 using namespace std;
+using namespace Chess;
 
 ChessEngineTestHarness::ChessEngineTestHarness()
 : inputSystem_(new FakeInputSystem())
@@ -71,7 +72,7 @@ bool ChessEngineTestHarness::lastMoveDisplayedMatches(const ChessMove &move)
     return (fakeOutput().lastMoveDisplayedToUser() == move);
 }
 
-Chess::PieceType ChessEngineTestHarness::lastKindOfPieceMoved()
+PieceType ChessEngineTestHarness::lastKindOfPieceMoved()
 {
     return (fakeOutput().lastPieceMoved());
 }

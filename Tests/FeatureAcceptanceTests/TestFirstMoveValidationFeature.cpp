@@ -16,6 +16,7 @@
 
 using namespace std;
 using namespace OutputErrorDefines;
+using namespace Chess;
 
 namespace {
    void runTestWithOpeningMoveAndDisplayedResponse(const char* moveString, string response)
@@ -34,7 +35,7 @@ namespace {
                                                  MOVE_NOT_ON_BOARD_ERROR);
    }
 
-   void runTestWithValidOpeningMove(const char* moveString, Chess::PieceType type)
+   void runTestWithValidOpeningMove(const char* moveString, PieceType type)
    {
        ChessEngineTestHarness testHarness;
        testHarness.setInputSequenceWithinANewGame({moveString});
@@ -150,16 +151,16 @@ TEST_CASE("Testing the validation of the user's opening move when valid")
 {
    SECTION("will echo back the requested move when opening move is valid (pawn)")
    {
-      runTestWithValidOpeningMove("a2a3", Chess::PieceType::PAWN);
-      runTestWithValidOpeningMove("a2a4", Chess::PieceType::PAWN);
+      runTestWithValidOpeningMove("a2a3", PieceType::PAWN);
+      runTestWithValidOpeningMove("a2a4", PieceType::PAWN);
    }
 
    SECTION("will echo back the requested move when opening move is valid (knight)")
    {
-      runTestWithValidOpeningMove("b1a3", Chess::PieceType::KNIGHT);
-      runTestWithValidOpeningMove("b1c3", Chess::PieceType::KNIGHT);
+      runTestWithValidOpeningMove("b1a3", PieceType::KNIGHT);
+      runTestWithValidOpeningMove("b1c3", PieceType::KNIGHT);
 
-      runTestWithValidOpeningMove("g1h3", Chess::PieceType::KNIGHT);
-      runTestWithValidOpeningMove("g1f3", Chess::PieceType::KNIGHT);
+      runTestWithValidOpeningMove("g1h3", PieceType::KNIGHT);
+      runTestWithValidOpeningMove("g1f3", PieceType::KNIGHT);
    }
 }

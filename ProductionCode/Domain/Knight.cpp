@@ -8,7 +8,9 @@
 
 #include "Knight.hpp"
 
-Knight::Knight(Chess::PieceAffiliation affiliation)
+using namespace Chess;
+
+Knight::Knight(PieceAffiliation affiliation)
 : affiliation_(affiliation)
 {
 }
@@ -76,14 +78,14 @@ ExtendedSet<ChessSquare> Knight::potentialEmptyBoardMovesFrom(const ChessSquare&
    return potentialMoves;
 }
 
-Chess::PieceAffiliation Knight::affiliation() const
+PieceAffiliation Knight::affiliation() const
 {
    return affiliation_;
 }
 
-Chess::PieceType Knight::pieceType() const
+PieceType Knight::pieceType() const
 {
-    return Chess::PieceType::KNIGHT;
+    return PieceType::KNIGHT;
 }
 
 bool Knight::pieceCanJumpOtherPieces() const

@@ -14,6 +14,7 @@
 
 using namespace std;
 using namespace OutputErrorDefines;
+using namespace Chess;
 
 TEST_CASE("Testing that a moved piece is now only seen at its new location")
 {
@@ -24,7 +25,7 @@ TEST_CASE("Testing that a moved piece is now only seen at its new location")
 
         testHarness.chessEngine().runChessEngine();
 
-        CHECK(testHarness.lastKindOfPieceMoved() == Chess::PieceType::PAWN);
+        CHECK(testHarness.lastKindOfPieceMoved() == PieceType::PAWN);
         CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("a3a4")));
     }
     
@@ -45,7 +46,7 @@ TEST_CASE("Testing that a moved piece is now only seen at its new location")
 
         testHarness.chessEngine().runChessEngine();
         
-        CHECK(testHarness.lastKindOfPieceMoved() == Chess::PieceType::BISHOP);
+        CHECK(testHarness.lastKindOfPieceMoved() == PieceType::BISHOP);
         CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("a3c5")));
     }
 }

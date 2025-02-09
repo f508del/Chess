@@ -14,6 +14,7 @@
 #include "FakeOutputSystem.hpp"
 
 using namespace std;
+using namespace Chess;
 
 TEST_CASE("Testing the 'new game' feature")
 {
@@ -44,7 +45,7 @@ TEST_CASE("Testing the 'new game' feature")
         
         testHarness.chessEngine().runChessEngine();
         
-        CHECK(testHarness.lastKindOfPieceMoved() == Chess::PieceType::PAWN);
+        CHECK(testHarness.lastKindOfPieceMoved() == PieceType::PAWN);
         CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("b2b4")));
     }
     
@@ -55,7 +56,7 @@ TEST_CASE("Testing the 'new game' feature")
         
         testHarness.chessEngine().runChessEngine();
         
-        CHECK(testHarness.lastKindOfPieceMoved() == Chess::PieceType::PAWN);
+        CHECK(testHarness.lastKindOfPieceMoved() == PieceType::PAWN);
         CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("a2a4")));
     }
     
@@ -66,7 +67,7 @@ TEST_CASE("Testing the 'new game' feature")
         
         testHarness.chessEngine().runChessEngine();
         
-        CHECK(testHarness.lastKindOfPieceMoved() == Chess::PieceType::KNIGHT);
+        CHECK(testHarness.lastKindOfPieceMoved() == PieceType::KNIGHT);
         CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("b1a3")));
     }
     
@@ -77,7 +78,7 @@ TEST_CASE("Testing the 'new game' feature")
         
         testHarness.chessEngine().runChessEngine();
         
-        CHECK(testHarness.lastKindOfPieceMoved() == Chess::PieceType::PAWN);
+        CHECK(testHarness.lastKindOfPieceMoved() == PieceType::PAWN);
         CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("a7a6")));
     }
     
@@ -88,7 +89,7 @@ TEST_CASE("Testing the 'new game' feature")
         
         testHarness.chessEngine().runChessEngine();
         
-        CHECK(testHarness.lastKindOfPieceMoved() == Chess::PieceType::KNIGHT);
+        CHECK(testHarness.lastKindOfPieceMoved() == PieceType::KNIGHT);
         CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("b8a6")));
     }
 }

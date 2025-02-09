@@ -11,9 +11,10 @@
 #include "I_ReadOnlyChessBoard.hpp"
 
 using namespace std;
+using namespace Chess;
 
 FakeOutputSystem::FakeOutputSystem()
-: lastPieceMoved_(Chess::PieceType::NONE)
+: lastPieceMoved_(PieceType::NONE)
 {
 
 }
@@ -91,7 +92,7 @@ void FakeOutputSystem::displayMoveToUser(const ChessMove &move, const I_ReadOnly
     }
     else
     {
-        lastPieceMoved_ = Chess::PieceType::NONE;
+        lastPieceMoved_ = PieceType::NONE;
     }
     
 }
@@ -101,7 +102,7 @@ ChessMove FakeOutputSystem::lastMoveDisplayedToUser() const
     return mostRecentMove_;
 }
 
-Chess::PieceType FakeOutputSystem::lastPieceMoved() const
+PieceType FakeOutputSystem::lastPieceMoved() const
 {
     return lastPieceMoved_;
 }

@@ -7,7 +7,9 @@
 
 #include "Bishop.hpp"
 
-Bishop::Bishop(Chess::PieceAffiliation affiliation)
+using namespace Chess;
+
+Bishop::Bishop(PieceAffiliation affiliation)
 : affiliation_(affiliation)
 {
     
@@ -55,14 +57,14 @@ ExtendedSet<ChessSquare> Bishop::potentialEmptyBoardMovesFrom(const ChessSquare 
     return potentialMoves;
 }
 
-Chess::PieceAffiliation Bishop::affiliation() const
+PieceAffiliation Bishop::affiliation() const
 {
     return affiliation_;
 }
 
-Chess::PieceType Bishop::pieceType() const
+PieceType Bishop::pieceType() const
 {
-    return Chess::PieceType::BISHOP;
+    return PieceType::BISHOP;
 }
 
 bool Bishop::pieceCanJumpOtherPieces() const

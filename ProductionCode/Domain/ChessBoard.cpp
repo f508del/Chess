@@ -92,7 +92,7 @@ void ChessBoard::resetBoard()
     boardState_[ChessSquare('f', 8)] = whiteBishopCapabilities_.data();
 }
 
-Chess::PieceAffiliation ChessBoard::playerToMakeNextMove() const
+PieceAffiliation ChessBoard::playerToMakeNextMove() const
 {
     return playerToMakeNextMove_;
 }

@@ -15,6 +15,7 @@
 
 using namespace std;
 using namespace OutputErrorDefines;
+using namespace Chess;
 
 TEST_CASE("Testing the enforcement of alternating move order")
 {
@@ -25,7 +26,7 @@ TEST_CASE("Testing the enforcement of alternating move order")
 
        testHarness.chessEngine().runChessEngine();
 
-       CHECK(testHarness.lastKindOfPieceMoved() == Chess::PieceType::PAWN);
+       CHECK(testHarness.lastKindOfPieceMoved() == PieceType::PAWN);
        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("c2c3")));
    }
 
@@ -46,7 +47,7 @@ TEST_CASE("Testing the enforcement of alternating move order")
 
        testHarness.chessEngine().runChessEngine();
 
-       CHECK(testHarness.lastKindOfPieceMoved() == Chess::PieceType::PAWN);
+       CHECK(testHarness.lastKindOfPieceMoved() == PieceType::PAWN);
        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("c7c6")));
    }
 
@@ -67,7 +68,7 @@ TEST_CASE("Testing the enforcement of alternating move order")
 
        testHarness.chessEngine().runChessEngine();
 
-       CHECK(testHarness.lastKindOfPieceMoved() == Chess::PieceType::PAWN);
+       CHECK(testHarness.lastKindOfPieceMoved() == PieceType::PAWN);
        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("d2d4")));
    }
 

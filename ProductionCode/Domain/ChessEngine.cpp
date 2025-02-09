@@ -15,6 +15,7 @@
 #include "I_OutputSystem.hpp"
 
 using namespace CommandDefines;
+using namespace Chess;
 using namespace std;
 
 ChessEngine::ChessEngine(I_InputSystem& inputSystem,
@@ -46,7 +47,7 @@ void ChessEngine::runChessEngine()
        }
        else if (userInput == NEW_GAME_COMMAND)
        {
-           if (Chess::PieceAffiliation::BLACK_PIECE == board_->playerToMakeNextMove() )
+           if (PieceAffiliation::BLACK_PIECE == board_->playerToMakeNextMove() )
            {
                board_->togglePlayerInitiative();
            }
