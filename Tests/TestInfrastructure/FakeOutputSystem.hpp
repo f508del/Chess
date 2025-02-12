@@ -26,6 +26,7 @@ public:
     void endUserInteraction() override;
     void resetUxForNewGame() override;
     void displayMoveToUser(const ChessMove& move, const I_ReadOnlyChessBoard& board) override;
+    void rejectMoveAttempt(Chess::MoveValidity validity) override;
     
     // helpers
     size_t size() const;
@@ -34,10 +35,12 @@ public:
     bool contains(const std::string& outputEntry) const;
     ChessMove lastMoveDisplayedToUser() const;
     Chess::PieceType lastPieceMoved() const;
+    Chess::MoveValidity lastRejectedMoveReason() const;
 
 private:
     std::string mostRecentOutput_;
     std::list<std::string> capturedOutput_;
     ChessMove mostRecentMove_;
     Chess::PieceType lastPieceMoved_;
+    Chess::MoveValidity lastRejectedMoveReason_;
 };

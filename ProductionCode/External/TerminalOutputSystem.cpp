@@ -53,6 +53,9 @@ void TerminalOutputSystem::displayMoveToUser(const ChessMove & move, const I_Rea
     showTextToUser(moveDescription.c_str());
 }
 
-
+void TerminalOutputSystem::rejectMoveAttempt(Chess::MoveValidity validity)
+{
+    
+}
 
 

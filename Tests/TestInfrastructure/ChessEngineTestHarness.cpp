@@ -77,3 +77,8 @@ PieceType ChessEngineTestHarness::lastKindOfPieceMoved()
     return (fakeOutput().lastPieceMoved());
 }
 
+Chess::MoveValidity ChessEngineTestHarness::lastMoveRejectionReason() { 
+    return (fakeOutput().lastRejectedMoveReason());
+}
+
+

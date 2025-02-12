@@ -15,6 +15,7 @@ using namespace Chess;
 
 FakeOutputSystem::FakeOutputSystem()
 : lastPieceMoved_(PieceType::NONE)
+, lastRejectedMoveReason_(Chess::MoveValidity::VALID_MOVE)
 {
 
 }
@@ -105,4 +106,12 @@ ChessMove FakeOutputSystem::lastMoveDisplayedToUser() const
 PieceType FakeOutputSystem::lastPieceMoved() const
 {
     return lastPieceMoved_;
+}
+
+void FakeOutputSystem::rejectMoveAttempt(Chess::MoveValidity validity) {
+    lastRejectedMoveReason_ = validity;
+}
+
+Chess::MoveValidity FakeOutputSystem::lastRejectedMoveReason() const{
+    return lastRejectedMoveReason_;
 }

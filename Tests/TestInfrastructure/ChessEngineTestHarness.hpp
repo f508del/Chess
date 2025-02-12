@@ -10,6 +10,7 @@
 
 #include "ScopedPointer.hpp"
 #include "ChessPieceType.hpp"
+#include "ChessMoveValidity.hpp"
 #include <list>
 #include <string>
 
@@ -34,6 +35,7 @@ public:
     bool isLastOutputBeforeQuittingEqualTo(const std::string& outputString);
     bool lastMoveDisplayedMatches(const ChessMove& move);
     Chess::PieceType lastKindOfPieceMoved();
+    Chess::MoveValidity lastMoveRejectionReason();
 
 private:
    ScopedPointer<FakeInputSystem> inputSystem_;

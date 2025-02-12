@@ -10,6 +10,7 @@
 
 class ChessMove;
 class I_ReadOnlyChessBoard;
+#include "ChessMoveValidity.hpp"
 
 class I_OutputSystem
 {
@@ -20,5 +21,6 @@ public:
     virtual void endUserInteraction() = 0;
     virtual void resetUxForNewGame() = 0;
     virtual void displayMoveToUser(const ChessMove& move, const I_ReadOnlyChessBoard& board) = 0;
+    virtual void rejectMoveAttempt(Chess::MoveValidity validity) = 0;
 
 };

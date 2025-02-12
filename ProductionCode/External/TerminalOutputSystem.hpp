@@ -25,6 +25,7 @@ public:
     void endUserInteraction() override;
     void resetUxForNewGame() override;
     void displayMoveToUser(const ChessMove& move, const I_ReadOnlyChessBoard& board) override;
+    void rejectMoveAttempt(Chess::MoveValidity validity) override;
     
 private:
     ScopedPointer<ChessMoveDescriber> moveDescriber_;
