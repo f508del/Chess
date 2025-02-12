@@ -36,7 +36,7 @@ TEST_CASE("Testing that a moved piece is now only seen at its new location")
 
         testHarness.chessEngine().runChessEngine();
         
-        CHECK(testHarness.isLastOutputBeforeQuittingEqualTo(NO_PIECE_AT_COORDINATES_ERROR));
+        CHECK(testHarness.lastMoveRejectionReason() == MoveValidity::NO_PIECE_AT_STARTING_LOCATION);
     }
     
     SECTION("Bishops movement will persist")

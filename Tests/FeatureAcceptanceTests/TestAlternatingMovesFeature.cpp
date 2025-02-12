@@ -32,12 +32,12 @@ TEST_CASE("Testing the enforcement of alternating move order")
 
    SECTION("will reject an attempt to move a black piece first")
    {
-      ChessEngineTestHarness testHarness;
-      testHarness.setInputSequenceWithinANewGame({"c7c6"});
+       ChessEngineTestHarness testHarness;
+       testHarness.setInputSequenceWithinANewGame({"c7c6"});
+ 
+       testHarness.chessEngine().runChessEngine();
 
-      testHarness.chessEngine().runChessEngine();
-
-      CHECK(testHarness.isLastOutputBeforeQuittingEqualTo(OPPOSING_PLAYERS_PIECE_ERROR));
+       CHECK(testHarness.lastMoveRejectionReason() == MoveValidity::OPPOSING_PLAYERS_PIECE);
    }
 
    SECTION("will accept the second move of the game to come from black")
@@ -53,12 +53,12 @@ TEST_CASE("Testing the enforcement of alternating move order")
 
    SECTION("will reject a second move of the game to come from white")
    {
-      ChessEngineTestHarness testHarness;
-      testHarness.setInputSequenceWithinANewGame({"c2c3", "d2d4"});
+       ChessEngineTestHarness testHarness;
+       testHarness.setInputSequenceWithinANewGame({"c2c3", "d2d4"});
 
-      testHarness.chessEngine().runChessEngine();
+       testHarness.chessEngine().runChessEngine();
 
-      CHECK(testHarness.isLastOutputBeforeQuittingEqualTo(OPPOSING_PLAYERS_PIECE_ERROR));
+       CHECK(testHarness.lastMoveRejectionReason() == MoveValidity::OPPOSING_PLAYERS_PIECE);
    }
 
    SECTION("will accept the third move of the game to come from white")
@@ -79,6 +79,6 @@ TEST_CASE("Testing the enforcement of alternating move order")
 
        testHarness.chessEngine().runChessEngine();
 
-       CHECK(testHarness.isLastOutputBeforeQuittingEqualTo(OPPOSING_PLAYERS_PIECE_ERROR));
+       CHECK(testHarness.lastMoveRejectionReason() == MoveValidity::OPPOSING_PLAYERS_PIECE);
    }
 }

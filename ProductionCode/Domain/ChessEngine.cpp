@@ -62,7 +62,6 @@ void ChessEngine::runChessEngine()
            MoveValidity lastMoveValidity = moveValidator_->validateMove(move);
            if (lastMoveValidity != MoveValidity::VALID_MOVE)
            {
-               outputSystem_.showTextToUser(moveValidator_->reasonLastMoveWasIllegal().c_str());
                outputSystem_.rejectMoveAttempt(lastMoveValidity);
            }
            else

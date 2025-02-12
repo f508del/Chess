@@ -9,7 +9,11 @@
 #include "TerminalOutputSystem.hpp"
 #include "ChessMoveDescriber.hpp"
 #include "TerminalWrapper.hpp"
+#include "ChessMoveValidity.hpp"
+#include "OutputErrorDefines.hpp"
 #include <cstdio>
+
+using namespace Chess;
 
 TerminalOutputSystem::TerminalOutputSystem(TerminalWrapper* newWrapperToOwn)
 : moveDescriber_(new ChessMoveDescriber())
@@ -55,7 +59,27 @@ void TerminalOutputSystem::displayMoveToUser(const ChessMove & move, const I_Rea
 
 void TerminalOutputSystem::rejectMoveAttempt(Chess::MoveValidity validity)
 {
-    
+    switch (validity)
+    {
+        case MoveValidity::END_SQUARE_NOT_ON_BOARD:
+            showTextToUser(OutputErrorDefines::MOVE_NOT_ON_BOARD_ERROR);
+            break;
+        case MoveValidity::NO_PIECE_AT_STARTING_LOCATION:
+            showTextToUser(OutputErrorDefines::NO_PIECE_AT_COORDINATES_ERROR);
+            break;
+        case MoveValidity::OPPOSING_PLAYERS_PIECE:
+            showTextToUser(OutputErrorDefines::OPPOSING_PLAYERS_PIECE_ERROR);
+            break;
+        case MoveValidity::NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE:
+            showTextToUser(OutputErrorDefines::PIECE_CANNOT_CURRENTLY_MOVE_ERROR);
+            break;
+        case MoveValidity::PATH_BLOCKED_BY_OTHER_PIECES:
+            showTextToUser(OutputErrorDefines::MOVE_IS_BLOCKED_ERROR);
+            break;
+        case MoveValidity::DESTINATION_BLOCKED_BY_EXISTING_PIECE:
+            showTextToUser(OutputErrorDefines::MOVE_IS_BLOCKED_ERROR);
+            break;
+        default:
+            break;
+    }
 }
-
-
