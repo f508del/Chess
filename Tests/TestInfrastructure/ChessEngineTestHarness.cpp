@@ -53,20 +53,6 @@ void ChessEngineTestHarness::setInputSequenceWithinANewGame(const std::list<std:
     fakeInput().setInputSequence(finalInputSequence);
 }
 
-bool ChessEngineTestHarness::isLastOutputBeforeQuittingEqualTo(const string &outputString)
-{
-   if (fakeOutput().size() < 2)
-      {
-         return false;
-      }
-    bool stringsCompareAsEqual = (fakeOutput().secondLastOutput() == outputString);
-    if (!stringsCompareAsEqual)
-    {
-        fprintf(stderr, "Expected: %s\nActual:   %s", outputString.c_str(), fakeOutput().secondLastOutput().c_str());
-    }
-   return stringsCompareAsEqual;
-}
-
 bool ChessEngineTestHarness::lastMoveDisplayedMatches(const ChessMove &move)
 {
     return (fakeOutput().lastMoveDisplayedToUser() == move);

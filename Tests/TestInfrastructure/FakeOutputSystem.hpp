@@ -31,7 +31,6 @@ public:
     // helpers
     size_t size() const;
     std::string mostRecentOutput() const;
-    std::string secondLastOutput() const;
     bool contains(const std::string& outputEntry) const;
     ChessMove lastMoveDisplayedToUser() const;
     Chess::PieceType lastPieceMoved() const;

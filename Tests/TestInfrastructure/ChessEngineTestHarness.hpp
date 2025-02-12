@@ -32,7 +32,6 @@ public:
 
     // Convenience interfaces
     void setInputSequenceWithinANewGame(const std::list<std::string>& inputSequence);
-    bool isLastOutputBeforeQuittingEqualTo(const std::string& outputString);
     bool lastMoveDisplayedMatches(const ChessMove& move);
     Chess::PieceType lastKindOfPieceMoved();
     Chess::MoveValidity lastMoveRejectionReason();

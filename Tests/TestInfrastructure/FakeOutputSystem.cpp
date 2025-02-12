@@ -41,18 +41,6 @@ string FakeOutputSystem::mostRecentOutput() const
    return mostRecentOutput_;
 }
 
-string FakeOutputSystem::secondLastOutput() const
-{
-   if (size() < 2)
-      {
-      return "";
-      }
-   list<string>::const_iterator it = capturedOutput_.end();
-   it--;
-   it--;
-   return *it;
-}
-
 bool FakeOutputSystem::contains(const string& outputEntry) const
 {
    for (list<string>::const_iterator it = capturedOutput_.begin(); it != capturedOutput_.end(); it++)
