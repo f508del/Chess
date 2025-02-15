@@ -16,7 +16,6 @@ class I_OutputSystem
 {
 public:
     virtual ~I_OutputSystem(){}
-    virtual void showTextToUser(const char* displayString) = 0;
     virtual void initializeChessUserInterface() = 0;
     virtual void endUserInteraction() = 0;
     virtual void resetUxForNewGame() = 0;

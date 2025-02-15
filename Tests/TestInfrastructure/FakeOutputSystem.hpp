@@ -21,7 +21,6 @@ public:
     virtual ~FakeOutputSystem();
 
     // inherited
-    void showTextToUser(const char* displayString) override;
     void initializeChessUserInterface() override;
     void endUserInteraction() override;
     void resetUxForNewGame() override;
@@ -36,6 +35,9 @@ public:
     Chess::PieceType lastPieceMoved() const;
     Chess::MoveValidity lastRejectedMoveReason() const;
 
+private: // internal helpers
+    void showTextToUser(const char* displayString);
+    
 private:
     std::string mostRecentOutput_;
     std::list<std::string> capturedOutput_;

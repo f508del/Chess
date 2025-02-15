@@ -20,12 +20,14 @@ public:
    explicit TerminalOutputSystem(TerminalWrapper* newWrapperToOwn);
    virtual ~TerminalOutputSystem();
 
-    void showTextToUser(const char* displayString) override;
     void initializeChessUserInterface() override;
     void endUserInteraction() override;
     void resetUxForNewGame() override;
     void displayMoveToUser(const ChessMove& move, const I_ReadOnlyChessBoard& board) override;
     void rejectMoveAttempt(Chess::MoveValidity validity) override;
+    
+private: // helper functions
+    void showTextToUser(const char* displayString);
     
 private:
     ScopedPointer<ChessMoveDescriber> moveDescriber_;
