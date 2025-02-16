@@ -16,6 +16,7 @@ using namespace Chess;
 FakeOutputSystem::FakeOutputSystem()
 : lastPieceMoved_(PieceType::NONE)
 , lastRejectedMoveReason_(Chess::MoveValidity::VALID_MOVE)
+, userInteactionEndRequested_(false)
 {
 
 }
@@ -27,13 +28,7 @@ FakeOutputSystem::~FakeOutputSystem()
 
 void FakeOutputSystem::showTextToUser(const char* displayString)
 {
-   mostRecentOutput_ = displayString;
    capturedOutput_.push_back(displayString);
-}
-
-string FakeOutputSystem::mostRecentOutput() const
-{
-   return mostRecentOutput_;
 }
 
 bool FakeOutputSystem::contains(const string& outputEntry) const
@@ -56,6 +51,7 @@ void FakeOutputSystem::initializeChessUserInterface()
 
 void FakeOutputSystem::endUserInteraction()
 {
+    userInteactionEndRequested_ = true;
     showTextToUser("quitting chess...");
 }
 
@@ -97,4 +93,8 @@ void FakeOutputSystem::rejectMoveAttempt(Chess::MoveValidity validity) {
 
 Chess::MoveValidity FakeOutputSystem::lastRejectedMoveReason() const{
     return lastRejectedMoveReason_;
+}
+
+bool FakeOutputSystem::userInteractionEndHasBeenRequested() const{
+    return userInteactionEndRequested_;
 }

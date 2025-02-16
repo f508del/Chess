@@ -28,19 +28,19 @@ public:
     void rejectMoveAttempt(Chess::MoveValidity validity) override;
     
     // helpers
-    std::string mostRecentOutput() const;
     bool contains(const std::string& outputEntry) const;
     ChessMove lastMoveDisplayedToUser() const;
     Chess::PieceType lastPieceMoved() const;
     Chess::MoveValidity lastRejectedMoveReason() const;
+    bool userInteractionEndHasBeenRequested() const;
 
 private: // internal helpers
     void showTextToUser(const char* displayString);
     
 private:
-    std::string mostRecentOutput_;
     std::list<std::string> capturedOutput_;
     ChessMove mostRecentMove_;
     Chess::PieceType lastPieceMoved_;
     Chess::MoveValidity lastRejectedMoveReason_;
+    bool userInteactionEndRequested_;
 };
