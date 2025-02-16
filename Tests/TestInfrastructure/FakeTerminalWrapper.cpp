@@ -7,16 +7,19 @@
 
 #include "FakeTerminalWrapper.hpp"
 
+using namespace std;
+
 FakeTerminalWrapper::FakeTerminalWrapper()
 {
 }
 
-void FakeTerminalWrapper::writeToTerminal(const std::string& text)
+void FakeTerminalWrapper::writeToTerminal(const string& text)
 {
     lastOutput_ = text;
+    capturedOutput_.push_back(text);
 }
 
-bool FakeTerminalWrapper::lastOutputMatches(const std::string& outputString)
+bool FakeTerminalWrapper::lastOutputMatches(const string& outputString) const
 {
     bool stringIsMatching = (outputString == lastOutput_);
     if (!stringIsMatching)
@@ -25,4 +28,17 @@ bool FakeTerminalWrapper::lastOutputMatches(const std::string& outputString)
                 outputString.c_str(), lastOutput_.c_str());
     }
     return outputString == lastOutput_;
+}
+
+bool FakeTerminalWrapper::contains(const string& outputEntry) const
+{
+   for (list<string>::const_iterator it = capturedOutput_.begin(); it != capturedOutput_.end(); it++)
+      {
+         if (*it == outputEntry)
+         {
+            return true;
+         }
+      }
+
+   return false;
 }

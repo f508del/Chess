@@ -6,6 +6,7 @@
 //
 
 #include "TerminalWrapper.hpp"
+#include <list>
 
 class FakeTerminalWrapper : public TerminalWrapper
 {
@@ -14,8 +15,9 @@ public:
     
     void writeToTerminal(const std::string& text) override;
     
-    bool lastOutputMatches(const std::string& outputString);
-    
+    bool lastOutputMatches(const std::string& outputString) const;
+    bool contains(const std::string& outputEntry) const;
 private:
+    std::list<std::string> capturedOutput_;
     std::string lastOutput_;
 };
