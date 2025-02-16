@@ -31,11 +31,6 @@ void FakeOutputSystem::showTextToUser(const char* displayString)
    capturedOutput_.push_back(displayString);
 }
 
-size_t FakeOutputSystem::size() const
-{
-   return capturedOutput_.size();
-}
-
 string FakeOutputSystem::mostRecentOutput() const
 {
    return mostRecentOutput_;
