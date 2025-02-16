@@ -25,17 +25,7 @@ TEST_CASE("Testing the 'new game' feature")
 
        testHarness.chessEngine().runChessEngine();
 
-       CHECK(testHarness.fakeOutput().contains("New game requested..."));
-   }
-
-   SECTION("will inform user what color piece they play as")
-   {
-       ChessEngineTestHarness testHarness;
-       testHarness.setInputSequenceWithinANewGame({});
-
-       testHarness.chessEngine().runChessEngine();
-
-       CHECK(testHarness.fakeOutput().contains("you are playing as white..."));
+       CHECK(testHarness.fakeOutput().resetUxForNewGameHasBeenCalled());
    }
     
     SECTION("Will revert initiative to white when new game is invoked mid game")

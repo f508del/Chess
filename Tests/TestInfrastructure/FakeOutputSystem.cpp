@@ -17,6 +17,7 @@ FakeOutputSystem::FakeOutputSystem()
 : lastPieceMoved_(PieceType::NONE)
 , lastRejectedMoveReason_(Chess::MoveValidity::VALID_MOVE)
 , userInteractionEndRequested_(false)
+, resetUxForNewGameHasBeenCalled_(false)
 {
 
 }
@@ -24,24 +25,6 @@ FakeOutputSystem::FakeOutputSystem()
 FakeOutputSystem::~FakeOutputSystem()
 {
 
-}
-
-void FakeOutputSystem::showTextToUser(const char* displayString)
-{
-   capturedOutput_.push_back(displayString);
-}
-
-bool FakeOutputSystem::contains(const string& outputEntry) const
-{
-   for (list<string>::const_iterator it = capturedOutput_.begin(); it != capturedOutput_.end(); it++)
-      {
-         if (*it == outputEntry)
-         {
-            return true;
-         }
-      }
-
-   return false;
 }
 
 void FakeOutputSystem::initializeChessUserInterface()
@@ -56,9 +39,7 @@ void FakeOutputSystem::endUserInteraction()
 
 void FakeOutputSystem::resetUxForNewGame()
 {
-    showTextToUser("New game requested...");
-    showTextToUser("you are playing as white...");
-    showTextToUser("please enter a move in fully specified notation...");
+    resetUxForNewGameHasBeenCalled_ = true;
 }
 
 void FakeOutputSystem::displayMoveToUser(const ChessMove &move, const I_ReadOnlyChessBoard & board)
@@ -96,4 +77,9 @@ Chess::MoveValidity FakeOutputSystem::lastRejectedMoveReason() const{
 
 bool FakeOutputSystem::userInteractionEndHasBeenRequested() const{
     return userInteractionEndRequested_;
+}
+
+bool FakeOutputSystem::resetUxForNewGameHasBeenCalled() const
+{
+    return resetUxForNewGameHasBeenCalled_;
 }
