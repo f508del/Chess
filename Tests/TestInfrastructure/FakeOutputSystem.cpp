@@ -16,7 +16,7 @@ using namespace Chess;
 FakeOutputSystem::FakeOutputSystem()
 : lastPieceMoved_(PieceType::NONE)
 , lastRejectedMoveReason_(Chess::MoveValidity::VALID_MOVE)
-, userInteactionEndRequested_(false)
+, userInteractionEndRequested_(false)
 {
 
 }
@@ -51,8 +51,7 @@ void FakeOutputSystem::initializeChessUserInterface()
 
 void FakeOutputSystem::endUserInteraction()
 {
-    userInteactionEndRequested_ = true;
-    showTextToUser("quitting chess...");
+    userInteractionEndRequested_ = true;
 }
 
 void FakeOutputSystem::resetUxForNewGame()
@@ -96,5 +95,5 @@ Chess::MoveValidity FakeOutputSystem::lastRejectedMoveReason() const{
 }
 
 bool FakeOutputSystem::userInteractionEndHasBeenRequested() const{
-    return userInteactionEndRequested_;
+    return userInteractionEndRequested_;
 }

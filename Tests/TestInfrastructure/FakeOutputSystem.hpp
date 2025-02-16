@@ -42,5 +42,5 @@ private:
     ChessMove mostRecentMove_;
     Chess::PieceType lastPieceMoved_;
     Chess::MoveValidity lastRejectedMoveReason_;
-    bool userInteactionEndRequested_;
+    bool userInteractionEndRequested_;
 };
