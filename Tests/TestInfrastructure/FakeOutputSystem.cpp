@@ -54,7 +54,7 @@ void FakeOutputSystem::displayMoveToUser(const ChessMove &move, const I_ReadOnly
     {
         lastPieceMoved_ = PieceType::NONE;
     }
-    
+    lastRejectedMoveReason_ = MoveValidity::VALID_MOVE;
 }
 
 ChessMove FakeOutputSystem::lastMoveDisplayedToUser() const

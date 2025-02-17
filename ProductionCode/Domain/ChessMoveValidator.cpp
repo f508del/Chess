@@ -65,9 +65,10 @@ MoveValidity ChessMoveValidator::validateMove(const ChessMove& currentMove)
         return MoveValidity::PATH_BLOCKED_BY_OTHER_PIECES;
     }
 
-   if (board_.anyPieceExistsAt(currentMove.endingSquare()))
+    if (board_.anyPieceExistsAt(currentMove.endingSquare()) &&
+        (board_.pieceAt(currentMove.startingSquare())->affiliation() ==
+         (board_.pieceAt(currentMove.endingSquare())->affiliation())))
    {
-       // TODO: fix this to allow pieces to be taken at some point...
        commentOnLastMove_ = PIECE_CANNOT_CURRENTLY_MOVE_ERROR;
        return MoveValidity::DESTINATION_BLOCKED_BY_EXISTING_PIECE;
    }
