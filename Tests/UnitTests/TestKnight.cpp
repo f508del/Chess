@@ -17,7 +17,7 @@ TEST_CASE("Testing the Knight object")
 {
    SECTION("will allow knight L-moves that move towards higher files")
    {
-      Knight knight(PieceAffiliation::WHITE_PIECE);
+      Knight knight(randomPieceAffiliation());
       ExtendedSet<ChessSquare> allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare('b', 4));
       CHECK(allowedMoves.contains(ChessSquare('d', 5)));
 
@@ -27,7 +27,7 @@ TEST_CASE("Testing the Knight object")
 
    SECTION("will allow knight L-moves that move towards lower files")
    {
-      Knight knight(PieceAffiliation::WHITE_PIECE);
+      Knight knight(randomPieceAffiliation());
       ExtendedSet<ChessSquare> allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare('g', 4));
       CHECK(allowedMoves.contains(ChessSquare('e', 5)));
 
@@ -37,7 +37,7 @@ TEST_CASE("Testing the Knight object")
 
    SECTION("will allow knight L-moves that move towards higher ranks")
    {
-      Knight knight(PieceAffiliation::WHITE_PIECE);
+      Knight knight(randomPieceAffiliation());
       ExtendedSet<ChessSquare> allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare('b', 4));
       CHECK(allowedMoves.contains(ChessSquare('a', 6)));
 
@@ -47,7 +47,7 @@ TEST_CASE("Testing the Knight object")
 
    SECTION("will allow knight L-moves that move towards lower ranks")
    {
-      Knight knight(PieceAffiliation::WHITE_PIECE);
+      Knight knight(randomPieceAffiliation());
       ExtendedSet<ChessSquare> allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare('c', 5));
       CHECK(allowedMoves.contains(ChessSquare('b', 3)));
 
@@ -57,7 +57,7 @@ TEST_CASE("Testing the Knight object")
 
    SECTION("wont allow moves that take the knight off the board")
    {
-      Knight knight(PieceAffiliation::WHITE_PIECE);
+      Knight knight(randomPieceAffiliation());
       ExtendedSet<ChessSquare> allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare('a', 5));
       CHECK(allowedMoves.size() == 4);
 
@@ -73,7 +73,7 @@ TEST_CASE("Testing the Knight object")
     
     SECTION("will allow knights to jump other pieces")
     {
-        Knight knight(PieceAffiliation::WHITE_PIECE);
+        Knight knight(randomPieceAffiliation());
         CHECK(knight.pieceCanJumpOtherPieces() == true);
     }
 }

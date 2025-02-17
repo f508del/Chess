@@ -14,25 +14,26 @@ TEST_CASE("Testing the Rook object")
 {
     SECTION("Piece knows it is a rook")
     {
-        Rook piece(PieceAffiliation::WHITE_PIECE);
+        Rook piece(randomPieceAffiliation());
         CHECK(piece.pieceType() == PieceType::ROOK);
     }
     
     SECTION("Will not allow rook to jump other pieces")
     {
-        Rook piece(PieceAffiliation::WHITE_PIECE);
+        Rook piece(randomPieceAffiliation());
         CHECK(piece.pieceCanJumpOtherPieces() == false);
     }
     
     SECTION("Rooks know their affiliation")
     {
-        Rook blackRook(PieceAffiliation::BLACK_PIECE);
-        CHECK(blackRook.affiliation() == PieceAffiliation::BLACK_PIECE);
+        PieceAffiliation affiliation = randomPieceAffiliation();
+        Rook testRook(affiliation);
+        CHECK(testRook.affiliation() == affiliation);
     }
     
     SECTION("Rooks can move in increasing ranks")
     {
-        Rook piece(PieceAffiliation::WHITE_PIECE);
+        Rook piece(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
         piece.potentialEmptyBoardMovesFrom(ChessSquare('d', 1));
         
@@ -41,7 +42,7 @@ TEST_CASE("Testing the Rook object")
     
     SECTION("Rooks can move in decreasing ranks")
     {
-        Rook piece(PieceAffiliation::BLACK_PIECE);
+        Rook piece(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
         piece.potentialEmptyBoardMovesFrom(ChessSquare('f', 8));
         
@@ -50,7 +51,7 @@ TEST_CASE("Testing the Rook object")
     
     SECTION("Rooks can move in increasing files")
     {
-        Rook piece(PieceAffiliation::WHITE_PIECE);
+        Rook piece(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
         piece.potentialEmptyBoardMovesFrom(ChessSquare('a', 1));
         
@@ -59,7 +60,7 @@ TEST_CASE("Testing the Rook object")
     
     SECTION("Rooks can move in decreasing files")
     {
-        Rook piece(PieceAffiliation::BLACK_PIECE);
+        Rook piece(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
         piece.potentialEmptyBoardMovesFrom(ChessSquare('h', 3));
         
@@ -68,7 +69,7 @@ TEST_CASE("Testing the Rook object")
     
     SECTION("Rooks Cannot move diagonally")
     {
-        Rook piece(PieceAffiliation::BLACK_PIECE);
+        Rook piece(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
         piece.potentialEmptyBoardMovesFrom(ChessSquare('d', 3));
         

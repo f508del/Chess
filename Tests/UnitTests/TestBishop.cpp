@@ -14,13 +14,13 @@ TEST_CASE("Testing the Bishop object")
 {
     SECTION("Piece knows it is a bishop")
     {
-        Bishop piece(PieceAffiliation::WHITE_PIECE);
+        Bishop piece(randomPieceAffiliation());
         CHECK(piece.pieceType() == PieceType::BISHOP);
     }
     
     SECTION("Will allow bishop to move diagonally towards the top right")
     {
-        Bishop bishop(PieceAffiliation::WHITE_PIECE);
+        Bishop bishop(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
         bishop.potentialEmptyBoardMovesFrom(ChessSquare('a', 1));
         CHECK(allowedMoves.contains(ChessSquare('h', 8)));
@@ -28,7 +28,7 @@ TEST_CASE("Testing the Bishop object")
     
     SECTION("Will allow bishop to move diagonally towards the bottom right")
     {
-        Bishop bishop(PieceAffiliation::WHITE_PIECE);
+        Bishop bishop(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
         bishop.potentialEmptyBoardMovesFrom(ChessSquare('d', 2));
         CHECK(allowedMoves.contains(ChessSquare('e', 1)));
@@ -36,7 +36,7 @@ TEST_CASE("Testing the Bishop object")
     
     SECTION("Will allow bishops to move diagonally towards bottom left")
     {
-        Bishop bishop(PieceAffiliation::WHITE_PIECE);
+        Bishop bishop(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
         bishop.potentialEmptyBoardMovesFrom(ChessSquare('d', 4));
         CHECK(allowedMoves.contains(ChessSquare('c', 3)));
@@ -44,7 +44,7 @@ TEST_CASE("Testing the Bishop object")
     
     SECTION("Will allow bishops to move diagonally towards top left")
     {
-        Bishop bishop(PieceAffiliation::WHITE_PIECE);
+        Bishop bishop(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
         bishop.potentialEmptyBoardMovesFrom(ChessSquare('d', 4));
         CHECK(allowedMoves.contains(ChessSquare('c', 5)));
@@ -52,7 +52,7 @@ TEST_CASE("Testing the Bishop object")
     
     SECTION("Will not allow bishops to move in cardinal directions")
     {
-        Bishop bishop(PieceAffiliation::WHITE_PIECE);
+        Bishop bishop(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
         bishop.potentialEmptyBoardMovesFrom(ChessSquare('d', 4));
         CHECK(!allowedMoves.contains(ChessSquare('d', 5)));
@@ -63,7 +63,7 @@ TEST_CASE("Testing the Bishop object")
     
     SECTION("Will not allow bishop to jump other pieces")
     {
-        Bishop bishop(PieceAffiliation::WHITE_PIECE);
+        Bishop bishop(randomPieceAffiliation());
         CHECK(bishop.pieceCanJumpOtherPieces() == false);
     }
 }
