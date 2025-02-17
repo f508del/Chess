@@ -6,7 +6,6 @@
 
 This is meant as a simple backlog of what refactorings and features are upcoming
  
- 3. Review the input system / output system, should strings be formulated and parsed entirely in the 'External' library? Probably yes.
  5. Add Rook class
  6. Add Queen class
  7. Add King class
@@ -14,4 +13,5 @@ This is meant as a simple backlog of what refactorings and features are upcoming
  13. Refactor ChessMove to be creatable without string parsing.
  14. Refactor ChessSquare to become impossible to mix up rank and file.
  15. Prevent capturing friendly pieces
+ 16. Refactor the input system to keep string parsing in the external library.
 */
