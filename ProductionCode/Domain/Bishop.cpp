@@ -24,7 +24,7 @@ ExtendedSet<ChessSquare> Bishop::potentialEmptyBoardMovesFrom(const ChessSquare 
 {
     ExtendedSet<ChessSquare> potentialMoves;
     
-    for (int i = 1; i < 7; i++)
+    for (int i = 1; i < 8; i++)
     {
         // top right array of squares
         ChessSquare topRightDestination(startingSquare.file() + i, startingSquare.rank() + i);

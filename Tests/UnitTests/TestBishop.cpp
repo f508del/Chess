@@ -22,8 +22,8 @@ TEST_CASE("Testing the Bishop object")
     {
         Bishop bishop(PieceAffiliation::WHITE_PIECE);
         ExtendedSet<ChessSquare> allowedMoves =
-        bishop.potentialEmptyBoardMovesFrom(ChessSquare('c', 1));
-        CHECK(allowedMoves.contains(ChessSquare('d', 2)));
+        bishop.potentialEmptyBoardMovesFrom(ChessSquare('a', 1));
+        CHECK(allowedMoves.contains(ChessSquare('h', 8)));
     }
     
     SECTION("Will allow bishop to move diagonally towards the bottom right")

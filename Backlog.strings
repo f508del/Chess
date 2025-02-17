@@ -13,7 +13,6 @@ This is meant as a simple backlog of what refactorings and features are upcoming
  14. Refactor ChessSquare to become impossible to mix up rank and file.
  15. Prevent capturing friendly pieces
  16. Refactor the input system to keep string parsing in the external library.
- 17. POTENTIAL BUG: Bishop cannot move full corner-to-corner range
  18. define a PieceAffiliation::random() helper to genericize tests.
  19. Integrate Rook class
 */
