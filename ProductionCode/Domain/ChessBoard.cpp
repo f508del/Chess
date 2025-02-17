@@ -91,8 +91,8 @@ void ChessBoard::resetBoard()
     // setup the bishops
     boardState_[ChessSquare('c', 1)] = whiteBishopCapabilities_.data();
     boardState_[ChessSquare('f', 1)] = whiteBishopCapabilities_.data();
-    boardState_[ChessSquare('c', 8)] = whiteBishopCapabilities_.data();
-    boardState_[ChessSquare('f', 8)] = whiteBishopCapabilities_.data();
+    boardState_[ChessSquare('c', 8)] = blackBishopCapabilities_.data();
+    boardState_[ChessSquare('f', 8)] = blackBishopCapabilities_.data();
     
     // setup the rooks
     boardState_[ChessSquare('a', 1)] = whiteRookCapabilities_.data();

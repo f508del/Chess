@@ -100,5 +100,29 @@ TEST_CASE("Testing the ChessBoard object")
         move.populateFromString("c1f4");
         CHECK(board.squaresBetweenEndPointsAreEmpty(move) == false);
     }
+    
+    SECTION("When the board is reset, the pieces in the 1st and 2nd ranks are all white")
+    {
+        ChessBoard board;
+        board.resetBoard();
+        
+        for (int i = 0; i <= 7; i++)
+        {
+            CHECK(board.whitePieceExistsAt(ChessSquare('a' + i, 1)));
+            CHECK(board.whitePieceExistsAt(ChessSquare('a' + i, 2)));
+        }
+    }
+    
+    SECTION("When the board is reset, the pieces in the 7th and 8th ranks are all black")
+    {
+        ChessBoard board;
+        board.resetBoard();
+        
+        for (int i = 0; i <= 7; i++)
+        {
+            CHECK(board.blackPieceExistsAt(ChessSquare('a' + i, 7)));
+            CHECK(board.blackPieceExistsAt(ChessSquare('a' + i, 8)));
+        }
+    }
 }
 
