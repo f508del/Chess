@@ -11,6 +11,7 @@
 #include "ChessMove.hpp"
 #include "ChessSquare.hpp"
 #include "Pawn.hpp"
+#include "Rook.hpp"
 #include "Knight.hpp"
 
 using namespace Chess;
@@ -22,6 +23,8 @@ ChessBoard::ChessBoard()
 , blackKnightCapabilities_(new Knight(PieceAffiliation::BLACK_PIECE))
 , whiteBishopCapabilities_(new Bishop(PieceAffiliation::WHITE_PIECE))
 , blackBishopCapabilities_(new Bishop(PieceAffiliation::BLACK_PIECE))
+, whiteRookCapabilities_(new Rook(PieceAffiliation::WHITE_PIECE))
+, blackRookCapabilities_(new Rook(PieceAffiliation::BLACK_PIECE))
 , playerToMakeNextMove_(PieceAffiliation::WHITE_PIECE)
 {
    resetBoard();
@@ -90,6 +93,12 @@ void ChessBoard::resetBoard()
     boardState_[ChessSquare('f', 1)] = whiteBishopCapabilities_.data();
     boardState_[ChessSquare('c', 8)] = whiteBishopCapabilities_.data();
     boardState_[ChessSquare('f', 8)] = whiteBishopCapabilities_.data();
+    
+    // setup the rooks
+    boardState_[ChessSquare('a', 1)] = whiteRookCapabilities_.data();
+    boardState_[ChessSquare('h', 1)] = whiteRookCapabilities_.data();
+    boardState_[ChessSquare('a', 8)] = blackRookCapabilities_.data();
+    boardState_[ChessSquare('h', 8)] = blackRookCapabilities_.data();
 }
 
 PieceAffiliation ChessBoard::playerToMakeNextMove() const
@@ -121,7 +130,7 @@ bool ChessBoard::squaresBetweenEndPointsAreEmpty(const ChessMove &move) const
     int rankDifference = move.endingSquare().rank() - move.startingSquare().rank();
     int fileDifference = move.endingSquare().file() - move.startingSquare().file();
     
-    // Will yeild an increment of -1, 0, or 1 only.
+    // Will yield an increment of -1, 0, or 1 only.
     int rankIncrement = (rankDifference == 0) ? 0 : (rankDifference / abs(rankDifference));
     int fileIncrement = (fileDifference == 0) ? 0 : (fileDifference / abs(fileDifference));
     

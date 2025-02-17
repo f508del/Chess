@@ -15,4 +15,5 @@ This is meant as a simple backlog of what refactorings and features are upcoming
  16. Refactor the input system to keep string parsing in the external library.
  18. define a PieceAffiliation::random() helper to genericize tests.
  19. Integrate Rook class
+ 20. Fix BUG where new game assumes all bishops are white
 */
