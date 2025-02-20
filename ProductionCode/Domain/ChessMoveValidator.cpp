@@ -44,6 +44,15 @@ MoveValidity ChessMoveValidator::validateMove(const ChessMove& currentMove)
        commentOnLastMove_ = NO_PIECE_AT_COORDINATES_ERROR;
        return MoveValidity::NO_PIECE_AT_STARTING_LOCATION;
    }
+    
+    // Special case for pawns taht try to capture onto an empty square:
+    if (currentPiece->pieceType() == PieceType::PAWN)
+    {
+        if (!board_.anyPieceExistsAt(currentMove.endingSquare()) && currentMove.startingSquare().file() != currentMove.endingSquare().file())
+        {
+            return MoveValidity::NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE;
+        }
+    }
 
    if (currentPiece->affiliation() != board_.playerToMakeNextMove())
    {
@@ -66,7 +75,7 @@ MoveValidity ChessMoveValidator::validateMove(const ChessMove& currentMove)
     }
 
     if (board_.anyPieceExistsAt(currentMove.endingSquare()) &&
-        (board_.pieceAt(currentMove.startingSquare())->affiliation() ==
+        (currentPiece->affiliation() ==
          (board_.pieceAt(currentMove.endingSquare())->affiliation())))
    {
        commentOnLastMove_ = PIECE_CANNOT_CURRENTLY_MOVE_ERROR;

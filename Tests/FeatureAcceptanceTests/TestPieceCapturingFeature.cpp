@@ -25,4 +25,38 @@ TEST_CASE("Testing the logic around capturing pieces")
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::BISHOP);
         CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("g5e7")));
     }
+    
+    SECTION("Will not allow captured pieces to move. Once captured they are not available to owner")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.setInputSequenceWithinANewGame({"d2d4", "e7e5", "c1g5", "f8e7", "g5e7", "e7f6"});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(testHarness.lastMoveRejectionReason() == MoveValidity::OPPOSING_PLAYERS_PIECE);
+    }
+    
+    SECTION("Will not allow pieces to capture friendly pieces")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.setInputSequenceWithinANewGame({"c1b2"});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(testHarness.lastMoveRejectionReason() == MoveValidity::DESTINATION_BLOCKED_BY_EXISTING_PIECE);
+    }
+    
+    SECTION("Pawns can capture diagonally")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.setInputSequenceWithinANewGame({"d2d4", "c7c5", "d4c5"});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(testHarness.lastMoveRejectionReason() == MoveValidity::VALID_MOVE);
+        CHECK(testHarness.lastKindOfPieceMoved() == PieceType::PAWN);
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("d4c5")));
+    }
+    
+    // TODO: test that pawns cannot capture other pieces vertically
 }

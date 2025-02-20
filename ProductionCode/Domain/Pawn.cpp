@@ -35,6 +35,20 @@ ExtendedSet<ChessSquare> Pawn::potentialEmptyBoardMovesFrom(const ChessSquare& s
       potentialMoves.insert(ChessSquare(startingSquare.file(), startingSquare.rank()
                                         + (2 * movementDirectionForCurrentAffiliation())));
    }
+    
+    // Capture moves
+    ChessSquare rightwardCaptureMove(startingSquare.file() + 1, startingSquare.rank()
+                                      + (1 * movementDirectionForCurrentAffiliation()));
+    ChessSquare leftwardCaptureMove(startingSquare.file() - 1, startingSquare.rank()
+                                      + (1 * movementDirectionForCurrentAffiliation()));
+    if (rightwardCaptureMove.isSquareOnTheBoard())
+    {
+        potentialMoves.insert(rightwardCaptureMove);
+    }
+    if (leftwardCaptureMove.isSquareOnTheBoard())
+    {
+        potentialMoves.insert(leftwardCaptureMove);
+    }
    return potentialMoves;
 }
 
