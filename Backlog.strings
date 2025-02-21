@@ -16,4 +16,6 @@ This is meant as a simple backlog of what refactorings and features are upcoming
  21. Add support for castling.
  22. Integrate Queen class.
  23. Integrate King class.
+ 24. Remove the knowledge of pawn specifics from move validator, by adding a captureMoveList type function to I_ChessPiece
+      - IN PROGRESS
 */

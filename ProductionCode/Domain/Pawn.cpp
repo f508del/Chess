@@ -52,6 +52,11 @@ ExtendedSet<ChessSquare> Pawn::potentialEmptyBoardMovesFrom(const ChessSquare& s
    return potentialMoves;
 }
 
+ExtendedSet<ChessSquare> Pawn::potentialCaptureMovesFrom(const ChessSquare& startingSquare) const
+{
+    return potentialEmptyBoardMovesFrom(startingSquare);
+}
+
 PieceAffiliation Pawn::affiliation() const
 {
    return affiliation_;

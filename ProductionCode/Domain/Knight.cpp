@@ -78,6 +78,11 @@ ExtendedSet<ChessSquare> Knight::potentialEmptyBoardMovesFrom(const ChessSquare&
    return potentialMoves;
 }
 
+ExtendedSet<ChessSquare> Knight::potentialCaptureMovesFrom(const ChessSquare& startingSquare) const
+{
+    return potentialEmptyBoardMovesFrom(startingSquare);
+}
+
 PieceAffiliation Knight::affiliation() const
 {
    return affiliation_;

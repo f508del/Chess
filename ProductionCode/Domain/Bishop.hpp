@@ -16,7 +16,7 @@ public:
     virtual ~Bishop();
     
     ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) const override;
-    
+    ExtendedSet<ChessSquare> potentialCaptureMovesFrom(const ChessSquare& startingSquare) const override;
     Chess::PieceAffiliation affiliation() const override;
     
     Chess::PieceType pieceType() const override;

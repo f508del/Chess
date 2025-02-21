@@ -57,6 +57,11 @@ ExtendedSet<ChessSquare> Bishop::potentialEmptyBoardMovesFrom(const ChessSquare 
     return potentialMoves;
 }
 
+ExtendedSet<ChessSquare> Bishop::potentialCaptureMovesFrom(const ChessSquare& startingSquare) const
+{
+    return potentialEmptyBoardMovesFrom(startingSquare);
+}
+
 PieceAffiliation Bishop::affiliation() const
 {
     return affiliation_;
