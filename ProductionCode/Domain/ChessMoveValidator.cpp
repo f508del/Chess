@@ -19,8 +19,7 @@ using namespace OutputErrorDefines;
 using namespace Chess;
 
 ChessMoveValidator::ChessMoveValidator(const ChessBoard& board)
-: commentOnLastMove_()
-, board_(board)
+: board_(board)
 {
 
 }
@@ -34,14 +33,12 @@ MoveValidity ChessMoveValidator::validateMove(const ChessMove& currentMove)
 {
    if (!currentMove.isOnTheBoard())
    {
-       commentOnLastMove_ = currentMove.toString();
        return MoveValidity::END_SQUARE_NOT_ON_BOARD;
    }
 
    const I_ChessPiece* currentPiece = board_.pieceAt(currentMove.startingSquare());
    if (nullptr == currentPiece)
    {
-       commentOnLastMove_ = NO_PIECE_AT_COORDINATES_ERROR;
        return MoveValidity::NO_PIECE_AT_STARTING_LOCATION;
    }
     
@@ -62,7 +59,6 @@ MoveValidity ChessMoveValidator::validateMove(const ChessMove& currentMove)
 
    if (currentPiece->affiliation() != board_.playerToMakeNextMove())
    {
-       commentOnLastMove_ = OPPOSING_PLAYERS_PIECE_ERROR;
        return MoveValidity::OPPOSING_PLAYERS_PIECE;
    }
 
@@ -70,13 +66,11 @@ MoveValidity ChessMoveValidator::validateMove(const ChessMove& currentMove)
 
    if (!potentialEmptyBoardMoves.contains(currentMove.endingSquare()))
    {
-       commentOnLastMove_ = PIECE_CANNOT_CURRENTLY_MOVE_ERROR;
        return MoveValidity::NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE;
    }
     
     if (!board_.squaresBetweenEndPointsAreEmpty(currentMove) && !currentPiece->pieceCanJumpOtherPieces())
     {
-        commentOnLastMove_ = MOVE_IS_BLOCKED_ERROR;
         return MoveValidity::PATH_BLOCKED_BY_OTHER_PIECES;
     }
 
@@ -84,15 +78,8 @@ MoveValidity ChessMoveValidator::validateMove(const ChessMove& currentMove)
         (currentPiece->affiliation() ==
          (board_.pieceAt(currentMove.endingSquare())->affiliation())))
    {
-       commentOnLastMove_ = PIECE_CANNOT_CURRENTLY_MOVE_ERROR;
        return MoveValidity::DESTINATION_BLOCKED_BY_EXISTING_PIECE;
    }
 
-   commentOnLastMove_ = "";
    return MoveValidity::VALID_MOVE;
-}
-
-string ChessMoveValidator::reasonLastMoveWasIllegal() const
-{
-   return commentOnLastMove_;
 }

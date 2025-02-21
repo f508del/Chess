@@ -6,12 +6,14 @@
 
 This is meant as a simple backlog of what refactorings and features are upcoming
  
- 6. Add Queen class
- 7. Add King class
+ 6. Add Queen class.
+ 7. Add King class.
  13. Refactor ChessMove to be creatable without string parsing.
  14. Refactor ChessSquare to become impossible to mix up rank and file.
  16. Refactor the input system to keep string parsing in the external library.
- 19. Verify that External and Domain directories don't include each other
+ 19. Verify that External and Domain directories don't include each other.
  20. Add support for en passant.
- 21. Add support for castling
+ 21. Add support for castling.
+ 22. Integrate Queen class.
+ 23. Integrate King class.
 */
