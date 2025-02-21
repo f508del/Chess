@@ -58,5 +58,13 @@ TEST_CASE("Testing the logic around capturing pieces")
         CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("d4c5")));
     }
     
-    // TODO: test that pawns cannot capture other pieces vertically
+    SECTION("Pawns cannot capture vertically")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.setInputSequenceWithinANewGame({"d2d4", "d7d5", "d4d5"});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(testHarness.lastMoveRejectionReason() == MoveValidity::DESTINATION_BLOCKED_BY_EXISTING_PIECE);
+    }
 }

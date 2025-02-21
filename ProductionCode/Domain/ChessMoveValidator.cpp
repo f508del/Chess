@@ -45,12 +45,18 @@ MoveValidity ChessMoveValidator::validateMove(const ChessMove& currentMove)
        return MoveValidity::NO_PIECE_AT_STARTING_LOCATION;
    }
     
-    // Special case for pawns taht try to capture onto an empty square:
     if (currentPiece->pieceType() == PieceType::PAWN)
     {
+        // Special case for pawns that try to capture onto an empty square:
         if (!board_.anyPieceExistsAt(currentMove.endingSquare()) && currentMove.startingSquare().file() != currentMove.endingSquare().file())
         {
             return MoveValidity::NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE;
+        }
+        
+        // Special case for pawns that try to move vertically to capture another piece
+        if (board_.anyPieceExistsAt(currentMove.endingSquare()) && currentMove.startingSquare().file() == currentMove.endingSquare().file())
+        {
+            return MoveValidity::DESTINATION_BLOCKED_BY_EXISTING_PIECE;
         }
     }
 
