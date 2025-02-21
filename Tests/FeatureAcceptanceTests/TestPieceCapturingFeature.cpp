@@ -65,6 +65,6 @@ TEST_CASE("Testing the logic around capturing pieces")
         
         testHarness.chessEngine().runChessEngine();
         
-        CHECK(testHarness.lastMoveRejectionReason() == MoveValidity::DESTINATION_BLOCKED_BY_EXISTING_PIECE);
+        CHECK(testHarness.lastMoveRejectionReason() == MoveValidity::NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE);
     }
 }

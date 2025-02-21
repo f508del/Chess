@@ -35,12 +35,23 @@ ExtendedSet<ChessSquare> Pawn::potentialEmptyBoardMovesFrom(const ChessSquare& s
       potentialMoves.insert(ChessSquare(startingSquare.file(), startingSquare.rank()
                                         + (2 * movementDirectionForCurrentAffiliation())));
    }
+   return potentialMoves;
+}
+
+ExtendedSet<ChessSquare> Pawn::potentialCaptureMovesFrom(const ChessSquare& startingSquare) const
+{
+    ExtendedSet<ChessSquare> potentialMoves;
+    if (!startingSquare.isSquareOnTheBoard() || startingSquare.rank() == 1 ||
+        startingSquare.rank() == 8)
+    {
+    return potentialMoves;
+    }
     
     // Capture moves
     ChessSquare rightwardCaptureMove(startingSquare.file() + 1, startingSquare.rank()
-                                      + (1 * movementDirectionForCurrentAffiliation()));
+                                    + (1 * movementDirectionForCurrentAffiliation()));
     ChessSquare leftwardCaptureMove(startingSquare.file() - 1, startingSquare.rank()
-                                      + (1 * movementDirectionForCurrentAffiliation()));
+                                    + (1 * movementDirectionForCurrentAffiliation()));
     if (rightwardCaptureMove.isSquareOnTheBoard())
     {
         potentialMoves.insert(rightwardCaptureMove);
@@ -49,12 +60,7 @@ ExtendedSet<ChessSquare> Pawn::potentialEmptyBoardMovesFrom(const ChessSquare& s
     {
         potentialMoves.insert(leftwardCaptureMove);
     }
-   return potentialMoves;
-}
-
-ExtendedSet<ChessSquare> Pawn::potentialCaptureMovesFrom(const ChessSquare& startingSquare) const
-{
-    return potentialEmptyBoardMovesFrom(startingSquare);
+    return potentialMoves;
 }
 
 PieceAffiliation Pawn::affiliation() const
