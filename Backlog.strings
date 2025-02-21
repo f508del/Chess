@@ -8,12 +8,10 @@ This is meant as a simple backlog of what refactorings and features are upcoming
  
  6. Add Queen class
  7. Add King class
- 11. Allow Pieces to be captured (in progress)
-    A) ensure pieces can't be used after capture
-    B) ensure pawns only capture diagonally
  13. Refactor ChessMove to be creatable without string parsing.
  14. Refactor ChessSquare to become impossible to mix up rank and file.
- 15. Prevent capturing friendly pieces
  16. Refactor the input system to keep string parsing in the external library.
  19. Verify that External and Domain directories don't include each other
+ 20. Add support for en passant.
+ 21. Add support for castling
 */
