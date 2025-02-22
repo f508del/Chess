@@ -6,7 +6,6 @@
 
 This is meant as a simple backlog of what refactorings and features are upcoming
  
- 6. Add Queen class.
  7. Add King class.
  13. Refactor ChessMove to be creatable without string parsing.
  14. Refactor ChessSquare to become impossible to mix up rank and file.
