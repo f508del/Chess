@@ -12,10 +12,8 @@
 #include "ChessMove.hpp"
 #include "ChessSquare.hpp"
 #include "I_ChessPiece.hpp"
-#include "OutputErrorDefines.hpp"
 
 using namespace std;
-using namespace OutputErrorDefines;
 using namespace Chess;
 
 ChessMoveValidator::ChessMoveValidator(const ChessBoard& board)
