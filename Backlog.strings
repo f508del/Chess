@@ -13,7 +13,6 @@ This is meant as a simple backlog of what refactorings and features are upcoming
  19. Verify that External and Domain directories don't include each other.
  20. Add support for en passant.
  21. Add support for castling.
- 22. Integrate Queen class.
  23. Integrate King class.
  25. Add support for promotions
 */

@@ -102,5 +102,25 @@ TEST_CASE("Testing the 'new game' feature")
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::ROOK);
         CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("h8h6")));
     }
+    
+    SECTION("Will move white queens back to starting position if invoked mid game")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.fakeInput().setInputSequence({CommandDefines::NEW_GAME_COMMAND, "e2e4","a7a6", "e1e3", CommandDefines::NEW_GAME_COMMAND, "e2e4","a7a6", "e1e3", CommandDefines::QUIT_COMMAND});
+        
+        testHarness.chessEngine().runChessEngine();
+        CHECK(testHarness.lastKindOfPieceMoved() == PieceType::QUEEN);
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("e1e3")));
+    }
+    
+    SECTION("Will move black queens back to starting position if invoked mid game")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.fakeInput().setInputSequence({CommandDefines::NEW_GAME_COMMAND, "a2a3","e7e5", "a3a4", "e8e6", CommandDefines::NEW_GAME_COMMAND, "a2a3","e7e5", "a3a4", "e8e6", CommandDefines::QUIT_COMMAND});
+        
+        testHarness.chessEngine().runChessEngine();
+        CHECK(testHarness.lastKindOfPieceMoved() == PieceType::QUEEN);
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("e8e6")));
+    }
 }
 

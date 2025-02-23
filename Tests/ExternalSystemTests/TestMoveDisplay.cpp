@@ -54,5 +54,16 @@ TEST_CASE("Testing the external system that chess moves are displayed as intende
         
         CHECK(terminalWrapper->lastOutputMatches("Moving Rook a1a2"));
     }
+    
+    SECTION("Queen moves are described correctly")
+    {
+        FakeTerminalWrapper* terminalWrapper = new FakeTerminalWrapper();
+        TerminalOutputSystem outputSystem(terminalWrapper);
+        ChessBoard board;
+        board.applyMove(ChessMove("e2e4"));
+        outputSystem.displayMoveToUser(ChessMove("e1e3"), board);
+        
+        CHECK(terminalWrapper->lastOutputMatches("Moving Queen e1e3"));
+    }
 }
 

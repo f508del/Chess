@@ -11,6 +11,7 @@
 #include "ChessMove.hpp"
 #include "ChessSquare.hpp"
 #include "Pawn.hpp"
+#include "Queen.hpp"
 #include "Rook.hpp"
 #include "Knight.hpp"
 
@@ -25,6 +26,8 @@ ChessBoard::ChessBoard()
 , blackBishopCapabilities_(new Bishop(PieceAffiliation::BLACK_PIECE))
 , whiteRookCapabilities_(new Rook(PieceAffiliation::WHITE_PIECE))
 , blackRookCapabilities_(new Rook(PieceAffiliation::BLACK_PIECE))
+, whiteQueenCapabilities_(new Queen(PieceAffiliation::WHITE_PIECE))
+, blackQueenCapabilities_(new Queen(PieceAffiliation::BLACK_PIECE))
 , playerToMakeNextMove_(PieceAffiliation::WHITE_PIECE)
 {
    resetBoard();
@@ -99,6 +102,10 @@ void ChessBoard::resetBoard()
     boardState_[ChessSquare('h', 1)] = whiteRookCapabilities_.data();
     boardState_[ChessSquare('a', 8)] = blackRookCapabilities_.data();
     boardState_[ChessSquare('h', 8)] = blackRookCapabilities_.data();
+    
+    // setup the queens
+    boardState_[ChessSquare('e', 1)] = whiteQueenCapabilities_.data();
+    boardState_[ChessSquare('e', 8)] = blackQueenCapabilities_.data();
 }
 
 PieceAffiliation ChessBoard::playerToMakeNextMove() const
