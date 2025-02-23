@@ -11,10 +11,8 @@
 #include "ChessEngineTestHarness.hpp"
 #include "ChessMove.hpp"
 #include "CommandDefines.hpp"
-#include "OutputErrorDefines.hpp"
 
 using namespace std;
-using namespace OutputErrorDefines;
 using namespace Chess;
 
 TEST_CASE("Testing the enforcement of alternating move order")

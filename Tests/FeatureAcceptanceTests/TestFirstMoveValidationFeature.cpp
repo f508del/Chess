@@ -12,10 +12,8 @@
 #include "CommandDefines.hpp"
 #include "FakeInputSystem.hpp"
 #include "FakeOutputSystem.hpp"
-#include "OutputErrorDefines.hpp"
 
 using namespace std;
-using namespace OutputErrorDefines;
 using namespace Chess;
 
 namespace {

@@ -10,10 +10,8 @@
 #include "ChessEngineTestHarness.hpp"
 #include "ChessMove.hpp"
 #include "CommandDefines.hpp"
-#include "OutputErrorDefines.hpp"
 
 using namespace std;
-using namespace OutputErrorDefines;
 using namespace Chess;
 
 TEST_CASE("Testing that a moved piece is now only seen at its new location")
