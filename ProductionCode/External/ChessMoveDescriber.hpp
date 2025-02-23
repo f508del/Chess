@@ -20,7 +20,7 @@ public:
    ChessMoveDescriber();
    virtual ~ChessMoveDescriber();
 
-   std::string describeMove(const ChessMove& move, const I_ReadOnlyChessBoard& board) const;
+   std::string describeValidMove(const ChessMove& move, const I_ReadOnlyChessBoard& board) const;
     
 private:
     std::string chessPieceTypeName(Chess::PieceType type) const;

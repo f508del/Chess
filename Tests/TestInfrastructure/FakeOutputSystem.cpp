@@ -42,7 +42,7 @@ void FakeOutputSystem::resetUxForNewGame()
     resetUxForNewGameHasBeenCalled_ = true;
 }
 
-void FakeOutputSystem::displayMoveToUser(const ChessMove &move, const I_ReadOnlyChessBoard & board)
+void FakeOutputSystem::displayValidMoveToUser(const ChessMove &move, const I_ReadOnlyChessBoard & board)
 {
     mostRecentMove_ = move;
     const I_ChessPiece* piece = board.pieceAt(move.startingSquare());

@@ -67,7 +67,7 @@ void ChessEngine::runChessEngine()
            else
            {
                // order here matters, as output system needs access to board state before move is applied.
-               outputSystem_.displayMoveToUser(move, *board_);
+               outputSystem_.displayValidMoveToUser(move, *board_);
                board_->applyMove(move);
                board_->togglePlayerInitiative();
            }

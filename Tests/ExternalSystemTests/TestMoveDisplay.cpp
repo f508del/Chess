@@ -18,7 +18,7 @@ TEST_CASE("Testing the external system that chess moves are displayed as intende
         FakeTerminalWrapper* terminalWrapper = new FakeTerminalWrapper();
         TerminalOutputSystem outputSystem(terminalWrapper);
         ChessBoard board;
-        outputSystem.displayMoveToUser(ChessMove("a2a3"), board);
+        outputSystem.displayValidMoveToUser(ChessMove("a2a3"), board);
         
         CHECK(terminalWrapper->lastOutputMatches("Moving Pawn a2a3"));
     }
@@ -28,7 +28,7 @@ TEST_CASE("Testing the external system that chess moves are displayed as intende
         FakeTerminalWrapper* terminalWrapper = new FakeTerminalWrapper();
         TerminalOutputSystem outputSystem(terminalWrapper);
         ChessBoard board;
-        outputSystem.displayMoveToUser(ChessMove("b1a3"), board);
+        outputSystem.displayValidMoveToUser(ChessMove("b1a3"), board);
         
         CHECK(terminalWrapper->lastOutputMatches("Moving Knight b1a3"));
     }
@@ -39,7 +39,7 @@ TEST_CASE("Testing the external system that chess moves are displayed as intende
         TerminalOutputSystem outputSystem(terminalWrapper);
         ChessBoard board;
         board.applyMove(ChessMove("b2b3"));
-        outputSystem.displayMoveToUser(ChessMove("c1b2"), board);
+        outputSystem.displayValidMoveToUser(ChessMove("c1b2"), board);
         
         CHECK(terminalWrapper->lastOutputMatches("Moving Bishop c1b2"));
     }
@@ -50,7 +50,7 @@ TEST_CASE("Testing the external system that chess moves are displayed as intende
         TerminalOutputSystem outputSystem(terminalWrapper);
         ChessBoard board;
         board.applyMove(ChessMove("a2a4"));
-        outputSystem.displayMoveToUser(ChessMove("a1a2"), board);
+        outputSystem.displayValidMoveToUser(ChessMove("a1a2"), board);
         
         CHECK(terminalWrapper->lastOutputMatches("Moving Rook a1a2"));
     }
@@ -61,7 +61,7 @@ TEST_CASE("Testing the external system that chess moves are displayed as intende
         TerminalOutputSystem outputSystem(terminalWrapper);
         ChessBoard board;
         board.applyMove(ChessMove("e2e4"));
-        outputSystem.displayMoveToUser(ChessMove("e1e3"), board);
+        outputSystem.displayValidMoveToUser(ChessMove("e1e3"), board);
         
         CHECK(terminalWrapper->lastOutputMatches("Moving Queen e1e3"));
     }

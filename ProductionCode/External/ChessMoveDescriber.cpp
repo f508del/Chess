@@ -21,7 +21,7 @@ ChessMoveDescriber::~ChessMoveDescriber()
 {
 }
 
-std::string ChessMoveDescriber::describeMove(const ChessMove& move, const I_ReadOnlyChessBoard& board) const
+std::string ChessMoveDescriber::describeValidMove(const ChessMove& move, const I_ReadOnlyChessBoard& board) const
 {
    std::string description("Moving ");
    if (board.anyPieceExistsAt(move.startingSquare()))
