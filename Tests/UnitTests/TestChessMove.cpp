@@ -11,11 +11,10 @@
 
 TEST_CASE("Testing the ChessMove object")
 {
-   SECTION("basic string parsing and population")
+   SECTION("basic string parsing and validation")
    {
    ChessMove move;
    move.populateFromString("a1b2");
-   CHECK(move.toString() == "a1b2");
    CHECK(move.isOnTheBoard());
 
    ChessMove move2;

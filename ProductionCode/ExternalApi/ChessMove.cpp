@@ -7,7 +7,6 @@
 //
 
 #include "ChessMove.hpp"
-#include "OutputErrorDefines.hpp"
 
 using namespace std;
 
@@ -22,20 +21,6 @@ ChessMove::ChessMove(const std::string& moveString)
     {
         resetState();
     }
-}
-
-string ChessMove::toString() const
-{
-   if (!isOnTheBoard())
-   {
-      return OutputErrorDefines::MOVE_NOT_ON_BOARD_ERROR;
-   }
-
-   char resultString[5];
-   snprintf(resultString, 5, "%c%u%c%u", startingSquare_.file(),
-           startingSquare_.rank(), endingSquare_.file(), endingSquare_.rank());
-   resultString[4] = '\0';
-   return resultString;
 }
 
 bool ChessMove::populateFromString(const string& moveString)

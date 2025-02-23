@@ -23,16 +23,23 @@ ChessMoveDescriber::~ChessMoveDescriber()
 
 std::string ChessMoveDescriber::describeValidMove(const ChessMove& move, const I_ReadOnlyChessBoard& board) const
 {
-   std::string description("Moving ");
-   if (board.anyPieceExistsAt(move.startingSquare()))
-   {
+    std::string description("Moving ");
+    if (board.anyPieceExistsAt(move.startingSquare()))
+    {
        const I_ChessPiece* currentPiece = board.pieceAt(move.startingSquare());
        PieceType pieceType = currentPiece->pieceType();
        std::string typeName = chessPieceTypeName(pieceType);
        description.append(typeName);
-   }
+    }
 
-   return description.append(" ").append(move.toString());
+    std::string moveString;
+    char resultString[5];
+    snprintf(resultString, 5, "%c%u%c%u", move.startingSquare().file(),
+            move.startingSquare().rank(), move.endingSquare().file(), move.endingSquare().rank());
+    resultString[4] = '\0';
+    moveString = resultString;
+    
+    return description.append(" ").append(moveString);
 }
 
 std::string ChessMoveDescriber::chessPieceTypeName(PieceType type) const

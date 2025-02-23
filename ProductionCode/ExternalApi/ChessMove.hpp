@@ -18,7 +18,6 @@ public:
     ChessMove();
     ChessMove(const std::string& moveString);
     bool isOnTheBoard() const;
-    std::string toString() const;
     bool populateFromString(const std::string& moveString);
 
     const ChessSquare& startingSquare() const;
