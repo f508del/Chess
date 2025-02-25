@@ -131,7 +131,7 @@ TEST_CASE("Testing the validation of the user's opening move when invalid")
 
    SECTION("will detect a move that attempts to move the king")
    {
-       runTestWithMoveThatAttemptsToMoveAPieceThatCantCurrentlyMoveToThatSquare("d1d2");
+       runTestWithMoveDestinationThatIsBlockedByAnotherPiece("d1d2");
    }
 
    SECTION("will detect a move that moves a knight to an occupied square")

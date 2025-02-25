@@ -10,6 +10,5 @@ This is meant as a simple backlog of what refactorings and features are upcoming
  16. Refactor the input system to keep string parsing in the external library.
  20. Add support for en passant.
  21. Add support for castling.
- 23. Integrate King class.
  25. Add support for promotions
 */

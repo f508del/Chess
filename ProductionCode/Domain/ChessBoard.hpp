@@ -17,6 +17,7 @@ class Bishop;
 class ChessSquare;
 class ChessMove;
 class I_ChessPiece;
+class King;
 class Knight;
 class Pawn;
 class Queen;
@@ -52,6 +53,8 @@ private:
     ScopedPointer<Rook> blackRookCapabilities_;
     ScopedPointer<Queen> whiteQueenCapabilities_;
     ScopedPointer<Queen> blackQueenCapabilities_;
+    ScopedPointer<King> whiteKingCapabilities_;
+    ScopedPointer<King> blackKingCapabilities_;
 
    std::map<ChessSquare, const I_ChessPiece*> boardState_;
 

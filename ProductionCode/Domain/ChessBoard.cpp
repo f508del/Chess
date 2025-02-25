@@ -13,6 +13,7 @@
 #include "Pawn.hpp"
 #include "Queen.hpp"
 #include "Rook.hpp"
+#include "King.hpp"
 #include "Knight.hpp"
 
 using namespace Chess;
@@ -28,6 +29,8 @@ ChessBoard::ChessBoard()
 , blackRookCapabilities_(new Rook(PieceAffiliation::BLACK_PIECE))
 , whiteQueenCapabilities_(new Queen(PieceAffiliation::WHITE_PIECE))
 , blackQueenCapabilities_(new Queen(PieceAffiliation::BLACK_PIECE))
+, whiteKingCapabilities_(new King(PieceAffiliation::WHITE_PIECE))
+, blackKingCapabilities_(new King(PieceAffiliation::BLACK_PIECE))
 , playerToMakeNextMove_(PieceAffiliation::WHITE_PIECE)
 {
    resetBoard();
@@ -78,13 +81,6 @@ void ChessBoard::resetBoard()
        boardState_[ChessSquare(file, 7)] = blackPawnCapabilities_.data();
     }
 
-    // make back rows pawns for now, until all pieces are implemented.
-    for (char file = 'a'; file <= 'h'; file++)
-    {
-       boardState_[ChessSquare(file, 1)] = whitePawnCapabilities_.data();
-       boardState_[ChessSquare(file, 8)] = blackPawnCapabilities_.data();
-    }
-
     // setup the knights
     boardState_[ChessSquare('b', 1)] = whiteKnightCapabilities_.data();
     boardState_[ChessSquare('g', 1)] = whiteKnightCapabilities_.data();
@@ -106,6 +102,10 @@ void ChessBoard::resetBoard()
     // setup the queens
     boardState_[ChessSquare('e', 1)] = whiteQueenCapabilities_.data();
     boardState_[ChessSquare('e', 8)] = blackQueenCapabilities_.data();
+    
+    // setup the kings
+    boardState_[ChessSquare('d', 1)] = whiteKingCapabilities_.data();
+    boardState_[ChessSquare('d', 8)] = blackKingCapabilities_.data();
 }
 
 PieceAffiliation ChessBoard::playerToMakeNextMove() const
