@@ -11,6 +11,7 @@
 #include "ScopedPointer.hpp"
 
 class ChessBoard;
+class ChessMove;
 class ChessMoveValidator;
 class I_InputSystem;
 class I_OutputSystem;
@@ -18,16 +19,22 @@ class I_OutputSystem;
 class ChessEngine
 {
 public:
-   explicit ChessEngine(I_InputSystem& inputSystem,
-                        I_OutputSystem& outputSystem);
+    explicit ChessEngine(I_InputSystem& inputSystem,
+                         I_OutputSystem& outputSystem);
 
-   virtual ~ChessEngine();
+    virtual ~ChessEngine();
 
-   void runChessEngine();
+    void runChessEngine();
+    
+private:
+    void resetForNewGame();
+    void endEventLoop();
+    void attemptMove(const ChessMove& move);
 
 private:
-   I_InputSystem& inputSystem_;
-   I_OutputSystem& outputSystem_;
-   ScopedPointer<ChessBoard> board_;
-   ScopedPointer<ChessMoveValidator> moveValidator_;
+    I_InputSystem& inputSystem_;
+    I_OutputSystem& outputSystem_;
+    ScopedPointer<ChessBoard> board_;
+    ScopedPointer<ChessMoveValidator> moveValidator_;
+    bool userHasQuitTheProgram_;
 };
