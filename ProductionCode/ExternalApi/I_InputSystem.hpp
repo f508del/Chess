@@ -14,5 +14,5 @@ class I_InputSystem
 {
 public:
    virtual ~I_InputSystem(){}
-   virtual std::string readNextUserEntry() = 0;
+   virtual std::string getNextInput() = 0;
 };

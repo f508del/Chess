@@ -18,7 +18,7 @@ public:
    virtual ~FakeInputSystem();
 
    // from I_InputSystem:
-   std::string readNextUserEntry() override;
+   std::string getNextInput() override;
 
    // Helpers
    void setInputSequence(const std::list<std::string>& inputSequence);

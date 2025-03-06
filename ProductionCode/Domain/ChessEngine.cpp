@@ -41,7 +41,7 @@ void ChessEngine::runChessEngine()
     string userInput;
     while (!userHasQuitTheProgram_)
     {
-       userInput = inputSystem_.readNextUserEntry();
+       userInput = inputSystem_.getNextInput();
        if (userInput == QUIT_COMMAND)
        {
            endEventLoop();

@@ -16,5 +16,5 @@ public:
    explicit TerminalInputSystem();
    virtual ~TerminalInputSystem();
 
-   std::string readNextUserEntry() override;
+   std::string getNextInput() override;
 };

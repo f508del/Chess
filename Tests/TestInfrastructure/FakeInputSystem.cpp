@@ -21,7 +21,7 @@ FakeInputSystem::~FakeInputSystem()
 
 }
 
-string FakeInputSystem::readNextUserEntry()
+string FakeInputSystem::getNextInput()
 {
    if (!inputBuffer_.empty())
    {
