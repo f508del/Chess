@@ -13,6 +13,6 @@
 class I_InputSystem
 {
 public:
-   virtual ~I_InputSystem(){}
-   virtual std::string getNextInput() = 0;
+    virtual ~I_InputSystem(){}
+    virtual std::string getNextInput() = 0;
 };
