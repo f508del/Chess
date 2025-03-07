@@ -7,10 +7,14 @@
 //
 
 #include "TerminalInputSystem.hpp"
+#include "CommandDefines.hpp"
 #include <cctype>
 #include <cstdio>
 
+using namespace CommandDefines;
+
 TerminalInputSystem::TerminalInputSystem()
+: newGameCallback_([]{})
 {
 
 }
@@ -28,5 +32,17 @@ std::string TerminalInputSystem::getNextInput()
     std::string lowerInputString(inputString);
     std::transform(lowerInputString.begin(), lowerInputString.end(), lowerInputString.begin(),
                    [](unsigned char c){return std::tolower(c);});
+    
+    if (lowerInputString == NEW_GAME_COMMAND)
+    {
+        newGameCallback_();
+    }
     return lowerInputString;
 }
+
+void TerminalInputSystem::registerNewGameCallback(std::function<void ()> callback)
+{
+    newGameCallback_ = callback;
+    return;
+}
+

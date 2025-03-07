@@ -7,11 +7,14 @@
 //
 
 #include "FakeInputSystem.hpp"
+#include "CommandDefines.hpp"
 
 using namespace std;
+using namespace CommandDefines;
 
 FakeInputSystem::FakeInputSystem()
 : inputBuffer_()
+, newGameCallback_([]{})
 {
 
 }
@@ -29,8 +32,14 @@ string FakeInputSystem::getNextInput()
       inputBuffer_.pop_front();
       std::transform(nextInput.begin(), nextInput.end(), nextInput.begin(),
                          [](unsigned char c){return std::tolower(c);});
+       if (nextInput == NEW_GAME_COMMAND)
+       {
+           newGameCallback_();
+       }
       return nextInput;
    }
+    
+    
    return string();
 }
 
@@ -43,3 +52,9 @@ void FakeInputSystem::clearInputSequence()
 {
    inputBuffer_.clear();
 }
+
+void FakeInputSystem::registerNewGameCallback(std::function<void ()> callback)
+{
+    newGameCallback_ = callback;
+}
+

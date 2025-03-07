@@ -14,16 +14,19 @@
 class FakeInputSystem : public I_InputSystem
 {
 public:
-   explicit FakeInputSystem();
-   virtual ~FakeInputSystem();
+    explicit FakeInputSystem();
+    virtual ~FakeInputSystem();
 
-   // from I_InputSystem:
-   std::string getNextInput() override;
+    // from I_InputSystem:
+    std::string getNextInput() override;
+    void registerNewGameCallback(std::function<void()> callback) override;
 
-   // Helpers
-   void setInputSequence(const std::list<std::string>& inputSequence);
-   void clearInputSequence();
+    // Helpers
+    void setInputSequence(const std::list<std::string>& inputSequence);
+    void clearInputSequence();
 
 private:
-   std::list<std::string> inputBuffer_;
+    std::list<std::string> inputBuffer_;
+    
+    std::function<void()> newGameCallback_;
 };

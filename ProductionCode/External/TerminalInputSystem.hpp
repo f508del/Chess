@@ -13,8 +13,13 @@
 class TerminalInputSystem : public I_InputSystem
 {
 public:
-   explicit TerminalInputSystem();
-   virtual ~TerminalInputSystem();
+    explicit TerminalInputSystem();
+    virtual ~TerminalInputSystem();
 
-   std::string getNextInput() override;
+    std::string getNextInput() override;
+    
+    void registerNewGameCallback(std::function<void()> callback) override;
+    
+private:
+    std::function<void()> newGameCallback_;
 };
