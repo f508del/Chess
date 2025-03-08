@@ -15,9 +15,9 @@
 
 using namespace Chess;
 
-TerminalOutputSystem::TerminalOutputSystem(TerminalWrapper* newWrapperToOwn)
+TerminalOutputSystem::TerminalOutputSystem(TerminalWrapper& wrapper)
 : moveDescriber_(new ChessMoveDescriber())
-, terminalWrapper_(newWrapperToOwn)
+, terminalWrapper_(wrapper)
 {
 
 }
@@ -29,7 +29,7 @@ TerminalOutputSystem::~TerminalOutputSystem()
 
 void TerminalOutputSystem::showTextToUser(const char* displayString)
 {
-    terminalWrapper_->writeToTerminal(displayString);
+    terminalWrapper_.writeToTerminal(displayString);
 }
 
 void TerminalOutputSystem::initializeChessUserInterface()

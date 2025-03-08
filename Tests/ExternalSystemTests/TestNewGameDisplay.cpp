@@ -14,13 +14,13 @@ TEST_CASE("Test that if new game is requsted, the output system displays the exp
 {
     SECTION("a new game command will display the correct strings")
     {
-        FakeTerminalWrapper* terminalWrapper = new FakeTerminalWrapper();
+        FakeTerminalWrapper terminalWrapper;
         TerminalOutputSystem outputSystem(terminalWrapper);
         
         outputSystem.initializeChessUserInterface();
         
-        CHECK(terminalWrapper->outputContains("===============Main menu ================"));
-        CHECK(terminalWrapper->outputContains("Press 'q' to quit."));
-        CHECK(terminalWrapper->outputContains("Press 'n' for a new game."));
+        CHECK(terminalWrapper.outputContains("===============Main menu ================"));
+        CHECK(terminalWrapper.outputContains("Press 'q' to quit."));
+        CHECK(terminalWrapper.outputContains("Press 'n' for a new game."));
     }
 }

@@ -13,12 +13,12 @@ TEST_CASE("Test that if quit is requsted, the output system displays the expecte
 {
     SECTION("a quit command will display the correct string")
     {
-        FakeTerminalWrapper* terminalWrapper = new FakeTerminalWrapper();
+        FakeTerminalWrapper terminalWrapper;
         TerminalOutputSystem outputSystem(terminalWrapper);
         
         outputSystem.endUserInteraction();
         
-        CHECK(terminalWrapper->lastOutputMatches("quitting chess..."));
+        CHECK(terminalWrapper.lastOutputMatches("quitting chess..."));
     }
 }
 

@@ -17,7 +17,7 @@ class TerminalWrapper;
 class TerminalOutputSystem : public I_OutputSystem
 {
 public:
-   explicit TerminalOutputSystem(TerminalWrapper* newWrapperToOwn);
+   explicit TerminalOutputSystem(TerminalWrapper& wrapper);
    virtual ~TerminalOutputSystem();
 
     void initializeChessUserInterface() override;
@@ -31,5 +31,5 @@ private: // helper functions
     
 private:
     ScopedPointer<ChessMoveDescriber> moveDescriber_;
-    ScopedPointer<TerminalWrapper> terminalWrapper_;
+    TerminalWrapper& terminalWrapper_;
 };
