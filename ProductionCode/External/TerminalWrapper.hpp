@@ -11,7 +11,9 @@ class TerminalWrapper
 {
 public:
     TerminalWrapper() = default;
+    virtual ~TerminalWrapper() = default;
     
     virtual void writeToTerminal(const std::string& text);
+    virtual std::string readFromTerminal();
 };
 

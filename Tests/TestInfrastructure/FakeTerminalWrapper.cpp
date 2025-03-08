@@ -19,6 +19,17 @@ void FakeTerminalWrapper::writeToTerminal(const string& text)
     capturedOutput_.push_back(text);
 }
 
+string FakeTerminalWrapper::readFromTerminal()
+{
+    string output;
+    if (!queuedInput_.empty())
+    {
+        output = queuedInput_.front();
+        queuedInput_.pop_front();
+    }
+    return output;
+}
+
 bool FakeTerminalWrapper::lastOutputMatches(const string& outputString) const
 {
     bool stringIsMatching = (outputString == lastOutput_);
@@ -41,4 +52,9 @@ bool FakeTerminalWrapper::outputContains(const string& outputEntry) const
       }
 
    return false;
+}
+
+void FakeTerminalWrapper::enqueueInput(list<string>& inputList)
+{
+    queuedInput_ = inputList;
 }
