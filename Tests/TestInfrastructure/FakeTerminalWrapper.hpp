@@ -13,10 +13,12 @@ class FakeTerminalWrapper : public TerminalWrapper
 public:
     FakeTerminalWrapper();
     
+    // inherited
     void writeToTerminal(const std::string& text) override;
     
+    // helpers
     bool lastOutputMatches(const std::string& outputString) const;
-    bool contains(const std::string& outputEntry) const;
+    bool outputContains(const std::string& outputEntry) const;
 private:
     std::list<std::string> capturedOutput_;
     std::string lastOutput_;

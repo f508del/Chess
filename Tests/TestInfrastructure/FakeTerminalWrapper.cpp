@@ -30,7 +30,7 @@ bool FakeTerminalWrapper::lastOutputMatches(const string& outputString) const
     return outputString == lastOutput_;
 }
 
-bool FakeTerminalWrapper::contains(const string& outputEntry) const
+bool FakeTerminalWrapper::outputContains(const string& outputEntry) const
 {
    for (list<string>::const_iterator it = capturedOutput_.begin(); it != capturedOutput_.end(); it++)
       {

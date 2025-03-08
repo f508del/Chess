@@ -19,8 +19,8 @@ TEST_CASE("Test that if new game is requsted, the output system displays the exp
         
         outputSystem.initializeChessUserInterface();
         
-        CHECK(terminalWrapper->contains("===============Main menu ================"));
-        CHECK(terminalWrapper->contains("Press 'q' to quit."));
-        CHECK(terminalWrapper->contains("Press 'n' for a new game."));
+        CHECK(terminalWrapper->outputContains("===============Main menu ================"));
+        CHECK(terminalWrapper->outputContains("Press 'q' to quit."));
+        CHECK(terminalWrapper->outputContains("Press 'n' for a new game."));
     }
 }
