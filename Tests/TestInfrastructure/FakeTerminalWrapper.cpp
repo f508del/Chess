@@ -54,7 +54,7 @@ bool FakeTerminalWrapper::outputContains(const string& outputEntry) const
    return false;
 }
 
-void FakeTerminalWrapper::enqueueInput(list<string>& inputList)
+void FakeTerminalWrapper::enqueueInput(const list<string>& inputList)
 {
     queuedInput_ = inputList;
 }

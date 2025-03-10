@@ -20,7 +20,7 @@ public:
     // helpers
     bool lastOutputMatches(const std::string& outputString) const;
     bool outputContains(const std::string& outputEntry) const;
-    void enqueueInput(std::list<std::string>& inputList);
+    void enqueueInput(const std::list<std::string>& inputList);
 private:
     std::list<std::string> capturedOutput_;
     std::string lastOutput_;
