@@ -26,7 +26,9 @@ ChessEngine::ChessEngine(I_InputSystem& inputSystem,
 , moveValidator_(new ChessMoveValidator(*board_))
 , userHasQuitTheProgram_(false)
 {
+    // TODO: some test needs to force these to exist...
     inputSystem.registerNewGameCallback(std::bind(&ChessEngine::resetForNewGame, this));
+    inputSystem.registerQuitCallback(std::bind(&ChessEngine::endEventLoop, this));
 }
 
 ChessEngine::~ChessEngine()
@@ -44,6 +46,7 @@ void ChessEngine::runChessEngine()
        userInput = inputSystem_.getNextInput();
        if (userInput == QUIT_COMMAND)
        {
+           // TODO: delete this case later
            endEventLoop();
        }
        else if (userInput == NEW_GAME_COMMAND)
