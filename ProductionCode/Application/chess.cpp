@@ -24,7 +24,7 @@ int main(int /*argc*/, char** /*argv*/)
 {
     TerminalWrapper wrapper;
     TerminalOutputSystem outputSystem(wrapper);
-	TerminalInputSystem inputSystem;
+	TerminalInputSystem inputSystem(wrapper);
 
 	ChessEngine engine(inputSystem, outputSystem);
 

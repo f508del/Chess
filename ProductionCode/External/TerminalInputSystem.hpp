@@ -10,10 +10,12 @@
 
 #include "I_InputSystem.hpp"
 
+class TerminalWrapper;
+
 class TerminalInputSystem : public I_InputSystem
 {
 public:
-    explicit TerminalInputSystem();
+    explicit TerminalInputSystem(TerminalWrapper& wrapper);
     virtual ~TerminalInputSystem();
 
     std::string getNextInput() override;
@@ -22,4 +24,5 @@ public:
     
 private:
     std::function<void()> newGameCallback_;
+    TerminalWrapper& terminalWrapper_;
 };

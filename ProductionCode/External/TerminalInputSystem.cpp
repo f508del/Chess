@@ -8,13 +8,15 @@
 
 #include "TerminalInputSystem.hpp"
 #include "CommandDefines.hpp"
+#include "TerminalWrapper.hpp"
 #include <cctype>
 #include <cstdio>
 
 using namespace CommandDefines;
 
-TerminalInputSystem::TerminalInputSystem()
+TerminalInputSystem::TerminalInputSystem(TerminalWrapper& wrapper)
 : newGameCallback_([]{})
+, terminalWrapper_(wrapper)
 {
 
 }
@@ -26,10 +28,8 @@ TerminalInputSystem::~TerminalInputSystem()
 
 std::string TerminalInputSystem::getNextInput()
 {
-    char inputString[64];
-    fscanf(stdin, "%63s", inputString);
+    std::string lowerInputString = terminalWrapper_.readFromTerminal();
     
-    std::string lowerInputString(inputString);
     std::transform(lowerInputString.begin(), lowerInputString.end(), lowerInputString.begin(),
                    [](unsigned char c){return std::tolower(c);});
     
