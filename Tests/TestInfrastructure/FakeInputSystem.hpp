@@ -20,6 +20,7 @@ public:
     // from I_InputSystem:
     std::string getNextInput() override;
     void registerNewGameCallback(std::function<void()> callback) override;
+    void registerQuitCallback(std::function<void()> callback) override;
 
     // Helpers
     void setInputSequence(const std::list<std::string>& inputSequence);
@@ -29,4 +30,5 @@ private:
     std::list<std::string> inputBuffer_;
     
     std::function<void()> newGameCallback_;
+    std::function<void()> quitCallback_;
 };

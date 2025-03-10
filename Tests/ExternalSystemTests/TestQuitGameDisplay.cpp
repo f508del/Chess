@@ -8,10 +8,11 @@
 #include "Catch.hpp"
 #include "FakeTerminalWrapper.hpp"
 #include "TerminalOutputSystem.hpp"
+#include "TerminalInputSystem.hpp"
 
-TEST_CASE("Test that if quit is requsted, the output system displays the expected string")
+TEST_CASE("Test that if quit is requested, the interaction systems behaves as expected")
 {
-    SECTION("a quit command will display the correct string")
+    SECTION("a quit event will display the correct string")
     {
         FakeTerminalWrapper terminalWrapper;
         TerminalOutputSystem outputSystem(terminalWrapper);
@@ -19,6 +20,20 @@ TEST_CASE("Test that if quit is requsted, the output system displays the expecte
         outputSystem.endUserInteraction();
         
         CHECK(terminalWrapper.lastOutputMatches("quitting chess..."));
+    }
+    
+    SECTION("A quit input will trigger the quit logic")
+    {
+        FakeTerminalWrapper terminalWrapper;
+        TerminalInputSystem inputSystem(terminalWrapper);
+        bool quitLogicHasBeenTriggered = false;
+        std::function<void()> quitLogic([&](){quitLogicHasBeenTriggered = true;});
+        inputSystem.registerQuitCallback(quitLogic);
+        terminalWrapper.enqueueInput({"q"});
+        
+        inputSystem.getNextInput();
+        
+        CHECK(quitLogicHasBeenTriggered);
     }
 }
 

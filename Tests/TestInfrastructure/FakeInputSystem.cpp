@@ -15,6 +15,7 @@ using namespace CommandDefines;
 FakeInputSystem::FakeInputSystem()
 : inputBuffer_()
 , newGameCallback_([]{})
+, quitCallback_([]{})
 {
 
 }
@@ -58,3 +59,7 @@ void FakeInputSystem::registerNewGameCallback(std::function<void ()> callback)
     newGameCallback_ = callback;
 }
 
+void FakeInputSystem::registerQuitCallback(std::function<void ()> callback)
+{
+    quitCallback_ = callback;
+}

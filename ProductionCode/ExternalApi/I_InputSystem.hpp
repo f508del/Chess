@@ -18,5 +18,6 @@ public:
     virtual std::string getNextInput() = 0;
     
     virtual void registerNewGameCallback(std::function<void()> callback) = 0;
+    virtual void registerQuitCallback(std::function<void()> callback) = 0;
 };
 

@@ -21,8 +21,10 @@ public:
     std::string getNextInput() override;
     
     void registerNewGameCallback(std::function<void()> callback) override;
+    void registerQuitCallback(std::function<void()> callback) override;
     
 private:
     std::function<void()> newGameCallback_;
+    std::function<void()> quitCallback_;
     TerminalWrapper& terminalWrapper_;
 };

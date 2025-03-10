@@ -16,6 +16,7 @@ using namespace CommandDefines;
 
 TerminalInputSystem::TerminalInputSystem(TerminalWrapper& wrapper)
 : newGameCallback_([]{})
+, quitCallback_([]{})
 , terminalWrapper_(wrapper)
 {
 
@@ -37,6 +38,10 @@ std::string TerminalInputSystem::getNextInput()
     {
         newGameCallback_();
     }
+    else if (lowerInputString == QUIT_COMMAND)
+    {
+        quitCallback_();
+    }
     return lowerInputString;
 }
 
@@ -46,3 +51,8 @@ void TerminalInputSystem::registerNewGameCallback(std::function<void ()> callbac
     return;
 }
 
+void TerminalInputSystem::registerQuitCallback(std::function<void ()> callback)
+{
+    quitCallback_ = callback;
+    return;
+}
