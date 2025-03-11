@@ -8,7 +8,12 @@ This is meant as a simple backlog of what refactorings and features are upcoming
  
  14. Refactor ChessSquare to become impossible to mix up rank and file.
  16. Refactor the input system to keep string parsing in the external library.
+    a) In progress: Need test infrastructure refactor to remove string parsing from domain feature tests for new game and quit game.
  20. Add support for en passant.
  21. Add support for castling.
  25. Add support for promotions
+ 26. Detect Check
+ 27. Detect Checkmate
+ 28. Detect Stalemate
+ 29. Add Random legal move AI engine
 */
