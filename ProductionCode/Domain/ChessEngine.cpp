@@ -47,7 +47,7 @@ void ChessEngine::runChessEngine()
        if (userInput == QUIT_COMMAND)
        {
            // TODO: delete this case later
-           endEventLoop();
+           //endEventLoop();
        }
        else if (userInput == NEW_GAME_COMMAND)
        {

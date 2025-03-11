@@ -37,6 +37,10 @@ string FakeInputSystem::getNextInput()
        {
            newGameCallback_();
        }
+       else if (nextInput == QUIT_COMMAND)
+       {
+           quitCallback_();
+       }
       return nextInput;
    }
     
