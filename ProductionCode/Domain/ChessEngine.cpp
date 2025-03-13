@@ -10,11 +10,9 @@
 #include "ChessEngine.hpp"
 #include "ChessMove.hpp"
 #include "ChessMoveValidator.hpp"
-#include "CommandDefines.hpp"
 #include "I_InputSystem.hpp"
 #include "I_OutputSystem.hpp"
 
-using namespace CommandDefines;
 using namespace Chess;
 using namespace std;
 
