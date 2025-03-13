@@ -14,5 +14,7 @@ This is meant as a simple backlog of what refactorings and features are upcoming
  27. Detect Checkmate
  28. Detect Stalemate
  29. Add Random legal move AI engine
+ 29.1 Enable separate input systems for black player and white player (In progress)
  30. Refactor Fake input system to inherit Terminal input system
+ 31. Address test coverage TODO in ChessEngine
 */

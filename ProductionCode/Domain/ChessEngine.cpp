@@ -16,18 +16,18 @@
 using namespace Chess;
 using namespace std;
 
-ChessEngine::ChessEngine(I_InputSystem& inputSystem,
+ChessEngine::ChessEngine(I_InputSystem& whiteInputSystem,
                          I_OutputSystem& outputSystem)
-: inputSystem_(inputSystem)
+: whiteInputSystem_(whiteInputSystem)
 , outputSystem_(outputSystem)
 , board_(new ChessBoard())
 , moveValidator_(new ChessMoveValidator(*board_))
 , userHasQuitTheProgram_(false)
 {
     // TODO: some test needs to force these to exist...
-    inputSystem.registerNewGameCallback(std::bind(&ChessEngine::resetForNewGame, this));
-    inputSystem.registerQuitCallback(std::bind(&ChessEngine::endEventLoop, this));
-    inputSystem.registerMoveAttemptCallback(std::bind(&ChessEngine::attemptMove, this, std::placeholders::_1));
+    whiteInputSystem.registerNewGameCallback(std::bind(&ChessEngine::resetForNewGame, this));
+    whiteInputSystem.registerQuitCallback(std::bind(&ChessEngine::endEventLoop, this));
+    whiteInputSystem.registerMoveAttemptCallback(std::bind(&ChessEngine::attemptMove, this, std::placeholders::_1));
 }
 
 ChessEngine::~ChessEngine()
@@ -41,7 +41,7 @@ void ChessEngine::runChessEngine()
     
     while (!userHasQuitTheProgram_)
     {
-       inputSystem_.getNextInput();
+        whiteInputSystem_.getNextInput();
     }
 
     outputSystem_.endUserInteraction();

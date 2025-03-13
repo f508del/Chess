@@ -19,7 +19,7 @@ class I_OutputSystem;
 class ChessEngine
 {
 public:
-    explicit ChessEngine(I_InputSystem& inputSystem,
+    explicit ChessEngine(I_InputSystem& whiteInputSystem,
                          I_OutputSystem& outputSystem);
 
     virtual ~ChessEngine();
@@ -32,7 +32,7 @@ private:
     void attemptMove(const ChessMove& move);
 
 private:
-    I_InputSystem& inputSystem_;
+    I_InputSystem& whiteInputSystem_;
     I_OutputSystem& outputSystem_;
     ScopedPointer<ChessBoard> board_;
     ScopedPointer<ChessMoveValidator> moveValidator_;
