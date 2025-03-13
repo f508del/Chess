@@ -18,7 +18,7 @@ public:
     virtual ~FakeInputSystem();
 
     // from I_InputSystem:
-    std::string getNextInput() override;
+    void getNextInput() override;
     void registerNewGameCallback(std::function<void()> callback) override;
     void registerQuitCallback(std::function<void()> callback) override;
     void registerMoveAttemptCallback(std::function<void(const ChessMove&)> callback) override;

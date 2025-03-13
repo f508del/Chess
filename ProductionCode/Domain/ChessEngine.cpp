@@ -41,27 +41,9 @@ void ChessEngine::runChessEngine()
 {
     outputSystem_.initializeChessUserInterface();
     
-    string userInput;
     while (!userHasQuitTheProgram_)
     {
-       userInput = inputSystem_.getNextInput();
-       if (userInput == QUIT_COMMAND)
-       {
-           // TODO: delete this case later
-           //endEventLoop();
-       }
-       else if (userInput == NEW_GAME_COMMAND)
-       {
-           //TODO: delete this case later.
-           //resetForNewGame();
-       }
-       else
-       {
-           /* attempt to read in the input as a move...
-           ChessMove move;
-           move.populateFromString(userInput);
-           attemptMove(move);*/
-       }
+       inputSystem_.getNextInput();
     }
 
     outputSystem_.endUserInteraction();

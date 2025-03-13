@@ -30,7 +30,7 @@ TerminalInputSystem::~TerminalInputSystem()
 
 }
 
-string TerminalInputSystem::getNextInput()
+void TerminalInputSystem::getNextInput()
 {
     string lowerInputString = terminalWrapper_.readFromTerminal();
     
@@ -52,7 +52,7 @@ string TerminalInputSystem::getNextInput()
         move.populateFromString(lowerInputString);
         moveAttemptCallback_(move);
     }
-    return lowerInputString;
+    return;
 }
 
 void TerminalInputSystem::registerNewGameCallback(function<void ()> callback)

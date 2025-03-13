@@ -27,7 +27,7 @@ FakeInputSystem::~FakeInputSystem()
 
 }
 
-string FakeInputSystem::getNextInput()
+void FakeInputSystem::getNextInput()
 {
    if (!inputBuffer_.empty())
    {
@@ -50,11 +50,11 @@ string FakeInputSystem::getNextInput()
            move.populateFromString(nextInput);
            moveAttemptCallback_(move);
        }
-      return nextInput;
+      return;
    }
     
     
-   return string();
+   return;
 }
 
 void FakeInputSystem::setInputSequence(const list<string> &inputSequence)

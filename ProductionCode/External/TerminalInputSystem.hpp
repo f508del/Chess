@@ -18,7 +18,7 @@ public:
     explicit TerminalInputSystem(TerminalWrapper& wrapper);
     virtual ~TerminalInputSystem();
 
-    std::string getNextInput() override;
+    void getNextInput() override;
     
     void registerNewGameCallback(std::function<void()> callback) override;
     void registerQuitCallback(std::function<void()> callback) override;
