@@ -16,4 +16,5 @@ This is meant as a simple backlog of what refactorings and features are upcoming
  27. Detect Checkmate
  28. Detect Stalemate
  29. Add Random legal move AI engine
+ 30. Refactor Fake input system to inherit Terminal input system
 */

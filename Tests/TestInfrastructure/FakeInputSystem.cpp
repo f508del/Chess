@@ -8,6 +8,7 @@
 
 #include "FakeInputSystem.hpp"
 #include "CommandDefines.hpp"
+#include "ChessMove.hpp"
 
 using namespace std;
 using namespace CommandDefines;
@@ -16,6 +17,7 @@ FakeInputSystem::FakeInputSystem()
 : inputBuffer_()
 , newGameCallback_([]{})
 , quitCallback_([]{})
+, moveAttemptCallback_([](const ChessMove&){})
 {
 
 }
@@ -40,6 +42,13 @@ string FakeInputSystem::getNextInput()
        else if (nextInput == QUIT_COMMAND)
        {
            quitCallback_();
+       }
+       else
+       {
+           // attempt to read in the input as a move...
+           ChessMove move;
+           move.populateFromString(nextInput);
+           moveAttemptCallback_(move);
        }
       return nextInput;
    }
@@ -66,4 +75,10 @@ void FakeInputSystem::registerNewGameCallback(std::function<void ()> callback)
 void FakeInputSystem::registerQuitCallback(std::function<void ()> callback)
 {
     quitCallback_ = callback;
+}
+
+void FakeInputSystem::registerMoveAttemptCallback(function<void(const ChessMove&)> callback)
+{
+    moveAttemptCallback_ = callback;
+    return;
 }

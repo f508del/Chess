@@ -29,6 +29,7 @@ ChessEngine::ChessEngine(I_InputSystem& inputSystem,
     // TODO: some test needs to force these to exist...
     inputSystem.registerNewGameCallback(std::bind(&ChessEngine::resetForNewGame, this));
     inputSystem.registerQuitCallback(std::bind(&ChessEngine::endEventLoop, this));
+    inputSystem.registerMoveAttemptCallback(std::bind(&ChessEngine::attemptMove, this, std::placeholders::_1));
 }
 
 ChessEngine::~ChessEngine()
@@ -56,10 +57,10 @@ void ChessEngine::runChessEngine()
        }
        else
        {
-           // attempt to read in the input as a move...
+           /* attempt to read in the input as a move...
            ChessMove move;
            move.populateFromString(userInput);
-           attemptMove(move);
+           attemptMove(move);*/
        }
     }
 

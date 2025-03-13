@@ -22,9 +22,11 @@ public:
     
     void registerNewGameCallback(std::function<void()> callback) override;
     void registerQuitCallback(std::function<void()> callback) override;
+    void registerMoveAttemptCallback(std::function<void(const ChessMove&)> callback) override;
     
 private:
     std::function<void()> newGameCallback_;
     std::function<void()> quitCallback_;
+    std::function<void(const ChessMove&)> moveAttemptCallback_;
     TerminalWrapper& terminalWrapper_;
 };

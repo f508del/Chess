@@ -8,15 +8,18 @@
 
 #include "TerminalInputSystem.hpp"
 #include "CommandDefines.hpp"
+#include "ChessMove.hpp"
 #include "TerminalWrapper.hpp"
 #include <cctype>
 #include <cstdio>
 
 using namespace CommandDefines;
+using namespace std;
 
 TerminalInputSystem::TerminalInputSystem(TerminalWrapper& wrapper)
 : newGameCallback_([]{})
 , quitCallback_([]{})
+, moveAttemptCallback_([](const ChessMove&){})
 , terminalWrapper_(wrapper)
 {
 
@@ -27,12 +30,12 @@ TerminalInputSystem::~TerminalInputSystem()
 
 }
 
-std::string TerminalInputSystem::getNextInput()
+string TerminalInputSystem::getNextInput()
 {
-    std::string lowerInputString = terminalWrapper_.readFromTerminal();
+    string lowerInputString = terminalWrapper_.readFromTerminal();
     
-    std::transform(lowerInputString.begin(), lowerInputString.end(), lowerInputString.begin(),
-                   [](unsigned char c){return std::tolower(c);});
+    transform(lowerInputString.begin(), lowerInputString.end(), lowerInputString.begin(),
+                   [](unsigned char c){return tolower(c);});
     
     if (lowerInputString == NEW_GAME_COMMAND)
     {
@@ -42,17 +45,30 @@ std::string TerminalInputSystem::getNextInput()
     {
         quitCallback_();
     }
+    else
+    {
+        // attempt to read in the input as a move...
+        ChessMove move;
+        move.populateFromString(lowerInputString);
+        moveAttemptCallback_(move);
+    }
     return lowerInputString;
 }
 
-void TerminalInputSystem::registerNewGameCallback(std::function<void ()> callback)
+void TerminalInputSystem::registerNewGameCallback(function<void ()> callback)
 {
     newGameCallback_ = callback;
     return;
 }
 
-void TerminalInputSystem::registerQuitCallback(std::function<void ()> callback)
+void TerminalInputSystem::registerQuitCallback(function<void ()> callback)
 {
     quitCallback_ = callback;
+    return;
+}
+
+void TerminalInputSystem::registerMoveAttemptCallback(function<void(const ChessMove&)> callback)
+{
+    moveAttemptCallback_ = callback;
     return;
 }

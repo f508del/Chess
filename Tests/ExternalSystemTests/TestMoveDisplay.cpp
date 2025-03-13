@@ -8,6 +8,7 @@
 #include "Catch.hpp"
 #include "FakeTerminalWrapper.hpp"
 #include "TerminalOutputSystem.hpp"
+#include "TerminalInputSystem.hpp"
 #include "ChessBoard.hpp"
 #include "ChessMove.hpp"
 
@@ -75,6 +76,20 @@ TEST_CASE("Testing the external system that chess moves are displayed as intende
         outputSystem.displayValidMoveToUser(ChessMove("d1d2"), board);
         
         CHECK(terminalWrapper.lastOutputMatches("Moving King d1d2"));
+    }
+    
+    SECTION("Move input strings will trigger move input attempt logic")
+    {
+        FakeTerminalWrapper terminalWrapper;
+        TerminalInputSystem inputSystem(terminalWrapper);
+        bool moveLogicHasBeenTriggered = false;
+        std::function<void(const ChessMove&)> moveLogic([&](const ChessMove&){moveLogicHasBeenTriggered = true;});
+        inputSystem.registerMoveAttemptCallback(moveLogic);
+        terminalWrapper.enqueueInput({"a2a3"});
+        
+        inputSystem.getNextInput();
+        
+        CHECK(moveLogicHasBeenTriggered);
     }
 }
 
