@@ -26,7 +26,6 @@ ChessEngine::ChessEngine(I_InputSystem& whiteInputSystem,
 , moveValidator_(new ChessMoveValidator(*board_))
 , userHasQuitTheProgram_(false)
 {
-    // TODO: some test needs to force these to exist...
     whiteInputSystem_.registerNewGameCallback(std::bind(&ChessEngine::resetForNewGame, this));
     whiteInputSystem_.registerQuitCallback(std::bind(&ChessEngine::endEventLoop, this));
     whiteInputSystem_.registerMoveAttemptCallback(std::bind(&ChessEngine::attemptMove, this, std::placeholders::_1));
