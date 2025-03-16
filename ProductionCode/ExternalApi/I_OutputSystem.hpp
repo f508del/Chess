@@ -21,5 +21,5 @@ public:
     virtual void resetUxForNewGame() = 0;
     virtual void displayValidMoveToUser(const ChessMove& move, const I_ReadOnlyChessBoard& board) = 0;
     virtual void rejectMoveAttempt(Chess::MoveValidity validity) = 0;
-
+    virtual void declareCheck() = 0;
 };

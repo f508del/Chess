@@ -25,7 +25,7 @@ public:
     void resetUxForNewGame() override;
     void displayValidMoveToUser(const ChessMove& move, const I_ReadOnlyChessBoard& board) override;
     void rejectMoveAttempt(Chess::MoveValidity validity) override;
-    void declareCheck();
+    void declareCheck() override;
     
 private: // helper functions
     void showTextToUser(const char* displayString);

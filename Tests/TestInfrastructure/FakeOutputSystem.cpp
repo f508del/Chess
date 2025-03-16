@@ -18,6 +18,7 @@ FakeOutputSystem::FakeOutputSystem()
 , lastRejectedMoveReason_(Chess::MoveValidity::VALID_MOVE)
 , userInteractionEndRequested_(false)
 , resetUxForNewGameHasBeenCalled_(false)
+, checkHasBeenDeclared_(false)
 {
 
 }
@@ -71,6 +72,11 @@ void FakeOutputSystem::rejectMoveAttempt(Chess::MoveValidity validity) {
     lastRejectedMoveReason_ = validity;
 }
 
+void FakeOutputSystem::declareCheck()
+{
+    checkHasBeenDeclared_ = true;
+}
+
 Chess::MoveValidity FakeOutputSystem::lastRejectedMoveReason() const{
     return lastRejectedMoveReason_;
 }
@@ -83,3 +89,8 @@ bool FakeOutputSystem::resetUxForNewGameHasBeenCalled() const
 {
     return resetUxForNewGameHasBeenCalled_;
 }
+
+bool FakeOutputSystem::checkHasBeenDeclared() const { 
+    return checkHasBeenDeclared_;
+}
+

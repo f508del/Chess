@@ -26,6 +26,7 @@ public:
     void resetUxForNewGame() override;
     void displayValidMoveToUser(const ChessMove& move, const I_ReadOnlyChessBoard& board) override;
     void rejectMoveAttempt(Chess::MoveValidity validity) override;
+    void declareCheck() override;
     
     // helpers
     ChessMove lastMoveDisplayedToUser() const;
@@ -33,6 +34,7 @@ public:
     Chess::MoveValidity lastRejectedMoveReason() const;
     bool userInteractionEndHasBeenRequested() const;
     bool resetUxForNewGameHasBeenCalled() const;
+    bool checkHasBeenDeclared() const;
     
 private:
     ChessMove mostRecentMove_;
@@ -40,4 +42,5 @@ private:
     Chess::MoveValidity lastRejectedMoveReason_;
     bool userInteractionEndRequested_;
     bool resetUxForNewGameHasBeenCalled_;
+    bool checkHasBeenDeclared_;
 };
