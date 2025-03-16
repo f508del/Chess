@@ -20,6 +20,7 @@ class ChessEngine
 {
 public:
     explicit ChessEngine(I_InputSystem& whiteInputSystem,
+                         I_InputSystem& blackInputSystem,
                          I_OutputSystem& outputSystem);
 
     virtual ~ChessEngine();
@@ -33,6 +34,7 @@ private:
 
 private:
     I_InputSystem& whiteInputSystem_;
+    I_InputSystem& blackInputSystem_;
     I_OutputSystem& outputSystem_;
     ScopedPointer<ChessBoard> board_;
     ScopedPointer<ChessMoveValidator> moveValidator_;

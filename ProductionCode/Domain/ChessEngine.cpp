@@ -17,17 +17,23 @@ using namespace Chess;
 using namespace std;
 
 ChessEngine::ChessEngine(I_InputSystem& whiteInputSystem,
+                         I_InputSystem& blackInputSystem,
                          I_OutputSystem& outputSystem)
 : whiteInputSystem_(whiteInputSystem)
+, blackInputSystem_(blackInputSystem)
 , outputSystem_(outputSystem)
 , board_(new ChessBoard())
 , moveValidator_(new ChessMoveValidator(*board_))
 , userHasQuitTheProgram_(false)
 {
     // TODO: some test needs to force these to exist...
-    whiteInputSystem.registerNewGameCallback(std::bind(&ChessEngine::resetForNewGame, this));
-    whiteInputSystem.registerQuitCallback(std::bind(&ChessEngine::endEventLoop, this));
-    whiteInputSystem.registerMoveAttemptCallback(std::bind(&ChessEngine::attemptMove, this, std::placeholders::_1));
+    whiteInputSystem_.registerNewGameCallback(std::bind(&ChessEngine::resetForNewGame, this));
+    whiteInputSystem_.registerQuitCallback(std::bind(&ChessEngine::endEventLoop, this));
+    whiteInputSystem_.registerMoveAttemptCallback(std::bind(&ChessEngine::attemptMove, this, std::placeholders::_1));
+    
+    blackInputSystem_.registerNewGameCallback(std::bind(&ChessEngine::resetForNewGame, this));
+    blackInputSystem_.registerQuitCallback(std::bind(&ChessEngine::endEventLoop, this));
+    blackInputSystem_.registerMoveAttemptCallback(std::bind(&ChessEngine::attemptMove, this, std::placeholders::_1));
 }
 
 ChessEngine::~ChessEngine()
@@ -41,7 +47,14 @@ void ChessEngine::runChessEngine()
     
     while (!userHasQuitTheProgram_)
     {
-        whiteInputSystem_.getNextInput();
+        if (PieceAffiliation::WHITE_PIECE == board_->playerToMakeNextMove())
+        {
+            whiteInputSystem_.getNextInput();
+        }
+        else
+        {
+            blackInputSystem_.getNextInput();
+        }
     }
 
     outputSystem_.endUserInteraction();

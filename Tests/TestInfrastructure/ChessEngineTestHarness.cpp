@@ -19,7 +19,7 @@ using namespace Chess;
 ChessEngineTestHarness::ChessEngineTestHarness()
 : inputSystem_(new FakeInputSystem())
 , outputSystem_(new FakeOutputSystem())
-, engine_(new ChessEngine(*inputSystem_, *outputSystem_))
+, engine_(new ChessEngine(*inputSystem_, *inputSystem_, *outputSystem_))
 {
 
 }

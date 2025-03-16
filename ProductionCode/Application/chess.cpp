@@ -26,7 +26,7 @@ int main(int /*argc*/, char** /*argv*/)
     TerminalOutputSystem outputSystem(wrapper);
 	TerminalInputSystem inputSystem(wrapper);
 
-	ChessEngine engine(inputSystem, outputSystem);
+	ChessEngine engine(inputSystem, inputSystem, outputSystem);
 
 	engine.runChessEngine();
 	
