@@ -83,3 +83,8 @@ void TerminalOutputSystem::rejectMoveAttempt(Chess::MoveValidity validity)
             break;
     }
 }
+
+void TerminalOutputSystem::declareCheck()
+{
+    showTextToUser("Check!");
+}
