@@ -87,5 +87,16 @@ void ChessEngine::attemptMove(const ChessMove& move)
         outputSystem_.displayValidMoveToUser(move, *board_);
         board_->applyMove(move);
         board_->togglePlayerInitiative();
+        detectEndGameConditions();
     }
+}
+
+void ChessEngine::detectEndGameConditions()
+{
+    // Grab location of the king that DIDN'T move last, noting that the board has already been told to toggle player initiative
+    Chess::PieceAffiliation affiliationThatDidNotMoveLast = board_->playerToMakeNextMove();
+    ChessSquare kingSquareThatMayBeInCheck = board_->currentKingSquare(affiliationThatDidNotMoveLast);
+    
+    //TODO Go through each piece of the side that did move last, see if any of their pieces could validly move into the opposing king's square (from above)
+    
 }

@@ -61,10 +61,10 @@ TEST_CASE("Testing the external system that chess moves are displayed as intende
         FakeTerminalWrapper terminalWrapper;
         TerminalOutputSystem outputSystem(terminalWrapper);
         ChessBoard board;
-        board.applyMove(ChessMove("e2e4"));
-        outputSystem.displayValidMoveToUser(ChessMove("e1e3"), board);
+        board.applyMove(ChessMove("d2d4"));
+        outputSystem.displayValidMoveToUser(ChessMove("d1d3"), board);
         
-        CHECK(terminalWrapper.lastOutputMatches("Moving Queen e1e3"));
+        CHECK(terminalWrapper.lastOutputMatches("Moving Queen d1d3"));
     }
     
     SECTION("King moves are described correctly")
@@ -72,10 +72,10 @@ TEST_CASE("Testing the external system that chess moves are displayed as intende
         FakeTerminalWrapper terminalWrapper;
         TerminalOutputSystem outputSystem(terminalWrapper);
         ChessBoard board;
-        board.applyMove(ChessMove("d2d4"));
-        outputSystem.displayValidMoveToUser(ChessMove("d1d2"), board);
+        board.applyMove(ChessMove("e2e4"));
+        outputSystem.displayValidMoveToUser(ChessMove("e1e2"), board);
         
-        CHECK(terminalWrapper.lastOutputMatches("Moving King d1d2"));
+        CHECK(terminalWrapper.lastOutputMatches("Moving King e1e2"));
     }
     
     SECTION("Move input strings will trigger move input attempt logic")

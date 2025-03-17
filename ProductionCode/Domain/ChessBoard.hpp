@@ -38,6 +38,8 @@ public:
     bool squaresBetweenEndPointsAreEmpty(const ChessMove& move) const;
     Chess::PieceAffiliation playerToMakeNextMove() const;
     
+    ChessSquare currentKingSquare(Chess::PieceAffiliation affiliation) const;
+    
     void applyMove(const ChessMove& move);
     void resetBoard();
     void togglePlayerInitiative();

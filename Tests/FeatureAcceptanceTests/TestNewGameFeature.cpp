@@ -106,41 +106,41 @@ TEST_CASE("Testing the 'new game' feature")
     SECTION("Will move white queens back to starting position if invoked mid game")
     {
         ChessEngineTestHarness testHarness;
-        testHarness.fakeInput().setInputSequence({CommandDefines::NEW_GAME_COMMAND, "e2e4","a7a6", "e1e3", CommandDefines::NEW_GAME_COMMAND, "e2e4","a7a6", "e1e3", CommandDefines::QUIT_COMMAND});
+        testHarness.fakeInput().setInputSequence({CommandDefines::NEW_GAME_COMMAND, "d2d4","a7a6", "d1d3", CommandDefines::NEW_GAME_COMMAND, "d2d4","a7a6", "d1d3", CommandDefines::QUIT_COMMAND});
         
         testHarness.chessEngine().runChessEngine();
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::QUEEN);
-        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("e1e3")));
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("d1d3")));
     }
     
     SECTION("Will move black queens back to starting position if invoked mid game")
     {
         ChessEngineTestHarness testHarness;
-        testHarness.fakeInput().setInputSequence({CommandDefines::NEW_GAME_COMMAND, "a2a3","e7e5", "a3a4", "e8e6", CommandDefines::NEW_GAME_COMMAND, "a2a3","e7e5", "a3a4", "e8e6", CommandDefines::QUIT_COMMAND});
+        testHarness.fakeInput().setInputSequence({CommandDefines::NEW_GAME_COMMAND, "a2a3","d7d5", "a3a4", "d8d6", CommandDefines::NEW_GAME_COMMAND, "a2a3","d7d5", "a3a4", "d8d6", CommandDefines::QUIT_COMMAND});
         
         testHarness.chessEngine().runChessEngine();
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::QUEEN);
-        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("e8e6")));
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("d8d6")));
     }
     
     SECTION("Will move white Kings back to starting position if invoked mid game")
     {
         ChessEngineTestHarness testHarness;
-        testHarness.fakeInput().setInputSequence({CommandDefines::NEW_GAME_COMMAND, "d2d4","a7a6", "d1d2", CommandDefines::NEW_GAME_COMMAND, "d2d4","a7a6", "d1d2", CommandDefines::QUIT_COMMAND});
+        testHarness.fakeInput().setInputSequence({CommandDefines::NEW_GAME_COMMAND, "e2e4","a7a6", "e1e2", CommandDefines::NEW_GAME_COMMAND, "e2e4","a7a6", "e1e2", CommandDefines::QUIT_COMMAND});
         
         testHarness.chessEngine().runChessEngine();
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::KING);
-        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("d1d2")));
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("e1e2")));
     }
     
     SECTION("Will move black Kings back to starting position if invoked mid game")
     {
         ChessEngineTestHarness testHarness;
-        testHarness.fakeInput().setInputSequence({CommandDefines::NEW_GAME_COMMAND, "a2a3", "d7d5", "a3a4", "d8d7", CommandDefines::NEW_GAME_COMMAND, "a2a3", "d7d5", "a3a4", "d8d7", CommandDefines::QUIT_COMMAND});
+        testHarness.fakeInput().setInputSequence({CommandDefines::NEW_GAME_COMMAND, "a2a3", "e7e5", "a3a4", "e8e7", CommandDefines::NEW_GAME_COMMAND, "a2a3", "e7e5", "a3a4", "e8e7", CommandDefines::QUIT_COMMAND});
         
         testHarness.chessEngine().runChessEngine();
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::KING);
-        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("d8d7")));
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("e8e7")));
     }
 }
 

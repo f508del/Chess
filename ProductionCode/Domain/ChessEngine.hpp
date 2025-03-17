@@ -31,6 +31,7 @@ private:
     void resetForNewGame();
     void endEventLoop();
     void attemptMove(const ChessMove& move);
+    void detectEndGameConditions();
 
 private:
     I_InputSystem& whiteInputSystem_;

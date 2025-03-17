@@ -100,17 +100,31 @@ void ChessBoard::resetBoard()
     boardState_[ChessSquare('h', 8)] = blackRookCapabilities_.data();
     
     // setup the queens
-    boardState_[ChessSquare('e', 1)] = whiteQueenCapabilities_.data();
-    boardState_[ChessSquare('e', 8)] = blackQueenCapabilities_.data();
+    boardState_[ChessSquare('d', 1)] = whiteQueenCapabilities_.data();
+    boardState_[ChessSquare('d', 8)] = blackQueenCapabilities_.data();
     
     // setup the kings
-    boardState_[ChessSquare('d', 1)] = whiteKingCapabilities_.data();
-    boardState_[ChessSquare('d', 8)] = blackKingCapabilities_.data();
+    boardState_[ChessSquare('e', 1)] = whiteKingCapabilities_.data();
+    boardState_[ChessSquare('e', 8)] = blackKingCapabilities_.data();
 }
 
 PieceAffiliation ChessBoard::playerToMakeNextMove() const
 {
     return playerToMakeNextMove_;
+}
+
+ChessSquare ChessBoard::currentKingSquare(Chess::PieceAffiliation affiliation) const
+{
+    King* kingOfInterest = (affiliation == Chess::PieceAffiliation::WHITE_PIECE ? whiteKingCapabilities_.data() : blackKingCapabilities_.data());
+    
+    for(auto boardIterator = boardState_.begin(); boardIterator != boardState_.end(); boardIterator++)
+    {
+        if (boardIterator->second == kingOfInterest)
+        {
+            return boardIterator->first;
+        }
+    }
+    return ChessSquare();
 }
 
 void ChessBoard::togglePlayerInitiative()

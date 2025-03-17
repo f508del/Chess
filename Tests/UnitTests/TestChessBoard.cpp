@@ -124,5 +124,35 @@ TEST_CASE("Testing the ChessBoard object")
             CHECK(board.blackPieceExistsAt(ChessSquare('a' + i, 8)));
         }
     }
+    
+    SECTION("When the board is reset, the white king is at e 1")
+    {
+        ChessBoard board;
+        board.resetBoard();
+        
+        CHECK(1 == board.currentKingSquare(Chess::PieceAffiliation::WHITE_PIECE).rank());
+        CHECK('e' == board.currentKingSquare(Chess::PieceAffiliation::WHITE_PIECE).file());
+    }
+    
+    SECTION("When the board is reset, the black king is at e 8")
+    {
+        ChessBoard board;
+        board.resetBoard();
+        
+        CHECK(8 == board.currentKingSquare(Chess::PieceAffiliation::BLACK_PIECE).rank());
+        CHECK('e' == board.currentKingSquare(Chess::PieceAffiliation::BLACK_PIECE).file());
+    }
+    
+    SECTION("Current king square will be updated as game progresses")
+    {
+        ChessBoard board;
+        board.resetBoard();
+        
+        board.applyMove(ChessMove("e2e4"));
+        board.applyMove(ChessMove("e1e2"));
+        
+        CHECK(2 == board.currentKingSquare(Chess::PieceAffiliation::WHITE_PIECE).rank());
+        CHECK('e' == board.currentKingSquare(Chess::PieceAffiliation::WHITE_PIECE).file());
+    }
 }
 
