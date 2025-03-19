@@ -17,6 +17,7 @@ struct ChessMove
 public:
     ChessMove();
     ChessMove(const std::string& moveString);
+    ChessMove(const ChessSquare& startingSquare, const ChessSquare& endingSquare);
     bool isOnTheBoard() const;
     bool populateFromString(const std::string& moveString);
 

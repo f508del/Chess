@@ -19,8 +19,7 @@ TEST_CASE("Testing the logic around detecting Check situations")
         
         testHarness.chessEngine().runChessEngine();
         
-        printf("SKIPPED TEST for detecting check!");
-        //CHECK(testHarness.fakeOutput().checkHasBeenDeclared());
+        CHECK(testHarness.fakeOutput().checkHasBeenDeclared());
     }
     
 }

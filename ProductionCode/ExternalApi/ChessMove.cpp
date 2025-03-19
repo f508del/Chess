@@ -23,6 +23,13 @@ ChessMove::ChessMove(const std::string& moveString)
     }
 }
 
+ChessMove::ChessMove(const ChessSquare& startingSquare, const ChessSquare& endingSquare)
+: startingSquare_(startingSquare)
+, endingSquare_(endingSquare)
+{
+    
+}
+
 bool ChessMove::populateFromString(const string& moveString)
 {
    resetState();

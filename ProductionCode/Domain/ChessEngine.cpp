@@ -96,7 +96,17 @@ void ChessEngine::detectEndGameConditions()
     // Grab location of the king that DIDN'T move last, noting that the board has already been told to toggle player initiative
     Chess::PieceAffiliation affiliationThatDidNotMoveLast = board_->playerToMakeNextMove();
     ChessSquare kingSquareThatMayBeInCheck = board_->currentKingSquare(affiliationThatDidNotMoveLast);
+    Chess::PieceAffiliation playerThatMadeLastMove = (affiliationThatDidNotMoveLast == Chess::PieceAffiliation::WHITE_PIECE ? Chess::PieceAffiliation::BLACK_PIECE : Chess::PieceAffiliation::WHITE_PIECE);
     
-    //TODO Go through each piece of the side that did move last, see if any of their pieces could validly move into the opposing king's square (from above)
-    
+    // Go through each piece of the side that did move last, see if any of their pieces could validly move into the opposing king's square (from above)
+    list<ChessSquare> attackingPieces = board_->allSquaresOccupiedByColor(playerThatMadeLastMove);
+    for (auto iterator = attackingPieces.begin(); iterator != attackingPieces.end(); iterator++)
+    {
+        if (moveValidator_->validateMove(ChessMove(*iterator, kingSquareThatMayBeInCheck)) == Chess::MoveValidity::VALID_MOVE)
+        {
+            outputSystem_.declareCheck();
+            return;
+        }
+    }
+    return;
 }

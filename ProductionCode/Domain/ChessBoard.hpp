@@ -12,6 +12,7 @@
 #include "ScopedPointer.hpp"
 #include "I_ReadOnlyChessBoard.hpp"
 #include <map>
+#include <list>
 
 class Bishop;
 class ChessSquare;
@@ -39,6 +40,7 @@ public:
     Chess::PieceAffiliation playerToMakeNextMove() const;
     
     ChessSquare currentKingSquare(Chess::PieceAffiliation affiliation) const;
+    std::list<ChessSquare> allSquaresOccupiedByColor(Chess::PieceAffiliation affiliation) const;
     
     void applyMove(const ChessMove& move);
     void resetBoard();

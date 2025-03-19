@@ -17,6 +17,7 @@
 #include "Knight.hpp"
 
 using namespace Chess;
+using namespace std;
 
 ChessBoard::ChessBoard()
 : whitePawnCapabilities_(new Pawn(PieceAffiliation::WHITE_PIECE))
@@ -125,6 +126,19 @@ ChessSquare ChessBoard::currentKingSquare(Chess::PieceAffiliation affiliation) c
         }
     }
     return ChessSquare();
+}
+
+list<ChessSquare> ChessBoard::allSquaresOccupiedByColor(Chess::PieceAffiliation affiliation) const
+{
+    list<ChessSquare> occupiedSquares;
+    for(auto boardIterator = boardState_.begin(); boardIterator != boardState_.end(); boardIterator++)
+    {
+        if (boardIterator->second->affiliation() == affiliation)
+        {
+            occupiedSquares.push_back(boardIterator->first);
+        }
+    }
+    return occupiedSquares;
 }
 
 void ChessBoard::togglePlayerInitiative()
