@@ -143,14 +143,7 @@ list<ChessSquare> ChessBoard::allSquaresOccupiedByColor(Chess::PieceAffiliation 
 
 void ChessBoard::togglePlayerInitiative()
 {
-   if (playerToMakeNextMove_ == PieceAffiliation::WHITE_PIECE)
-   {
-      playerToMakeNextMove_ = PieceAffiliation::BLACK_PIECE;
-   }
-   else
-   {
-      playerToMakeNextMove_ = PieceAffiliation::WHITE_PIECE;
-   }
+    playerToMakeNextMove_ = oppositePieceAffiliation(playerToMakeNextMove_);
 }
 
 void ChessBoard::applyMove(const ChessMove &move) { 

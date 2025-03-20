@@ -17,4 +17,5 @@ enum class PieceAffiliation
 };
 
 PieceAffiliation randomPieceAffiliation();
+PieceAffiliation oppositePieceAffiliation(const PieceAffiliation affiliation);
 }

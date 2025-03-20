@@ -24,4 +24,9 @@ PieceAffiliation randomPieceAffiliation()
         return PieceAffiliation::WHITE_PIECE;
     }
 }
+
+PieceAffiliation oppositePieceAffiliation(const PieceAffiliation affiliation)
+{
+    return (affiliation == PieceAffiliation::WHITE_PIECE ? PieceAffiliation::BLACK_PIECE : PieceAffiliation::WHITE_PIECE);
+}
 }

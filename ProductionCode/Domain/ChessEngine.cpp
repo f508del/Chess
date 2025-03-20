@@ -94,9 +94,8 @@ void ChessEngine::attemptMove(const ChessMove& move)
 void ChessEngine::detectEndGameConditions()
 {
     // Grab location of the king that DIDN'T move last, noting that the board has already been told to toggle player initiative
-    Chess::PieceAffiliation affiliationThatDidNotMoveLast = board_->playerToMakeNextMove();
-    ChessSquare kingSquareThatMayBeInCheck = board_->currentKingSquare(affiliationThatDidNotMoveLast);
-    Chess::PieceAffiliation playerThatMadeLastMove = (affiliationThatDidNotMoveLast == Chess::PieceAffiliation::WHITE_PIECE ? Chess::PieceAffiliation::BLACK_PIECE : Chess::PieceAffiliation::WHITE_PIECE);
+    ChessSquare kingSquareThatMayBeInCheck = board_->currentKingSquare(board_->playerToMakeNextMove());
+    PieceAffiliation playerThatMadeLastMove = oppositePieceAffiliation(board_->playerToMakeNextMove());
     
     moveValidator_->ignorePlayerInitiative();
     
