@@ -15,11 +15,15 @@ class ChessBoard;
 class ChessMoveValidator
 {
 public:
-   ChessMoveValidator(const ChessBoard& board);
-   virtual ~ChessMoveValidator();
+    ChessMoveValidator(const ChessBoard& board);
+    virtual ~ChessMoveValidator();
 
-   Chess::MoveValidity validateMove(const ChessMove& currentMove);
+    Chess::MoveValidity validateMove(const ChessMove& currentMove);
+    
+    void ignorePlayerInitiative();
+    void accountForPlayerInitiative();
 
 private:
-   const ChessBoard& board_;
+    const ChessBoard& board_;
+    bool playerInitiativeIsApplicable_;
 };

@@ -18,6 +18,7 @@ using namespace Chess;
 
 ChessMoveValidator::ChessMoveValidator(const ChessBoard& board)
 : board_(board)
+, playerInitiativeIsApplicable_(true)
 {
 
 }
@@ -40,7 +41,7 @@ MoveValidity ChessMoveValidator::validateMove(const ChessMove& currentMove)
         return MoveValidity::NO_PIECE_AT_STARTING_LOCATION;
     }
     
-    if (currentPiece->affiliation() != board_.playerToMakeNextMove())
+    if ((currentPiece->affiliation() != board_.playerToMakeNextMove()) && playerInitiativeIsApplicable_)
     {
         return MoveValidity::OPPOSING_PLAYERS_PIECE;
     }
@@ -75,4 +76,14 @@ MoveValidity ChessMoveValidator::validateMove(const ChessMove& currentMove)
     }
 
     return MoveValidity::VALID_MOVE;
+}
+
+void ChessMoveValidator::ignorePlayerInitiative()
+{
+    playerInitiativeIsApplicable_ = false;
+}
+
+void ChessMoveValidator::accountForPlayerInitiative()
+{
+    playerInitiativeIsApplicable_ = true;
 }
