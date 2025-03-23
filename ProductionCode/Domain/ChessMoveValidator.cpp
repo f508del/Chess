@@ -9,6 +9,7 @@
 #include "ChessMoveValidator.hpp"
 
 #include "ChessBoard.hpp"
+#include "ChessGameHistory.hpp"
 #include "ChessMove.hpp"
 #include "ChessSquare.hpp"
 #include "I_ChessPiece.hpp"
@@ -16,8 +17,9 @@
 using namespace std;
 using namespace Chess;
 
-ChessMoveValidator::ChessMoveValidator(const ChessBoard& board)
+ChessMoveValidator::ChessMoveValidator(const ChessBoard& board, const ChessGameHistory& gameHistory)
 : board_(board)
+, gameHistory_(gameHistory)
 , playerInitiativeIsApplicable_(true)
 {
 
@@ -49,6 +51,11 @@ MoveValidity ChessMoveValidator::validateMove(const ChessMove& currentMove)
     if (!board_.squaresBetweenEndPointsAreEmpty(currentMove) && !currentPiece->pieceCanJumpOtherPieces())
     {
         return MoveValidity::PATH_BLOCKED_BY_OTHER_PIECES;
+    }
+    
+    if (enPassantIsCurrentlyPossible() && enPassantIsBeingAttempted(currentMove))
+    {
+        return MoveValidity::VALID_MOVE;
     }
     
     if (!board_.anyPieceExistsAt(currentMove.endingSquare()))
@@ -86,4 +93,37 @@ void ChessMoveValidator::ignorePlayerInitiative()
 void ChessMoveValidator::accountForPlayerInitiative()
 {
     playerInitiativeIsApplicable_ = true;
+}
+
+bool ChessMoveValidator::enPassantIsCurrentlyPossible() const
+{
+    if (abs((int)gameHistory_.mostRecentMove().startingSquare().rank() - (int)gameHistory_.mostRecentMove().endingSquare().rank()) == 2)
+    {
+        if (gameHistory_.mostRecentMovedPiece() == PieceType::PAWN)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool ChessMoveValidator::enPassantIsBeingAttempted(const ChessMove& move) const
+{
+    unsigned int validEnPassantRank =
+    ((int)gameHistory_.mostRecentMove().startingSquare().rank() + (int)gameHistory_.mostRecentMove().endingSquare().rank()) / 2;
+    ChessSquare onlyValidEndingSquareForEnPassantMove(gameHistory_.mostRecentMove().startingSquare().file(), validEnPassantRank);
+    
+    if (move.endingSquare().rank() == onlyValidEndingSquareForEnPassantMove.rank() &&
+        move.endingSquare().file() == onlyValidEndingSquareForEnPassantMove.file())
+    {
+        if (abs(move.startingSquare().file() - move.endingSquare().file()) == 1)
+        {
+            if (board_.pieceAt(move.startingSquare())->pieceType() == PieceType::PAWN)
+            {
+                return true;
+            }
+        }
+    }
+    
+    return false;
 }

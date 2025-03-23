@@ -21,13 +21,13 @@ TEST_CASE("Testing the logic around detecting en Passant")
         
         testHarness.chessEngine().runChessEngine();
         
-        printf("SKIPPED test for en passant\n");
-        /*CHECK(testHarness.lastMoveRejectionReason() == MoveValidity::VALID_MOVE);
+        CHECK(testHarness.lastMoveRejectionReason() == MoveValidity::VALID_MOVE);
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::PAWN);
-        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("b4c3")));*/
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("b4c3")));
     }
     
     // TODO: Piece captured by en passant no longer exists on the board
     // TODO: en passant not permitted if not done immedately after the 2 step move.
+    // TODO: en passant not permitted if attempted by a pawn not adjacent to the last moved pawn.
 }
 

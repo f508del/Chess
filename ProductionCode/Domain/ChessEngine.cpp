@@ -8,8 +8,10 @@
 
 #include "ChessBoard.hpp"
 #include "ChessEngine.hpp"
+#include "ChessGameHistory.hpp"
 #include "ChessMove.hpp"
 #include "ChessMoveValidator.hpp"
+#include "I_ChessPiece.hpp"
 #include "I_InputSystem.hpp"
 #include "I_OutputSystem.hpp"
 
@@ -23,7 +25,8 @@ ChessEngine::ChessEngine(I_InputSystem& whiteInputSystem,
 , blackInputSystem_(blackInputSystem)
 , outputSystem_(outputSystem)
 , board_(new ChessBoard())
-, moveValidator_(new ChessMoveValidator(*board_))
+, gameHistory_(new ChessGameHistory())
+, moveValidator_(new ChessMoveValidator(*board_, *gameHistory_))
 , userHasQuitTheProgram_(false)
 {
     whiteInputSystem_.registerNewGameCallback(std::bind(&ChessEngine::resetForNewGame, this));
@@ -87,6 +90,7 @@ void ChessEngine::attemptMove(const ChessMove& move)
         outputSystem_.displayValidMoveToUser(move, *board_);
         board_->applyMove(move);
         board_->togglePlayerInitiative();
+        gameHistory_->recordMove(move, board_->pieceAt(move.endingSquare())->pieceType());
         detectEndGameConditions();
     }
 }

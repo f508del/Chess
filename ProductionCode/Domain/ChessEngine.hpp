@@ -11,6 +11,7 @@
 #include "ScopedPointer.hpp"
 
 class ChessBoard;
+class ChessGameHistory;
 class ChessMove;
 class ChessMoveValidator;
 class I_InputSystem;
@@ -38,6 +39,7 @@ private:
     I_InputSystem& blackInputSystem_;
     I_OutputSystem& outputSystem_;
     ScopedPointer<ChessBoard> board_;
+    ScopedPointer<ChessGameHistory> gameHistory_;
     ScopedPointer<ChessMoveValidator> moveValidator_;
     bool userHasQuitTheProgram_;
 };
