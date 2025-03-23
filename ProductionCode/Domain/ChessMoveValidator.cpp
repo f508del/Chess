@@ -55,7 +55,7 @@ MoveValidity ChessMoveValidator::validateMove(const ChessMove& currentMove)
     
     if (enPassantIsCurrentlyPossible() && enPassantIsBeingAttempted(currentMove))
     {
-        return MoveValidity::VALID_MOVE;
+        return MoveValidity::VALID_EN_PASSANT_MOVE;
     }
     
     if (!board_.anyPieceExistsAt(currentMove.endingSquare()))

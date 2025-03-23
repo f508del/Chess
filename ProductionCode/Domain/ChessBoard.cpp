@@ -153,6 +153,11 @@ void ChessBoard::applyMove(const ChessMove &move) {
     return;
 }
 
+void ChessBoard::deletePieceAtSquare(const ChessSquare& square)
+{
+    boardState_.erase(boardState_.find(square));
+}
+
 bool ChessBoard::squaresBetweenEndPointsAreEmpty(const ChessMove &move) const
 {
     int rankDifference = move.endingSquare().rank() - move.startingSquare().rank();
