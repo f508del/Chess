@@ -35,41 +35,41 @@ ExtendedSet<ChessSquare> King::potentialEmptyBoardMovesFrom(const ChessSquare &s
         potentialMoves.insert(decreasingRankDestination);
     }
     
-    ChessSquare increasingFileDestination(startingSquare.file() + 1, startingSquare.rank());
+    ChessSquare increasingFileDestination(char(startingSquare.file() + 1), startingSquare.rank());
     if (increasingFileDestination.isSquareOnTheBoard())
     {
         potentialMoves.insert(increasingFileDestination);
     }
     
-    ChessSquare decreasingFileDestination(startingSquare.file() - 1, startingSquare.rank());
+    ChessSquare decreasingFileDestination(char(startingSquare.file() - 1), startingSquare.rank());
     if (decreasingFileDestination.isSquareOnTheBoard())
     {
         potentialMoves.insert(decreasingFileDestination);
     }
     
     // top right array of squares
-    ChessSquare topRightDestination(startingSquare.file() + 1, startingSquare.rank() + 1);
+    ChessSquare topRightDestination(char(startingSquare.file() + 1), startingSquare.rank() + 1);
     if (topRightDestination.isSquareOnTheBoard())
     {
         potentialMoves.insert(topRightDestination);
     }
     
     // Bottom right array of squares
-    ChessSquare bottomRightDestination(startingSquare.file() + 1, startingSquare.rank() - 1);
+    ChessSquare bottomRightDestination(char(startingSquare.file() + 1), startingSquare.rank() - 1);
     if (bottomRightDestination.isSquareOnTheBoard())
     {
         potentialMoves.insert(bottomRightDestination);
     }
     
     // Bottom Left array of squares
-    ChessSquare bottomLeftDestination(startingSquare.file() - 1, startingSquare.rank() - 1);
+    ChessSquare bottomLeftDestination(char(startingSquare.file() - 1), startingSquare.rank() - 1);
     if (bottomLeftDestination.isSquareOnTheBoard())
     {
         potentialMoves.insert(bottomLeftDestination);
     }
     
     // top left array of squares
-    ChessSquare topLeftDestination(startingSquare.file() - 1, startingSquare.rank() + 1);
+    ChessSquare topLeftDestination(char(startingSquare.file() - 1), startingSquare.rank() + 1);
     if (topLeftDestination.isSquareOnTheBoard())
     {
         potentialMoves.insert(topLeftDestination);

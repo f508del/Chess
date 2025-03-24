@@ -24,26 +24,26 @@ ExtendedSet<ChessSquare> Knight::potentialEmptyBoardMovesFrom(const ChessSquare&
    ExtendedSet<ChessSquare> potentialMoves;
 
    // forward "L"s:
-   ChessSquare destinationSquare(startingSquare.file() + 1, startingSquare.rank() + 2);
+   ChessSquare destinationSquare(char(startingSquare.file() + 1), startingSquare.rank() + 2);
    if (destinationSquare.isSquareOnTheBoard())
    {
       potentialMoves.insert(destinationSquare);
    }
 
-   destinationSquare = ChessSquare(startingSquare.file() - 1, startingSquare.rank() + 2);
+   destinationSquare = ChessSquare(char(startingSquare.file() - 1), startingSquare.rank() + 2);
    if (destinationSquare.isSquareOnTheBoard())
    {
       potentialMoves.insert(destinationSquare);
    }
 
    // backward "L"s:
-   destinationSquare = ChessSquare(startingSquare.file() + 1, startingSquare.rank() - 2);
+   destinationSquare = ChessSquare(char(startingSquare.file() + 1), startingSquare.rank() - 2);
    if (destinationSquare.isSquareOnTheBoard())
    {
       potentialMoves.insert(destinationSquare);
    }
 
-   destinationSquare = ChessSquare(startingSquare.file() - 1, startingSquare.rank() - 2);
+   destinationSquare = ChessSquare(char(startingSquare.file() - 1), startingSquare.rank() - 2);
    if (destinationSquare.isSquareOnTheBoard())
    {
       potentialMoves.insert(destinationSquare);
@@ -51,26 +51,26 @@ ExtendedSet<ChessSquare> Knight::potentialEmptyBoardMovesFrom(const ChessSquare&
 
 
    // rightward "L"s
-   destinationSquare = ChessSquare(startingSquare.file() + 2, startingSquare.rank() + 1);
+   destinationSquare = ChessSquare(char(startingSquare.file() + 2), startingSquare.rank() + 1);
    if (destinationSquare.isSquareOnTheBoard())
    {
       potentialMoves.insert(destinationSquare);
    }
 
-   destinationSquare = ChessSquare(startingSquare.file() + 2, startingSquare.rank() - 1);
+   destinationSquare = ChessSquare(char(startingSquare.file() + 2), startingSquare.rank() - 1);
    if (destinationSquare.isSquareOnTheBoard())
    {
       potentialMoves.insert(destinationSquare);
    }
 
    // leftward "L"s
-   destinationSquare = ChessSquare(startingSquare.file() - 2, startingSquare.rank() + 1);
+   destinationSquare = ChessSquare(char(startingSquare.file() - 2), startingSquare.rank() + 1);
    if (destinationSquare.isSquareOnTheBoard())
    {
       potentialMoves.insert(destinationSquare);
    }
 
-   destinationSquare = ChessSquare(startingSquare.file() - 2, startingSquare.rank() - 1);
+   destinationSquare = ChessSquare(char(startingSquare.file() - 2), startingSquare.rank() - 1);
    if (destinationSquare.isSquareOnTheBoard())
    {
       potentialMoves.insert(destinationSquare);

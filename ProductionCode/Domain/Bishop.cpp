@@ -27,28 +27,28 @@ ExtendedSet<ChessSquare> Bishop::potentialEmptyBoardMovesFrom(const ChessSquare 
     for (int i = 1; i < 8; i++)
     {
         // top right array of squares
-        ChessSquare topRightDestination(startingSquare.file() + i, startingSquare.rank() + i);
+        ChessSquare topRightDestination(char(startingSquare.file() + i), startingSquare.rank() + i);
         if (topRightDestination.isSquareOnTheBoard())
         {
             potentialMoves.insert(topRightDestination);
         }
         
         // Bottom right array of squares
-        ChessSquare bottomRightDestination(startingSquare.file() + i, startingSquare.rank() - i);
+        ChessSquare bottomRightDestination(char(startingSquare.file() + i), startingSquare.rank() - i);
         if (bottomRightDestination.isSquareOnTheBoard())
         {
             potentialMoves.insert(bottomRightDestination);
         }
         
         // Bottom Left array of squares
-        ChessSquare bottomLeftDestination(startingSquare.file() - i, startingSquare.rank() - i);
+        ChessSquare bottomLeftDestination(char(startingSquare.file() - i), startingSquare.rank() - i);
         if (bottomLeftDestination.isSquareOnTheBoard())
         {
             potentialMoves.insert(bottomLeftDestination);
         }
         
         // top left array of squares
-        ChessSquare topLeftDestination(startingSquare.file() - i, startingSquare.rank() + i);
+        ChessSquare topLeftDestination(char(startingSquare.file() - i), startingSquare.rank() + i);
         if (topLeftDestination.isSquareOnTheBoard())
         {
             potentialMoves.insert(topLeftDestination);

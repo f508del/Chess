@@ -15,12 +15,6 @@ ChessSquare::ChessSquare()
 {
 }
 
-ChessSquare::ChessSquare(char file, unsigned int rank)
-: file_(std::tolower(file))
-, rank_(rank)
-{
-}
-
 bool ChessSquare::isSquareOnTheBoard() const
 {
    return isValidFile() && isValidRank();

@@ -108,8 +108,8 @@ TEST_CASE("Testing the ChessBoard object")
         
         for (int i = 0; i <= 7; i++)
         {
-            CHECK(board.whitePieceExistsAt(ChessSquare('a' + i, 1)));
-            CHECK(board.whitePieceExistsAt(ChessSquare('a' + i, 2)));
+            CHECK(board.whitePieceExistsAt(ChessSquare(char('a' + i), 1)));
+            CHECK(board.whitePieceExistsAt(ChessSquare(char('a' + i), 2)));
         }
     }
     
@@ -120,8 +120,8 @@ TEST_CASE("Testing the ChessBoard object")
         
         for (int i = 0; i <= 7; i++)
         {
-            CHECK(board.blackPieceExistsAt(ChessSquare('a' + i, 7)));
-            CHECK(board.blackPieceExistsAt(ChessSquare('a' + i, 8)));
+            CHECK(board.blackPieceExistsAt(ChessSquare(char('a' + i), 7)));
+            CHECK(board.blackPieceExistsAt(ChessSquare(char('a' + i), 8)));
         }
     }
     

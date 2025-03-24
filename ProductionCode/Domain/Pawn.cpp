@@ -48,9 +48,9 @@ ExtendedSet<ChessSquare> Pawn::potentialCaptureMovesFrom(const ChessSquare& star
     }
     
     // Capture moves
-    ChessSquare rightwardCaptureMove(startingSquare.file() + 1, startingSquare.rank()
+    ChessSquare rightwardCaptureMove(char(startingSquare.file() + 1), startingSquare.rank()
                                     + (1 * movementDirectionForCurrentAffiliation()));
-    ChessSquare leftwardCaptureMove(startingSquare.file() - 1, startingSquare.rank()
+    ChessSquare leftwardCaptureMove(char(startingSquare.file() - 1), startingSquare.rank()
                                     + (1 * movementDirectionForCurrentAffiliation()));
     if (rightwardCaptureMove.isSquareOnTheBoard())
     {

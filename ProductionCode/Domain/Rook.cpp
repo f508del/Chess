@@ -56,13 +56,13 @@ ExtendedSet<ChessSquare> Rook::potentialEmptyBoardMovesFrom(const ChessSquare &s
         }
         
         // increasing files
-        ChessSquare increasingFileDestination(startingSquare.file() + i, startingSquare.rank());
+        ChessSquare increasingFileDestination(char(startingSquare.file() + i), startingSquare.rank());
         if (increasingFileDestination.isSquareOnTheBoard())
         {
             potentialMoves.insert(increasingFileDestination);
         }
         
-        ChessSquare decreasingFileDestination(startingSquare.file() - i, startingSquare.rank());
+        ChessSquare decreasingFileDestination(char(startingSquare.file() - i), startingSquare.rank());
         if (decreasingFileDestination.isSquareOnTheBoard())
         {
             potentialMoves.insert(decreasingFileDestination);
