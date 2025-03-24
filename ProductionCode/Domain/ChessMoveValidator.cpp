@@ -113,8 +113,7 @@ bool ChessMoveValidator::enPassantIsBeingAttempted(const ChessMove& move) const
     ((int)gameHistory_.mostRecentMove().startingSquare().rank() + (int)gameHistory_.mostRecentMove().endingSquare().rank()) / 2;
     ChessSquare onlyValidEndingSquareForEnPassantMove(gameHistory_.mostRecentMove().startingSquare().file(), validEnPassantRank);
     
-    if (move.endingSquare().rank() == onlyValidEndingSquareForEnPassantMove.rank() &&
-        move.endingSquare().file() == onlyValidEndingSquareForEnPassantMove.file())
+    if (move.endingSquare() == onlyValidEndingSquareForEnPassantMove)
     {
         if (abs(move.startingSquare().file() - move.endingSquare().file()) == 1)
         {

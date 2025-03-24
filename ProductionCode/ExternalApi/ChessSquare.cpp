@@ -43,6 +43,11 @@ bool ChessSquare::operator<(const ChessSquare& otherSquare) const
    return hashNumber < otherHashNumber;
 }
 
+bool ChessSquare::operator==(const ChessSquare& otherSquare) const
+{
+    return ((file_ == otherSquare.file_) && (rank_ == otherSquare.rank_));
+}
+
 bool ChessSquare::isValidFile() const
 {
    return (file_ >= 'a' && file_ <= 'h');

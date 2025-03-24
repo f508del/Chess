@@ -12,21 +12,22 @@
 class ChessSquare
 {
 public:
-   ChessSquare();
-   ChessSquare(char file, unsigned int rank);
+    ChessSquare();
+    ChessSquare(char file, unsigned int rank);
 
-   bool isSquareOnTheBoard() const;
+    bool isSquareOnTheBoard() const;
 
-   char file() const;
-   unsigned int rank() const;
+    char file() const;
+    unsigned int rank() const;
 
-   bool operator< (const ChessSquare& otherSquare) const;
-
-private:
-   bool isValidFile() const;
-   bool isValidRank() const;
+    bool operator< (const ChessSquare& otherSquare) const;
+    bool operator==(const ChessSquare& otherSquare) const;
 
 private:
-   char file_;
-   unsigned int rank_;
+    bool isValidFile() const;
+    bool isValidRank() const;
+
+private:
+    char file_;
+    unsigned int rank_;
 };
