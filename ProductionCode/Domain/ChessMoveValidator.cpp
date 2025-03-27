@@ -85,6 +85,24 @@ MoveValidity ChessMoveValidator::validateMove(const ChessMove& currentMove)
     return MoveValidity::VALID_MOVE;
 }
 
+bool ChessMoveValidator::isSquareThreatenedByColor(const ChessSquare& square, PieceAffiliation attackingColor)
+{
+    ignorePlayerInitiative();
+    
+    // Go through each piece of the attacking side, see if any of their pieces could validly move into the square 
+    list<ChessSquare> attackingPieces = board_.allSquaresOccupiedByColor(attackingColor);
+    for (auto iterator = attackingPieces.begin(); iterator != attackingPieces.end(); iterator++)
+    {
+        if (validateMove(ChessMove(*iterator, square)) == Chess::MoveValidity::VALID_MOVE)
+        {
+            accountForPlayerInitiative();
+            return true;
+        }
+    }
+    accountForPlayerInitiative();
+    return false;
+}
+
 void ChessMoveValidator::ignorePlayerInitiative()
 {
     playerInitiativeIsApplicable_ = false;

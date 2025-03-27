@@ -8,6 +8,8 @@
 
 #pragma once
 #include "ChessMoveValidity.hpp"
+#include "ChessPieceAffiliation.hpp"
+#include "ChessSquare.hpp"
 
 class ChessMove;
 class ChessBoard;
@@ -21,10 +23,12 @@ public:
 
     Chess::MoveValidity validateMove(const ChessMove& currentMove);
     
+    bool isSquareThreatenedByColor(const ChessSquare& square, Chess::PieceAffiliation attackingColor);
+
+private:
     void ignorePlayerInitiative();
     void accountForPlayerInitiative();
 
-private:
     bool enPassantIsCurrentlyPossible() const;
     bool enPassantIsBeingAttempted(const ChessMove& move) const;
     

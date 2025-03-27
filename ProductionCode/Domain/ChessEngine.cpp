@@ -108,18 +108,10 @@ void ChessEngine::detectEndGameConditions()
     ChessSquare kingSquareThatMayBeInCheck = board_->currentKingSquare(board_->playerToMakeNextMove());
     PieceAffiliation playerThatMadeLastMove = oppositePieceAffiliation(board_->playerToMakeNextMove());
     
-    moveValidator_->ignorePlayerInitiative();
-    
-    // Go through each piece of the side that did move last, see if any of their pieces could validly move into the opposing king's square (from above)
-    list<ChessSquare> attackingPieces = board_->allSquaresOccupiedByColor(playerThatMadeLastMove);
-    for (auto iterator = attackingPieces.begin(); iterator != attackingPieces.end(); iterator++)
+    if (moveValidator_->isSquareThreatenedByColor(kingSquareThatMayBeInCheck, playerThatMadeLastMove))
     {
-        if (moveValidator_->validateMove(ChessMove(*iterator, kingSquareThatMayBeInCheck)) == Chess::MoveValidity::VALID_MOVE)
-        {
-            outputSystem_.declareCheck();
-            break;
-        }
+        outputSystem_.declareCheck();
     }
-    moveValidator_->accountForPlayerInitiative();
+    
     return;
 }
