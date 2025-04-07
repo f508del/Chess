@@ -58,6 +58,11 @@ MoveValidity ChessMoveValidator::validateMove(const ChessMove& currentMove)
         return MoveValidity::VALID_EN_PASSANT_MOVE;
     }
     
+    if (movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(currentMove))
+    {
+        return MoveValidity::NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE;
+    }
+    
     if (!board_.anyPieceExistsAt(currentMove.endingSquare()))
     {
         ExtendedSet<ChessSquare> potentialEmptyBoardMoves = currentPiece->potentialEmptyBoardMovesFrom(currentMove.startingSquare());
@@ -142,5 +147,14 @@ bool ChessMoveValidator::enPassantIsBeingAttempted(const ChessMove& move) const
         }
     }
     
+    return false;
+}
+
+bool ChessMoveValidator::movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(const ChessMove& move)
+{
+    // TODO
+    // Setup the board with the move hypothetically applied...
+    /*bool checkStillExists = isSquareThreatenedByColor(board_.currentKingSquare(board_.playerToMakeNextMove()),
+                                                      oppositePieceAffiliation(board_.playerToMakeNextMove()));*/
     return false;
 }

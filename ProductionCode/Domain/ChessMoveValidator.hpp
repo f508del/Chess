@@ -31,6 +31,7 @@ private:
 
     bool enPassantIsCurrentlyPossible() const;
     bool enPassantIsBeingAttempted(const ChessMove& move) const;
+    bool movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(const ChessMove& move);
     
 private:
     const ChessBoard& board_;
