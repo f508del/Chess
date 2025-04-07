@@ -26,9 +26,6 @@ public:
     bool isSquareThreatenedByColor(const ChessSquare& square, Chess::PieceAffiliation attackingColor);
 
 private:
-    void ignorePlayerInitiative();
-    void accountForPlayerInitiative();
-
     bool enPassantIsCurrentlyPossible() const;
     bool enPassantIsBeingAttempted(const ChessMove& move) const;
     bool movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(const ChessMove& move);
@@ -36,5 +33,4 @@ private:
 private:
     const ChessBoard& board_;
     const ChessGameHistory& gameHistory_;
-    bool playerInitiativeIsApplicable_;
 };

@@ -20,7 +20,6 @@ using namespace Chess;
 ChessMoveValidator::ChessMoveValidator(const ChessBoard& board, const ChessGameHistory& gameHistory)
 : board_(board)
 , gameHistory_(gameHistory)
-, playerInitiativeIsApplicable_(true)
 {
 
 }
@@ -43,7 +42,7 @@ MoveValidity ChessMoveValidator::validateMove(const ChessMove& currentMove)
         return MoveValidity::NO_PIECE_AT_STARTING_LOCATION;
     }
     
-    if ((currentPiece->affiliation() != board_.playerToMakeNextMove()) && playerInitiativeIsApplicable_)
+    if ((currentPiece->affiliation() != board_.playerToMakeNextMove()))
     {
         return MoveValidity::OPPOSING_PLAYERS_PIECE;
     }
@@ -92,30 +91,30 @@ MoveValidity ChessMoveValidator::validateMove(const ChessMove& currentMove)
 
 bool ChessMoveValidator::isSquareThreatenedByColor(const ChessSquare& square, PieceAffiliation attackingColor)
 {
-    ignorePlayerInitiative();
+    bool squareIsThreatened = false;
     
-    // Go through each piece of the attacking side, see if any of their pieces could validly move into the square 
     list<ChessSquare> attackingPieces = board_.allSquaresOccupiedByColor(attackingColor);
-    for (auto iterator = attackingPieces.begin(); iterator != attackingPieces.end(); iterator++)
+    for (auto attackingPieceLocationIterator = attackingPieces.begin(); attackingPieceLocationIterator != attackingPieces.end();
+         attackingPieceLocationIterator++)
     {
-        if (validateMove(ChessMove(*iterator, square)) == Chess::MoveValidity::VALID_MOVE)
+        const I_ChessPiece* currentPiece = board_.pieceAt(*attackingPieceLocationIterator);
+        ExtendedSet<ChessSquare> potentialCaptureMoves = currentPiece->potentialCaptureMovesFrom(*attackingPieceLocationIterator);
+        if (!potentialCaptureMoves.contains(square))
         {
-            accountForPlayerInitiative();
-            return true;
+            continue;
         }
+        
+        ChessMove currentExaminedMove(*attackingPieceLocationIterator,square);
+        if (!board_.squaresBetweenEndPointsAreEmpty(currentExaminedMove) && !currentPiece->pieceCanJumpOtherPieces())
+        {
+            continue;
+        }
+        
+        squareIsThreatened = true;
+        break;
     }
-    accountForPlayerInitiative();
-    return false;
-}
-
-void ChessMoveValidator::ignorePlayerInitiative()
-{
-    playerInitiativeIsApplicable_ = false;
-}
-
-void ChessMoveValidator::accountForPlayerInitiative()
-{
-    playerInitiativeIsApplicable_ = true;
+    
+    return squareIsThreatened;
 }
 
 bool ChessMoveValidator::enPassantIsCurrentlyPossible() const
