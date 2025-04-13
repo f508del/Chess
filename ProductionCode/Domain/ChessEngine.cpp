@@ -108,7 +108,7 @@ void ChessEngine::detectEndGameConditions()
     ChessSquare kingSquareThatMayBeInCheck = board_->currentKingSquare(board_->playerToMakeNextMove());
     PieceAffiliation playerThatMadeLastMove = oppositePieceAffiliation(board_->playerToMakeNextMove());
     
-    if (moveValidator_->isSquareThreatenedByColor(kingSquareThatMayBeInCheck, playerThatMadeLastMove))
+    if (moveValidator_->isSquareThreatenedByColor(*board_, kingSquareThatMayBeInCheck, playerThatMadeLastMove))
     {
         outputSystem_.declareCheck();
     }

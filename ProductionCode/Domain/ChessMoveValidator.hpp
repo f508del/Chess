@@ -23,7 +23,7 @@ public:
 
     Chess::MoveValidity validateMove(const ChessMove& currentMove);
     
-    bool isSquareThreatenedByColor(const ChessSquare& square, Chess::PieceAffiliation attackingColor);
+    bool isSquareThreatenedByColor(const ChessBoard& board, const ChessSquare& square, Chess::PieceAffiliation attackingColor);
 
 private:
     bool enPassantIsCurrentlyPossible() const;

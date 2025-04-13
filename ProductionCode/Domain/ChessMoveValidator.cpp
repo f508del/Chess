@@ -89,15 +89,15 @@ MoveValidity ChessMoveValidator::validateMove(const ChessMove& currentMove)
     return MoveValidity::VALID_MOVE;
 }
 
-bool ChessMoveValidator::isSquareThreatenedByColor(const ChessSquare& square, PieceAffiliation attackingColor)
+bool ChessMoveValidator::isSquareThreatenedByColor(const ChessBoard& board, const ChessSquare& square, PieceAffiliation attackingColor)
 {
     bool squareIsThreatened = false;
     
-    list<ChessSquare> attackingPieces = board_.allSquaresOccupiedByColor(attackingColor);
+    list<ChessSquare> attackingPieces = board.allSquaresOccupiedByColor(attackingColor);
     for (auto attackingPieceLocationIterator = attackingPieces.begin(); attackingPieceLocationIterator != attackingPieces.end();
          attackingPieceLocationIterator++)
     {
-        const I_ChessPiece* currentPiece = board_.pieceAt(*attackingPieceLocationIterator);
+        const I_ChessPiece* currentPiece = board.pieceAt(*attackingPieceLocationIterator);
         ExtendedSet<ChessSquare> potentialCaptureMoves = currentPiece->potentialCaptureMovesFrom(*attackingPieceLocationIterator);
         if (!potentialCaptureMoves.contains(square))
         {
@@ -105,7 +105,7 @@ bool ChessMoveValidator::isSquareThreatenedByColor(const ChessSquare& square, Pi
         }
         
         ChessMove currentExaminedMove(*attackingPieceLocationIterator,square);
-        if (!board_.squaresBetweenEndPointsAreEmpty(currentExaminedMove) && !currentPiece->pieceCanJumpOtherPieces())
+        if (!board.squaresBetweenEndPointsAreEmpty(currentExaminedMove) && !currentPiece->pieceCanJumpOtherPieces())
         {
             continue;
         }
@@ -153,7 +153,7 @@ bool ChessMoveValidator::movingPlayersKingWouldBeInCheckAfterApplyingProposedMov
 {
     // TODO
     // Setup the board with the move hypothetically applied...
-    /*bool checkStillExists = isSquareThreatenedByColor(board_.currentKingSquare(board_.playerToMakeNextMove()),
+    /*bool checkStillExists = isSquareThreatenedByColor(board_, board_.currentKingSquare(board_.playerToMakeNextMove()),
                                                       oppositePieceAffiliation(board_.playerToMakeNextMove()));*/
     return false;
 }
