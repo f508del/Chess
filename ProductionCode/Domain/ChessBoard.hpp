@@ -23,6 +23,7 @@ class Knight;
 class Pawn;
 class Queen;
 class Rook;
+struct ChessMoveRecord;
 
 class ChessBoard : public I_ReadOnlyChessBoard
 {
@@ -42,7 +43,7 @@ public:
     ChessSquare currentKingSquare(Chess::PieceAffiliation affiliation) const;
     std::list<ChessSquare> allSquaresOccupiedByColor(Chess::PieceAffiliation affiliation) const;
     
-    void applyMove(const ChessMove& move);
+    ChessMoveRecord applyMove(const ChessMove& move);
     void deletePieceAtSquare(const ChessSquare& square);
     void resetBoard();
     void togglePlayerInitiative();

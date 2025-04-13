@@ -10,6 +10,7 @@
 #include "ChessEngine.hpp"
 #include "ChessGameHistory.hpp"
 #include "ChessMove.hpp"
+#include "ChessMoveRecord.hpp"
 #include "ChessMoveValidator.hpp"
 #include "I_ChessPiece.hpp"
 #include "I_InputSystem.hpp"

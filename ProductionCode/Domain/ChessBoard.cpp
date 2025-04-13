@@ -9,6 +9,7 @@
 #include "Bishop.hpp"
 #include "ChessBoard.hpp"
 #include "ChessMove.hpp"
+#include "ChessMoveRecord.hpp"
 #include "ChessSquare.hpp"
 #include "Pawn.hpp"
 #include "Queen.hpp"
@@ -146,11 +147,14 @@ void ChessBoard::togglePlayerInitiative()
     playerToMakeNextMove_ = oppositePieceAffiliation(playerToMakeNextMove_);
 }
 
-void ChessBoard::applyMove(const ChessMove &move) { 
+ChessMoveRecord ChessBoard::applyMove(const ChessMove &move) {
+    ChessMoveRecord moveRecord;
+    // TODO: populate this record object correctly
+    
     const I_ChessPiece* movingPiece = pieceAt(move.startingSquare());
     boardState_[move.endingSquare()] = movingPiece;
     boardState_.erase(boardState_.find(move.startingSquare()));
-    return;
+    return moveRecord;
 }
 
 void ChessBoard::deletePieceAtSquare(const ChessSquare& square)

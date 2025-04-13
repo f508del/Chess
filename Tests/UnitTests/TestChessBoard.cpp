@@ -8,6 +8,7 @@
 #include "Catch.hpp"
 #include "ChessBoard.hpp"
 #include "ChessMove.hpp"
+#include "ChessMoveRecord.hpp"
 
 TEST_CASE("Testing the ChessBoard object")
 {
