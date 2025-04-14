@@ -148,12 +148,29 @@ void ChessBoard::togglePlayerInitiative()
 }
 
 ChessMoveRecord ChessBoard::applyMove(const ChessMove &move) {
-    ChessMoveRecord moveRecord;
-    // TODO: populate this record object correctly
     
     const I_ChessPiece* movingPiece = pieceAt(move.startingSquare());
+    if (nullptr == movingPiece)
+    {
+        return ChessMoveRecord();
+    }
+    
+    ChessMoveRecord moveRecord;
+    moveRecord.movingPieceAffiliation = movingPiece->affiliation();
+    moveRecord.movingPieceType = movingPiece->pieceType();
+    moveRecord.movingPieceStartingSquare = move.startingSquare();
+    moveRecord.movingPieceEndingSquare = move.endingSquare();
+    
+    const I_ChessPiece* capturedPiece = pieceAt(move.endingSquare());
+    if (nullptr != capturedPiece)
+    {
+        moveRecord.capturedPieceType = capturedPiece->pieceType();
+        moveRecord.capturedPieceSquare = move.endingSquare();
+    }
+    
     boardState_[move.endingSquare()] = movingPiece;
     boardState_.erase(boardState_.find(move.startingSquare()));
+    
     return moveRecord;
 }
 

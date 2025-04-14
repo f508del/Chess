@@ -14,4 +14,5 @@ This is meant as a simple backlog of what refactorings and features are upcoming
  30. Refactor Fake input system to inherit Terminal input system
  31. Prevent King from moving into threat
  32. Limit valid moves when in check
+ 33. Update Game History to accept ChessMoveRecord objects
 */
