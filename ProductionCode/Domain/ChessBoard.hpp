@@ -44,6 +44,7 @@ public:
     std::list<ChessSquare> allSquaresOccupiedByColor(Chess::PieceAffiliation affiliation) const;
     
     ChessMoveRecord applyMove(const ChessMove& move);
+    bool reverseMove(const ChessMoveRecord& priorMove);
     void deletePieceAtSquare(const ChessSquare& square);
     void resetBoard();
     void togglePlayerInitiative();

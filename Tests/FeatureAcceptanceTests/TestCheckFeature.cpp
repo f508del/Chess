@@ -55,13 +55,12 @@ TEST_CASE("Testing the logic around detecting Check situations")
     
     SECTION("Will prevent moves that don't protect the king while in check")
     {
-        fprintf(stderr,"SKIPPED TEST for preventing moves that leave king in check\n");
-        /*ChessEngineTestHarness testHarness;
+        ChessEngineTestHarness testHarness;
         testHarness.setInputSequenceWithinANewGame({"a2a3", "h7h5", "a3a4", "h8h6", "a4a5", "h6e6", "a5a6", "e6e2", "b2b3"});
         
         testHarness.chessEngine().runChessEngine();
         
-        CHECK(testHarness.lastMoveRejectionReason() == Chess::MoveValidity::NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE);*/
+        CHECK(testHarness.lastMoveRejectionReason() == Chess::MoveValidity::NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE);
     }
     
     SECTION("Will allow moves that do protect the king while in check")

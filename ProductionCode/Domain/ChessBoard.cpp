@@ -202,4 +202,91 @@ bool ChessBoard::squaresBetweenEndPointsAreEmpty(const ChessMove &move) const
     return true;
 }
 
+bool ChessBoard::reverseMove(const ChessMoveRecord& priorMove)
+{
+    // first, check that the reversal won't step on an existing piece:
+    if (anyPieceExistsAt(priorMove.movingPieceStartingSquare))
+    {
+        return false;
+    }
+    
+    // next make sure the piece that was moved is still where it was put in the record
+    const I_ChessPiece* piece = pieceAt(priorMove.movingPieceEndingSquare);
+    if (nullptr == piece)
+    {
+        return false;
+    }
+    
+    if ((piece->affiliation() != priorMove.movingPieceAffiliation) ||
+        (piece->pieceType() != priorMove.movingPieceType))
+    {
+        return false;
+    }
+    
+    // Ok now reverse the move, replacing any captured pieces as needed
+    boardState_[priorMove.movingPieceStartingSquare] = piece;
+    boardState_.erase(boardState_.find(priorMove.movingPieceEndingSquare));
+    
+    if (priorMove.capturedPieceType != Chess::PieceType::NONE)
+    {
+        I_ChessPiece* pieceToPlace = nullptr;
+        
+        if (priorMove.movingPieceAffiliation == Chess::PieceAffiliation::BLACK_PIECE)
+        {
+            switch(priorMove.capturedPieceType)
+            {
+                case Chess::PieceType::PAWN:
+                    pieceToPlace = whitePawnCapabilities_.data();
+                    break;
+                case Chess::PieceType::KNIGHT:
+                    pieceToPlace = whiteKnightCapabilities_.data();
+                    break;
+                case Chess::PieceType::BISHOP:
+                    pieceToPlace = whiteBishopCapabilities_.data();
+                    break;
+                case Chess::PieceType::ROOK:
+                    pieceToPlace = whiteRookCapabilities_.data();
+                    break;
+                case Chess::PieceType::QUEEN:
+                    pieceToPlace = whiteQueenCapabilities_.data();
+                    break;
+                case Chess::PieceType::KING:
+                    pieceToPlace = whiteKingCapabilities_.data();
+                    break;
+                default:
+                    break;
+            }
+        }
+        else // The moving piece was white, hence the captured piece will be black.
+        {
+            switch(priorMove.capturedPieceType)
+            {
+                case Chess::PieceType::PAWN:
+                    pieceToPlace = blackPawnCapabilities_.data();
+                    break;
+                case Chess::PieceType::KNIGHT:
+                    pieceToPlace = blackKnightCapabilities_.data();
+                    break;
+                case Chess::PieceType::BISHOP:
+                    pieceToPlace = blackBishopCapabilities_.data();
+                    break;
+                case Chess::PieceType::ROOK:
+                    pieceToPlace = blackRookCapabilities_.data();
+                    break;
+                case Chess::PieceType::QUEEN:
+                    pieceToPlace = blackQueenCapabilities_.data();
+                    break;
+                case Chess::PieceType::KING:
+                    pieceToPlace = blackKingCapabilities_.data();
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+        boardState_[priorMove.capturedPieceSquare] = pieceToPlace;
+    }
+    
+    return true;
+}
 

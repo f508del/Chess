@@ -18,7 +18,7 @@ class ChessGameHistory;
 class ChessMoveValidator
 {
 public:
-    ChessMoveValidator(const ChessBoard& board, const ChessGameHistory& gameHistory);
+    ChessMoveValidator(ChessBoard& board, const ChessGameHistory& gameHistory);
     virtual ~ChessMoveValidator();
 
     Chess::MoveValidity validateMove(const ChessMove& currentMove);
@@ -31,6 +31,6 @@ private:
     bool movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(const ChessMove& move);
     
 private:
-    const ChessBoard& board_;
+    ChessBoard& board_;
     const ChessGameHistory& gameHistory_;
 };

@@ -11,13 +11,14 @@
 #include "ChessBoard.hpp"
 #include "ChessGameHistory.hpp"
 #include "ChessMove.hpp"
+#include "ChessMoveRecord.hpp"
 #include "ChessSquare.hpp"
 #include "I_ChessPiece.hpp"
 
 using namespace std;
 using namespace Chess;
 
-ChessMoveValidator::ChessMoveValidator(const ChessBoard& board, const ChessGameHistory& gameHistory)
+ChessMoveValidator::ChessMoveValidator(ChessBoard& board, const ChessGameHistory& gameHistory)
 : board_(board)
 , gameHistory_(gameHistory)
 {
@@ -57,11 +58,6 @@ MoveValidity ChessMoveValidator::validateMove(const ChessMove& currentMove)
         return MoveValidity::VALID_EN_PASSANT_MOVE;
     }
     
-    if (movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(currentMove))
-    {
-        return MoveValidity::NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE;
-    }
-    
     if (!board_.anyPieceExistsAt(currentMove.endingSquare()))
     {
         ExtendedSet<ChessSquare> potentialEmptyBoardMoves = currentPiece->potentialEmptyBoardMovesFrom(currentMove.startingSquare());
@@ -84,6 +80,11 @@ MoveValidity ChessMoveValidator::validateMove(const ChessMove& currentMove)
         {
             return MoveValidity::DESTINATION_BLOCKED_BY_EXISTING_PIECE;
         }
+    }
+    
+    if (movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(currentMove))
+    {
+        return MoveValidity::NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE;
     }
 
     return MoveValidity::VALID_MOVE;
@@ -151,9 +152,11 @@ bool ChessMoveValidator::enPassantIsBeingAttempted(const ChessMove& move) const
 
 bool ChessMoveValidator::movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(const ChessMove& move)
 {
-    // TODO
-    // Setup the board with the move hypothetically applied...
-    /*bool checkStillExists = isSquareThreatenedByColor(board_, board_.currentKingSquare(board_.playerToMakeNextMove()),
-                                                      oppositePieceAffiliation(board_.playerToMakeNextMove()));*/
-    return false;
+    ChessMoveRecord record = board_.applyMove(move);
+    
+    bool checkStillExists = isSquareThreatenedByColor(board_, board_.currentKingSquare(board_.playerToMakeNextMove()),
+                                                      oppositePieceAffiliation(board_.playerToMakeNextMove()));
+    
+    board_.reverseMove(record);
+    return checkStillExists;
 }
