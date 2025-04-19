@@ -169,7 +169,7 @@ ChessMoveRecord ChessBoard::applyMove(const ChessMove &move) {
     }
     
     boardState_[move.endingSquare()] = movingPiece;
-    boardState_.erase(boardState_.find(move.startingSquare()));
+    removePieceAtSquare(move.startingSquare());
     
     return moveRecord;
 }
@@ -225,7 +225,7 @@ bool ChessBoard::reverseMove(const ChessMoveRecord& priorMove)
     
     // Ok now reverse the move, replacing any captured pieces as needed
     boardState_[priorMove.movingPieceStartingSquare] = piece;
-    boardState_.erase(boardState_.find(priorMove.movingPieceEndingSquare));
+    removePieceAtSquare(priorMove.movingPieceEndingSquare);
     
     if (priorMove.capturedPieceType != Chess::PieceType::NONE)
     {
