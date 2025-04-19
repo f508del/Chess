@@ -9,6 +9,7 @@
 #include <list>
 
 class ChessMove;
+class ChessMoveRecord;
 
 class ChessGameHistory
 {
@@ -16,7 +17,7 @@ public:
     ChessGameHistory();
     ~ChessGameHistory();
     
-    void recordMove(const ChessMove& move, Chess::PieceType pieceType);
+    void recordMove(const ChessMoveRecord& moveRecord);
     
     ChessMove mostRecentMove() const;
     Chess::PieceType mostRecentMovedPiece() const;

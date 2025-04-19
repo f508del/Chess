@@ -100,7 +100,7 @@ void ChessEngine::attemptMove(const ChessMove& move)
             moveRecord.capturedPieceType = Chess::PieceType::PAWN;
         }
         board_->togglePlayerInitiative();
-        gameHistory_->recordMove(move, board_->pieceAt(move.endingSquare())->pieceType());
+        gameHistory_->recordMove(moveRecord);
         detectEndGameConditions();
     }
 }
