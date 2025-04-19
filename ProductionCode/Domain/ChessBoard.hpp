@@ -9,6 +9,7 @@
 #pragma once
 
 #include "ChessPieceAffiliation.hpp"
+#include "ChessPieceType.hpp"
 #include "ScopedPointer.hpp"
 #include "I_ReadOnlyChessBoard.hpp"
 #include <map>
@@ -50,6 +51,8 @@ public:
     void togglePlayerInitiative();
 
 private:
+    I_ChessPiece* chessPieceOfTypeAndAffiliation(Chess::PieceType type, Chess::PieceAffiliation affiliation) const;
+    
     ScopedPointer<Pawn> whitePawnCapabilities_;
     ScopedPointer<Pawn> blackPawnCapabilities_;
     ScopedPointer<Knight> whiteKnightCapabilities_;

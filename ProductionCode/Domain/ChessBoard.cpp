@@ -229,64 +229,69 @@ bool ChessBoard::reverseMove(const ChessMoveRecord& priorMove)
     
     if (priorMove.capturedPieceType != Chess::PieceType::NONE)
     {
-        I_ChessPiece* pieceToPlace = nullptr;
-        
-        if (priorMove.movingPieceAffiliation == Chess::PieceAffiliation::BLACK_PIECE)
-        {
-            switch(priorMove.capturedPieceType)
-            {
-                case Chess::PieceType::PAWN:
-                    pieceToPlace = whitePawnCapabilities_.data();
-                    break;
-                case Chess::PieceType::KNIGHT:
-                    pieceToPlace = whiteKnightCapabilities_.data();
-                    break;
-                case Chess::PieceType::BISHOP:
-                    pieceToPlace = whiteBishopCapabilities_.data();
-                    break;
-                case Chess::PieceType::ROOK:
-                    pieceToPlace = whiteRookCapabilities_.data();
-                    break;
-                case Chess::PieceType::QUEEN:
-                    pieceToPlace = whiteQueenCapabilities_.data();
-                    break;
-                case Chess::PieceType::KING:
-                    pieceToPlace = whiteKingCapabilities_.data();
-                    break;
-                default:
-                    break;
-            }
-        }
-        else // The moving piece was white, hence the captured piece will be black.
-        {
-            switch(priorMove.capturedPieceType)
-            {
-                case Chess::PieceType::PAWN:
-                    pieceToPlace = blackPawnCapabilities_.data();
-                    break;
-                case Chess::PieceType::KNIGHT:
-                    pieceToPlace = blackKnightCapabilities_.data();
-                    break;
-                case Chess::PieceType::BISHOP:
-                    pieceToPlace = blackBishopCapabilities_.data();
-                    break;
-                case Chess::PieceType::ROOK:
-                    pieceToPlace = blackRookCapabilities_.data();
-                    break;
-                case Chess::PieceType::QUEEN:
-                    pieceToPlace = blackQueenCapabilities_.data();
-                    break;
-                case Chess::PieceType::KING:
-                    pieceToPlace = blackKingCapabilities_.data();
-                    break;
-                default:
-                    break;
-            }
-        }
-        
-        boardState_[priorMove.capturedPieceSquare] = pieceToPlace;
+        boardState_[priorMove.capturedPieceSquare] = chessPieceOfTypeAndAffiliation(priorMove.capturedPieceType,
+                                                                                    Chess::oppositePieceAffiliation(priorMove.movingPieceAffiliation));
     }
     
     return true;
 }
 
+I_ChessPiece* ChessBoard::chessPieceOfTypeAndAffiliation(Chess::PieceType type, Chess::PieceAffiliation affiliation) const
+{
+    I_ChessPiece* piece = nullptr;
+    
+    if (affiliation == Chess::PieceAffiliation::WHITE_PIECE)
+    {
+        switch(type)
+        {
+            case Chess::PieceType::PAWN:
+                piece = whitePawnCapabilities_.data();
+                break;
+            case Chess::PieceType::KNIGHT:
+                piece = whiteKnightCapabilities_.data();
+                break;
+            case Chess::PieceType::BISHOP:
+                piece = whiteBishopCapabilities_.data();
+                break;
+            case Chess::PieceType::ROOK:
+                piece = whiteRookCapabilities_.data();
+                break;
+            case Chess::PieceType::QUEEN:
+                piece = whiteQueenCapabilities_.data();
+                break;
+            case Chess::PieceType::KING:
+                piece = whiteKingCapabilities_.data();
+                break;
+            default:
+                break;
+        }
+    }
+    else // Affiliation is black
+    {
+        switch(type)
+        {
+            case Chess::PieceType::PAWN:
+                piece = blackPawnCapabilities_.data();
+                break;
+            case Chess::PieceType::KNIGHT:
+                piece = blackKnightCapabilities_.data();
+                break;
+            case Chess::PieceType::BISHOP:
+                piece = blackBishopCapabilities_.data();
+                break;
+            case Chess::PieceType::ROOK:
+                piece = blackRookCapabilities_.data();
+                break;
+            case Chess::PieceType::QUEEN:
+                piece = blackQueenCapabilities_.data();
+                break;
+            case Chess::PieceType::KING:
+                piece = blackKingCapabilities_.data();
+                break;
+            default:
+                break;
+        }
+    }
+    
+    return piece;
+}
