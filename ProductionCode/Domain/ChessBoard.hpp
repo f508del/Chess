@@ -45,7 +45,7 @@ public:
     
     ChessMoveRecord applyMove(const ChessMove& move);
     bool reverseMove(const ChessMoveRecord& priorMove);
-    void deletePieceAtSquare(const ChessSquare& square);
+    void removePieceAtSquare(const ChessSquare& square);
     void resetBoard();
     void togglePlayerInitiative();
 

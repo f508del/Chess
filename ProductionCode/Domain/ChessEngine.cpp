@@ -95,7 +95,7 @@ void ChessEngine::attemptMove(const ChessMove& move)
             // This feels hacky, but is necessary because this is the only move in the game that captures a piece
             // without moving into the square in question
             ChessSquare doomedSquare(move.endingSquare().file(), move.startingSquare().rank());
-            board_->deletePieceAtSquare(doomedSquare);
+            board_->removePieceAtSquare(doomedSquare);
             moveRecord.capturedPieceSquare = doomedSquare;
             moveRecord.capturedPieceType = Chess::PieceType::PAWN;
         }

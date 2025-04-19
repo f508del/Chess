@@ -174,7 +174,7 @@ ChessMoveRecord ChessBoard::applyMove(const ChessMove &move) {
     return moveRecord;
 }
 
-void ChessBoard::deletePieceAtSquare(const ChessSquare& square)
+void ChessBoard::removePieceAtSquare(const ChessSquare& square)
 {
     boardState_.erase(boardState_.find(square));
 }
