@@ -23,23 +23,23 @@ ChessGameHistory::~ChessGameHistory()
 
 void ChessGameHistory::recordMove(const ChessMoveRecord& moveRecord)
 {
-    moveList_.push_back(ChessMove(moveRecord.movingPieceStartingSquare, moveRecord.movingPieceEndingSquare));
-    movePieceList_.push_back(moveRecord.movingPieceType);
+    moveHistory_.push_back(moveRecord);
 }
 
 ChessMove ChessGameHistory::mostRecentMove() const
 {
-    if (!moveList_.empty())
+    if (!moveHistory_.empty())
     {
-        return moveList_.back();
+        return ChessMove(moveHistory_.back().movingPieceStartingSquare, moveHistory_.back().movingPieceEndingSquare);
     }
     return ChessMove();
 }
 
-PieceType ChessGameHistory::mostRecentMovedPiece() const { 
-    if (!movePieceList_.empty())
+PieceType ChessGameHistory::mostRecentMovedPiece() const
+{ 
+    if (!moveHistory_.empty())
     {
-        return movePieceList_.back();
+        return moveHistory_.back().movingPieceType;
     }
     return PieceType::NONE;
 }

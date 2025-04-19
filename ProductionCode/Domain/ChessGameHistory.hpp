@@ -23,6 +23,5 @@ public:
     Chess::PieceType mostRecentMovedPiece() const;
     
 private:
-    std::list<ChessMove> moveList_;
-    std::list<Chess::PieceType> movePieceList_;
+    std::list<ChessMoveRecord> moveHistory_;
 };
