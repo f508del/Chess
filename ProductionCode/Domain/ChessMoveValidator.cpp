@@ -88,7 +88,7 @@ InternalChessMove ChessMoveValidator::validateMove(const ChessMove& currentMove)
         return MoveValidity::NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE;
     }
 
-    return MoveValidity::VALID_MOVE;
+    return assembleValidMove(currentMove);
 }
 
 bool ChessMoveValidator::isSquareThreatenedByColor(const ChessBoard& board, const ChessSquare& square, PieceAffiliation attackingColor)
@@ -160,4 +160,31 @@ bool ChessMoveValidator::movingPlayersKingWouldBeInCheckAfterApplyingProposedMov
     
     board_.reverseMove(record);
     return checkStillExists;
+}
+
+InternalChessMove ChessMoveValidator::assembleValidMove(const ChessMove& currentMove)
+{
+    InternalChessMove moveElements;
+    
+    // Start by "picking up" the piece at the starting square
+    moveElements.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE,
+                                                 currentMove.startingSquare(),
+                                                 board_.playerToMakeNextMove(),
+                                                 board_.pieceAt(currentMove.startingSquare())->pieceType()));
+    
+    // If the destination square has a piece on it, insert that removal element (validation done earlier...)
+    if (board_.anyPieceExistsAt(currentMove.endingSquare()))
+    {
+        moveElements.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE,
+                                                     currentMove.endingSquare(),
+                                                     oppositePieceAffiliation(board_.playerToMakeNextMove()),
+                                                     board_.pieceAt(currentMove.endingSquare())->pieceType()));
+    }
+    
+    // Now place the moving piece at the destination square
+    moveElements.addValidMoveElement(MoveElement(MoveElementAction::PLACE_PIECE,
+                                                 currentMove.endingSquare(),
+                                                 board_.playerToMakeNextMove(),
+                                                 board_.pieceAt(currentMove.startingSquare())->pieceType()));
+    return moveElements;
 }
