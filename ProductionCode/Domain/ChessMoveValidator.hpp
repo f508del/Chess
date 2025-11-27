@@ -11,6 +11,7 @@
 #include "ChessPieceAffiliation.hpp"
 #include "ChessSquare.hpp"
 
+class InternalChessMove;
 class ChessMove;
 class ChessBoard;
 class ChessGameHistory;
@@ -21,7 +22,7 @@ public:
     ChessMoveValidator(ChessBoard& board, const ChessGameHistory& gameHistory);
     virtual ~ChessMoveValidator();
 
-    Chess::MoveValidity validateMove(const ChessMove& currentMove);
+    InternalChessMove validateMove(const ChessMove& currentMove);
     
     bool isSquareThreatenedByColor(const ChessBoard& board, const ChessSquare& square, Chess::PieceAffiliation attackingColor);
 

@@ -14,6 +14,7 @@
 #include "ChessMoveRecord.hpp"
 #include "ChessSquare.hpp"
 #include "I_ChessPiece.hpp"
+#include "InternalChessMove.hpp"
 
 using namespace std;
 using namespace Chess;
@@ -30,7 +31,7 @@ ChessMoveValidator::~ChessMoveValidator()
 
 }
 
-MoveValidity ChessMoveValidator::validateMove(const ChessMove& currentMove)
+InternalChessMove ChessMoveValidator::validateMove(const ChessMove& currentMove)
 {
     if (!currentMove.isOnTheBoard())
     {

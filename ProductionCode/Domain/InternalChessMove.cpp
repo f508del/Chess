@@ -7,8 +7,17 @@
 
 #include "InternalChessMove.hpp"
 
+using namespace Chess;
+
 InternalChessMove::InternalChessMove()
 : validity_(Chess::MoveValidity::NO_MOVE_ELEMENTS_CHOSEN)
+, moveElements_()
+{
+    
+}
+
+InternalChessMove::InternalChessMove(const Chess::MoveValidity validity)
+: validity_(validity)
 , moveElements_()
 {
     
@@ -17,6 +26,11 @@ InternalChessMove::InternalChessMove()
 Chess::MoveValidity InternalChessMove::validity() const
 {
     return validity_;
+}
+
+bool InternalChessMove::isValid() const
+{
+    return ((validity_ == MoveValidity::VALID_MOVE) || (validity_ == MoveValidity::VALID_EN_PASSANT_MOVE));
 }
 
 void InternalChessMove::setInvalidState(const Chess::MoveValidity validity)

@@ -15,6 +15,7 @@
 #include "I_ChessPiece.hpp"
 #include "I_InputSystem.hpp"
 #include "I_OutputSystem.hpp"
+#include "InternalChessMove.hpp"
 
 using namespace Chess;
 using namespace std;
@@ -80,17 +81,17 @@ void ChessEngine::endEventLoop()
 
 void ChessEngine::attemptMove(const ChessMove& move)
 {
-    MoveValidity lastMoveValidity = moveValidator_->validateMove(move);
-    if (lastMoveValidity != MoveValidity::VALID_MOVE && lastMoveValidity != MoveValidity::VALID_EN_PASSANT_MOVE)
+    InternalChessMove lastMove = moveValidator_->validateMove(move);
+    if (!lastMove.isValid())
     {
-        outputSystem_.rejectMoveAttempt(lastMoveValidity);
+        outputSystem_.rejectMoveAttempt(lastMove.validity());
     }
     else
     {
         // order here matters, as output system needs access to board state before move is applied.
         outputSystem_.displayValidMoveToUser(move, *board_);
         ChessMoveRecord moveRecord = board_->applyMove(move);
-        if (lastMoveValidity == MoveValidity::VALID_EN_PASSANT_MOVE)
+        if (lastMove.validity() == MoveValidity::VALID_EN_PASSANT_MOVE)
         {
             // This feels hacky, but is necessary because this is the only move in the game that captures a piece
             // without moving into the square in question

@@ -13,8 +13,10 @@ class InternalChessMove
 {
 public:
     InternalChessMove();
+    InternalChessMove(const Chess::MoveValidity validity);
     
     Chess::MoveValidity validity() const;
+    bool isValid() const;
     
     void setInvalidState(const Chess::MoveValidity validity);
     
