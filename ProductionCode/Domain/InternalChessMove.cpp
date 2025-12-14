@@ -39,9 +39,9 @@ void InternalChessMove::setInvalidState(const Chess::MoveValidity validity)
     moveElements_.clear();
 }
 
-void InternalChessMove::addValidMoveElement(const Chess::MoveElement &element)
+void InternalChessMove::addValidMoveElement(const Chess::MoveElement &element, Chess::MoveValidity validity)
 {
-    validity_ = Chess::MoveValidity::VALID_MOVE;
+    validity_ = validity;
     moveElements_.push_back(element);
 }
 

@@ -56,7 +56,15 @@ InternalChessMove ChessMoveValidator::validateMove(const ChessMove& currentMove)
     
     if (enPassantIsCurrentlyPossible() && enPassantIsBeingAttempted(currentMove))
     {
-        return MoveValidity::VALID_EN_PASSANT_MOVE;
+        InternalChessMove internalMove = assembleValidMove(currentMove);
+        ChessSquare bypassedSquare(currentMove.endingSquare().file(),
+                                   currentMove.startingSquare().rank());
+        internalMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE,
+                                             bypassedSquare,
+                                             oppositePieceAffiliation(board_.playerToMakeNextMove()),
+                                             board_.pieceAt(bypassedSquare)->pieceType()),
+                                 MoveValidity::VALID_EN_PASSANT_MOVE);
+        return internalMove;
     }
     
     if (!board_.anyPieceExistsAt(currentMove.endingSquare()))

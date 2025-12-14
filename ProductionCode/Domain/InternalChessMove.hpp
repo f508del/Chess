@@ -20,7 +20,7 @@ public:
     
     void setInvalidState(const Chess::MoveValidity validity);
     
-    void addValidMoveElement(const Chess::MoveElement& element);
+    void addValidMoveElement(const Chess::MoveElement& element, Chess::MoveValidity validity = Chess::MoveValidity::VALID_MOVE);
     
     const std::list<Chess::MoveElement>& moveElements() const;
     
