@@ -90,15 +90,13 @@ void ChessEngine::attemptMove(const ChessMove& move)
     {
         // order here matters, as output system needs access to board state before move is applied.
         outputSystem_.displayValidMoveToUser(move, *board_);
-        ChessMoveRecord moveRecord = board_->applyMove(move);
+        board_->applyMove(move);
         if (lastMove.validity() == MoveValidity::VALID_EN_PASSANT_MOVE)
         {
             // This feels hacky, but is necessary because this is the only move in the game that captures a piece
             // without moving into the square in question
             ChessSquare doomedSquare(move.endingSquare().file(), move.startingSquare().rank());
             board_->removePieceAtSquare(doomedSquare);
-            moveRecord.capturedPieceSquare = doomedSquare;
-            moveRecord.capturedPieceType = Chess::PieceType::PAWN;
         }
         board_->togglePlayerInitiative();
         gameHistory_->recordMove(lastMove);
