@@ -129,7 +129,7 @@ bool ChessMoveValidator::isSquareThreatenedByColor(const ChessBoard& board, cons
 
 bool ChessMoveValidator::enPassantIsCurrentlyPossible() const
 {
-    if (abs((int)gameHistory_.mostRecentMove().startingSquare().rank() - (int)gameHistory_.mostRecentMove().endingSquare().rank()) == 2)
+    if (abs((int)gameHistory_.mostRecentMoveStartingSquare().rank() - (int)gameHistory_.mostRecentMoveEndingSquare().rank()) == 2)
     {
         if (gameHistory_.mostRecentMovedPiece() == PieceType::PAWN)
         {
@@ -142,8 +142,8 @@ bool ChessMoveValidator::enPassantIsCurrentlyPossible() const
 bool ChessMoveValidator::enPassantIsBeingAttempted(const ChessMove& move) const
 {
     unsigned int validEnPassantRank =
-    ((int)gameHistory_.mostRecentMove().startingSquare().rank() + (int)gameHistory_.mostRecentMove().endingSquare().rank()) / 2;
-    ChessSquare onlyValidEndingSquareForEnPassantMove(gameHistory_.mostRecentMove().startingSquare().file(), validEnPassantRank);
+    ((int)gameHistory_.mostRecentMoveStartingSquare().rank() + (int)gameHistory_.mostRecentMoveEndingSquare().rank()) / 2;
+    ChessSquare onlyValidEndingSquareForEnPassantMove(gameHistory_.mostRecentMoveStartingSquare().file(), validEnPassantRank);
     
     if (move.endingSquare() == onlyValidEndingSquareForEnPassantMove)
     {

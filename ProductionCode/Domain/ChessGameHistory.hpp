@@ -8,7 +8,7 @@
 #include "ChessPieceType.hpp"
 #include <list>
 
-class ChessMove;
+class ChessSquare;
 class ChessMoveRecord;
 
 class ChessGameHistory
@@ -19,7 +19,8 @@ public:
     
     void recordMove(const ChessMoveRecord& moveRecord);
     
-    ChessMove mostRecentMove() const;
+    ChessSquare mostRecentMoveStartingSquare() const;
+    ChessSquare mostRecentMoveEndingSquare() const;
     Chess::PieceType mostRecentMovedPiece() const;
     
 private:

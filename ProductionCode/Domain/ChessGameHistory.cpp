@@ -6,7 +6,6 @@
 //
 
 #include "ChessGameHistory.hpp"
-#include "ChessMove.hpp"
 #include "ChessMoveRecord.hpp"
 
 using namespace Chess;
@@ -26,15 +25,6 @@ void ChessGameHistory::recordMove(const ChessMoveRecord& moveRecord)
     moveHistory_.push_back(moveRecord);
 }
 
-ChessMove ChessGameHistory::mostRecentMove() const
-{
-    if (!moveHistory_.empty())
-    {
-        return ChessMove(moveHistory_.back().movingPieceStartingSquare, moveHistory_.back().movingPieceEndingSquare);
-    }
-    return ChessMove();
-}
-
 PieceType ChessGameHistory::mostRecentMovedPiece() const
 { 
     if (!moveHistory_.empty())
@@ -43,4 +33,24 @@ PieceType ChessGameHistory::mostRecentMovedPiece() const
     }
     return PieceType::NONE;
 }
+
+ChessSquare ChessGameHistory::mostRecentMoveStartingSquare() const
+{ 
+    if (!moveHistory_.empty())
+    {
+        return moveHistory_.back().movingPieceStartingSquare;
+    }
+    return ChessSquare();
+}
+
+ChessSquare ChessGameHistory::mostRecentMoveEndingSquare() const
+{ 
+    if (!moveHistory_.empty())
+    {
+        return moveHistory_.back().movingPieceEndingSquare;
+    }
+    return ChessSquare();
+}
+
+
 
