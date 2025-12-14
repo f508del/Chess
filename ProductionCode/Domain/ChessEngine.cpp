@@ -81,17 +81,17 @@ void ChessEngine::endEventLoop()
 
 void ChessEngine::attemptMove(const ChessMove& move)
 {
-    InternalChessMove lastMove = moveValidator_->validateMove(move);
-    if (!lastMove.isValid())
+    InternalChessMove validatedMove = moveValidator_->validateMove(move);
+    if (!validatedMove.isValid())
     {
-        outputSystem_.rejectMoveAttempt(lastMove.validity());
+        outputSystem_.rejectMoveAttempt(validatedMove.validity());
     }
     else
     {
         // order here matters, as output system needs access to board state before move is applied.
         outputSystem_.displayValidMoveToUser(move, *board_);
         board_->applyMove(move);
-        if (lastMove.validity() == MoveValidity::VALID_EN_PASSANT_MOVE)
+        if (validatedMove.validity() == MoveValidity::VALID_EN_PASSANT_MOVE)
         {
             // This feels hacky, but is necessary because this is the only move in the game that captures a piece
             // without moving into the square in question
@@ -99,7 +99,7 @@ void ChessEngine::attemptMove(const ChessMove& move)
             board_->removePieceAtSquare(doomedSquare);
         }
         board_->togglePlayerInitiative();
-        gameHistory_->recordMove(lastMove);
+        gameHistory_->recordMove(validatedMove);
         detectEndGameConditions();
     }
 }
