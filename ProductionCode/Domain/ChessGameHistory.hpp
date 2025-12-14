@@ -9,7 +9,7 @@
 #include <list>
 
 class ChessSquare;
-class ChessMoveRecord;
+class InternalChessMove;
 
 class ChessGameHistory
 {
@@ -17,12 +17,12 @@ public:
     ChessGameHistory();
     ~ChessGameHistory();
     
-    void recordMove(const ChessMoveRecord& moveRecord);
+    void recordMove(const InternalChessMove& move);
     
     ChessSquare mostRecentMoveStartingSquare() const;
     ChessSquare mostRecentMoveEndingSquare() const;
     Chess::PieceType mostRecentMovedPiece() const;
     
 private:
-    std::list<ChessMoveRecord> moveHistory_;
+    std::list<InternalChessMove> internalMoveHistory_;
 };

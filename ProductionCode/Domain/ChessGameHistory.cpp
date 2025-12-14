@@ -6,7 +6,7 @@
 //
 
 #include "ChessGameHistory.hpp"
-#include "ChessMoveRecord.hpp"
+#include "InternalChessMove.hpp"
 
 using namespace Chess;
 
@@ -20,37 +20,35 @@ ChessGameHistory::~ChessGameHistory()
     
 }
 
-void ChessGameHistory::recordMove(const ChessMoveRecord& moveRecord)
+void ChessGameHistory::recordMove(const InternalChessMove& move)
 {
-    moveHistory_.push_back(moveRecord);
+    internalMoveHistory_.push_back(move);
 }
 
 PieceType ChessGameHistory::mostRecentMovedPiece() const
 { 
-    if (!moveHistory_.empty())
+    if (!internalMoveHistory_.empty())
     {
-        return moveHistory_.back().movingPieceType;
+        return internalMoveHistory_.back().moveElements().front().type_;
     }
     return PieceType::NONE;
 }
 
 ChessSquare ChessGameHistory::mostRecentMoveStartingSquare() const
 { 
-    if (!moveHistory_.empty())
+    if (!internalMoveHistory_.empty())
     {
-        return moveHistory_.back().movingPieceStartingSquare;
+        return internalMoveHistory_.back().moveElements().front().square_;
     }
     return ChessSquare();
 }
 
 ChessSquare ChessGameHistory::mostRecentMoveEndingSquare() const
 { 
-    if (!moveHistory_.empty())
+    if (!internalMoveHistory_.empty())
     {
-        return moveHistory_.back().movingPieceEndingSquare;
+        return internalMoveHistory_.back().moveElements().back().square_;
     }
     return ChessSquare();
 }
-
-
 
