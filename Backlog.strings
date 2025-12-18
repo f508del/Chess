@@ -13,9 +13,8 @@ This is meant as a simple backlog of what refactorings and features are upcoming
  29. Add Random legal move AI engine
  30. Refactor Fake input system to inherit Terminal input system
  34. Refactor the hack for supporting en passant
-    34.1. Write ChessMoveElement, of either pickup piece, or place piece, in an order
     34.2. Rename ChessMove as ChessMoveRequest
-    34.3. Write a new ChessMove, which is just a list of ChessMoveElements, and may be invalid?
-    34.4. Refactor ChessMoveValidator to convert ChessMoveRequest to ChessMove
-    34.5. Refactor ChessGameHistory to use ChessMove, rather than ChessMoveRecord. Deprecate ChessMoveRecord
+    34.6. Deprecate ChessMoveRecord
+    34.7. Refactor ChessBoard to take internalChessMove for applyMove
+    34.8. Refactor ChessBoard to take internalChessMove for reverseMove
 */
