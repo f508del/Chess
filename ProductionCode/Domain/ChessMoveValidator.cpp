@@ -11,7 +11,6 @@
 #include "ChessBoard.hpp"
 #include "ChessGameHistory.hpp"
 #include "ChessMove.hpp"
-#include "ChessMoveRecord.hpp"
 #include "ChessSquare.hpp"
 #include "I_ChessPiece.hpp"
 #include "InternalChessMove.hpp"
@@ -91,12 +90,14 @@ InternalChessMove ChessMoveValidator::validateMove(const ChessMove& currentMove)
         }
     }
     
-    if (movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(currentMove))
+    InternalChessMove potentiallyValidMove = assembleValidMove(currentMove);
+    
+    if (movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(potentiallyValidMove))
     {
         return MoveValidity::NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE;
     }
 
-    return assembleValidMove(currentMove);
+    return potentiallyValidMove;
 }
 
 bool ChessMoveValidator::isSquareThreatenedByColor(const ChessBoard& board, const ChessSquare& square, PieceAffiliation attackingColor)
@@ -159,14 +160,14 @@ bool ChessMoveValidator::enPassantIsBeingAttempted(const ChessMove& move) const
     return false;
 }
 
-bool ChessMoveValidator::movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(const ChessMove& move)
+bool ChessMoveValidator::movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(const InternalChessMove& move)
 {
-    ChessMoveRecord record = board_.applyMove(move);
+    board_.applyMove(move);
     
     bool checkStillExists = isSquareThreatenedByColor(board_, board_.currentKingSquare(board_.playerToMakeNextMove()),
                                                       oppositePieceAffiliation(board_.playerToMakeNextMove()));
     
-    board_.reverseMove(record);
+    board_.reverseMove(move);
     return checkStillExists;
 }
 

@@ -29,7 +29,7 @@ public:
 private:
     bool enPassantIsCurrentlyPossible() const;
     bool enPassantIsBeingAttempted(const ChessMove& move) const;
-    bool movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(const ChessMove& move);
+    bool movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(const InternalChessMove& move);
     InternalChessMove assembleValidMove(const ChessMove& currentMove);
     
 private:
