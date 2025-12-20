@@ -216,6 +216,18 @@ bool ChessBoard::squaresBetweenEndPointsAreEmpty(const ChessMove &move) const
     return true;
 }
 
+bool ChessBoard::reverseMove(const InternalChessMove& internalMove)
+{
+    for (auto it = internalMove.moveElements().rbegin(); it != internalMove.moveElements().rend(); it++)
+    {
+        if (!reverseMoveElement(*it))
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
 bool ChessBoard::reverseMove(const ChessMoveRecord& priorMove)
 {
     // first, check that the reversal won't step on an existing piece:
@@ -334,5 +346,19 @@ bool ChessBoard::applyPlacePieceMoveElement(const MoveElement& moveElement)
 bool ChessBoard::applyRemovePieceMoveElement(const MoveElement& moveElement)
 {
     removePieceAtSquare(moveElement.square_);
+    return true;
+}
+
+bool ChessBoard::reverseMoveElement(const MoveElement& moveElement)
+{
+    if (moveElement.action_ == MoveElementAction::REMOVE_PIECE)
+    {
+        return applyPlacePieceMoveElement(moveElement);
+    }
+    else if (moveElement.action_ == MoveElementAction::PLACE_PIECE)
+    {
+        return applyRemovePieceMoveElement(moveElement);
+    }
+    // In this case it is a NO_ACTION, and should be accepted as is
     return true;
 }

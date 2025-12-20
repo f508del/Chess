@@ -51,6 +51,7 @@ public:
     
     ChessMoveRecord applyMove(const ChessMove& move);
     bool applyMove(const InternalChessMove& internalMove);
+    bool reverseMove(const InternalChessMove& internalMove);
     bool reverseMove(const ChessMoveRecord& priorMove);
     void removePieceAtSquare(const ChessSquare& square);
     void resetBoard();
@@ -61,6 +62,7 @@ private:
     bool applyMoveElement(const Chess::MoveElement& moveElement);
     bool applyPlacePieceMoveElement(const Chess::MoveElement& moveElement);
     bool applyRemovePieceMoveElement(const Chess::MoveElement& moveElement);
+    bool reverseMoveElement(const Chess::MoveElement& moveElement);
     
     ScopedPointer<Pawn> whitePawnCapabilities_;
     ScopedPointer<Pawn> blackPawnCapabilities_;
