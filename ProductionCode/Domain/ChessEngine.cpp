@@ -10,7 +10,6 @@
 #include "ChessEngine.hpp"
 #include "ChessGameHistory.hpp"
 #include "ChessMove.hpp"
-#include "ChessMoveRecord.hpp"
 #include "ChessMoveValidator.hpp"
 #include "I_ChessPiece.hpp"
 #include "I_InputSystem.hpp"
@@ -90,14 +89,7 @@ void ChessEngine::attemptMove(const ChessMove& move)
     {
         // order here matters, as output system needs access to board state before move is applied.
         outputSystem_.displayValidMoveToUser(move, *board_);
-        board_->applyMove(move);
-        if (validatedMove.validity() == MoveValidity::VALID_EN_PASSANT_MOVE)
-        {
-            // This feels hacky, but is necessary because this is the only move in the game that captures a piece
-            // without moving into the square in question
-            ChessSquare doomedSquare(move.endingSquare().file(), move.startingSquare().rank());
-            board_->removePieceAtSquare(doomedSquare);
-        }
+        board_->applyMove(validatedMove);
         board_->togglePlayerInitiative();
         gameHistory_->recordMove(validatedMove);
         detectEndGameConditions();
