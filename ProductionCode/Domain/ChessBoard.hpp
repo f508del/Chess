@@ -19,12 +19,17 @@ class Bishop;
 class ChessSquare;
 class ChessMove;
 class I_ChessPiece;
+class InternalChessMove;
 class King;
 class Knight;
 class Pawn;
 class Queen;
 class Rook;
 struct ChessMoveRecord;
+
+namespace Chess{
+class MoveElement;
+}
 
 class ChessBoard : public I_ReadOnlyChessBoard
 {
@@ -45,6 +50,7 @@ public:
     std::list<ChessSquare> allSquaresOccupiedByColor(Chess::PieceAffiliation affiliation) const;
     
     ChessMoveRecord applyMove(const ChessMove& move);
+    bool applyMove(const InternalChessMove& internalMove);
     bool reverseMove(const ChessMoveRecord& priorMove);
     void removePieceAtSquare(const ChessSquare& square);
     void resetBoard();
@@ -52,6 +58,9 @@ public:
 
 private:
     I_ChessPiece* chessPieceOfTypeAndAffiliation(Chess::PieceType type, Chess::PieceAffiliation affiliation) const;
+    bool applyMoveElement(const Chess::MoveElement& moveElement);
+    bool applyPlacePieceMoveElement(const Chess::MoveElement& moveElement);
+    bool applyRemovePieceMoveElement(const Chess::MoveElement& moveElement);
     
     ScopedPointer<Pawn> whitePawnCapabilities_;
     ScopedPointer<Pawn> blackPawnCapabilities_;

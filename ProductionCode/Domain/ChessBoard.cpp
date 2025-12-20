@@ -9,8 +9,10 @@
 #include "Bishop.hpp"
 #include "ChessBoard.hpp"
 #include "ChessMove.hpp"
+#include "ChessMoveElement.hpp"
 #include "ChessMoveRecord.hpp"
 #include "ChessSquare.hpp"
+#include "InternalChessMove.hpp"
 #include "Pawn.hpp"
 #include "Queen.hpp"
 #include "Rook.hpp"
@@ -174,6 +176,18 @@ ChessMoveRecord ChessBoard::applyMove(const ChessMove &move) {
     return moveRecord;
 }
 
+bool ChessBoard::applyMove(const InternalChessMove& internalMove)
+{
+    for (auto it = internalMove.moveElements().begin(); it != internalMove.moveElements().end(); it++)
+    {
+        if (!applyMoveElement(*it))
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
 void ChessBoard::removePieceAtSquare(const ChessSquare& square)
 {
     boardState_.erase(boardState_.find(square));
@@ -294,4 +308,31 @@ I_ChessPiece* ChessBoard::chessPieceOfTypeAndAffiliation(Chess::PieceType type, 
     }
     
     return piece;
+}
+
+bool ChessBoard::applyMoveElement(const MoveElement& moveElement)
+{
+    if (moveElement.action_ == MoveElementAction::PLACE_PIECE)
+    {
+        return applyPlacePieceMoveElement(moveElement);
+    }
+    else if (moveElement.action_ == MoveElementAction::REMOVE_PIECE)
+    {
+        return applyRemovePieceMoveElement(moveElement);
+    }
+    // In this case it is a NO_ACTION, and should be accepted as is
+    return true;
+}
+
+bool ChessBoard::applyPlacePieceMoveElement(const MoveElement& moveElement)
+{
+    const I_ChessPiece* pieceToPlace = chessPieceOfTypeAndAffiliation(moveElement.type_, moveElement.affiliation_);
+    boardState_[moveElement.square_] = pieceToPlace;
+    return true;
+}
+
+bool ChessBoard::applyRemovePieceMoveElement(const MoveElement& moveElement)
+{
+    removePieceAtSquare(moveElement.square_);
+    return true;
 }
