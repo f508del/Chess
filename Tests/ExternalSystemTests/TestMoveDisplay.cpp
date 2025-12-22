@@ -11,7 +11,6 @@
 #include "TerminalOutputSystem.hpp"
 #include "TerminalInputSystem.hpp"
 #include "ChessMove.hpp"
-#include "ChessMoveRecord.hpp"
 
 TEST_CASE("Testing the external system that chess moves are displayed as intended")
 {

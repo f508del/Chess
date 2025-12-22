@@ -8,7 +8,6 @@
 #include "Catch.hpp"
 #include "ChessBoard.hpp"
 #include "ChessMove.hpp"
-#include "ChessMoveRecord.hpp"
 #include "InternalChessMove.hpp"
 
 using namespace Chess;
