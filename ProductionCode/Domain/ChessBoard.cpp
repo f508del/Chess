@@ -201,40 +201,6 @@ bool ChessBoard::reverseMove(const InternalChessMove& internalMove)
     return true;
 }
 
-bool ChessBoard::reverseMove(const ChessMoveRecord& priorMove)
-{
-    // first, check that the reversal won't step on an existing piece:
-    if (anyPieceExistsAt(priorMove.movingPieceStartingSquare))
-    {
-        return false;
-    }
-    
-    // next make sure the piece that was moved is still where it was put in the record
-    const I_ChessPiece* piece = pieceAt(priorMove.movingPieceEndingSquare);
-    if (nullptr == piece)
-    {
-        return false;
-    }
-    
-    if ((piece->affiliation() != priorMove.movingPieceAffiliation) ||
-        (piece->pieceType() != priorMove.movingPieceType))
-    {
-        return false;
-    }
-    
-    // Ok now reverse the move, replacing any captured pieces as needed
-    boardState_[priorMove.movingPieceStartingSquare] = piece;
-    removePieceAtSquare(priorMove.movingPieceEndingSquare);
-    
-    if (priorMove.capturedPieceType != Chess::PieceType::NONE)
-    {
-        boardState_[priorMove.capturedPieceSquare] = chessPieceOfTypeAndAffiliation(priorMove.capturedPieceType,
-                                                                                    Chess::oppositePieceAffiliation(priorMove.movingPieceAffiliation));
-    }
-    
-    return true;
-}
-
 I_ChessPiece* ChessBoard::chessPieceOfTypeAndAffiliation(Chess::PieceType type, Chess::PieceAffiliation affiliation) const
 {
     I_ChessPiece* piece = nullptr;

@@ -51,7 +51,6 @@ public:
     
     bool applyMove(const InternalChessMove& internalMove);
     bool reverseMove(const InternalChessMove& internalMove);
-    bool reverseMove(const ChessMoveRecord& priorMove);
     void removePieceAtSquare(const ChessSquare& square);
     void resetBoard();
     void togglePlayerInitiative();
