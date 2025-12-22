@@ -149,33 +149,6 @@ void ChessBoard::togglePlayerInitiative()
     playerToMakeNextMove_ = oppositePieceAffiliation(playerToMakeNextMove_);
 }
 
-ChessMoveRecord ChessBoard::applyMove(const ChessMove &move) {
-    
-    const I_ChessPiece* movingPiece = pieceAt(move.startingSquare());
-    if (nullptr == movingPiece)
-    {
-        return ChessMoveRecord();
-    }
-    
-    ChessMoveRecord moveRecord;
-    moveRecord.movingPieceAffiliation = movingPiece->affiliation();
-    moveRecord.movingPieceType = movingPiece->pieceType();
-    moveRecord.movingPieceStartingSquare = move.startingSquare();
-    moveRecord.movingPieceEndingSquare = move.endingSquare();
-    
-    const I_ChessPiece* capturedPiece = pieceAt(move.endingSquare());
-    if (nullptr != capturedPiece)
-    {
-        moveRecord.capturedPieceType = capturedPiece->pieceType();
-        moveRecord.capturedPieceSquare = move.endingSquare();
-    }
-    
-    boardState_[move.endingSquare()] = movingPiece;
-    removePieceAtSquare(move.startingSquare());
-    
-    return moveRecord;
-}
-
 bool ChessBoard::applyMove(const InternalChessMove& internalMove)
 {
     for (auto it = internalMove.moveElements().begin(); it != internalMove.moveElements().end(); it++)

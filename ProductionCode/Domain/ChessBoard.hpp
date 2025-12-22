@@ -49,7 +49,6 @@ public:
     ChessSquare currentKingSquare(Chess::PieceAffiliation affiliation) const;
     std::list<ChessSquare> allSquaresOccupiedByColor(Chess::PieceAffiliation affiliation) const;
     
-    ChessMoveRecord applyMove(const ChessMove& move);
     bool applyMove(const InternalChessMove& internalMove);
     bool reverseMove(const InternalChessMove& internalMove);
     bool reverseMove(const ChessMoveRecord& priorMove);
