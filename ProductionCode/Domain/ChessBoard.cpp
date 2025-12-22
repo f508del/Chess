@@ -10,7 +10,6 @@
 #include "ChessBoard.hpp"
 #include "ChessMove.hpp"
 #include "ChessMoveElement.hpp"
-#include "ChessMoveRecord.hpp"
 #include "ChessSquare.hpp"
 #include "InternalChessMove.hpp"
 #include "Pawn.hpp"

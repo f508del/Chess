@@ -25,7 +25,6 @@ class Knight;
 class Pawn;
 class Queen;
 class Rook;
-struct ChessMoveRecord;
 
 namespace Chess{
 class MoveElement;
