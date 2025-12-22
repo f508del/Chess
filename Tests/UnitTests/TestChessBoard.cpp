@@ -9,6 +9,9 @@
 #include "ChessBoard.hpp"
 #include "ChessMove.hpp"
 #include "ChessMoveRecord.hpp"
+#include "InternalChessMove.hpp"
+
+using namespace Chess;
 
 TEST_CASE("Testing the ChessBoard object")
 {
@@ -149,8 +152,16 @@ TEST_CASE("Testing the ChessBoard object")
         ChessBoard board;
         board.resetBoard();
         
-        board.applyMove(ChessMove("e2e4"));
-        board.applyMove(ChessMove("e1e2"));
+        InternalChessMove pawnMove;
+        pawnMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE, ChessSquare('e',2), PieceAffiliation::WHITE_PIECE, PieceType::PAWN));
+        pawnMove.addValidMoveElement(MoveElement(MoveElementAction::PLACE_PIECE, ChessSquare('e',4), PieceAffiliation::WHITE_PIECE, PieceType::PAWN));
+        
+        InternalChessMove kingMove;
+        kingMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE, ChessSquare('e',1), PieceAffiliation::WHITE_PIECE, PieceType::KING));
+        kingMove.addValidMoveElement(MoveElement(MoveElementAction::PLACE_PIECE, ChessSquare('e',2), PieceAffiliation::WHITE_PIECE, PieceType::KING));
+        
+        board.applyMove(pawnMove);
+        board.applyMove(kingMove);
         
         CHECK(2 == board.currentKingSquare(Chess::PieceAffiliation::WHITE_PIECE).rank());
         CHECK('e' == board.currentKingSquare(Chess::PieceAffiliation::WHITE_PIECE).file());
