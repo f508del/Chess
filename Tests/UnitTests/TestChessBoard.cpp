@@ -7,7 +7,6 @@
 
 #include "Catch.hpp"
 #include "ChessBoard.hpp"
-#include "ChessMove.hpp"
 #include "InternalChessMove.hpp"
 
 using namespace Chess;
@@ -18,90 +17,70 @@ TEST_CASE("Testing the ChessBoard object")
     {
         ChessBoard board;
         board.resetBoard();
-        ChessMove move;
-        move.populateFromString("c2c4");
-        CHECK(board.squaresBetweenEndPointsAreEmpty(move.startingSquare(), move.endingSquare()) == true);
+        CHECK(board.squaresBetweenEndPointsAreEmpty(ChessSquare('c',2), ChessSquare('c',4)) == true);
     }
     
     SECTION("On a fresh board, can query whether a clear path exists, running vertically positive, blocked path")
     {
         ChessBoard board;
         board.resetBoard();
-        ChessMove move;
-        move.populateFromString("a1a3");
-        CHECK(board.squaresBetweenEndPointsAreEmpty(move.startingSquare(), move.endingSquare()) == false);
+        CHECK(board.squaresBetweenEndPointsAreEmpty(ChessSquare('a',1), ChessSquare('a',3)) == false);
     }
     
     SECTION("On a fresh board, can query whether a clear path exists, running vertically negative, open path")
     {
         ChessBoard board;
         board.resetBoard();
-        ChessMove move;
-        move.populateFromString("a7a5");
-        CHECK(board.squaresBetweenEndPointsAreEmpty(move.startingSquare(), move.endingSquare()) == true);
+        CHECK(board.squaresBetweenEndPointsAreEmpty(ChessSquare('a',7), ChessSquare('a',5)) == true);
     }
     
     SECTION("On a fresh board, can query whether a clear path exists, running vertically negative, blocked path")
     {
         ChessBoard board;
         board.resetBoard();
-        ChessMove move;
-        move.populateFromString("a8a6");
-        CHECK(board.squaresBetweenEndPointsAreEmpty(move.startingSquare(), move.endingSquare()) == false);
+        CHECK(board.squaresBetweenEndPointsAreEmpty(ChessSquare('a',8), ChessSquare('a',6)) == false);
     }
     
     SECTION("On a fresh board, can query whether a clear path exists, running horizontally positive, open path")
     {
         ChessBoard board;
         board.resetBoard();
-        ChessMove move;
-        move.populateFromString("a3e3");
-        CHECK(board.squaresBetweenEndPointsAreEmpty(move.startingSquare(), move.endingSquare()) == true);
+        CHECK(board.squaresBetweenEndPointsAreEmpty(ChessSquare('a',3), ChessSquare('e',3)) == true);
     }
     
     SECTION("On a fresh board, can query whether a clear path exists, running horizontally positive, blocked path")
     {
         ChessBoard board;
         board.resetBoard();
-        ChessMove move;
-        move.populateFromString("a1e1");
-        CHECK(board.squaresBetweenEndPointsAreEmpty(move.startingSquare(), move.endingSquare()) == false);
+        CHECK(board.squaresBetweenEndPointsAreEmpty(ChessSquare('a',1), ChessSquare('e',1)) == false);
     }
     
     SECTION("On a fresh board, can query whether a clear path exists, running horizontally negative, open path")
     {
         ChessBoard board;
         board.resetBoard();
-        ChessMove move;
-        move.populateFromString("e3a3");
-        CHECK(board.squaresBetweenEndPointsAreEmpty(move.startingSquare(), move.endingSquare()) == true);
+        CHECK(board.squaresBetweenEndPointsAreEmpty(ChessSquare('e',3), ChessSquare('a',3)) == true);
     }
     
     SECTION("On a fresh board, can query whether a clear path exists, running horizontally negative, blocked path")
     {
         ChessBoard board;
         board.resetBoard();
-        ChessMove move;
-        move.populateFromString("e1a1");
-        CHECK(board.squaresBetweenEndPointsAreEmpty(move.startingSquare(), move.endingSquare()) == false);
+        CHECK(board.squaresBetweenEndPointsAreEmpty(ChessSquare('e',1), ChessSquare('a',1)) == false);
     }
     
     SECTION("On a fresh board, can query whether a clear path exists, running diagonally, open path")
     {
         ChessBoard board;
         board.resetBoard();
-        ChessMove move;
-        move.populateFromString("c2f5");
-        CHECK(board.squaresBetweenEndPointsAreEmpty(move.startingSquare(), move.endingSquare()) == true);
+        CHECK(board.squaresBetweenEndPointsAreEmpty(ChessSquare('c',2), ChessSquare('f',5)) == true);
     }
     
     SECTION("On a fresh board, can query whether a clear path exists, running diagonally, blocked path")
     {
         ChessBoard board;
         board.resetBoard();
-        ChessMove move;
-        move.populateFromString("c1f4");
-        CHECK(board.squaresBetweenEndPointsAreEmpty(move.startingSquare(), move.endingSquare()) == false);
+        CHECK(board.squaresBetweenEndPointsAreEmpty(ChessSquare('c',1), ChessSquare('f',4)) == false);
     }
     
     SECTION("When the board is reset, the pieces in the 1st and 2nd ranks are all white")
