@@ -20,7 +20,7 @@ TEST_CASE("Testing the ChessBoard object")
         board.resetBoard();
         ChessMove move;
         move.populateFromString("c2c4");
-        CHECK(board.squaresBetweenEndPointsAreEmpty(move) == true);
+        CHECK(board.squaresBetweenEndPointsAreEmpty(move.startingSquare(), move.endingSquare()) == true);
     }
     
     SECTION("On a fresh board, can query whether a clear path exists, running vertically positive, blocked path")
@@ -29,7 +29,7 @@ TEST_CASE("Testing the ChessBoard object")
         board.resetBoard();
         ChessMove move;
         move.populateFromString("a1a3");
-        CHECK(board.squaresBetweenEndPointsAreEmpty(move) == false);
+        CHECK(board.squaresBetweenEndPointsAreEmpty(move.startingSquare(), move.endingSquare()) == false);
     }
     
     SECTION("On a fresh board, can query whether a clear path exists, running vertically negative, open path")
@@ -38,7 +38,7 @@ TEST_CASE("Testing the ChessBoard object")
         board.resetBoard();
         ChessMove move;
         move.populateFromString("a7a5");
-        CHECK(board.squaresBetweenEndPointsAreEmpty(move) == true);
+        CHECK(board.squaresBetweenEndPointsAreEmpty(move.startingSquare(), move.endingSquare()) == true);
     }
     
     SECTION("On a fresh board, can query whether a clear path exists, running vertically negative, blocked path")
@@ -47,7 +47,7 @@ TEST_CASE("Testing the ChessBoard object")
         board.resetBoard();
         ChessMove move;
         move.populateFromString("a8a6");
-        CHECK(board.squaresBetweenEndPointsAreEmpty(move) == false);
+        CHECK(board.squaresBetweenEndPointsAreEmpty(move.startingSquare(), move.endingSquare()) == false);
     }
     
     SECTION("On a fresh board, can query whether a clear path exists, running horizontally positive, open path")
@@ -56,7 +56,7 @@ TEST_CASE("Testing the ChessBoard object")
         board.resetBoard();
         ChessMove move;
         move.populateFromString("a3e3");
-        CHECK(board.squaresBetweenEndPointsAreEmpty(move) == true);
+        CHECK(board.squaresBetweenEndPointsAreEmpty(move.startingSquare(), move.endingSquare()) == true);
     }
     
     SECTION("On a fresh board, can query whether a clear path exists, running horizontally positive, blocked path")
@@ -65,7 +65,7 @@ TEST_CASE("Testing the ChessBoard object")
         board.resetBoard();
         ChessMove move;
         move.populateFromString("a1e1");
-        CHECK(board.squaresBetweenEndPointsAreEmpty(move) == false);
+        CHECK(board.squaresBetweenEndPointsAreEmpty(move.startingSquare(), move.endingSquare()) == false);
     }
     
     SECTION("On a fresh board, can query whether a clear path exists, running horizontally negative, open path")
@@ -74,7 +74,7 @@ TEST_CASE("Testing the ChessBoard object")
         board.resetBoard();
         ChessMove move;
         move.populateFromString("e3a3");
-        CHECK(board.squaresBetweenEndPointsAreEmpty(move) == true);
+        CHECK(board.squaresBetweenEndPointsAreEmpty(move.startingSquare(), move.endingSquare()) == true);
     }
     
     SECTION("On a fresh board, can query whether a clear path exists, running horizontally negative, blocked path")
@@ -83,7 +83,7 @@ TEST_CASE("Testing the ChessBoard object")
         board.resetBoard();
         ChessMove move;
         move.populateFromString("e1a1");
-        CHECK(board.squaresBetweenEndPointsAreEmpty(move) == false);
+        CHECK(board.squaresBetweenEndPointsAreEmpty(move.startingSquare(), move.endingSquare()) == false);
     }
     
     SECTION("On a fresh board, can query whether a clear path exists, running diagonally, open path")
@@ -92,7 +92,7 @@ TEST_CASE("Testing the ChessBoard object")
         board.resetBoard();
         ChessMove move;
         move.populateFromString("c2f5");
-        CHECK(board.squaresBetweenEndPointsAreEmpty(move) == true);
+        CHECK(board.squaresBetweenEndPointsAreEmpty(move.startingSquare(), move.endingSquare()) == true);
     }
     
     SECTION("On a fresh board, can query whether a clear path exists, running diagonally, blocked path")
@@ -101,7 +101,7 @@ TEST_CASE("Testing the ChessBoard object")
         board.resetBoard();
         ChessMove move;
         move.populateFromString("c1f4");
-        CHECK(board.squaresBetweenEndPointsAreEmpty(move) == false);
+        CHECK(board.squaresBetweenEndPointsAreEmpty(move.startingSquare(), move.endingSquare()) == false);
     }
     
     SECTION("When the board is reset, the pieces in the 1st and 2nd ranks are all white")

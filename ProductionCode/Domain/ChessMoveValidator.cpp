@@ -48,7 +48,7 @@ InternalChessMove ChessMoveValidator::validateMove(const ChessMove& currentMove)
         return MoveValidity::OPPOSING_PLAYERS_PIECE;
     }
     
-    if (!board_.squaresBetweenEndPointsAreEmpty(currentMove) && !currentPiece->pieceCanJumpOtherPieces())
+    if (!board_.squaresBetweenEndPointsAreEmpty(currentMove.startingSquare(), currentMove.endingSquare()) && !currentPiece->pieceCanJumpOtherPieces())
     {
         return MoveValidity::PATH_BLOCKED_BY_OTHER_PIECES;
     }
@@ -116,7 +116,8 @@ bool ChessMoveValidator::isSquareThreatenedByColor(const ChessBoard& board, cons
         }
         
         ChessMove currentExaminedMove(*attackingPieceLocationIterator,square);
-        if (!board.squaresBetweenEndPointsAreEmpty(currentExaminedMove) && !currentPiece->pieceCanJumpOtherPieces())
+        if (!board.squaresBetweenEndPointsAreEmpty(currentExaminedMove.startingSquare(), currentExaminedMove.endingSquare()) &&
+            !currentPiece->pieceCanJumpOtherPieces())
         {
             continue;
         }

@@ -165,18 +165,18 @@ void ChessBoard::removePieceAtSquare(const ChessSquare& square)
     boardState_.erase(boardState_.find(square));
 }
 
-bool ChessBoard::squaresBetweenEndPointsAreEmpty(const ChessMove &move) const
+bool ChessBoard::squaresBetweenEndPointsAreEmpty(const ChessSquare& startSquare, const ChessSquare& endSquare) const
 {
-    int rankDifference = move.endingSquare().rank() - move.startingSquare().rank();
-    int fileDifference = move.endingSquare().file() - move.startingSquare().file();
+    int rankDifference = endSquare.rank() - startSquare.rank();
+    int fileDifference = endSquare.file() - startSquare.file();
     
     // Will yield an increment of -1, 0, or 1 only.
     int rankIncrement = (rankDifference == 0) ? 0 : (rankDifference / abs(rankDifference));
     int fileIncrement = (fileDifference == 0) ? 0 : (fileDifference / abs(fileDifference));
     
-    unsigned int currentRank = move.startingSquare().rank() + rankIncrement;
-    char currentFile = move.startingSquare().file() + fileIncrement;
-    while ((currentRank != move.endingSquare().rank()) || (currentFile != move.endingSquare().file()))
+    unsigned int currentRank = startSquare.rank() + rankIncrement;
+    char currentFile = startSquare.file() + fileIncrement;
+    while ((currentRank != endSquare.rank()) || (currentFile != endSquare.file()))
     {
         if (anyPieceExistsAt(ChessSquare(currentFile, currentRank)))
         {

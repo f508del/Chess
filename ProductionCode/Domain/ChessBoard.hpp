@@ -42,7 +42,7 @@ public:
 
     const I_ChessPiece* pieceAt(const ChessSquare& square) const;
 
-    bool squaresBetweenEndPointsAreEmpty(const ChessMove& move) const;
+    bool squaresBetweenEndPointsAreEmpty(const ChessSquare& startSquare, const ChessSquare& endSquare) const;
     Chess::PieceAffiliation playerToMakeNextMove() const;
     
     ChessSquare currentKingSquare(Chess::PieceAffiliation affiliation) const;
