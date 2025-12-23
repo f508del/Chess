@@ -8,7 +8,6 @@
 
 #include "Bishop.hpp"
 #include "ChessBoard.hpp"
-#include "ChessMove.hpp"
 #include "ChessMoveElement.hpp"
 #include "ChessSquare.hpp"
 #include "InternalChessMove.hpp"
