@@ -12,7 +12,7 @@
 
 class ChessBoard;
 class ChessGameHistory;
-class ChessMove;
+class ChessMoveRequest;
 class ChessMoveValidator;
 class I_InputSystem;
 class I_OutputSystem;
@@ -31,7 +31,7 @@ public:
 private:
     void resetForNewGame();
     void endEventLoop();
-    void attemptMove(const ChessMove& move);
+    void attemptMove(const ChessMoveRequest& move);
     void detectEndGameConditions();
 
 private:

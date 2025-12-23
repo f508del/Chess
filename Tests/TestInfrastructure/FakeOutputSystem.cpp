@@ -43,7 +43,7 @@ void FakeOutputSystem::resetUxForNewGame()
     resetUxForNewGameHasBeenCalled_ = true;
 }
 
-void FakeOutputSystem::displayValidMoveToUser(const ChessMove &move, const I_ReadOnlyChessBoard & board)
+void FakeOutputSystem::displayValidMoveToUser(const ChessMoveRequest &move, const I_ReadOnlyChessBoard & board)
 {
     mostRecentMove_ = move;
     const I_ChessPiece* piece = board.pieceAt(move.startingSquare());
@@ -58,7 +58,7 @@ void FakeOutputSystem::displayValidMoveToUser(const ChessMove &move, const I_Rea
     lastRejectedMoveReason_ = MoveValidity::VALID_MOVE;
 }
 
-ChessMove FakeOutputSystem::lastMoveDisplayedToUser() const
+ChessMoveRequest FakeOutputSystem::lastMoveDisplayedToUser() const
 {
     return mostRecentMove_;
 }

@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "ChessMove.hpp"
+#include "ChessMoveRequest.hpp"
 #include "ChessPieceType.hpp"
 #include "I_OutputSystem.hpp"
 #include <list>
@@ -24,12 +24,12 @@ public:
     void initializeChessUserInterface() override;
     void endUserInteraction() override;
     void resetUxForNewGame() override;
-    void displayValidMoveToUser(const ChessMove& move, const I_ReadOnlyChessBoard& board) override;
+    void displayValidMoveToUser(const ChessMoveRequest& move, const I_ReadOnlyChessBoard& board) override;
     void rejectMoveAttempt(Chess::MoveValidity validity) override;
     void declareCheck() override;
     
     // helpers
-    ChessMove lastMoveDisplayedToUser() const;
+    ChessMoveRequest lastMoveDisplayedToUser() const;
     Chess::PieceType lastPieceMoved() const;
     Chess::MoveValidity lastRejectedMoveReason() const;
     bool userInteractionEndHasBeenRequested() const;
@@ -37,7 +37,7 @@ public:
     bool checkHasBeenDeclared() const;
     
 private:
-    ChessMove mostRecentMove_;
+    ChessMoveRequest mostRecentMove_;
     Chess::PieceType lastPieceMoved_;
     Chess::MoveValidity lastRejectedMoveReason_;
     bool userInteractionEndRequested_;

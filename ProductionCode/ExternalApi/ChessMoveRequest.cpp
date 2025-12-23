@@ -6,16 +6,16 @@
 //
 //
 
-#include "ChessMove.hpp"
+#include "ChessMoveRequest.hpp"
 
 using namespace std;
 
-ChessMove::ChessMove()
+ChessMoveRequest::ChessMoveRequest()
 {
    resetState();
 }
 
-ChessMove::ChessMove(const std::string& moveString)
+ChessMoveRequest::ChessMoveRequest(const std::string& moveString)
 {
     if (!populateFromString(moveString))
     {
@@ -23,14 +23,14 @@ ChessMove::ChessMove(const std::string& moveString)
     }
 }
 
-ChessMove::ChessMove(const ChessSquare& startingSquare, const ChessSquare& endingSquare)
+ChessMoveRequest::ChessMoveRequest(const ChessSquare& startingSquare, const ChessSquare& endingSquare)
 : startingSquare_(startingSquare)
 , endingSquare_(endingSquare)
 {
     
 }
 
-bool ChessMove::populateFromString(const string& moveString)
+bool ChessMoveRequest::populateFromString(const string& moveString)
 {
    resetState();
    if (moveString.length() != 4)
@@ -49,28 +49,28 @@ bool ChessMove::populateFromString(const string& moveString)
    return isOnTheBoard();
 }
 
-const ChessSquare& ChessMove::startingSquare() const
+const ChessSquare& ChessMoveRequest::startingSquare() const
 {
    return startingSquare_;
 }
 
-const ChessSquare& ChessMove::endingSquare() const
+const ChessSquare& ChessMoveRequest::endingSquare() const
 {
    return endingSquare_;
 }
 
-bool ChessMove::isOnTheBoard() const
+bool ChessMoveRequest::isOnTheBoard() const
 {
    return (startingSquare_.isSquareOnTheBoard() && endingSquare_.isSquareOnTheBoard());
 }
 
-void ChessMove::resetState()
+void ChessMoveRequest::resetState()
 {
    startingSquare_ = ChessSquare();
    endingSquare_ = ChessSquare();
 }
 
-bool ChessMove::operator==(const ChessMove& move) const
+bool ChessMoveRequest::operator==(const ChessMoveRequest& move) const
 {
     return ((startingSquare_ == move.startingSquare_) && (endingSquare_ == move.endingSquare_));
 }

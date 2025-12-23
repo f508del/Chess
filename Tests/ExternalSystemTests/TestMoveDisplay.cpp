@@ -10,7 +10,7 @@
 #include "FakeTerminalWrapper.hpp"
 #include "TerminalOutputSystem.hpp"
 #include "TerminalInputSystem.hpp"
-#include "ChessMove.hpp"
+#include "ChessMoveRequest.hpp"
 
 TEST_CASE("Testing the external system that chess moves are displayed as intended")
 {
@@ -20,7 +20,7 @@ TEST_CASE("Testing the external system that chess moves are displayed as intende
         TerminalOutputSystem outputSystem(terminalWrapper);
         FakeChessBoard board;
         board.placePawnAtSquare(ChessSquare('a',2));
-        outputSystem.displayValidMoveToUser(ChessMove("a2a3"), board);
+        outputSystem.displayValidMoveToUser(ChessMoveRequest("a2a3"), board);
         
         CHECK(terminalWrapper.lastOutputMatches("Moving Pawn a2a3"));
     }
@@ -31,7 +31,7 @@ TEST_CASE("Testing the external system that chess moves are displayed as intende
         TerminalOutputSystem outputSystem(terminalWrapper);
         FakeChessBoard board;
         board.placeKnightAtSquare(ChessSquare('b',1));
-        outputSystem.displayValidMoveToUser(ChessMove("b1a3"), board);
+        outputSystem.displayValidMoveToUser(ChessMoveRequest("b1a3"), board);
         
         CHECK(terminalWrapper.lastOutputMatches("Moving Knight b1a3"));
     }
@@ -42,7 +42,7 @@ TEST_CASE("Testing the external system that chess moves are displayed as intende
         TerminalOutputSystem outputSystem(terminalWrapper);
         FakeChessBoard board;
         board.placeBishopAtSquare(ChessSquare('c', 1));
-        outputSystem.displayValidMoveToUser(ChessMove("c1b2"), board);
+        outputSystem.displayValidMoveToUser(ChessMoveRequest("c1b2"), board);
         
         CHECK(terminalWrapper.lastOutputMatches("Moving Bishop c1b2"));
     }
@@ -53,7 +53,7 @@ TEST_CASE("Testing the external system that chess moves are displayed as intende
         TerminalOutputSystem outputSystem(terminalWrapper);
         FakeChessBoard board;
         board.placeRookAtSquare(ChessSquare('a', 1));
-        outputSystem.displayValidMoveToUser(ChessMove("a1a2"), board);
+        outputSystem.displayValidMoveToUser(ChessMoveRequest("a1a2"), board);
         
         CHECK(terminalWrapper.lastOutputMatches("Moving Rook a1a2"));
     }
@@ -64,7 +64,7 @@ TEST_CASE("Testing the external system that chess moves are displayed as intende
         TerminalOutputSystem outputSystem(terminalWrapper);
         FakeChessBoard board;
         board.placeQueenAtSquare(ChessSquare('d', 1));
-        outputSystem.displayValidMoveToUser(ChessMove("d1d3"), board);
+        outputSystem.displayValidMoveToUser(ChessMoveRequest("d1d3"), board);
         
         CHECK(terminalWrapper.lastOutputMatches("Moving Queen d1d3"));
     }
@@ -75,7 +75,7 @@ TEST_CASE("Testing the external system that chess moves are displayed as intende
         TerminalOutputSystem outputSystem(terminalWrapper);
         FakeChessBoard board;
         board.placeKingAtSquare(ChessSquare('e',1));
-        outputSystem.displayValidMoveToUser(ChessMove("e1e2"), board);
+        outputSystem.displayValidMoveToUser(ChessMoveRequest("e1e2"), board);
         
         CHECK(terminalWrapper.lastOutputMatches("Moving King e1e2"));
     }
@@ -85,7 +85,7 @@ TEST_CASE("Testing the external system that chess moves are displayed as intende
         FakeTerminalWrapper terminalWrapper;
         TerminalInputSystem inputSystem(terminalWrapper);
         bool moveLogicHasBeenTriggered = false;
-        std::function<void(const ChessMove&)> moveLogic([&](const ChessMove&){moveLogicHasBeenTriggered = true;});
+        std::function<void(const ChessMoveRequest&)> moveLogic([&](const ChessMoveRequest&){moveLogicHasBeenTriggered = true;});
         inputSystem.registerMoveAttemptCallback(moveLogic);
         terminalWrapper.enqueueInput({"a2a3"});
         

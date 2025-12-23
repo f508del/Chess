@@ -11,7 +11,7 @@
 #include <string>
 #include <functional>
 
-class ChessMove;
+class ChessMoveRequest;
 
 class I_InputSystem
 {
@@ -21,6 +21,6 @@ public:
     
     virtual void registerNewGameCallback(std::function<void()> callback) = 0;
     virtual void registerQuitCallback(std::function<void()> callback) = 0;
-    virtual void registerMoveAttemptCallback(std::function<void(const ChessMove&)> callback) = 0;
+    virtual void registerMoveAttemptCallback(std::function<void(const ChessMoveRequest&)> callback) = 0;
 };
 

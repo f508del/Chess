@@ -53,7 +53,7 @@ void ChessEngineTestHarness::setInputSequenceWithinANewGame(const std::list<std:
     fakeInput().setInputSequence(finalInputSequence);
 }
 
-bool ChessEngineTestHarness::lastMoveDisplayedMatches(const ChessMove &move)
+bool ChessEngineTestHarness::lastMoveDisplayedMatches(const ChessMoveRequest& move)
 {
     return (fakeOutput().lastMoveDisplayedToUser() == move);
 }

@@ -21,7 +21,7 @@ public:
     void getNextInput() override;
     void registerNewGameCallback(std::function<void()> callback) override;
     void registerQuitCallback(std::function<void()> callback) override;
-    void registerMoveAttemptCallback(std::function<void(const ChessMove&)> callback) override;
+    void registerMoveAttemptCallback(std::function<void(const ChessMoveRequest&)> callback) override;
     
     // Helpers
     void setInputSequence(const std::list<std::string>& inputSequence);
@@ -32,5 +32,5 @@ private:
     
     std::function<void()> newGameCallback_;
     std::function<void()> quitCallback_;
-    std::function<void(const ChessMove&)> moveAttemptCallback_;
+    std::function<void(const ChessMoveRequest&)> moveAttemptCallback_;
 };

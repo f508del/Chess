@@ -10,7 +10,7 @@
 
 #include "ChessBoard.hpp"
 #include "ChessGameHistory.hpp"
-#include "ChessMove.hpp"
+#include "ChessMoveRequest.hpp"
 #include "ChessSquare.hpp"
 #include "I_ChessPiece.hpp"
 #include "InternalChessMove.hpp"
@@ -30,7 +30,7 @@ ChessMoveValidator::~ChessMoveValidator()
 
 }
 
-InternalChessMove ChessMoveValidator::validateMove(const ChessMove& currentMove)
+InternalChessMove ChessMoveValidator::validateMove(const ChessMoveRequest& currentMove)
 {
     if (!currentMove.isOnTheBoard())
     {
@@ -115,7 +115,7 @@ bool ChessMoveValidator::isSquareThreatenedByColor(const ChessBoard& board, cons
             continue;
         }
         
-        ChessMove currentExaminedMove(*attackingPieceLocationIterator,square);
+        ChessMoveRequest currentExaminedMove(*attackingPieceLocationIterator,square);
         if (!board.squaresBetweenEndPointsAreEmpty(currentExaminedMove.startingSquare(), currentExaminedMove.endingSquare()) &&
             !currentPiece->pieceCanJumpOtherPieces())
         {
@@ -141,7 +141,7 @@ bool ChessMoveValidator::enPassantIsCurrentlyPossible() const
     return false;
 }
 
-bool ChessMoveValidator::enPassantIsBeingAttempted(const ChessMove& move) const
+bool ChessMoveValidator::enPassantIsBeingAttempted(const ChessMoveRequest& move) const
 {
     unsigned int validEnPassantRank =
     ((int)gameHistory_.mostRecentMoveStartingSquare().rank() + (int)gameHistory_.mostRecentMoveEndingSquare().rank()) / 2;
@@ -172,7 +172,7 @@ bool ChessMoveValidator::movingPlayersKingWouldBeInCheckAfterApplyingProposedMov
     return checkStillExists;
 }
 
-InternalChessMove ChessMoveValidator::assembleValidMove(const ChessMove& currentMove)
+InternalChessMove ChessMoveValidator::assembleValidMove(const ChessMoveRequest& currentMove)
 {
     InternalChessMove moveElements;
     

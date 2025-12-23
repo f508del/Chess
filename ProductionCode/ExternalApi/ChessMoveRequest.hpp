@@ -12,19 +12,19 @@
 #include "ScopedPointer.hpp"
 #include "ChessSquare.hpp"
 
-struct ChessMove
+class ChessMoveRequest
 {
 public:
-    ChessMove();
-    ChessMove(const std::string& moveString);
-    ChessMove(const ChessSquare& startingSquare, const ChessSquare& endingSquare);
+    ChessMoveRequest();
+    ChessMoveRequest(const std::string& moveString);
+    ChessMoveRequest(const ChessSquare& startingSquare, const ChessSquare& endingSquare);
     bool isOnTheBoard() const;
     bool populateFromString(const std::string& moveString);
 
     const ChessSquare& startingSquare() const;
     const ChessSquare& endingSquare() const;
     
-    bool operator==(const ChessMove& move) const;
+    bool operator==(const ChessMoveRequest& move) const;
 
 private:
     void resetState();

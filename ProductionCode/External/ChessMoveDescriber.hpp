@@ -11,7 +11,7 @@
 #include <string>
 #include "ChessPieceType.hpp"
 
-class ChessMove;
+class ChessMoveRequest;
 class I_ReadOnlyChessBoard;
 
 class ChessMoveDescriber
@@ -20,7 +20,7 @@ public:
    ChessMoveDescriber();
    virtual ~ChessMoveDescriber();
 
-   std::string describeValidMove(const ChessMove& move, const I_ReadOnlyChessBoard& board) const;
+   std::string describeValidMove(const ChessMoveRequest& move, const I_ReadOnlyChessBoard& board) const;
     
 private:
     std::string chessPieceTypeName(Chess::PieceType type) const;

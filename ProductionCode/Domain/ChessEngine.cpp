@@ -9,7 +9,7 @@
 #include "ChessBoard.hpp"
 #include "ChessEngine.hpp"
 #include "ChessGameHistory.hpp"
-#include "ChessMove.hpp"
+#include "ChessMoveRequest.hpp"
 #include "ChessMoveValidator.hpp"
 #include "I_ChessPiece.hpp"
 #include "I_InputSystem.hpp"
@@ -78,7 +78,7 @@ void ChessEngine::endEventLoop()
     userHasQuitTheProgram_ = true;
 }
 
-void ChessEngine::attemptMove(const ChessMove& move)
+void ChessEngine::attemptMove(const ChessMoveRequest& move)
 {
     InternalChessMove validatedMove = moveValidator_->validateMove(move);
     if (!validatedMove.isValid())

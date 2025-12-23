@@ -8,7 +8,7 @@
 
 #include "TerminalInputSystem.hpp"
 #include "CommandDefines.hpp"
-#include "ChessMove.hpp"
+#include "ChessMoveRequest.hpp"
 #include "TerminalWrapper.hpp"
 #include <cctype>
 #include <cstdio>
@@ -19,7 +19,7 @@ using namespace std;
 TerminalInputSystem::TerminalInputSystem(TerminalWrapper& wrapper)
 : newGameCallback_([]{})
 , quitCallback_([]{})
-, moveAttemptCallback_([](const ChessMove&){})
+, moveAttemptCallback_([](const ChessMoveRequest&){})
 , terminalWrapper_(wrapper)
 {
 
@@ -48,7 +48,7 @@ void TerminalInputSystem::getNextInput()
     else
     {
         // attempt to read in the input as a move...
-        ChessMove move;
+        ChessMoveRequest move;
         move.populateFromString(lowerInputString);
         moveAttemptCallback_(move);
     }
@@ -67,7 +67,7 @@ void TerminalInputSystem::registerQuitCallback(function<void ()> callback)
     return;
 }
 
-void TerminalInputSystem::registerMoveAttemptCallback(function<void(const ChessMove&)> callback)
+void TerminalInputSystem::registerMoveAttemptCallback(function<void(const ChessMoveRequest&)> callback)
 {
     moveAttemptCallback_ = callback;
     return;

@@ -36,7 +36,7 @@ TEST_CASE("Testing the 'new game' feature")
         testHarness.chessEngine().runChessEngine();
         
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::PAWN);
-        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("b2b4")));
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMoveRequest("b2b4")));
     }
     
     SECTION("Will move white pawns back to starting position if invoked mid game")
@@ -47,7 +47,7 @@ TEST_CASE("Testing the 'new game' feature")
         testHarness.chessEngine().runChessEngine();
         
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::PAWN);
-        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("a2a4")));
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMoveRequest("a2a4")));
     }
     
     SECTION("Will move white knights back to starting position if invoked mid game")
@@ -58,7 +58,7 @@ TEST_CASE("Testing the 'new game' feature")
         testHarness.chessEngine().runChessEngine();
         
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::KNIGHT);
-        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("b1a3")));
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMoveRequest("b1a3")));
     }
     
     SECTION("Will move black pawns back to starting position if invoked mid game")
@@ -69,7 +69,7 @@ TEST_CASE("Testing the 'new game' feature")
         testHarness.chessEngine().runChessEngine();
         
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::PAWN);
-        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("a7a6")));
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMoveRequest("a7a6")));
     }
     
     SECTION("Will move black knights back to starting position if invoked mid game")
@@ -80,7 +80,7 @@ TEST_CASE("Testing the 'new game' feature")
         testHarness.chessEngine().runChessEngine();
         
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::KNIGHT);
-        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("b8a6")));
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMoveRequest("b8a6")));
     }
     
     SECTION("Will move white rooks back to starting position if invoked mid game")
@@ -90,7 +90,7 @@ TEST_CASE("Testing the 'new game' feature")
         
         testHarness.chessEngine().runChessEngine();
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::ROOK);
-        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("a1a3")));
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMoveRequest("a1a3")));
     }
     
     SECTION("Will move black rooks back to starting position if invoked mid game")
@@ -100,7 +100,7 @@ TEST_CASE("Testing the 'new game' feature")
         
         testHarness.chessEngine().runChessEngine();
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::ROOK);
-        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("h8h6")));
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMoveRequest("h8h6")));
     }
     
     SECTION("Will move white queens back to starting position if invoked mid game")
@@ -110,7 +110,7 @@ TEST_CASE("Testing the 'new game' feature")
         
         testHarness.chessEngine().runChessEngine();
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::QUEEN);
-        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("d1d3")));
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMoveRequest("d1d3")));
     }
     
     SECTION("Will move black queens back to starting position if invoked mid game")
@@ -120,7 +120,7 @@ TEST_CASE("Testing the 'new game' feature")
         
         testHarness.chessEngine().runChessEngine();
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::QUEEN);
-        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("d8d6")));
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMoveRequest("d8d6")));
     }
     
     SECTION("Will move white Kings back to starting position if invoked mid game")
@@ -130,7 +130,7 @@ TEST_CASE("Testing the 'new game' feature")
         
         testHarness.chessEngine().runChessEngine();
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::KING);
-        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("e1e2")));
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMoveRequest("e1e2")));
     }
     
     SECTION("Will move black Kings back to starting position if invoked mid game")
@@ -140,7 +140,7 @@ TEST_CASE("Testing the 'new game' feature")
         
         testHarness.chessEngine().runChessEngine();
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::KING);
-        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("e8e7")));
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMoveRequest("e8e7")));
     }
 }
 

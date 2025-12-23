@@ -17,7 +17,7 @@
 
 class Bishop;
 class ChessSquare;
-class ChessMove;
+class ChessMoveRequest;
 class I_ChessPiece;
 class InternalChessMove;
 class King;

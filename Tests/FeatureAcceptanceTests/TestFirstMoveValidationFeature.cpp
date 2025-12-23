@@ -40,7 +40,7 @@ void runTestWithOpeningMoveAndExpectedValidity(const char* moveString, MoveValid
        testHarness.chessEngine().runChessEngine();
 
        CHECK(testHarness.lastKindOfPieceMoved() == type);
-       CHECK(testHarness.lastMoveDisplayedMatches(ChessMove(moveString)));
+       CHECK(testHarness.lastMoveDisplayedMatches(ChessMoveRequest(moveString)));
    }
 
    void runTestWithMoveThatDoesNotStartOnAnExistingPiece(const char* moveString)

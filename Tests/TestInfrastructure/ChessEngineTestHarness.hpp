@@ -15,7 +15,7 @@
 #include <string>
 
 class ChessEngine;
-class ChessMove;
+class ChessMoveRequest;
 class FakeInputSystem;
 class FakeOutputSystem;
 
@@ -32,7 +32,7 @@ public:
 
     // Convenience interfaces
     void setInputSequenceWithinANewGame(const std::list<std::string>& inputSequence);
-    bool lastMoveDisplayedMatches(const ChessMove& move);
+    bool lastMoveDisplayedMatches(const ChessMoveRequest& move);
     Chess::PieceType lastKindOfPieceMoved();
     Chess::MoveValidity lastMoveRejectionReason();
 

@@ -8,7 +8,7 @@
 #include "Catch.hpp"
 #include "ChessEngine.hpp"
 #include "ChessEngineTestHarness.hpp"
-#include "ChessMove.hpp"
+#include "ChessMoveRequest.hpp"
 
 using namespace Chess;
 
@@ -23,7 +23,7 @@ TEST_CASE("Testing the logic around capturing pieces")
         
         CHECK(testHarness.lastMoveRejectionReason() == MoveValidity::VALID_MOVE);
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::BISHOP);
-        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("g5e7")));
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMoveRequest("g5e7")));
     }
     
     SECTION("Will not allow captured pieces to move. Once captured they are not available to owner")
@@ -55,7 +55,7 @@ TEST_CASE("Testing the logic around capturing pieces")
         
         CHECK(testHarness.lastMoveRejectionReason() == MoveValidity::VALID_MOVE);
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::PAWN);
-        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("d4c5")));
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMoveRequest("d4c5")));
     }
     
     SECTION("Pawns cannot capture vertically")

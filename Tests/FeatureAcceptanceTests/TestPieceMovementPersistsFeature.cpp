@@ -8,7 +8,7 @@
 #include "Catch.hpp"
 #include "ChessEngine.hpp"
 #include "ChessEngineTestHarness.hpp"
-#include "ChessMove.hpp"
+#include "ChessMoveRequest.hpp"
 #include "CommandDefines.hpp"
 
 using namespace std;
@@ -24,7 +24,7 @@ TEST_CASE("Testing that a moved piece is now only seen at its new location")
         testHarness.chessEngine().runChessEngine();
 
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::PAWN);
-        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("a3a4")));
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMoveRequest("a3a4")));
     }
     
     SECTION("Cannot make the same move twice in a row")
@@ -45,6 +45,6 @@ TEST_CASE("Testing that a moved piece is now only seen at its new location")
         testHarness.chessEngine().runChessEngine();
         
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::BISHOP);
-        CHECK(testHarness.lastMoveDisplayedMatches(ChessMove("a3c5")));
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessMoveRequest("a3c5")));
     }
 }

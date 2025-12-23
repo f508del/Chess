@@ -23,7 +23,7 @@ public:
     void initializeChessUserInterface() override;
     void endUserInteraction() override;
     void resetUxForNewGame() override;
-    void displayValidMoveToUser(const ChessMove& move, const I_ReadOnlyChessBoard& board) override;
+    void displayValidMoveToUser(const ChessMoveRequest& move, const I_ReadOnlyChessBoard& board) override;
     void rejectMoveAttempt(Chess::MoveValidity validity) override;
     void declareCheck() override;
     

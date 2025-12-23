@@ -12,7 +12,7 @@
 #include "ChessSquare.hpp"
 
 class InternalChessMove;
-class ChessMove;
+class ChessMoveRequest;
 class ChessBoard;
 class ChessGameHistory;
 
@@ -22,15 +22,15 @@ public:
     ChessMoveValidator(ChessBoard& board, const ChessGameHistory& gameHistory);
     virtual ~ChessMoveValidator();
 
-    InternalChessMove validateMove(const ChessMove& currentMove);
+    InternalChessMove validateMove(const ChessMoveRequest& currentMove);
     
     bool isSquareThreatenedByColor(const ChessBoard& board, const ChessSquare& square, Chess::PieceAffiliation attackingColor);
 
 private:
     bool enPassantIsCurrentlyPossible() const;
-    bool enPassantIsBeingAttempted(const ChessMove& move) const;
+    bool enPassantIsBeingAttempted(const ChessMoveRequest& move) const;
     bool movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(const InternalChessMove& move);
-    InternalChessMove assembleValidMove(const ChessMove& currentMove);
+    InternalChessMove assembleValidMove(const ChessMoveRequest& currentMove);
     
 private:
     ChessBoard& board_;
