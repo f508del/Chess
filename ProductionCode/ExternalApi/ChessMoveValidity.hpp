@@ -12,7 +12,6 @@ namespace Chess
 enum class MoveValidity
 {
     VALID_MOVE = 0,
-    VALID_EN_PASSANT_MOVE,
     END_SQUARE_NOT_ON_BOARD,
     NO_PIECE_AT_STARTING_LOCATION,
     OPPOSING_PLAYERS_PIECE,

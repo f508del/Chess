@@ -30,7 +30,7 @@ Chess::MoveValidity InternalChessMove::validity() const
 
 bool InternalChessMove::isValid() const
 {
-    return ((validity_ == MoveValidity::VALID_MOVE) || (validity_ == MoveValidity::VALID_EN_PASSANT_MOVE));
+    return (MoveValidity::VALID_MOVE == validity_);
 }
 
 void InternalChessMove::setInvalidState(const Chess::MoveValidity validity)
@@ -39,9 +39,9 @@ void InternalChessMove::setInvalidState(const Chess::MoveValidity validity)
     moveElements_.clear();
 }
 
-void InternalChessMove::addValidMoveElement(const Chess::MoveElement &element, Chess::MoveValidity validity)
+void InternalChessMove::addValidMoveElement(const Chess::MoveElement &element)
 {
-    validity_ = validity;
+    validity_ = MoveValidity::VALID_MOVE;
     moveElements_.push_back(element);
 }
 
