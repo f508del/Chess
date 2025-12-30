@@ -9,9 +9,16 @@
 #pragma once
 
 #include "ChessMoveValidity.hpp"
+#include <list>
 
 class ChessMoveRequest;
 class I_ReadOnlyChessBoard;
+
+namespace Chess
+{
+struct MoveElement;
+}
+
 
 class I_OutputSystem
 {
@@ -21,6 +28,7 @@ public:
     virtual void endUserInteraction() = 0;
     virtual void resetUxForNewGame() = 0;
     virtual void displayValidMoveToUser(const ChessMoveRequest& move, const I_ReadOnlyChessBoard& board) = 0;
+    virtual void displayValidMoveToUser(const std::list<Chess::MoveElement>& moveElements) = 0;
     virtual void rejectMoveAttempt(Chess::MoveValidity validity) = 0;
     virtual void declareCheck() = 0;
 };

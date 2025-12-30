@@ -57,6 +57,12 @@ void TerminalOutputSystem::displayValidMoveToUser(const ChessMoveRequest& move, 
     showTextToUser(moveDescription.c_str());
 }
 
+void TerminalOutputSystem::displayValidMoveToUser(const std::list<Chess::MoveElement>& moveElements)
+{
+    std::string moveDescription = moveDescriber_->describeValidMove(moveElements);
+    showTextToUser(moveDescription.c_str());
+}
+
 void TerminalOutputSystem::rejectMoveAttempt(Chess::MoveValidity validity)
 {
     switch (validity)

@@ -58,6 +58,11 @@ void FakeOutputSystem::displayValidMoveToUser(const ChessMoveRequest &move, cons
     lastRejectedMoveReason_ = MoveValidity::VALID_MOVE;
 }
 
+void FakeOutputSystem::displayValidMoveToUser(const std::list<Chess::MoveElement>& moveElements)
+{
+   // todo
+}
+
 ChessMoveRequest FakeOutputSystem::lastMoveDisplayedToUser() const
 {
     return mostRecentMove_;
