@@ -51,12 +51,6 @@ void TerminalOutputSystem::resetUxForNewGame()
     showTextToUser("please enter a move in fully specified notation...");
 }
 
-void TerminalOutputSystem::displayValidMoveToUser(const ChessMoveRequest& move, const I_ReadOnlyChessBoard & board)
-{
-    std::string moveDescription = moveDescriber_->describeValidMove(move, board);
-    showTextToUser(moveDescription.c_str());
-}
-
 void TerminalOutputSystem::displayValidMoveToUser(const std::list<Chess::MoveElement>& moveElements)
 {
     std::string moveDescription = moveDescriber_->describeValidMove(moveElements);

@@ -8,8 +8,6 @@
 
 #include "ChessMoveDescriber.hpp"
 #include "ChessMoveElement.hpp"
-#include "ChessMoveRequest.hpp"
-#include "I_ReadOnlyChessBoard.hpp"
 #include "I_ChessPiece.hpp"
 
 using namespace Chess;
@@ -21,27 +19,6 @@ ChessMoveDescriber::ChessMoveDescriber()
 
 ChessMoveDescriber::~ChessMoveDescriber()
 {
-}
-
-std::string ChessMoveDescriber::describeValidMove(const ChessMoveRequest& move, const I_ReadOnlyChessBoard& board) const
-{
-    std::string description("Moving ");
-    if (board.anyPieceExistsAt(move.startingSquare()))
-    {
-       const I_ChessPiece* currentPiece = board.pieceAt(move.startingSquare());
-       PieceType pieceType = currentPiece->pieceType();
-       std::string typeName = chessPieceTypeName(pieceType);
-       description.append(typeName);
-    }
-
-    std::string moveString;
-    char resultString[5];
-    snprintf(resultString, 5, "%c%u%c%u", move.startingSquare().file(),
-            move.startingSquare().rank(), move.endingSquare().file(), move.endingSquare().rank());
-    resultString[4] = '\0';
-    moveString = resultString;
-    
-    return description.append(" ").append(moveString);
 }
 
 string ChessMoveDescriber::describeValidMove(const list<Chess::MoveElement>& moveElements)

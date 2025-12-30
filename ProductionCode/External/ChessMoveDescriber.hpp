@@ -17,17 +17,13 @@ namespace Chess
 struct MoveElement;
 }
 
-class ChessMoveRequest;
 class ChessSquare;
-class I_ReadOnlyChessBoard;
 
 class ChessMoveDescriber
 {
 public:
     ChessMoveDescriber();
     virtual ~ChessMoveDescriber();
-
-    std::string describeValidMove(const ChessMoveRequest& move, const I_ReadOnlyChessBoard& board) const;
     
     std::string describeValidMove(const std::list<Chess::MoveElement>& moveElements);
     

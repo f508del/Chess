@@ -44,21 +44,6 @@ void FakeOutputSystem::resetUxForNewGame()
     resetUxForNewGameHasBeenCalled_ = true;
 }
 
-void FakeOutputSystem::displayValidMoveToUser(const ChessMoveRequest &move, const I_ReadOnlyChessBoard & board)
-{
-    mostRecentMove_ = move;
-    const I_ChessPiece* piece = board.pieceAt(move.startingSquare());
-    if (piece != nullptr)
-    {
-        lastPieceMoved_ = piece->pieceType();
-    }
-    else
-    {
-        lastPieceMoved_ = PieceType::NONE;
-    }
-    lastRejectedMoveReason_ = MoveValidity::VALID_MOVE;
-}
-
 void FakeOutputSystem::displayValidMoveToUser(const std::list<Chess::MoveElement>& moveElements)
 {
     if (moveElements.empty())
