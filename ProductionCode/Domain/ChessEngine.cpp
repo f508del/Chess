@@ -88,7 +88,7 @@ void ChessEngine::attemptMove(const ChessMoveRequest& move)
     else
     {
         // order here matters, as output system needs access to board state before move is applied.
-        outputSystem_.displayValidMoveToUser(move, *board_);
+        outputSystem_.displayValidMoveToUser(validatedMove.moveElements());
         board_->applyMove(validatedMove);
         board_->togglePlayerInitiative();
         gameHistory_->recordMove(validatedMove);

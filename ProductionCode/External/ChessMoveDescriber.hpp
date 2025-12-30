@@ -33,5 +33,4 @@ public:
     
 private:
     std::string chessPieceTypeName(Chess::PieceType type) const;
-    ChessSquare destinationSquareOfInstigatingPiece(const std::list<Chess::MoveElement>& moveElements);
 };

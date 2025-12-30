@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <list>
 #include "ChessMoveElementAction.hpp"
 #include "ChessPieceAffiliation.hpp"
 #include "ChessPieceType.hpp"
@@ -25,4 +26,6 @@ public:
     PieceAffiliation affiliation_;
     PieceType type_;
 };
+
+ChessSquare destinationSquareOfInstigatingPiece(const std::list<Chess::MoveElement>& moveElements);
 }

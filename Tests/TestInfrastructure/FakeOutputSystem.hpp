@@ -31,6 +31,7 @@ public:
     
     // helpers
     ChessMoveRequest lastMoveDisplayedToUser() const;
+    ChessSquare lastMoveStartingSquare() const;
     Chess::PieceType lastPieceMoved() const;
     Chess::MoveValidity lastRejectedMoveReason() const;
     bool userInteractionEndHasBeenRequested() const;

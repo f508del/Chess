@@ -7,6 +7,7 @@
 //
 
 #include "FakeOutputSystem.hpp"
+#include "ChessMoveElement.hpp"
 #include "I_ChessPiece.hpp"
 #include "I_ReadOnlyChessBoard.hpp"
 
@@ -60,7 +61,17 @@ void FakeOutputSystem::displayValidMoveToUser(const ChessMoveRequest &move, cons
 
 void FakeOutputSystem::displayValidMoveToUser(const std::list<Chess::MoveElement>& moveElements)
 {
-   // todo
+    if (moveElements.empty())
+    {
+        lastPieceMoved_ = PieceType::NONE;
+    }
+    else
+    {
+        lastPieceMoved_ = moveElements.front().type_;
+        //TODO: migrate this use of ChessMoveRequest away...
+        mostRecentMove_ = ChessMoveRequest(moveElements.front().square_, destinationSquareOfInstigatingPiece(moveElements));
+    }
+    lastRejectedMoveReason_ = MoveValidity::VALID_MOVE;
 }
 
 ChessMoveRequest FakeOutputSystem::lastMoveDisplayedToUser() const
