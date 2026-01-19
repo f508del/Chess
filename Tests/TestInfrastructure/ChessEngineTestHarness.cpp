@@ -53,9 +53,9 @@ void ChessEngineTestHarness::setInputSequenceWithinANewGame(const std::list<std:
     fakeInput().setInputSequence(finalInputSequence);
 }
 
-bool ChessEngineTestHarness::lastMoveDisplayedMatches(const ChessMoveRequest& move)
+bool ChessEngineTestHarness::lastMoveDisplayedMatches(const ChessSquare& startingSquare, const ChessSquare& endingSquare)
 {
-    return (fakeOutput().lastMoveDisplayedToUser() == move);
+    return (fakeOutput().lastMoveStartingSquare() == startingSquare && fakeOutput().lastMoveEndingSquare() == endingSquare);
 }
 
 PieceType ChessEngineTestHarness::lastKindOfPieceMoved()

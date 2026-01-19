@@ -8,8 +8,8 @@
 
 #pragma once
 
-#include "ChessMoveRequest.hpp"
 #include "ChessPieceType.hpp"
+#include "ChessSquare.hpp"
 #include "I_OutputSystem.hpp"
 #include <list>
 #include <string>
@@ -29,8 +29,8 @@ public:
     void declareCheck() override;
     
     // helpers
-    ChessMoveRequest lastMoveDisplayedToUser() const;
     ChessSquare lastMoveStartingSquare() const;
+    ChessSquare lastMoveEndingSquare() const;
     Chess::PieceType lastPieceMoved() const;
     Chess::MoveValidity lastRejectedMoveReason() const;
     bool userInteractionEndHasBeenRequested() const;
@@ -38,9 +38,10 @@ public:
     bool checkHasBeenDeclared() const;
     
 private:
-    ChessMoveRequest mostRecentMove_;
     Chess::PieceType lastPieceMoved_;
     Chess::MoveValidity lastRejectedMoveReason_;
+    ChessSquare lastMoveStartingSquare_;
+    ChessSquare lastMoveEndingSquare_;
     bool userInteractionEndRequested_;
     bool resetUxForNewGameHasBeenCalled_;
     bool checkHasBeenDeclared_;

@@ -11,8 +11,6 @@
 #include "ChessMoveValidity.hpp"
 #include <list>
 
-class ChessMoveRequest;
-
 namespace Chess
 {
 struct MoveElement;

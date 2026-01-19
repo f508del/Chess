@@ -17,6 +17,8 @@ using namespace Chess;
 FakeOutputSystem::FakeOutputSystem()
 : lastPieceMoved_(PieceType::NONE)
 , lastRejectedMoveReason_(Chess::MoveValidity::VALID_MOVE)
+, lastMoveStartingSquare_()
+, lastMoveEndingSquare_()
 , userInteractionEndRequested_(false)
 , resetUxForNewGameHasBeenCalled_(false)
 , checkHasBeenDeclared_(false)
@@ -49,19 +51,26 @@ void FakeOutputSystem::displayValidMoveToUser(const std::list<Chess::MoveElement
     if (moveElements.empty())
     {
         lastPieceMoved_ = PieceType::NONE;
+        lastMoveStartingSquare_ = ChessSquare();
+        lastMoveEndingSquare_ = ChessSquare();
     }
     else
     {
         lastPieceMoved_ = moveElements.front().type_;
-        //TODO: migrate this use of ChessMoveRequest away...
-        mostRecentMove_ = ChessMoveRequest(moveElements.front().square_, destinationSquareOfInstigatingPiece(moveElements));
+        lastMoveStartingSquare_ = moveElements.front().square_;
+        lastMoveEndingSquare_ = destinationSquareOfInstigatingPiece(moveElements);
     }
     lastRejectedMoveReason_ = MoveValidity::VALID_MOVE;
 }
 
-ChessMoveRequest FakeOutputSystem::lastMoveDisplayedToUser() const
+ChessSquare FakeOutputSystem::lastMoveStartingSquare() const
 {
-    return mostRecentMove_;
+    return lastMoveStartingSquare_;
+}
+
+ChessSquare FakeOutputSystem::lastMoveEndingSquare() const
+{
+    return lastMoveEndingSquare_;
 }
 
 PieceType FakeOutputSystem::lastPieceMoved() const

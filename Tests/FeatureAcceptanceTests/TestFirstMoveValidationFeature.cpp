@@ -10,6 +10,7 @@
 #include "ChessEngine.hpp"
 #include "ChessEngineTestHarness.hpp"
 #include "CommandDefines.hpp"
+#include "ChessMoveRequest.hpp"
 #include "FakeInputSystem.hpp"
 #include "FakeOutputSystem.hpp"
 
@@ -40,7 +41,9 @@ void runTestWithOpeningMoveAndExpectedValidity(const char* moveString, MoveValid
        testHarness.chessEngine().runChessEngine();
 
        CHECK(testHarness.lastKindOfPieceMoved() == type);
-       CHECK(testHarness.lastMoveDisplayedMatches(ChessMoveRequest(moveString)));
+       // TODO: Fix this.
+       ChessMoveRequest expectedMove(moveString);
+       CHECK(testHarness.lastMoveDisplayedMatches(expectedMove.startingSquare(), expectedMove.endingSquare()));
    }
 
    void runTestWithMoveThatDoesNotStartOnAnExistingPiece(const char* moveString)
