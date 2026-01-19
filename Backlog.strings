@@ -7,7 +7,6 @@
 This is meant as a simple backlog of what refactorings and features are upcoming
  
  21. Add support for castling.
-  21.1: Deprecate use of ChessMoveRequest in fake output test harness
  25. Add support for promotions
  27. Detect Checkmate
  28. Detect Stalemate
