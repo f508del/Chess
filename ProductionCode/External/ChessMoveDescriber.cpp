@@ -37,14 +37,15 @@ string ChessMoveDescriber::describeValidMove(const list<Chess::MoveElement>& mov
     ChessSquare startingSquare = moveElements.front().square_;
     ChessSquare endingSquare = destinationSquareOfInstigatingPiece(moveElements);
     
-    std::string moveString;
-    char resultString[5];
-    snprintf(resultString, 5, "%c%u%c%u", startingSquare.file(),
-             startingSquare.rank(), endingSquare.file(), endingSquare.rank());
-    resultString[4] = '\0';
-    moveString = resultString;
+    output.append(toString(startingSquare));
+    output.append(toString(endingSquare));
     
-    output.append(moveString);
+    if (moveElements.size() == 3 && !(moveElements.back().square_ == endingSquare))
+    {
+        output.append(", which removes Pawn at ");
+        output.append(toString(moveElements.back().square_));
+        output.append(" by en passant");
+    }
     
     return output;
 }
@@ -85,3 +86,12 @@ std::string ChessMoveDescriber::chessPieceTypeName(PieceType type) const
     return "Invalid Piece Type";
 }
 
+std::string ChessMoveDescriber::toString(const ChessSquare& square) const
+{
+    std::string stringSquare;
+    char resultString[3];
+    snprintf(resultString, 3, "%c%u", square.file(), square.rank());
+    resultString[2] = '\0';
+    stringSquare = resultString;
+    return stringSquare;
+}

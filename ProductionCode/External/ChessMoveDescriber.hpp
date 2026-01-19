@@ -29,4 +29,5 @@ public:
     
 private:
     std::string chessPieceTypeName(Chess::PieceType type) const;
+    std::string toString(const ChessSquare& square) const;
 };
