@@ -12,7 +12,6 @@
 #include "ChessPieceType.hpp"
 #include "FakeTerminalWrapper.hpp"
 #include "TerminalOutputSystem.hpp"
-#include "ChessMoveRequest.hpp"
 
 using namespace Chess;
 
