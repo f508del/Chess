@@ -8,7 +8,7 @@
 #include "Catch.hpp"
 #include "ChessEngineTestHarness.hpp"
 #include "ChessEngine.hpp"
-#include "ChessMoveRequest.hpp"
+#include "ChessSquare.hpp"
 
 using namespace Chess;
 

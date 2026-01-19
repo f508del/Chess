@@ -9,7 +9,7 @@
 #include "Catch.hpp"
 #include "ChessEngine.hpp"
 #include "ChessEngineTestHarness.hpp"
-#include "ChessMoveRequest.hpp"
+#include "ChessSquare.hpp"
 #include "CommandDefines.hpp"
 
 using namespace std;
