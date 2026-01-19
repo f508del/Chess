@@ -41,7 +41,6 @@ void runTestWithOpeningMoveAndExpectedValidity(const char* moveString, MoveValid
        testHarness.chessEngine().runChessEngine();
 
        CHECK(testHarness.lastKindOfPieceMoved() == type);
-       // TODO: Fix this.
        ChessMoveRequest expectedMove(moveString);
        CHECK(testHarness.lastMoveDisplayedMatches(expectedMove.startingSquare(), expectedMove.endingSquare()));
    }
