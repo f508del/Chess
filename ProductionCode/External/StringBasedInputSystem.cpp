@@ -1,5 +1,5 @@
 //
-//  TerminalInputSystem.cpp
+//  StringBasedInputSystem.cpp
 //  Chess
 //
 //  Created by Trevor Phillips on 2020-12-25.
