@@ -27,7 +27,7 @@ TEST_CASE("Testing the external system that chess move inputs trigger input logi
         CHECK(moveLogicHasBeenTriggered);
     }
     
-    SECTION("Pawn promotion selections will trigger promotion selection logic")
+    SECTION("Pawn promotion to a knight will trigger promotion selection logic")
     {
         FakeTerminalWrapper terminalWrapper;
         TerminalInputSystem inputSystem(terminalWrapper);
@@ -35,6 +35,48 @@ TEST_CASE("Testing the external system that chess move inputs trigger input logi
         std::function<void(Chess::PieceType type)> promotionLogic([&](Chess::PieceType){promotionLogicHasBeenTriggered = true;});
         inputSystem.registerPromotionSelectionCallback(promotionLogic);
         terminalWrapper.enqueueInput({"knight"});
+        
+        inputSystem.getNextInput();
+        
+        CHECK(promotionLogicHasBeenTriggered);
+    }
+    
+    SECTION("Pawn promotion to a bishop will trigger promotion selection logic")
+    {
+        FakeTerminalWrapper terminalWrapper;
+        TerminalInputSystem inputSystem(terminalWrapper);
+        bool promotionLogicHasBeenTriggered = false;
+        std::function<void(Chess::PieceType type)> promotionLogic([&](Chess::PieceType){promotionLogicHasBeenTriggered = true;});
+        inputSystem.registerPromotionSelectionCallback(promotionLogic);
+        terminalWrapper.enqueueInput({"bishop"});
+        
+        inputSystem.getNextInput();
+        
+        CHECK(promotionLogicHasBeenTriggered);
+    }
+    
+    SECTION("Pawn promotion to a rook will trigger promotion selection logic")
+    {
+        FakeTerminalWrapper terminalWrapper;
+        TerminalInputSystem inputSystem(terminalWrapper);
+        bool promotionLogicHasBeenTriggered = false;
+        std::function<void(Chess::PieceType type)> promotionLogic([&](Chess::PieceType){promotionLogicHasBeenTriggered = true;});
+        inputSystem.registerPromotionSelectionCallback(promotionLogic);
+        terminalWrapper.enqueueInput({"rook"});
+        
+        inputSystem.getNextInput();
+        
+        CHECK(promotionLogicHasBeenTriggered);
+    }
+    
+    SECTION("Pawn promotion to a queen will trigger promotion selection logic")
+    {
+        FakeTerminalWrapper terminalWrapper;
+        TerminalInputSystem inputSystem(terminalWrapper);
+        bool promotionLogicHasBeenTriggered = false;
+        std::function<void(Chess::PieceType type)> promotionLogic([&](Chess::PieceType){promotionLogicHasBeenTriggered = true;});
+        inputSystem.registerPromotionSelectionCallback(promotionLogic);
+        terminalWrapper.enqueueInput({"queen"});
         
         inputSystem.getNextInput();
         
