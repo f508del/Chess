@@ -90,6 +90,10 @@ void ChessEngine::attemptMove(const ChessMoveRequest& move)
         // order here matters, as output system needs access to board state before move is applied.
         outputSystem_.displayValidMoveToUser(validatedMove.moveElements());
         board_->applyMove(validatedMove);
+        if (pawnHasReachedFinalRank(validatedMove))
+        {
+            outputSystem_.requestPromotionDecision();
+        }
         board_->togglePlayerInitiative();
         gameHistory_->recordMove(validatedMove);
         detectEndGameConditions();
@@ -108,4 +112,21 @@ void ChessEngine::detectEndGameConditions()
     }
     
     return;
+}
+
+bool ChessEngine::pawnHasReachedFinalRank(const InternalChessMove& validatedMove) const
+{
+    if (!validatedMove.isValid())
+    {
+        return false;
+    }
+    if (validatedMove.moveElements().front().type_ != PieceType::PAWN)
+    {
+        return false;
+    }
+    if (validatedMove.moveElements().front().square_.rank() == 7 && validatedMove.moveElements().front().affiliation_ == Chess::PieceAffiliation::WHITE_PIECE)
+    {
+        return true;
+    }
+    return false;
 }

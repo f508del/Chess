@@ -16,6 +16,7 @@ class ChessMoveRequest;
 class ChessMoveValidator;
 class I_InputSystem;
 class I_OutputSystem;
+class InternalChessMove;
 
 class ChessEngine
 {
@@ -33,6 +34,7 @@ private:
     void endEventLoop();
     void attemptMove(const ChessMoveRequest& move);
     void detectEndGameConditions();
+    bool pawnHasReachedFinalRank(const InternalChessMove& validatedMove) const;
 
 private:
     I_InputSystem& whiteInputSystem_;

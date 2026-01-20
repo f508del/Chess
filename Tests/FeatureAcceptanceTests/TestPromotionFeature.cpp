@@ -30,7 +30,6 @@ TEST_CASE("Testing that when a pawn reaches the opposite rank on the board, a pr
         
         testHarness.chessEngine().runChessEngine();
 
-        printf("TEST SKIPPED for white pawn promotion request");
-        //CHECK(testHarness.promotionPromptHasBeenRequested());
+        CHECK(testHarness.promotionPromptHasBeenRequested());
     }
 }
