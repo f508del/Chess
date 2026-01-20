@@ -9,19 +9,19 @@
 #include "StringBasedInputSystem.hpp"
 #include "CommandDefines.hpp"
 #include "ChessMoveRequest.hpp"
-#include "TerminalWrapper.hpp"
+#include "I_StringInputSource.hpp"
 #include <cctype>
 #include <cstdio>
 
 using namespace CommandDefines;
 using namespace std;
 
-StringBasedInputSystem::StringBasedInputSystem(TerminalWrapper& wrapper)
+StringBasedInputSystem::StringBasedInputSystem(I_StringInputSource& inputSource)
 : newGameCallback_([]{})
 , quitCallback_([]{})
 , moveAttemptCallback_([](const ChessMoveRequest&){})
 , promotionCallback_([](Chess::PieceType){})
-, stringSource_(wrapper)
+, stringSource_(inputSource)
 {
 
 }

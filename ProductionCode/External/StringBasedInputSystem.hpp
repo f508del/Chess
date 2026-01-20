@@ -10,12 +10,12 @@
 
 #include "I_InputSystem.hpp"
 
-class TerminalWrapper;
+class I_StringInputSource;
 
 class StringBasedInputSystem : public I_InputSystem
 {
 public:
-    explicit StringBasedInputSystem(TerminalWrapper& wrapper);
+    explicit StringBasedInputSystem(I_StringInputSource& wrapper);
     virtual ~StringBasedInputSystem();
 
     void getNextInput() override;
@@ -30,5 +30,5 @@ private:
     std::function<void()> quitCallback_;
     std::function<void(const ChessMoveRequest&)> moveAttemptCallback_;
     std::function<void(Chess::PieceType)> promotionCallback_;
-    TerminalWrapper& stringSource_;
+    I_StringInputSource& stringSource_;
 };
