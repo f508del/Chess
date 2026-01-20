@@ -6,6 +6,8 @@
 //
 #pragma once
 
+#include <string>
+
 namespace Chess
 {
 enum class PieceType
@@ -18,4 +20,6 @@ enum class PieceType
     QUEEN,
     KING
 };
+
+PieceType pieceTypeFromString(const std::string& input);
 }

@@ -10,6 +10,7 @@
 
 #include <string>
 #include <functional>
+#include "ChessPieceType.hpp"
 
 class ChessMoveRequest;
 
@@ -22,5 +23,6 @@ public:
     virtual void registerNewGameCallback(std::function<void()> callback) = 0;
     virtual void registerQuitCallback(std::function<void()> callback) = 0;
     virtual void registerMoveAttemptCallback(std::function<void(const ChessMoveRequest&)> callback) = 0;
+    virtual void registerPromotionSelectionCallback(std::function<void(Chess::PieceType)> callback) = 0;
 };
 

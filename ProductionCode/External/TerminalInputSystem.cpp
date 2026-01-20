@@ -20,6 +20,7 @@ TerminalInputSystem::TerminalInputSystem(TerminalWrapper& wrapper)
 : newGameCallback_([]{})
 , quitCallback_([]{})
 , moveAttemptCallback_([](const ChessMoveRequest&){})
+, promotionCallback_([](Chess::PieceType){})
 , terminalWrapper_(wrapper)
 {
 
@@ -44,6 +45,11 @@ void TerminalInputSystem::getNextInput()
     else if (lowerInputString == QUIT_COMMAND)
     {
         quitCallback_();
+    }
+    else if (Chess::pieceTypeFromString(lowerInputString) != Chess::PieceType::NONE)
+    {
+        Chess::PieceType inputPiece = Chess::pieceTypeFromString(lowerInputString);
+        promotionCallback_(inputPiece);
     }
     else
     {
@@ -70,5 +76,11 @@ void TerminalInputSystem::registerQuitCallback(function<void ()> callback)
 void TerminalInputSystem::registerMoveAttemptCallback(function<void(const ChessMoveRequest&)> callback)
 {
     moveAttemptCallback_ = callback;
+    return;
+}
+
+void TerminalInputSystem::registerPromotionSelectionCallback(function<void(Chess::PieceType)> callback)
+{
+    promotionCallback_ = callback;
     return;
 }

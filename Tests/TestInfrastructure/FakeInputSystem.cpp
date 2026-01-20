@@ -80,5 +80,9 @@ void FakeInputSystem::registerQuitCallback(std::function<void ()> callback)
 void FakeInputSystem::registerMoveAttemptCallback(function<void(const ChessMoveRequest&)> callback)
 {
     moveAttemptCallback_ = callback;
-    return;
+}
+
+void FakeInputSystem::registerPromotionSelectionCallback(function<void(Chess::PieceType)> callback)
+{
+    // TODO??
 }

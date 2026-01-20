@@ -22,6 +22,7 @@ public:
     void registerNewGameCallback(std::function<void()> callback) override;
     void registerQuitCallback(std::function<void()> callback) override;
     void registerMoveAttemptCallback(std::function<void(const ChessMoveRequest&)> callback) override;
+    void registerPromotionSelectionCallback(std::function<void(Chess::PieceType)> callback) override;
     
     // Helpers
     void setInputSequence(const std::list<std::string>& inputSequence);

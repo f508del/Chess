@@ -8,6 +8,7 @@
 #include "Catch.hpp"
 #include "FakeTerminalWrapper.hpp"
 #include "TerminalInputSystem.hpp"
+#include "ChessPieceType.hpp"
 
 TEST_CASE("Testing the external system that chess move inputs trigger input logic")
 {
@@ -26,4 +27,17 @@ TEST_CASE("Testing the external system that chess move inputs trigger input logi
         CHECK(moveLogicHasBeenTriggered);
     }
     
+    SECTION("Pawn promotion selections will trigger promotion selection logic")
+    {
+        FakeTerminalWrapper terminalWrapper;
+        TerminalInputSystem inputSystem(terminalWrapper);
+        bool promotionLogicHasBeenTriggered = false;
+        std::function<void(Chess::PieceType type)> promotionLogic([&](Chess::PieceType){promotionLogicHasBeenTriggered = true;});
+        inputSystem.registerPromotionSelectionCallback(promotionLogic);
+        terminalWrapper.enqueueInput({"knight"});
+        
+        inputSystem.getNextInput();
+        
+        CHECK(promotionLogicHasBeenTriggered);
+    }
 }
