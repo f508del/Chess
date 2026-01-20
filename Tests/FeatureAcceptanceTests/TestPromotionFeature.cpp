@@ -32,4 +32,24 @@ TEST_CASE("Testing that when a pawn reaches the opposite rank on the board, a pr
 
         CHECK(testHarness.promotionPromptHasBeenRequested());
     }
+    
+    SECTION("Black pawn promotions will not trigger when reaching 2nd rank.")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.setInputSequenceWithinANewGame({"f2f3", "a7a5", "f3f4", "a5a4", "f4f5", "a4a3", "e2e3", "a3b2"});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(!testHarness.promotionPromptHasBeenRequested());
+    }
+    
+    SECTION("Black pawn promotions will trigger when reaching 1st rank.")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.setInputSequenceWithinANewGame({"f2f3", "a7a5", "f3f4", "a5a4", "f4f5", "a4a3", "e2e3", "a3b2", "e3e4", "b2a1"});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(testHarness.promotionPromptHasBeenRequested());
+    }
 }

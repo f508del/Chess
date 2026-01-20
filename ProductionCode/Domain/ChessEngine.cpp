@@ -124,8 +124,12 @@ bool ChessEngine::pawnHasReachedFinalRank(const InternalChessMove& validatedMove
     {
         return false;
     }
-    if (validatedMove.moveElements().front().square_.rank() == 7 && validatedMove.moveElements().front().affiliation_ == Chess::PieceAffiliation::WHITE_PIECE)
+    unsigned int pawnStartingRank = validatedMove.moveElements().front().square_.rank();
+    Chess::PieceAffiliation pawnAffiliation = validatedMove.moveElements().front().affiliation_;
+    if ((pawnStartingRank == 7 && pawnAffiliation == Chess::PieceAffiliation::WHITE_PIECE) ||
+       (pawnStartingRank == 2 && pawnAffiliation == Chess::PieceAffiliation::BLACK_PIECE))
     {
+        // If a pawn move is both valid and starts one step from promotion... it gets promoted!
         return true;
     }
     return false;
