@@ -14,6 +14,6 @@ public:
     virtual ~TerminalWrapper() = default;
     
     virtual void writeToTerminal(const std::string& text);
-    virtual std::string readFromTerminal();
+    virtual std::string readNextInputString();
 };
 

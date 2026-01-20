@@ -19,7 +19,7 @@ void FakeTerminalWrapper::writeToTerminal(const string& text)
     capturedOutput_.push_back(text);
 }
 
-string FakeTerminalWrapper::readFromTerminal()
+string FakeTerminalWrapper::readNextInputString()
 {
     string output;
     if (!queuedInput_.empty())

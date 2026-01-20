@@ -33,7 +33,7 @@ StringBasedInputSystem::~StringBasedInputSystem()
 
 void StringBasedInputSystem::getNextInput()
 {
-    string lowerInputString = stringSource_.readFromTerminal();
+    string lowerInputString = stringSource_.readNextInputString();
     
     transform(lowerInputString.begin(), lowerInputString.end(), lowerInputString.begin(),
                    [](unsigned char c){return tolower(c);});

@@ -13,7 +13,7 @@ void TerminalWrapper::writeToTerminal(const std::string& text)
     fprintf(stdout, "%s\n", text.c_str());
 }
 
-string TerminalWrapper::readFromTerminal() {
+string TerminalWrapper::readNextInputString() {
     char inputString[64];
     fscanf(stdin, "%63s", inputString);
     string result(inputString);

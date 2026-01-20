@@ -15,7 +15,7 @@ public:
     
     // inherited
     void writeToTerminal(const std::string& text) override;
-    std::string readFromTerminal() override;
+    std::string readNextInputString() override;
     
     // helpers
     bool lastOutputMatches(const std::string& outputString) const;
