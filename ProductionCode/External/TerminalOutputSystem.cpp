@@ -91,5 +91,5 @@ void TerminalOutputSystem::declareCheck()
 
 void TerminalOutputSystem::requestPromotionDecision()
 {
-    // do nothing here until external AAT forces it.
+    showTextToUser("Choose a promotion: 1: knight 2: bishop 3: rook 4: queen");
 }
