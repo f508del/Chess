@@ -26,7 +26,6 @@ public:
     
     // Helpers
     void setInputSequence(const std::list<std::string>& inputSequence);
-    void clearInputSequence();
 
 private:
     std::list<std::string> inputBuffer_;

@@ -62,11 +62,6 @@ void FakeInputSystem::setInputSequence(const list<string> &inputSequence)
    inputBuffer_ = inputSequence;
 }
 
-void FakeInputSystem::clearInputSequence()
-{
-   inputBuffer_.clear();
-}
-
 void FakeInputSystem::registerNewGameCallback(std::function<void ()> callback)
 {
     newGameCallback_ = callback;
