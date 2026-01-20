@@ -30,5 +30,5 @@ private:
     std::function<void()> quitCallback_;
     std::function<void(const ChessMoveRequest&)> moveAttemptCallback_;
     std::function<void(Chess::PieceType)> promotionCallback_;
-    TerminalWrapper& terminalWrapper_;
+    TerminalWrapper& stringSource_;
 };

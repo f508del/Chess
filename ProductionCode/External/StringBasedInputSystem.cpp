@@ -21,7 +21,7 @@ StringBasedInputSystem::StringBasedInputSystem(TerminalWrapper& wrapper)
 , quitCallback_([]{})
 , moveAttemptCallback_([](const ChessMoveRequest&){})
 , promotionCallback_([](Chess::PieceType){})
-, terminalWrapper_(wrapper)
+, stringSource_(wrapper)
 {
 
 }
@@ -33,7 +33,7 @@ StringBasedInputSystem::~StringBasedInputSystem()
 
 void StringBasedInputSystem::getNextInput()
 {
-    string lowerInputString = terminalWrapper_.readFromTerminal();
+    string lowerInputString = stringSource_.readFromTerminal();
     
     transform(lowerInputString.begin(), lowerInputString.end(), lowerInputString.begin(),
                    [](unsigned char c){return tolower(c);});
