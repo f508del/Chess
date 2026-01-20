@@ -6,7 +6,7 @@
 //
 //
 
-#include "TerminalInputSystem.hpp"
+#include "StringBasedInputSystem.hpp"
 #include "CommandDefines.hpp"
 #include "ChessMoveRequest.hpp"
 #include "TerminalWrapper.hpp"
@@ -16,7 +16,7 @@
 using namespace CommandDefines;
 using namespace std;
 
-TerminalInputSystem::TerminalInputSystem(TerminalWrapper& wrapper)
+StringBasedInputSystem::StringBasedInputSystem(TerminalWrapper& wrapper)
 : newGameCallback_([]{})
 , quitCallback_([]{})
 , moveAttemptCallback_([](const ChessMoveRequest&){})
@@ -26,12 +26,12 @@ TerminalInputSystem::TerminalInputSystem(TerminalWrapper& wrapper)
 
 }
 
-TerminalInputSystem::~TerminalInputSystem()
+StringBasedInputSystem::~StringBasedInputSystem()
 {
 
 }
 
-void TerminalInputSystem::getNextInput()
+void StringBasedInputSystem::getNextInput()
 {
     string lowerInputString = terminalWrapper_.readFromTerminal();
     
@@ -61,25 +61,25 @@ void TerminalInputSystem::getNextInput()
     return;
 }
 
-void TerminalInputSystem::registerNewGameCallback(function<void ()> callback)
+void StringBasedInputSystem::registerNewGameCallback(function<void ()> callback)
 {
     newGameCallback_ = callback;
     return;
 }
 
-void TerminalInputSystem::registerQuitCallback(function<void ()> callback)
+void StringBasedInputSystem::registerQuitCallback(function<void ()> callback)
 {
     quitCallback_ = callback;
     return;
 }
 
-void TerminalInputSystem::registerMoveAttemptCallback(function<void(const ChessMoveRequest&)> callback)
+void StringBasedInputSystem::registerMoveAttemptCallback(function<void(const ChessMoveRequest&)> callback)
 {
     moveAttemptCallback_ = callback;
     return;
 }
 
-void TerminalInputSystem::registerPromotionSelectionCallback(function<void(Chess::PieceType)> callback)
+void StringBasedInputSystem::registerPromotionSelectionCallback(function<void(Chess::PieceType)> callback)
 {
     promotionCallback_ = callback;
     return;

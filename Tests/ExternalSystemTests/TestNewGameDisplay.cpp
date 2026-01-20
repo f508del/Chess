@@ -9,7 +9,7 @@
 #include "Catch.hpp"
 #include "FakeTerminalWrapper.hpp"
 #include "TerminalOutputSystem.hpp"
-#include "TerminalInputSystem.hpp"
+#include "StringBasedInputSystem.hpp"
 
 TEST_CASE("Test that if new game is requsted, the output system displays the expected strings")
 {
@@ -28,7 +28,7 @@ TEST_CASE("Test that if new game is requsted, the output system displays the exp
     SECTION("Will trigger new game logic when new game command received")
     {
         FakeTerminalWrapper terminalWrapper;
-        TerminalInputSystem inputSystem(terminalWrapper);
+        StringBasedInputSystem inputSystem(terminalWrapper);
         bool newGameLogicHasBeenTriggered = false;
         std::function<void()> newGameLogic([&](){newGameLogicHasBeenTriggered = true;});
         inputSystem.registerNewGameCallback(newGameLogic);

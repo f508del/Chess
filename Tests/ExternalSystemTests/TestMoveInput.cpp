@@ -7,7 +7,7 @@
 
 #include "Catch.hpp"
 #include "FakeTerminalWrapper.hpp"
-#include "TerminalInputSystem.hpp"
+#include "StringBasedInputSystem.hpp"
 #include "ChessPieceType.hpp"
 
 TEST_CASE("Testing the external system that chess move inputs trigger input logic")
@@ -16,7 +16,7 @@ TEST_CASE("Testing the external system that chess move inputs trigger input logi
     SECTION("Move input strings will trigger move input attempt logic")
     {
         FakeTerminalWrapper terminalWrapper;
-        TerminalInputSystem inputSystem(terminalWrapper);
+        StringBasedInputSystem inputSystem(terminalWrapper);
         bool moveLogicHasBeenTriggered = false;
         std::function<void(const ChessMoveRequest&)> moveLogic([&](const ChessMoveRequest&){moveLogicHasBeenTriggered = true;});
         inputSystem.registerMoveAttemptCallback(moveLogic);
@@ -30,7 +30,7 @@ TEST_CASE("Testing the external system that chess move inputs trigger input logi
     SECTION("Pawn promotion to a knight will trigger promotion selection logic")
     {
         FakeTerminalWrapper terminalWrapper;
-        TerminalInputSystem inputSystem(terminalWrapper);
+        StringBasedInputSystem inputSystem(terminalWrapper);
         bool promotionLogicHasBeenTriggered = false;
         std::function<void(Chess::PieceType type)> promotionLogic([&](Chess::PieceType){promotionLogicHasBeenTriggered = true;});
         inputSystem.registerPromotionSelectionCallback(promotionLogic);
@@ -44,7 +44,7 @@ TEST_CASE("Testing the external system that chess move inputs trigger input logi
     SECTION("Pawn promotion to a bishop will trigger promotion selection logic")
     {
         FakeTerminalWrapper terminalWrapper;
-        TerminalInputSystem inputSystem(terminalWrapper);
+        StringBasedInputSystem inputSystem(terminalWrapper);
         bool promotionLogicHasBeenTriggered = false;
         std::function<void(Chess::PieceType type)> promotionLogic([&](Chess::PieceType){promotionLogicHasBeenTriggered = true;});
         inputSystem.registerPromotionSelectionCallback(promotionLogic);
@@ -58,7 +58,7 @@ TEST_CASE("Testing the external system that chess move inputs trigger input logi
     SECTION("Pawn promotion to a rook will trigger promotion selection logic")
     {
         FakeTerminalWrapper terminalWrapper;
-        TerminalInputSystem inputSystem(terminalWrapper);
+        StringBasedInputSystem inputSystem(terminalWrapper);
         bool promotionLogicHasBeenTriggered = false;
         std::function<void(Chess::PieceType type)> promotionLogic([&](Chess::PieceType){promotionLogicHasBeenTriggered = true;});
         inputSystem.registerPromotionSelectionCallback(promotionLogic);
@@ -72,7 +72,7 @@ TEST_CASE("Testing the external system that chess move inputs trigger input logi
     SECTION("Pawn promotion to a queen will trigger promotion selection logic")
     {
         FakeTerminalWrapper terminalWrapper;
-        TerminalInputSystem inputSystem(terminalWrapper);
+        StringBasedInputSystem inputSystem(terminalWrapper);
         bool promotionLogicHasBeenTriggered = false;
         std::function<void(Chess::PieceType type)> promotionLogic([&](Chess::PieceType){promotionLogicHasBeenTriggered = true;});
         inputSystem.registerPromotionSelectionCallback(promotionLogic);

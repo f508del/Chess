@@ -12,11 +12,11 @@
 
 class TerminalWrapper;
 
-class TerminalInputSystem : public I_InputSystem
+class StringBasedInputSystem : public I_InputSystem
 {
 public:
-    explicit TerminalInputSystem(TerminalWrapper& wrapper);
-    virtual ~TerminalInputSystem();
+    explicit StringBasedInputSystem(TerminalWrapper& wrapper);
+    virtual ~StringBasedInputSystem();
 
     void getNextInput() override;
     

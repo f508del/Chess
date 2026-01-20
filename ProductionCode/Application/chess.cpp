@@ -17,14 +17,14 @@
 
 #include "ChessEngine.hpp"
 #include "TerminalOutputSystem.hpp"
-#include "TerminalInputSystem.hpp"
+#include "StringBasedInputSystem.hpp"
 #include "TerminalWrapper.hpp"
 
 int main(int /*argc*/, char** /*argv*/)
 {
     TerminalWrapper wrapper;
     TerminalOutputSystem outputSystem(wrapper);
-	TerminalInputSystem inputSystem(wrapper);
+	StringBasedInputSystem inputSystem(wrapper);
 
 	ChessEngine engine(inputSystem, inputSystem, outputSystem);
 

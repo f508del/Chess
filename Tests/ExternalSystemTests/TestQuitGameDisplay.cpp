@@ -8,7 +8,7 @@
 #include "Catch.hpp"
 #include "FakeTerminalWrapper.hpp"
 #include "TerminalOutputSystem.hpp"
-#include "TerminalInputSystem.hpp"
+#include "StringBasedInputSystem.hpp"
 
 TEST_CASE("Test that if quit is requested, the interaction systems behaves as expected")
 {
@@ -25,7 +25,7 @@ TEST_CASE("Test that if quit is requested, the interaction systems behaves as ex
     SECTION("A quit input will trigger the quit logic")
     {
         FakeTerminalWrapper terminalWrapper;
-        TerminalInputSystem inputSystem(terminalWrapper);
+        StringBasedInputSystem inputSystem(terminalWrapper);
         bool quitLogicHasBeenTriggered = false;
         std::function<void()> quitLogic([&](){quitLogicHasBeenTriggered = true;});
         inputSystem.registerQuitCallback(quitLogic);
