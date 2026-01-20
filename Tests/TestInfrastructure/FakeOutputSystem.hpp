@@ -27,6 +27,7 @@ public:
     void displayValidMoveToUser(const std::list<Chess::MoveElement>& moveElements) override;
     void rejectMoveAttempt(Chess::MoveValidity validity) override;
     void declareCheck() override;
+    void requestPromotionDecision() override;
     
     // helpers
     ChessSquare lastMoveStartingSquare() const;
@@ -36,6 +37,7 @@ public:
     bool userInteractionEndHasBeenRequested() const;
     bool resetUxForNewGameHasBeenCalled() const;
     bool checkHasBeenDeclared() const;
+    bool promotionPromptHasBeenRequested() const;
     
 private:
     Chess::PieceType lastPieceMoved_;
@@ -45,4 +47,5 @@ private:
     bool userInteractionEndRequested_;
     bool resetUxForNewGameHasBeenCalled_;
     bool checkHasBeenDeclared_;
+    bool promotionPromptHasBeenRequested_;
 };

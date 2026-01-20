@@ -88,3 +88,8 @@ void TerminalOutputSystem::declareCheck()
 {
     showTextToUser("Check!");
 }
+
+void TerminalOutputSystem::requestPromotionDecision()
+{
+    // do nothing here until external AAT forces it.
+}

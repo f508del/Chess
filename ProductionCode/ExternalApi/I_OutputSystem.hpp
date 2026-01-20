@@ -27,4 +27,5 @@ public:
     virtual void displayValidMoveToUser(const std::list<Chess::MoveElement>& moveElements) = 0;
     virtual void rejectMoveAttempt(Chess::MoveValidity validity) = 0;
     virtual void declareCheck() = 0;
+    virtual void requestPromotionDecision() = 0;
 };

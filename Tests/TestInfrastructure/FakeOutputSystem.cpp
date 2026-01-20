@@ -22,6 +22,7 @@ FakeOutputSystem::FakeOutputSystem()
 , userInteractionEndRequested_(false)
 , resetUxForNewGameHasBeenCalled_(false)
 , checkHasBeenDeclared_(false)
+, promotionPromptHasBeenRequested_(false)
 {
 
 }
@@ -87,6 +88,11 @@ void FakeOutputSystem::declareCheck()
     checkHasBeenDeclared_ = true;
 }
 
+void FakeOutputSystem::requestPromotionDecision()
+{
+    promotionPromptHasBeenRequested_ = true;
+}
+
 Chess::MoveValidity FakeOutputSystem::lastRejectedMoveReason() const{
     return lastRejectedMoveReason_;
 }
@@ -100,7 +106,12 @@ bool FakeOutputSystem::resetUxForNewGameHasBeenCalled() const
     return resetUxForNewGameHasBeenCalled_;
 }
 
-bool FakeOutputSystem::checkHasBeenDeclared() const { 
+bool FakeOutputSystem::checkHasBeenDeclared() const
+{
     return checkHasBeenDeclared_;
 }
 
+bool FakeOutputSystem::promotionPromptHasBeenRequested() const
+{
+    return promotionPromptHasBeenRequested_;
+}

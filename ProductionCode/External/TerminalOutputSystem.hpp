@@ -26,6 +26,7 @@ public:
     void displayValidMoveToUser(const std::list<Chess::MoveElement>& moveElements) override;
     void rejectMoveAttempt(Chess::MoveValidity validity) override;
     void declareCheck() override;
+    void requestPromotionDecision() override;
     
 private: // helper functions
     void showTextToUser(const char* displayString);

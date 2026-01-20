@@ -35,6 +35,7 @@ public:
     bool lastMoveDisplayedMatches(const ChessSquare& startingSquare, const ChessSquare& endingSquare);
     Chess::PieceType lastKindOfPieceMoved();
     Chess::MoveValidity lastMoveRejectionReason();
+    bool promotionPromptHasBeenRequested();
 
 private:
    ScopedPointer<FakeInputSystem> inputSystem_;
