@@ -6,14 +6,15 @@
 //
 
 #include <string>
+#include "I_StringInputSource.hpp"
 
-class TerminalWrapper
+class TerminalWrapper : public I_StringInputSource
 {
 public:
     TerminalWrapper() = default;
     virtual ~TerminalWrapper() = default;
     
     virtual void writeToTerminal(const std::string& text);
-    virtual std::string readNextInputString();
+    virtual std::string readNextInputString() override;
 };
 
