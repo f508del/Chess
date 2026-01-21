@@ -27,6 +27,7 @@ public:
     void rejectMoveAttempt(Chess::MoveValidity validity) override;
     void declareCheck() override;
     void requestPromotionDecision() override;
+    void notifyUserOfPromotionTo(Chess::PieceType type) override;
     
 private: // helper functions
     void showTextToUser(const char* displayString);

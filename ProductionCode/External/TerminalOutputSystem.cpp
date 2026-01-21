@@ -93,3 +93,8 @@ void TerminalOutputSystem::requestPromotionDecision()
 {
     showTextToUser("Choose a promotion: 1: knight 2: bishop 3: rook 4: queen");
 }
+
+void TerminalOutputSystem::notifyUserOfPromotionTo(Chess::PieceType type)
+{
+    // TODO: drive the print statement here by test
+}

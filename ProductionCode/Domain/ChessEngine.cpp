@@ -33,10 +33,12 @@ ChessEngine::ChessEngine(I_InputSystem& whiteInputSystem,
     whiteInputSystem_.registerNewGameCallback(std::bind(&ChessEngine::resetForNewGame, this));
     whiteInputSystem_.registerQuitCallback(std::bind(&ChessEngine::endEventLoop, this));
     whiteInputSystem_.registerMoveAttemptCallback(std::bind(&ChessEngine::attemptMove, this, std::placeholders::_1));
+    whiteInputSystem_.registerPromotionSelectionCallback(std::bind(&ChessEngine::applyPromotion, this, std::placeholders::_1));
     
     blackInputSystem_.registerNewGameCallback(std::bind(&ChessEngine::resetForNewGame, this));
     blackInputSystem_.registerQuitCallback(std::bind(&ChessEngine::endEventLoop, this));
     blackInputSystem_.registerMoveAttemptCallback(std::bind(&ChessEngine::attemptMove, this, std::placeholders::_1));
+    blackInputSystem_.registerPromotionSelectionCallback(std::bind(&ChessEngine::applyPromotion, this, std::placeholders::_1));
 }
 
 ChessEngine::~ChessEngine()
@@ -50,14 +52,7 @@ void ChessEngine::runChessEngine()
     
     while (!userHasQuitTheProgram_)
     {
-        if (PieceAffiliation::WHITE_PIECE == board_->playerToMakeNextMove())
-        {
-            whiteInputSystem_.getNextInput();
-        }
-        else
-        {
-            blackInputSystem_.getNextInput();
-        }
+        getNextInput();
     }
 
     outputSystem_.endUserInteraction();
@@ -90,14 +85,38 @@ void ChessEngine::attemptMove(const ChessMoveRequest& move)
         // order here matters, as output system needs access to board state before move is applied.
         outputSystem_.displayValidMoveToUser(validatedMove.moveElements());
         board_->applyMove(validatedMove);
+        gameHistory_->recordMove(validatedMove);
         if (pawnHasReachedFinalRank(validatedMove))
         {
             outputSystem_.requestPromotionDecision();
+            getNextInput();
         }
         board_->togglePlayerInitiative();
-        gameHistory_->recordMove(validatedMove);
+        
         detectEndGameConditions();
     }
+}
+
+void ChessEngine::applyPromotion(Chess::PieceType type)
+{
+    InternalChessMove promotionMove;
+    ChessSquare destinationOfMostRecentMove = gameHistory_->mostRecentMoveEndingSquare();
+    
+    // Start by "picking up" the pawn at the square of the last move
+    promotionMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE,
+                                                  destinationOfMostRecentMove,
+                                                  board_->playerToMakeNextMove(),
+                                                  PieceType::PAWN));
+    
+    // Now place the promoted piece at the same square
+    promotionMove.addValidMoveElement(MoveElement(MoveElementAction::PLACE_PIECE,
+                                                  destinationOfMostRecentMove,
+                                                  board_->playerToMakeNextMove(),
+                                                  type));
+    
+    outputSystem_.notifyUserOfPromotionTo(type);
+    board_->applyMove(promotionMove);
+    gameHistory_->recordMove(promotionMove);
 }
 
 void ChessEngine::detectEndGameConditions()
@@ -133,4 +152,16 @@ bool ChessEngine::pawnHasReachedFinalRank(const InternalChessMove& validatedMove
         return true;
     }
     return false;
+}
+
+void ChessEngine::getNextInput()
+{
+    if (PieceAffiliation::WHITE_PIECE == board_->playerToMakeNextMove())
+    {
+        whiteInputSystem_.getNextInput();
+    }
+    else
+    {
+        blackInputSystem_.getNextInput();
+    }
 }

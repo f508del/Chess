@@ -35,6 +35,7 @@ public:
     void setSimpleInputSequence(const std::list<std::string>& inputSequence);
     bool lastMoveDisplayedMatches(const ChessSquare& startingSquare, const ChessSquare& endingSquare);
     Chess::PieceType lastKindOfPieceMoved();
+    Chess::PieceType lastKindOfPiecePlaced();
     Chess::MoveValidity lastMoveRejectionReason();
     bool promotionPromptHasBeenRequested();
 

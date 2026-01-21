@@ -9,6 +9,7 @@
 #pragma once
 
 #include "ChessMoveValidity.hpp"
+#include "ChessPieceType.hpp"
 #include <list>
 
 namespace Chess
@@ -28,4 +29,5 @@ public:
     virtual void rejectMoveAttempt(Chess::MoveValidity validity) = 0;
     virtual void declareCheck() = 0;
     virtual void requestPromotionDecision() = 0;
+    virtual void notifyUserOfPromotionTo(Chess::PieceType type) = 0;
 };

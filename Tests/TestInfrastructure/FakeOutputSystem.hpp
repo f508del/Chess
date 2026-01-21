@@ -28,22 +28,27 @@ public:
     void rejectMoveAttempt(Chess::MoveValidity validity) override;
     void declareCheck() override;
     void requestPromotionDecision() override;
+    void notifyUserOfPromotionTo(Chess::PieceType type) override;
     
     // helpers
     ChessSquare lastMoveStartingSquare() const;
     ChessSquare lastMoveEndingSquare() const;
     Chess::PieceType lastPieceMoved() const;
+    Chess::PieceType lastPiecePlaced() const;
     Chess::MoveValidity lastRejectedMoveReason() const;
     bool userInteractionEndHasBeenRequested() const;
     bool resetUxForNewGameHasBeenCalled() const;
     bool checkHasBeenDeclared() const;
     bool promotionPromptHasBeenRequested() const;
+    Chess::PieceType lastNotifiedPromotion() const;
     
 private:
     Chess::PieceType lastPieceMoved_;
+    Chess::PieceType lastPiecePlaced_;
     Chess::MoveValidity lastRejectedMoveReason_;
     ChessSquare lastMoveStartingSquare_;
     ChessSquare lastMoveEndingSquare_;
+    Chess::PieceType lastNotifiedPromotion_;
     bool userInteractionEndRequested_;
     bool resetUxForNewGameHasBeenCalled_;
     bool checkHasBeenDeclared_;

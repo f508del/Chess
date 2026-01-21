@@ -16,6 +16,7 @@ using namespace Chess;
 
 FakeOutputSystem::FakeOutputSystem()
 : lastPieceMoved_(PieceType::NONE)
+, lastPiecePlaced_(PieceType::NONE)
 , lastRejectedMoveReason_(Chess::MoveValidity::VALID_MOVE)
 , lastMoveStartingSquare_()
 , lastMoveEndingSquare_()
@@ -23,6 +24,7 @@ FakeOutputSystem::FakeOutputSystem()
 , resetUxForNewGameHasBeenCalled_(false)
 , checkHasBeenDeclared_(false)
 , promotionPromptHasBeenRequested_(false)
+, lastNotifiedPromotion_(Chess::PieceType::NONE)
 {
 
 }
@@ -61,6 +63,15 @@ void FakeOutputSystem::displayValidMoveToUser(const std::list<Chess::MoveElement
         lastMoveStartingSquare_ = moveElements.front().square_;
         lastMoveEndingSquare_ = destinationSquareOfInstigatingPiece(moveElements);
     }
+    
+    for (auto iterator = moveElements.begin(); iterator != moveElements.end(); iterator++)
+    {
+        if (iterator->action_ == Chess::MoveElementAction::PLACE_PIECE)
+        {
+            lastPiecePlaced_ = iterator->type_;
+        }
+    }
+    
     lastRejectedMoveReason_ = MoveValidity::VALID_MOVE;
 }
 
@@ -77,6 +88,11 @@ ChessSquare FakeOutputSystem::lastMoveEndingSquare() const
 PieceType FakeOutputSystem::lastPieceMoved() const
 {
     return lastPieceMoved_;
+}
+
+PieceType FakeOutputSystem::lastPiecePlaced() const
+{
+    return lastPiecePlaced_;
 }
 
 void FakeOutputSystem::rejectMoveAttempt(Chess::MoveValidity validity) {
@@ -114,4 +130,14 @@ bool FakeOutputSystem::checkHasBeenDeclared() const
 bool FakeOutputSystem::promotionPromptHasBeenRequested() const
 {
     return promotionPromptHasBeenRequested_;
+}
+
+void FakeOutputSystem::notifyUserOfPromotionTo(Chess::PieceType type)
+{
+    lastNotifiedPromotion_ = type;
+}
+
+Chess::PieceType FakeOutputSystem::lastNotifiedPromotion() const
+{
+    return lastNotifiedPromotion_;
 }

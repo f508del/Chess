@@ -9,6 +9,7 @@
 #pragma once
 
 #include "ScopedPointer.hpp"
+#include "ChessPieceType.hpp"
 
 class ChessBoard;
 class ChessGameHistory;
@@ -30,11 +31,16 @@ public:
     void runChessEngine();
     
 private:
+    // callback functions for input systems:
     void resetForNewGame();
     void endEventLoop();
     void attemptMove(const ChessMoveRequest& move);
+    void applyPromotion(Chess::PieceType type);
+    
+    // Other helpers:
     void detectEndGameConditions();
     bool pawnHasReachedFinalRank(const InternalChessMove& validatedMove) const;
+    void getNextInput();
 
 private:
     I_InputSystem& whiteInputSystem_;
