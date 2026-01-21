@@ -11,7 +11,6 @@
 #include "ChessEngineTestHarness.hpp"
 #include "CommandDefines.hpp"
 #include "ChessMoveRequest.hpp"
-#include "FakeInputSystem.hpp"
 #include "FakeOutputSystem.hpp"
 
 using namespace std;

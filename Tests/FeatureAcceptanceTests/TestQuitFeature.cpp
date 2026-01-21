@@ -10,7 +10,6 @@
 #include "ChessEngine.hpp"
 #include "ChessEngineTestHarness.hpp"
 #include "CommandDefines.hpp"
-#include "FakeInputSystem.hpp"
 #include "FakeOutputSystem.hpp"
 
 using namespace std;
@@ -20,7 +19,7 @@ TEST_CASE("Testing the quit feature")
    SECTION("can quit from the main menu")
    {
        ChessEngineTestHarness testHarness;
-       testHarness.fakeInput().setInputSequence({CommandDefines::QUIT_COMMAND});
+       testHarness.setSimpleInputSequence({CommandDefines::QUIT_COMMAND});
 
        testHarness.chessEngine().runChessEngine();
 
@@ -30,7 +29,7 @@ TEST_CASE("Testing the quit feature")
    SECTION("can quit with upper case version of command")
    {
        ChessEngineTestHarness testHarness;
-       testHarness.fakeInput().setInputSequence({"Q"});
+       testHarness.setSimpleInputSequence({"Q"});
 
        testHarness.chessEngine().runChessEngine();
 
@@ -40,7 +39,7 @@ TEST_CASE("Testing the quit feature")
    SECTION("can quit after having started a new game and made a move")
    {
        ChessEngineTestHarness testHarness;
-       testHarness.fakeInput().setInputSequence({CommandDefines::NEW_GAME_COMMAND, "a2a3", CommandDefines::QUIT_COMMAND });
+       testHarness.setSimpleInputSequence({CommandDefines::NEW_GAME_COMMAND, "a2a3", CommandDefines::QUIT_COMMAND });
 
        testHarness.chessEngine().runChessEngine();
 
