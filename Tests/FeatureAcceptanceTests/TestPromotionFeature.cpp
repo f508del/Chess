@@ -64,4 +64,34 @@ TEST_CASE("Testing that when a pawn reaches the opposite rank on the board, a pr
         
         CHECK(testHarness.fakeOutput().lastNotifiedPromotion() == Chess::PieceType::KNIGHT);
     }
+    
+    SECTION("Can promote a pawn to a bishop")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.setInputSequenceWithinANewGame({"a2a4", "f7f6", "a4a5", "f6f5", "a5a6", "e7e6", "a6b7", "e6e5", "b7a8", "bishop"});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(testHarness.fakeOutput().lastNotifiedPromotion() == Chess::PieceType::BISHOP);
+    }
+    
+    SECTION("Can promote a pawn to a rook")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.setInputSequenceWithinANewGame({"a2a4", "f7f6", "a4a5", "f6f5", "a5a6", "e7e6", "a6b7", "e6e5", "b7a8", "rook"});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(testHarness.fakeOutput().lastNotifiedPromotion() == Chess::PieceType::ROOK);
+    }
+    
+    SECTION("Can promote a pawn to a queen")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.setInputSequenceWithinANewGame({"a2a4", "f7f6", "a4a5", "f6f5", "a5a6", "e7e6", "a6b7", "e6e5", "b7a8", "queen"});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(testHarness.fakeOutput().lastNotifiedPromotion() == Chess::PieceType::QUEEN);
+    }
 }
