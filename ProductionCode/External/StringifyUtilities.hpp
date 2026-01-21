@@ -9,5 +9,5 @@
 
 namespace Chess
 {
-    std::string chessPieceTypeName(Chess::PieceType type);
+    std::string toString(Chess::PieceType type);
 }

@@ -32,7 +32,7 @@ string ChessMoveDescriber::describeValidMove(const list<Chess::MoveElement>& mov
     
     output.append("Moving ");
     PieceType instigatingPieceType = moveElements.front().type_;
-    output.append(chessPieceTypeName(instigatingPieceType));
+    output.append(Chess::toString(instigatingPieceType));
     output.append(" ");
     
     ChessSquare startingSquare = moveElements.front().square_;

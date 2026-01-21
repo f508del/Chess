@@ -7,7 +7,7 @@
 
 #include "StringifyUtilities.hpp"
 
-std::string Chess::chessPieceTypeName(PieceType type)
+std::string Chess::toString(PieceType type)
 {
     switch (type)
     {

@@ -99,7 +99,7 @@ void TerminalOutputSystem::requestPromotionDecision()
 void TerminalOutputSystem::notifyUserOfPromotionTo(Chess::PieceType type)
 {
     string output("Pawn was promoted to a ");
-    output.append(chessPieceTypeName(type));
+    output.append(toString(type));
     output.append(".");
     showTextToUser(output.c_str());
 }
