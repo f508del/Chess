@@ -6,6 +6,7 @@
 //
 
 #include "StringifyUtilities.hpp"
+#include "ChessSquare.hpp"
 
 std::string Chess::toString(PieceType type)
 {
@@ -41,4 +42,14 @@ std::string Chess::toString(PieceType type)
         }
     }
     return "Invalid Piece Type";
+}
+
+std::string Chess::toString(const ChessSquare& square)
+{
+    std::string stringSquare;
+    char resultString[3];
+    snprintf(resultString, 3, "%c%u", square.file(), square.rank());
+    resultString[2] = '\0';
+    stringSquare = resultString;
+    return stringSquare;
 }

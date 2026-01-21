@@ -7,7 +7,10 @@
 
 #include "ChessPieceType.hpp"
 
+class ChessSquare;
+
 namespace Chess
 {
     std::string toString(Chess::PieceType type);
+    std::string toString(const ChessSquare& square);
 }

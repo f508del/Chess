@@ -17,8 +17,6 @@ namespace Chess
 struct MoveElement;
 }
 
-class ChessSquare;
-
 class ChessMoveDescriber
 {
 public:
@@ -26,7 +24,4 @@ public:
     virtual ~ChessMoveDescriber();
     
     std::string describeValidMove(const std::list<Chess::MoveElement>& moveElements);
-    
-private:
-    std::string toString(const ChessSquare& square) const;
 };

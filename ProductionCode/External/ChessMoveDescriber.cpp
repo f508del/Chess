@@ -32,7 +32,7 @@ string ChessMoveDescriber::describeValidMove(const list<Chess::MoveElement>& mov
     
     output.append("Moving ");
     PieceType instigatingPieceType = moveElements.front().type_;
-    output.append(Chess::toString(instigatingPieceType));
+    output.append(toString(instigatingPieceType));
     output.append(" ");
     
     ChessSquare startingSquare = moveElements.front().square_;
@@ -51,12 +51,3 @@ string ChessMoveDescriber::describeValidMove(const list<Chess::MoveElement>& mov
     return output;
 }
 
-std::string ChessMoveDescriber::toString(const ChessSquare& square) const
-{
-    std::string stringSquare;
-    char resultString[3];
-    snprintf(resultString, 3, "%c%u", square.file(), square.rank());
-    resultString[2] = '\0';
-    stringSquare = resultString;
-    return stringSquare;
-}
