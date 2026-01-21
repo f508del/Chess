@@ -11,7 +11,7 @@
 #include "ChessSquare.hpp"
 #include "FakeOutputSystem.hpp"
 
-TEST_CASE("Testing that when a pawn reaches the opposite rank on the board, a promotion is requested from the user.")
+TEST_CASE("Testing that when a pawn reaches the opposite rank on the board, promotion is handled correctly")
 {
     SECTION("White pawn promotions will not trigger when reaching 7th rank.")
     {
@@ -93,5 +93,25 @@ TEST_CASE("Testing that when a pawn reaches the opposite rank on the board, a pr
         testHarness.chessEngine().runChessEngine();
         
         CHECK(testHarness.fakeOutput().lastNotifiedPromotion() == Chess::PieceType::QUEEN);
+    }
+    
+    SECTION("Can't promote a pawn to a pawn")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.setInputSequenceWithinANewGame({"a2a4", "f7f6", "a4a5", "f6f5", "a5a6", "e7e6", "a6b7", "e6e5", "b7a8", "pawn"});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(testHarness.fakeOutput().lastNotifiedPromotion() == Chess::PieceType::NONE);
+    }
+    
+    SECTION("Can't promote a pawn to a king")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.setInputSequenceWithinANewGame({"a2a4", "f7f6", "a4a5", "f6f5", "a5a6", "e7e6", "a6b7", "e6e5", "b7a8", "king"});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(testHarness.fakeOutput().lastNotifiedPromotion() == Chess::PieceType::NONE);
     }
 }
