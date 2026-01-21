@@ -102,6 +102,12 @@ void ChessEngine::applyPromotion(Chess::PieceType type)
     InternalChessMove promotionMove;
     ChessSquare destinationOfMostRecentMove = gameHistory_->mostRecentMoveEndingSquare();
     
+    if (gameHistory_->mostRecentMovedPiece() != PieceType::PAWN)
+    {
+        outputSystem_.rejectMoveAttempt(MoveValidity::PROMOTION_NOT_LEGAL);
+        return;
+    }
+    
     // Start by "picking up" the pawn at the square of the last move
     promotionMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE,
                                                   destinationOfMostRecentMove,
