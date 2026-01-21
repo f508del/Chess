@@ -9,6 +9,7 @@
 #include "ChessMoveDescriber.hpp"
 #include "ChessMoveElement.hpp"
 #include "I_ChessPiece.hpp"
+#include "StringifyUtilities.hpp"
 
 using namespace Chess;
 using namespace std;
@@ -48,42 +49,6 @@ string ChessMoveDescriber::describeValidMove(const list<Chess::MoveElement>& mov
     }
     
     return output;
-}
-
-std::string ChessMoveDescriber::chessPieceTypeName(PieceType type) const
-{
-    switch (type)
-    {
-        case PieceType::PAWN:
-        {
-            return "Pawn";
-        }
-        case PieceType::BISHOP:
-        {
-            return "Bishop";
-        }
-        case PieceType::KNIGHT:
-        {
-            return "Knight";
-        }
-        case PieceType::ROOK:
-        {
-            return "Rook";
-        }
-        case PieceType::QUEEN:
-        {
-            return "Queen";
-        }
-        case PieceType::KING:
-        {
-            return "King";
-        }
-        default:
-        {
-            break;
-        }
-    }
-    return "Invalid Piece Type";
 }
 
 std::string ChessMoveDescriber::toString(const ChessSquare& square) const

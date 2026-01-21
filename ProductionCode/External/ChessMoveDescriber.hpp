@@ -28,6 +28,5 @@ public:
     std::string describeValidMove(const std::list<Chess::MoveElement>& moveElements);
     
 private:
-    std::string chessPieceTypeName(Chess::PieceType type) const;
     std::string toString(const ChessSquare& square) const;
 };

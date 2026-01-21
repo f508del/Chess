@@ -11,9 +11,11 @@
 #include "TerminalWrapper.hpp"
 #include "ChessMoveValidity.hpp"
 #include "OutputErrorDefines.hpp"
+#include "StringifyUtilities.hpp"
 #include <cstdio>
 
 using namespace Chess;
+using namespace std;
 
 TerminalOutputSystem::TerminalOutputSystem(TerminalWrapper& wrapper)
 : moveDescriber_(new ChessMoveDescriber())
@@ -53,7 +55,7 @@ void TerminalOutputSystem::resetUxForNewGame()
 
 void TerminalOutputSystem::displayValidMoveToUser(const std::list<Chess::MoveElement>& moveElements)
 {
-    std::string moveDescription = moveDescriber_->describeValidMove(moveElements);
+    string moveDescription = moveDescriber_->describeValidMove(moveElements);
     showTextToUser(moveDescription.c_str());
 }
 
@@ -96,5 +98,8 @@ void TerminalOutputSystem::requestPromotionDecision()
 
 void TerminalOutputSystem::notifyUserOfPromotionTo(Chess::PieceType type)
 {
-    // TODO: drive the print statement here by test
+    string output("Pawn was promoted to a ");
+    output.append(chessPieceTypeName(type));
+    output.append(".");
+    showTextToUser(output.c_str());
 }
