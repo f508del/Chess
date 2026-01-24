@@ -81,6 +81,8 @@ void TerminalOutputSystem::rejectMoveAttempt(Chess::MoveValidity validity)
         case MoveValidity::DESTINATION_BLOCKED_BY_EXISTING_PIECE:
             showTextToUser(OutputErrorDefines::MOVE_IS_BLOCKED_ERROR);
             break;
+        case MoveValidity::PROMOTION_NOT_LEGAL:
+            showTextToUser(OutputErrorDefines::PROMOTION_NOT_LEGAL);
         default:
             break;
     }

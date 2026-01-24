@@ -7,6 +7,7 @@
 
 
 #include "Catch.hpp"
+#include "ChessMoveValidity.hpp"
 #include "FakeTerminalWrapper.hpp"
 #include "TerminalOutputSystem.hpp"
 
@@ -40,5 +41,15 @@ TEST_CASE("Test that if promotion trigger occurs, the user is asked to choose wh
         outputSystem.notifyUserOfPromotionTo(Chess::PieceType::ROOK);
         
         CHECK(terminalWrapper.lastOutputMatches("Pawn was promoted to a Rook."));
+    }
+    
+    SECTION("If a promotion input is given when not approprite, promotion will be rejected")
+    {
+        FakeTerminalWrapper terminalWrapper;
+        TerminalOutputSystem outputSystem(terminalWrapper);
+        
+        outputSystem.rejectMoveAttempt(Chess::MoveValidity::PROMOTION_NOT_LEGAL);
+        
+        CHECK(terminalWrapper.lastOutputMatches("Promotion not possible at this time."));
     }
 }

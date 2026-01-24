@@ -16,4 +16,5 @@ namespace OutputErrorDefines
    static const char* PIECE_CANNOT_CURRENTLY_MOVE_ERROR =
       "This piece can't be moved to that square right now.";
    static const char* MOVE_IS_BLOCKED_ERROR = "There is a piece in the way, this move is not possible.";
+static const char* PROMOTION_NOT_LEGAL = "Promotion not possible at this time.";
 }
