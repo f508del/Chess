@@ -7,7 +7,6 @@
 This is meant as a simple backlog of what refactorings and features are upcoming
  
  21. Add support for castling.
- 25.1 Ensure promotion callback can't accidentally be used to promote when not supposed to
  27. Detect Checkmate
  28. Detect Stalemate
  29. Add Random legal move AI engine
