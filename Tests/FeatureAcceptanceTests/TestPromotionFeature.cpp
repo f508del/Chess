@@ -117,7 +117,6 @@ TEST_CASE("Testing that when a pawn reaches the opposite rank on the board, prom
     
     SECTION("Will reject attempt to promote a piece other than a pawn")
     {
-        
         ChessEngineTestHarness testHarness;
         testHarness.setInputSequenceWithinANewGame({"b1a3", "queen"});
             
@@ -125,6 +124,16 @@ TEST_CASE("Testing that when a pawn reaches the opposite rank on the board, prom
             
         CHECK(testHarness.fakeOutput().lastNotifiedPromotion() == Chess::PieceType::NONE);
         CHECK(testHarness.lastMoveRejectionReason() == Chess::MoveValidity::PROMOTION_NOT_LEGAL);
-        
+    }
+    
+    SECTION("Will reject promotion attempt when pawn not at final rank")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.setInputSequenceWithinANewGame({"b2b4", "queen"});
+            
+        testHarness.chessEngine().runChessEngine();
+            
+        CHECK(testHarness.fakeOutput().lastNotifiedPromotion() == Chess::PieceType::NONE);
+        CHECK(testHarness.lastMoveRejectionReason() == Chess::MoveValidity::PROMOTION_NOT_LEGAL);
     }
 }

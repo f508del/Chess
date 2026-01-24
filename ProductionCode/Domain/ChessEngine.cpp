@@ -108,6 +108,12 @@ void ChessEngine::applyPromotion(Chess::PieceType type)
         return;
     }
     
+    if (gameHistory_->mostRecentMoveEndingSquare().rank() != 8 && gameHistory_->mostRecentMoveEndingSquare().rank() != 1)
+    {
+        outputSystem_.rejectMoveAttempt(MoveValidity::PROMOTION_NOT_LEGAL);
+        return;
+    }
+    
     // Start by "picking up" the pawn at the square of the last move
     promotionMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE,
                                                   destinationOfMostRecentMove,
