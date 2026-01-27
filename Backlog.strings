@@ -6,7 +6,7 @@
 
 This is meant as a simple backlog of what refactorings and features are upcoming
  
- 21. Add support for castling.
+ 21. Add support for castling. Neither the king nor rook can have moved. Squares between must be empty. king cannot be in or enter threat or pass through threat by castling. King side castling is e1-g1, and h1-f1. Queen side castling is e1-c1, and a1-d1.
  27. Detect Checkmate
  28. Detect Stalemate
  29. Add Random legal move AI engine
