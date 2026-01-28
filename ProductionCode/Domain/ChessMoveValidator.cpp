@@ -61,7 +61,7 @@ InternalChessMove ChessMoveValidator::validateMove(const ChessMoveRequest& curre
         internalMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE,
                                              bypassedSquare,
                                              oppositePieceAffiliation(board_.playerToMakeNextMove()),
-                                             board_.pieceAt(bypassedSquare)->pieceType()));
+                                             Chess::PieceType::PAWN));
         return internalMove;
     }
     
