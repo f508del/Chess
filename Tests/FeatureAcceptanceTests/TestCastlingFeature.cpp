@@ -20,8 +20,8 @@ TEST_CASE("Testing the logic around castling")
         testHarness.chessEngine().runChessEngine();
         
         printf("SKIPPED test for king side castling\n");
-        /*CHECK(testHarness.lastKindOfPieceMoved() == Chess::PieceType::KING);
-        CHECK(testHarness.lastKindOfPiecePlaced() == Chess::PieceType::ROOK);
-        CHECK(testHarness.lastMoveDisplayedMatches(ChessSquare('e',1), ChessSquare('g',1)));*/
+        CHECK(testHarness.lastKindOfPieceMoved() == Chess::PieceType::KING);
+        //CHECK(testHarness.lastKindOfPiecePlaced() == Chess::PieceType::ROOK);
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessSquare('e',1), ChessSquare('g',1)));
     }
 }

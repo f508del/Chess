@@ -68,6 +68,13 @@ InternalChessMove ChessMoveValidator::validateMove(const ChessMoveRequest& curre
     if (!board_.anyPieceExistsAt(currentMove.endingSquare()))
     {
         ExtendedSet<ChessSquare> potentialEmptyBoardMoves = currentPiece->potentialEmptyBoardMovesFrom(currentMove.startingSquare());
+        if ((currentPiece->pieceType() == PieceType::KING) && (!board_.hasAnyMoveTouchedSquare(currentMove.startingSquare())))
+        {
+            // Castling may be possible...
+            potentialEmptyBoardMoves.insert(ChessSquare('g', currentMove.startingSquare().rank()));
+            potentialEmptyBoardMoves.insert(ChessSquare('c', currentMove.startingSquare().rank()));
+        }
+        
         if (!potentialEmptyBoardMoves.contains(currentMove.endingSquare()))
         {
             return MoveValidity::NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE;
