@@ -159,6 +159,9 @@ TEST_CASE("Testing the ChessBoard object")
         board.applyMove(pawnMove);
         
         CHECK(board.hasAnyMoveTouchedSquare(ChessSquare('a', 2)));
+        
+        board.resetBoard();
+        CHECK(!board.hasAnyMoveTouchedSquare(ChessSquare('a', 2)));
     }
 }
 
