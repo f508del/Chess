@@ -144,5 +144,21 @@ TEST_CASE("Testing the ChessBoard object")
         CHECK(2 == board.currentKingSquare(Chess::PieceAffiliation::WHITE_PIECE).rank());
         CHECK('e' == board.currentKingSquare(Chess::PieceAffiliation::WHITE_PIECE).file());
     }
+    
+    SECTION("Squares can be queried as to whether any move has touched them yet")
+    {
+        ChessBoard board;
+        board.resetBoard();
+        
+        CHECK(!board.hasAnyMoveTouchedSquare(ChessSquare('a', 2)));
+        
+        InternalChessMove pawnMove;
+        pawnMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE, ChessSquare('a',2), PieceAffiliation::WHITE_PIECE, PieceType::PAWN));
+        pawnMove.addValidMoveElement(MoveElement(MoveElementAction::PLACE_PIECE, ChessSquare('a',4), PieceAffiliation::WHITE_PIECE, PieceType::PAWN));
+        
+        board.applyMove(pawnMove);
+        
+        CHECK(board.hasAnyMoveTouchedSquare(ChessSquare('a', 2)));
+    }
 }
 

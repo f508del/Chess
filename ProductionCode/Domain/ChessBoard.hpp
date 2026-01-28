@@ -47,6 +47,7 @@ public:
     
     ChessSquare currentKingSquare(Chess::PieceAffiliation affiliation) const;
     std::list<ChessSquare> allSquaresOccupiedByColor(Chess::PieceAffiliation affiliation) const;
+    bool hasAnyMoveTouchedSquare(const ChessSquare& square) const;
     
     bool applyMove(const InternalChessMove& internalMove);
     bool reverseMove(const InternalChessMove& internalMove);
@@ -74,7 +75,8 @@ private:
     ScopedPointer<King> whiteKingCapabilities_;
     ScopedPointer<King> blackKingCapabilities_;
 
-   std::map<ChessSquare, const I_ChessPiece*> boardState_;
+    std::map<ChessSquare, const I_ChessPiece*> boardState_;
+    std::map<ChessSquare, bool> touchedSquares_;
 
-   Chess::PieceAffiliation playerToMakeNextMove_;
+    Chess::PieceAffiliation playerToMakeNextMove_;
 };

@@ -77,6 +77,7 @@ const I_ChessPiece* ChessBoard::pieceAt(const ChessSquare& square) const
 void ChessBoard::resetBoard()
 {
     boardState_.clear();
+    touchedSquares_.clear();
     for (char file = 'a'; file <= 'h'; file++)
     {
        boardState_[ChessSquare(file, 2)] = whitePawnCapabilities_.data();
@@ -142,6 +143,11 @@ list<ChessSquare> ChessBoard::allSquaresOccupiedByColor(Chess::PieceAffiliation 
     return occupiedSquares;
 }
 
+bool ChessBoard::hasAnyMoveTouchedSquare(const ChessSquare& square) const
+{
+    return (touchedSquares_.find(square) != touchedSquares_.end());;
+}
+
 void ChessBoard::togglePlayerInitiative()
 {
     playerToMakeNextMove_ = oppositePieceAffiliation(playerToMakeNextMove_);
@@ -162,6 +168,7 @@ bool ChessBoard::applyMove(const InternalChessMove& internalMove)
 void ChessBoard::removePieceAtSquare(const ChessSquare& square)
 {
     boardState_.erase(boardState_.find(square));
+    touchedSquares_[square] = true;
 }
 
 bool ChessBoard::squaresBetweenEndPointsAreEmpty(const ChessSquare& startSquare, const ChessSquare& endSquare) const
@@ -277,6 +284,7 @@ bool ChessBoard::applyPlacePieceMoveElement(const MoveElement& moveElement)
 {
     const I_ChessPiece* pieceToPlace = chessPieceOfTypeAndAffiliation(moveElement.type_, moveElement.affiliation_);
     boardState_[moveElement.square_] = pieceToPlace;
+    touchedSquares_[moveElement.square_] = true;
     return true;
 }
 
