@@ -136,4 +136,14 @@ TEST_CASE("Testing that when a pawn reaches the opposite rank on the board, prom
         CHECK(testHarness.fakeOutput().lastNotifiedPromotion() == Chess::PieceType::NONE);
         CHECK(testHarness.lastMoveRejectionReason() == Chess::MoveValidity::PROMOTION_NOT_LEGAL);
     }
+    
+    SECTION("Can move promoted piece in a way that a pawn can't move, after promotion")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.setInputSequenceWithinANewGame({"a2a4", "f7f6", "a4a5", "f6f5", "a5a6", "e7e6", "a6b7", "e6e5", "b7a8", "queen","e5e4", "a8b8"});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(testHarness.lastKindOfPieceMoved() == Chess::PieceType::QUEEN);
+    }
 }
