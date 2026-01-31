@@ -23,4 +23,13 @@ TEST_CASE("Testing the logic around castling")
         CHECK(testHarness.lastKindOfPiecePlaced() == Chess::PieceType::ROOK);
         CHECK(testHarness.lastMoveDisplayedMatches(ChessSquare('e',1), ChessSquare('g',1)));
     }
+    
+    // TODO: Cannot castle if it is not the kings first move
+    // TODO: Cannot castle if it is not the rooks first move
+    // TODO: cannot castle if teh path between king and rook is blocked with friendly pieces
+    // TODO: Cannot caste to move king out of threat
+    // TODO: Cannot, by castling, move the king through a threatened square
+    // TODO: Cannot leave the king in threat at the end of a castle move.
+    
+    
 }
