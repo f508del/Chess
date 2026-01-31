@@ -98,6 +98,23 @@ InternalChessMove ChessMoveValidator::validateMove(const ChessMoveRequest& curre
     
     InternalChessMove potentiallyValidMove = assembleValidMove(currentMove);
     
+    if ((currentPiece->pieceType() == PieceType::KING) && (abs(currentMove.startingSquare().file() - currentMove.endingSquare().file()) == 2))
+    {
+        char rookStartingFile = currentMove.endingSquare().file() == 'g' ? 'h' : 'a';
+        char rookEndingFile = rookStartingFile == 'h' ? 'f' : 'd';
+        // castling is requested, add the rook shift into the move.
+        potentiallyValidMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE,
+                                             ChessSquare(rookStartingFile, currentMove.startingSquare().rank()),
+                                             board_.playerToMakeNextMove(),
+                                             Chess::PieceType::ROOK));
+        potentiallyValidMove.addValidMoveElement(MoveElement(MoveElementAction::PLACE_PIECE,
+                                             ChessSquare(rookEndingFile, currentMove.startingSquare().rank()),
+                                             board_.playerToMakeNextMove(),
+                                             Chess::PieceType::ROOK));
+    }
+    
+    
+    
     if (movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(potentiallyValidMove))
     {
         return MoveValidity::NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE;
