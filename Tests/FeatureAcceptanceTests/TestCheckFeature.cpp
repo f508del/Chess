@@ -60,7 +60,7 @@ TEST_CASE("Testing the logic around detecting Check situations")
         
         testHarness.chessEngine().runChessEngine();
         
-        CHECK(testHarness.lastMoveRejectionReason() == Chess::MoveValidity::NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE);
+        CHECK(testHarness.lastMoveRejectionReason() == Chess::MoveValidity::CANNOT_LEAVE_KING_IN_DANGER);
     }
     
     SECTION("Will allow moves that do protect the king while in check")

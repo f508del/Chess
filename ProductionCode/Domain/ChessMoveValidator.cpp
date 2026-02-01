@@ -117,7 +117,7 @@ InternalChessMove ChessMoveValidator::validateMove(const ChessMoveRequest& curre
     
     if (movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(potentiallyValidMove))
     {
-        return MoveValidity::NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE;
+        return MoveValidity::CANNOT_LEAVE_KING_IN_DANGER;
     }
 
     return potentiallyValidMove;

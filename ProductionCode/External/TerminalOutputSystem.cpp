@@ -83,6 +83,10 @@ void TerminalOutputSystem::rejectMoveAttempt(Chess::MoveValidity validity)
             break;
         case MoveValidity::PROMOTION_NOT_LEGAL:
             showTextToUser(OutputErrorDefines::PROMOTION_NOT_LEGAL);
+            break;
+        case MoveValidity::CANNOT_LEAVE_KING_IN_DANGER:
+            showTextToUser(OutputErrorDefines::CANNOT_LEAVE_KING_IN_DANGER);
+            break;
         default:
             break;
     }
