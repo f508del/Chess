@@ -55,5 +55,15 @@ TEST_CASE("Testing the logic around detecting en Passant")
             
         CHECK(testHarness.lastMoveRejectionReason() == MoveValidity::NO_PIECE_AT_STARTING_LOCATION);
     }
+    
+    SECTION("Cannot en passant into a position such that one's king is in danger")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.setInputSequenceWithinANewGame({"e2e4", "h7h5", "e4e5", "h8h6", "a2a3", "h6e6", "b2b3", "f7f5", "e5f4"});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(testHarness.lastMoveRejectionReason() == MoveValidity::NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE);
+    }
 }
 
