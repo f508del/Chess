@@ -62,6 +62,12 @@ InternalChessMove ChessMoveValidator::validateMove(const ChessMoveRequest& curre
                                              bypassedSquare,
                                              oppositePieceAffiliation(board_.playerToMakeNextMove()),
                                              Chess::PieceType::PAWN));
+        
+        if (movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(internalMove))
+        {
+            return MoveValidity::CANNOT_LEAVE_KING_IN_DANGER;
+        }
+        
         return internalMove;
     }
     
