@@ -27,6 +27,18 @@ TEST_CASE("Testing the logic around castling")
         CHECK(testHarness.lastMoveDisplayedMatches(ChessSquare('e',1), ChessSquare('g',1)));
     }
     
+    SECTION("Will accept a request to castle queen side, happy path")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.setInputSequenceWithinANewGame({"d2d3", "h7h6", "c1e3", "h8h7", "b1c3", "h7h8", "d1d2", "h8h7", "e1c1"});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(testHarness.lastKindOfPieceMoved() == Chess::PieceType::KING);
+        CHECK(testHarness.lastKindOfPiecePlaced() == Chess::PieceType::ROOK);
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessSquare('e',1), ChessSquare('c',1)));
+    }
+    
     SECTION("Checking that we cannot castle if it is not the kings first move")
     {
         ChessEngineTestHarness testHarness;
