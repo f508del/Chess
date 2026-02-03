@@ -58,11 +58,19 @@ TEST_CASE("Testing the logic around castling")
         testHarness.chessEngine().runChessEngine();
         
         CHECK(testHarness.lastMoveRejectionReason() == MoveValidity::NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE);
-        
     }
     
-    // TODO: Cannot castle if it is not the rooks first move
-    // TODO: cannot castle if teh path between king and rook is blocked with friendly pieces
+    SECTION("Checking that cannot castle if it is not the rooks first move")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.setInputSequenceWithinANewGame({"e2e3", "h7h6", "f1d3", "h8h7", "g1f3", "h7h8", "h1g1", "h8h7", "g1h1", "h7h8", "e1g1"});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(testHarness.lastMoveRejectionReason() == MoveValidity::NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE);
+    }
+    
+    // TODO: cannot castle if the path between king and rook is blocked with friendly pieces
     // TODO: Cannot castle to move king out of threat
     // TODO: Cannot, by castling, move the king through a threatened square
     // TODO: Cannot leave the king in threat at the end of a castle move.

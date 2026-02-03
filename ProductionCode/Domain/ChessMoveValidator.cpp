@@ -76,9 +76,13 @@ InternalChessMove ChessMoveValidator::validateMove(const ChessMoveRequest& curre
         ExtendedSet<ChessSquare> potentialEmptyBoardMoves = currentPiece->potentialEmptyBoardMovesFrom(currentMove.startingSquare());
         if ((currentPiece->pieceType() == PieceType::KING) && (!board_.hasAnyMoveTouchedSquare(currentMove.startingSquare())))
         {
-            // Castling may be possible...
-            potentialEmptyBoardMoves.insert(ChessSquare('g', currentMove.startingSquare().rank()));
-            potentialEmptyBoardMoves.insert(ChessSquare('c', currentMove.startingSquare().rank()));
+            char rookStartingFile = currentMove.endingSquare().file() == 'g' ? 'h' : 'a';
+            if (!board_.hasAnyMoveTouchedSquare(ChessSquare(rookStartingFile, currentMove.startingSquare().rank())))
+            {
+                // Castling may be possible...
+                potentialEmptyBoardMoves.insert(ChessSquare('g', currentMove.startingSquare().rank()));
+                potentialEmptyBoardMoves.insert(ChessSquare('c', currentMove.startingSquare().rank()));
+            }
         }
         
         if (!potentialEmptyBoardMoves.contains(currentMove.endingSquare()))
