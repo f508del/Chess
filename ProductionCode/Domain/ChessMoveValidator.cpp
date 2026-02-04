@@ -241,5 +241,9 @@ bool ChessMoveValidator::pathIsNotThreatenedByColor(const ChessSquare& startingS
     {
         return false;
     }
+    if (isSquareThreatenedByColor(board_, endingSquare, threateningColor))
+    {
+        return false;
+    }
     return true;
 }
