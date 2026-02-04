@@ -31,7 +31,7 @@ private:
     bool enPassantIsBeingAttempted(const ChessMoveRequest& move) const;
     bool movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(const InternalChessMove& move);
     InternalChessMove assembleValidMove(const ChessMoveRequest& currentMove);
-    bool pathIsNotThreatenedByColor(const ChessSquare& startingSquare, const ChessSquare& endingSquare, Chess::PieceAffiliation threateningColor);
+    bool castlingPathIsNotThreatenedByColor(const ChessSquare& startingSquare, const ChessSquare& endingSquare, Chess::PieceAffiliation threateningColor);
     
 private:
     ChessBoard& board_;
