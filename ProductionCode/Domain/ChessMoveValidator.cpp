@@ -77,7 +77,8 @@ InternalChessMove ChessMoveValidator::validateMove(const ChessMoveRequest& curre
         if ((currentPiece->pieceType() == PieceType::KING) && (!board_.hasAnyMoveTouchedSquare(currentMove.startingSquare())))
         {
             char rookStartingFile = currentMove.endingSquare().file() == 'g' ? 'h' : 'a';
-            if (!board_.hasAnyMoveTouchedSquare(ChessSquare(rookStartingFile, currentMove.startingSquare().rank())))
+            if (!board_.hasAnyMoveTouchedSquare(ChessSquare(rookStartingFile, currentMove.startingSquare().rank()))
+                && pathIsNotThreatenedByColor(currentMove.startingSquare(), currentMove.endingSquare(), oppositePieceAffiliation(board_.playerToMakeNextMove())))
             {
                 // Castling may be possible...
                 potentialEmptyBoardMoves.insert(ChessSquare('g', currentMove.startingSquare().rank()));
@@ -230,4 +231,15 @@ InternalChessMove ChessMoveValidator::assembleValidMove(const ChessMoveRequest& 
                                                  board_.playerToMakeNextMove(),
                                                  board_.pieceAt(currentMove.startingSquare())->pieceType()));
     return moveElements;
+}
+
+bool ChessMoveValidator::pathIsNotThreatenedByColor(const ChessSquare& startingSquare,
+                                                    const ChessSquare& endingSquare,
+                                                    Chess::PieceAffiliation threateningColor)
+{
+    if (isSquareThreatenedByColor(board_, startingSquare, threateningColor))
+    {
+        return false;
+    }
+    return true;
 }

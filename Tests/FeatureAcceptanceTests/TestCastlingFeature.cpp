@@ -80,7 +80,16 @@ TEST_CASE("Testing the logic around castling")
         CHECK(testHarness.lastMoveRejectionReason() == MoveValidity::NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE);
     }
     
-    // TODO: Cannot castle to move king out of threat
+    SECTION("Cannot castle to move a king out of check")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.setInputSequenceWithinANewGame({"e2e3", "h7h5", "f1d3", "h8h6", "g1f3", "h6e6", "a2a3", "e6e3", "e1g1"});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(testHarness.lastMoveRejectionReason() == MoveValidity::NOT_LEGAL_DESTINATION_FOR_CURRENT_PIECE);
+    }
+    
     // TODO: Cannot, by castling, move the king through a threatened square
     // TODO: Cannot leave the king in threat at the end of a castle move.
 }
