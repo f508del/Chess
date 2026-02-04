@@ -23,6 +23,7 @@ FakeOutputSystem::FakeOutputSystem()
 , userInteractionEndRequested_(false)
 , resetUxForNewGameHasBeenCalled_(false)
 , checkHasBeenDeclared_(false)
+, checkmateHasBeenDeclared_(false)
 , promotionPromptHasBeenRequested_(false)
 , lastNotifiedPromotion_(Chess::PieceType::NONE)
 {
@@ -104,6 +105,11 @@ void FakeOutputSystem::declareCheck()
     checkHasBeenDeclared_ = true;
 }
 
+void FakeOutputSystem::declareCheckmate()
+{
+    checkmateHasBeenDeclared_ = true;
+}
+
 void FakeOutputSystem::requestPromotionDecision()
 {
     promotionPromptHasBeenRequested_ = true;
@@ -125,6 +131,11 @@ bool FakeOutputSystem::resetUxForNewGameHasBeenCalled() const
 bool FakeOutputSystem::checkHasBeenDeclared() const
 {
     return checkHasBeenDeclared_;
+}
+
+bool FakeOutputSystem::checkmateHasBeenDeclared() const
+{
+    return checkmateHasBeenDeclared_;
 }
 
 bool FakeOutputSystem::promotionPromptHasBeenRequested() const

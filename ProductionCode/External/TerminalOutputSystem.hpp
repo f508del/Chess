@@ -26,6 +26,7 @@ public:
     void displayValidMoveToUser(const std::list<Chess::MoveElement>& moveElements) override;
     void rejectMoveAttempt(Chess::MoveValidity validity) override;
     void declareCheck() override;
+    void declareCheckmate() override;
     void requestPromotionDecision() override;
     void notifyUserOfPromotionTo(Chess::PieceType type) override;
     

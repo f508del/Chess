@@ -140,6 +140,8 @@ void ChessEngine::detectEndGameConditions()
     if (moveValidator_->isSquareThreatenedByColor(*board_, kingSquareThatMayBeInCheck, playerThatMadeLastMove))
     {
         outputSystem_.declareCheck();
+        // This is an intermediate state: tests will force correct mate checking.
+        outputSystem_.declareCheckmate();
     }
     
     return;
