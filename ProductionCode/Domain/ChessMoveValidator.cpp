@@ -136,7 +136,7 @@ InternalChessMove ChessMoveValidator::validateMove(const ChessMoveRequest& curre
 
 bool ChessMoveValidator::isSquareThreatenedByColor(const ChessSquare& square, PieceAffiliation attackingColor)
 {
-    if (!(findSquareOfPieceThatCouldCapture(square, attackingColor) == ChessSquare()))
+    if (findSquareOfPieceThatCouldCapture(square, attackingColor) != ChessSquare())
     {
         return true;
     }

@@ -32,6 +32,7 @@ public:
 
     bool operator< (const ChessSquare& otherSquare) const;
     bool operator==(const ChessSquare& otherSquare) const;
+    bool operator!=(const ChessSquare& otherSquare) const;
 
 private:
     bool isValidFile() const;
