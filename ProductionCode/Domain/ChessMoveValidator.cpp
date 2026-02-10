@@ -134,7 +134,7 @@ InternalChessMove ChessMoveValidator::validateMove(const ChessMoveRequest& curre
     return potentiallyValidMove;
 }
 
-bool ChessMoveValidator::isSquareThreatenedByColor(const ChessBoard& board, const ChessSquare& square, PieceAffiliation attackingColor)
+bool ChessMoveValidator::isSquareThreatenedByColor(const ChessSquare& square, PieceAffiliation attackingColor)
 {
     if (!(findSquareOfPieceThatCouldCapture(square, attackingColor) == ChessSquare()))
     {
@@ -206,7 +206,7 @@ bool ChessMoveValidator::movingPlayersKingWouldBeInCheckAfterApplyingProposedMov
 {
     board_.applyMove(move);
     
-    bool checkStillExists = isSquareThreatenedByColor(board_, board_.currentKingSquare(board_.playerToMakeNextMove()),
+    bool checkStillExists = isSquareThreatenedByColor(board_.currentKingSquare(board_.playerToMakeNextMove()),
                                                       oppositePieceAffiliation(board_.playerToMakeNextMove()));
     
     board_.reverseMove(move);
@@ -244,16 +244,16 @@ bool ChessMoveValidator::castlingPathIsNotThreatenedByColor(const ChessSquare& s
                                                     const ChessSquare& endingSquare,
                                                     Chess::PieceAffiliation threateningColor)
 {
-    if (isSquareThreatenedByColor(board_, startingSquare, threateningColor))
+    if (isSquareThreatenedByColor(startingSquare, threateningColor))
     {
         return false;
     }
-    if (isSquareThreatenedByColor(board_, endingSquare, threateningColor))
+    if (isSquareThreatenedByColor(endingSquare, threateningColor))
     {
         return false;
     }
     char skippedFile = endingSquare.file() == 'g' ? 'f' : 'd';
-    if (isSquareThreatenedByColor(board_, ChessSquare(skippedFile, startingSquare.rank()), threateningColor))
+    if (isSquareThreatenedByColor(ChessSquare(skippedFile, startingSquare.rank()), threateningColor))
     {
         return false;
     }

@@ -24,7 +24,7 @@ public:
 
     InternalChessMove validateMove(const ChessMoveRequest& currentMove);
     
-    bool isSquareThreatenedByColor(const ChessBoard& board, const ChessSquare& square, Chess::PieceAffiliation attackingColor);
+    bool isSquareThreatenedByColor(const ChessSquare& square, Chess::PieceAffiliation attackingColor);
     ChessSquare findSquareOfPieceThatCouldCapture(const ChessSquare& squareInThreat, Chess::PieceAffiliation attackingColor);
     bool movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(const InternalChessMove& move);
     
