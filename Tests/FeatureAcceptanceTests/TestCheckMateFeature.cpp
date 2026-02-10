@@ -21,4 +21,14 @@ TEST_CASE("Testing the logic around detecting Checkmate situations")
         
         CHECK(testHarness.fakeOutput().checkmateHasBeenDeclared());
     }
+    
+    SECTION("Will not declare checkmate when the threat can be ended by capturing the offending piece, (but the threat can't be blocked, and the king can't step out of the way.)")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.setInputSequenceWithinANewGame({"g2g4", "a7a6", "g4g5", "a6a5", "g5g6", "a5a4", "g6f7"});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(!testHarness.fakeOutput().checkmateHasBeenDeclared());
+    }
 }

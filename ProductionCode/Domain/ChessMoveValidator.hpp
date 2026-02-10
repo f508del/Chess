@@ -25,11 +25,13 @@ public:
     InternalChessMove validateMove(const ChessMoveRequest& currentMove);
     
     bool isSquareThreatenedByColor(const ChessBoard& board, const ChessSquare& square, Chess::PieceAffiliation attackingColor);
-
+    ChessSquare findSquareOfPieceThatCouldCapture(const ChessSquare& squareInThreat, Chess::PieceAffiliation attackingColor);
+    bool movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(const InternalChessMove& move);
+    
 private:
     bool enPassantIsCurrentlyPossible() const;
     bool enPassantIsBeingAttempted(const ChessMoveRequest& move) const;
-    bool movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(const InternalChessMove& move);
+    
     InternalChessMove assembleValidMove(const ChessMoveRequest& currentMove);
     bool castlingPathIsNotThreatenedByColor(const ChessSquare& startingSquare, const ChessSquare& endingSquare, Chess::PieceAffiliation threateningColor);
     

@@ -10,11 +10,13 @@
 
 #include "ScopedPointer.hpp"
 #include "ChessPieceType.hpp"
+#include "ChessPieceAffiliation.hpp"
 
 class ChessBoard;
 class ChessGameHistory;
 class ChessMoveRequest;
 class ChessMoveValidator;
+class ChessSquare;
 class I_InputSystem;
 class I_OutputSystem;
 class InternalChessMove;
@@ -41,6 +43,7 @@ private:
     void detectEndGameConditions();
     bool pawnHasReachedFinalRank(const InternalChessMove& validatedMove) const;
     void getNextInput();
+    bool pieceThreateningTheKingCanBeCapturedWithoutLeavingKingInThreat(const ChessSquare& kingSquareInThreat, Chess::PieceAffiliation attackingColor);
 
 private:
     I_InputSystem& whiteInputSystem_;

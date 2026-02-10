@@ -139,9 +139,17 @@ void ChessEngine::detectEndGameConditions()
     
     if (moveValidator_->isSquareThreatenedByColor(*board_, kingSquareThatMayBeInCheck, playerThatMadeLastMove))
     {
+        if (pieceThreateningTheKingCanBeCapturedWithoutLeavingKingInThreat(kingSquareThatMayBeInCheck, playerThatMadeLastMove))
+        {
+            outputSystem_.declareCheck();
+        }
+        else
+        {
+            // This is an intermediate state: tests will force correct mate checking.
+            outputSystem_.declareCheckmate();
+        }
+        
         outputSystem_.declareCheck();
-        // This is an intermediate state: tests will force correct mate checking.
-        outputSystem_.declareCheckmate();
     }
     
     return;
@@ -178,4 +186,30 @@ void ChessEngine::getNextInput()
     {
         blackInputSystem_.getNextInput();
     }
+}
+
+bool ChessEngine::pieceThreateningTheKingCanBeCapturedWithoutLeavingKingInThreat(const ChessSquare& kingSquareInThreat, Chess::PieceAffiliation attackingColor)
+{
+    ChessSquare locationOfAttackingPiece = moveValidator_->findSquareOfPieceThatCouldCapture(kingSquareInThreat, attackingColor);
+    ChessSquare sourceSquareOfPotentialCounterMove = moveValidator_->findSquareOfPieceThatCouldCapture(locationOfAttackingPiece, oppositePieceAffiliation(attackingColor));
+    
+    if (sourceSquareOfPotentialCounterMove == ChessSquare())
+    {
+        return false;
+    }
+    
+    InternalChessMove proposedCounterMove;
+    proposedCounterMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE, sourceSquareOfPotentialCounterMove,
+                                                               oppositePieceAffiliation(attackingColor), board_->pieceAt(sourceSquareOfPotentialCounterMove)->pieceType()));
+    proposedCounterMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE, locationOfAttackingPiece,
+                                                               attackingColor, board_->pieceAt(locationOfAttackingPiece)->pieceType()));
+    proposedCounterMove.addValidMoveElement(MoveElement(MoveElementAction::PLACE_PIECE, locationOfAttackingPiece,
+                                                        oppositePieceAffiliation(attackingColor), board_->pieceAt(sourceSquareOfPotentialCounterMove)->pieceType()));
+    
+    if (!moveValidator_->movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(proposedCounterMove))
+    {
+        return true;
+    }
+    
+    return false;
 }

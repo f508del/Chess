@@ -136,31 +136,38 @@ InternalChessMove ChessMoveValidator::validateMove(const ChessMoveRequest& curre
 
 bool ChessMoveValidator::isSquareThreatenedByColor(const ChessBoard& board, const ChessSquare& square, PieceAffiliation attackingColor)
 {
-    bool squareIsThreatened = false;
-    
-    list<ChessSquare> attackingPieces = board.allSquaresOccupiedByColor(attackingColor);
+    if (!(findSquareOfPieceThatCouldCapture(square, attackingColor) == ChessSquare()))
+    {
+        return true;
+    }
+    return false;
+}
+
+ChessSquare ChessMoveValidator::findSquareOfPieceThatCouldCapture(const ChessSquare& squareInThreat, Chess::PieceAffiliation attackingColor)
+{
+    ChessSquare attackSourceSquare;
+    list<ChessSquare> attackingPieces = board_.allSquaresOccupiedByColor(attackingColor);
     for (auto attackingPieceLocationIterator = attackingPieces.begin(); attackingPieceLocationIterator != attackingPieces.end();
          attackingPieceLocationIterator++)
     {
-        const I_ChessPiece* currentPiece = board.pieceAt(*attackingPieceLocationIterator);
+        const I_ChessPiece* currentPiece = board_.pieceAt(*attackingPieceLocationIterator);
         ExtendedSet<ChessSquare> potentialCaptureMoves = currentPiece->potentialCaptureMovesFrom(*attackingPieceLocationIterator);
-        if (!potentialCaptureMoves.contains(square))
+        if (!potentialCaptureMoves.contains(squareInThreat))
         {
             continue;
         }
         
-        ChessMoveRequest currentExaminedMove(*attackingPieceLocationIterator,square);
-        if (!board.squaresBetweenEndPointsAreEmpty(currentExaminedMove.startingSquare(), currentExaminedMove.endingSquare()) &&
+        ChessMoveRequest currentExaminedMove(*attackingPieceLocationIterator,squareInThreat);
+        if (!board_.squaresBetweenEndPointsAreEmpty(currentExaminedMove.startingSquare(), currentExaminedMove.endingSquare()) &&
             !currentPiece->pieceCanJumpOtherPieces())
         {
             continue;
         }
         
-        squareIsThreatened = true;
+        attackSourceSquare = currentExaminedMove.startingSquare();
         break;
     }
-    
-    return squareIsThreatened;
+    return attackSourceSquare;
 }
 
 bool ChessMoveValidator::enPassantIsCurrentlyPossible() const
