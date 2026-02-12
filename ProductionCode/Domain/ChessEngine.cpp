@@ -190,8 +190,9 @@ void ChessEngine::getNextInput()
 
 bool ChessEngine::pieceThreateningTheKingCanBeCapturedWithoutLeavingKingInThreat(const ChessSquare& kingSquareInThreat, Chess::PieceAffiliation attackingColor)
 {
+    PieceAffiliation defendingColor = oppositePieceAffiliation(attackingColor);
     ChessSquare locationOfAttackingPiece = moveValidator_->findSquareOfPieceThatCouldCapture(kingSquareInThreat, attackingColor);
-    ChessSquare sourceSquareOfPotentialCounterMove = moveValidator_->findSquareOfPieceThatCouldCapture(locationOfAttackingPiece, oppositePieceAffiliation(attackingColor));
+    ChessSquare sourceSquareOfPotentialCounterMove = moveValidator_->findSquareOfPieceThatCouldCapture(locationOfAttackingPiece, defendingColor);
     
     if (sourceSquareOfPotentialCounterMove == ChessSquare())
     {
@@ -200,11 +201,11 @@ bool ChessEngine::pieceThreateningTheKingCanBeCapturedWithoutLeavingKingInThreat
     
     InternalChessMove proposedCounterMove;
     proposedCounterMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE, sourceSquareOfPotentialCounterMove,
-                                                               oppositePieceAffiliation(attackingColor), board_->pieceAt(sourceSquareOfPotentialCounterMove)->pieceType()));
+                                                        defendingColor, board_->pieceAt(sourceSquareOfPotentialCounterMove)->pieceType()));
     proposedCounterMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE, locationOfAttackingPiece,
                                                                attackingColor, board_->pieceAt(locationOfAttackingPiece)->pieceType()));
     proposedCounterMove.addValidMoveElement(MoveElement(MoveElementAction::PLACE_PIECE, locationOfAttackingPiece,
-                                                        oppositePieceAffiliation(attackingColor), board_->pieceAt(sourceSquareOfPotentialCounterMove)->pieceType()));
+                                                        defendingColor, board_->pieceAt(sourceSquareOfPotentialCounterMove)->pieceType()));
     
     if (!moveValidator_->movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(proposedCounterMove))
     {
