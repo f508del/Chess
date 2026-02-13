@@ -41,7 +41,6 @@ private:
     
     // Other helpers:
     void detectEndGameConditions();
-    bool pawnHasReachedFinalRank(const InternalChessMove& validatedMove) const;
     void getNextInput();
     bool pieceThreateningTheKingCanBeCapturedWithoutLeavingKingInThreat(const ChessSquare& kingSquareInThreat, Chess::PieceAffiliation attackingColor);
 

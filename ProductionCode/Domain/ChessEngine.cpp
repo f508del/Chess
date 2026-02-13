@@ -86,7 +86,7 @@ void ChessEngine::attemptMove(const ChessMoveRequest& move)
         outputSystem_.displayValidMoveToUser(validatedMove.moveElements());
         board_->applyMove(validatedMove);
         gameHistory_->recordMove(validatedMove);
-        if (pawnHasReachedFinalRank(validatedMove))
+        if (board_->hasAnyPawnReachedFinalRank())
         {
             outputSystem_.requestPromotionDecision();
             getNextInput();
@@ -155,27 +155,6 @@ void ChessEngine::detectEndGameConditions()
     return;
 }
 
-bool ChessEngine::pawnHasReachedFinalRank(const InternalChessMove& validatedMove) const
-{
-    if (!validatedMove.isValid())
-    {
-        return false;
-    }
-    if (validatedMove.moveElements().front().type_ != PieceType::PAWN)
-    {
-        return false;
-    }
-    unsigned int pawnStartingRank = validatedMove.moveElements().front().square_.rank();
-    Chess::PieceAffiliation pawnAffiliation = validatedMove.moveElements().front().affiliation_;
-    if ((pawnStartingRank == 7 && pawnAffiliation == Chess::PieceAffiliation::WHITE_PIECE) ||
-       (pawnStartingRank == 2 && pawnAffiliation == Chess::PieceAffiliation::BLACK_PIECE))
-    {
-        // If a pawn move is both valid and starts one step from promotion... it gets promoted!
-        return true;
-    }
-    return false;
-}
-
 void ChessEngine::getNextInput()
 {
     if (PieceAffiliation::WHITE_PIECE == board_->playerToMakeNextMove())
@@ -194,7 +173,7 @@ bool ChessEngine::pieceThreateningTheKingCanBeCapturedWithoutLeavingKingInThreat
     ChessSquare locationOfAttackingPiece = moveValidator_->findSquareOfPieceThatCouldCapture(kingSquareInThreat, attackingColor);
     ChessSquare sourceSquareOfPotentialCounterMove = moveValidator_->findSquareOfPieceThatCouldCapture(locationOfAttackingPiece, defendingColor);
     
-    if (sourceSquareOfPotentialCounterMove == ChessSquare())
+    if (!sourceSquareOfPotentialCounterMove.isSquareOnTheBoard())
     {
         return false;
     }

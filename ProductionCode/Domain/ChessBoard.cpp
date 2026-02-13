@@ -148,6 +148,21 @@ bool ChessBoard::hasAnyMoveTouchedSquare(const ChessSquare& square) const
     return (touchedSquares_.find(square) != touchedSquares_.end());;
 }
 
+bool ChessBoard::hasAnyPawnReachedFinalRank() const
+{
+    for(auto boardIterator = boardState_.begin(); boardIterator != boardState_.end(); boardIterator++)
+    {
+        if (boardIterator->second->pieceType() == PieceType::PAWN)
+        {
+            if (boardIterator->first.rank() == 1 || boardIterator->first.rank() == 8)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 void ChessBoard::togglePlayerInitiative()
 {
     playerToMakeNextMove_ = oppositePieceAffiliation(playerToMakeNextMove_);
