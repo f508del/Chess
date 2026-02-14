@@ -31,4 +31,14 @@ TEST_CASE("Testing the logic around detecting Checkmate situations")
         
         CHECK(!testHarness.fakeOutput().checkmateHasBeenDeclared());
     }
+    
+    SECTION("Will not declare checkmate when the threat can be blocked, (but the threat can't be captured and king can't move out of the way)")
+    {
+        ChessEngineTestHarness testHarness;
+        testHarness.setInputSequenceWithinANewGame({"e2e3", "f7f6", "f1e2", "a7a6", "e2h5"});
+        
+        testHarness.chessEngine().runChessEngine();
+        
+        CHECK(!testHarness.fakeOutput().checkmateHasBeenDeclared());
+    }
 }

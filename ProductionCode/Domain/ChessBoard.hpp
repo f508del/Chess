@@ -42,6 +42,7 @@ public:
 
     const I_ChessPiece* pieceAt(const ChessSquare& square) const;
 
+    std::list<ChessSquare> listOfSquaresBetweenEndPoints(const ChessSquare& startSquare, const ChessSquare& endSquare) const;
     bool squaresBetweenEndPointsAreEmpty(const ChessSquare& startSquare, const ChessSquare& endSquare) const;
     Chess::PieceAffiliation playerToMakeNextMove() const;
     

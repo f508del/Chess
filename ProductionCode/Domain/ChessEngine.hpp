@@ -43,7 +43,8 @@ private:
     void detectEndGameConditions();
     void getNextInput();
     bool pieceThreateningTheKingCanBeCapturedWithoutLeavingKingInThreat(const ChessSquare& kingSquareInThreat, Chess::PieceAffiliation attackingColor);
-
+    bool pieceThreateningKingCanBeBlockedWithoutLeavingKingInThreat(const ChessSquare& kingSquareInThreat, Chess::PieceAffiliation attackingColor);
+    
 private:
     I_InputSystem& whiteInputSystem_;
     I_InputSystem& blackInputSystem_;

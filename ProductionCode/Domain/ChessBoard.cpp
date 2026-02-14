@@ -186,8 +186,43 @@ void ChessBoard::removePieceAtSquare(const ChessSquare& square)
     touchedSquares_[square] = true;
 }
 
+std::list<ChessSquare> ChessBoard::listOfSquaresBetweenEndPoints(const ChessSquare& startSquare, const ChessSquare& endSquare) const
+{
+    std::list<ChessSquare> pathBetweenEndPoints;
+    
+    int rankDifference = endSquare.rank() - startSquare.rank();
+    int fileDifference = endSquare.file() - startSquare.file();
+    
+    // Will yield an increment of -1, 0, or 1 only.
+    int rankIncrement = (rankDifference == 0) ? 0 : (rankDifference / abs(rankDifference));
+    int fileIncrement = (fileDifference == 0) ? 0 : (fileDifference / abs(fileDifference));
+    
+    unsigned int currentRank = startSquare.rank() + rankIncrement;
+    char currentFile = startSquare.file() + fileIncrement;
+    while ((currentRank != endSquare.rank()) || (currentFile != endSquare.file()))
+    {
+        pathBetweenEndPoints.push_back(ChessSquare(currentFile, currentRank));
+        currentRank += rankIncrement;
+        currentFile += fileIncrement;
+    }
+    return pathBetweenEndPoints;
+}
+
 bool ChessBoard::squaresBetweenEndPointsAreEmpty(const ChessSquare& startSquare, const ChessSquare& endSquare) const
 {
+    // TODO: make this duplication go away like so:
+    /*std::list<ChessSquare> pathSquares = listOfSquaresBetweenEndPoints(startSquare, endSquare);
+    
+    for (auto it = pathSquares.begin(); it != pathSquares.end(); it++)
+    {
+        if (anyPieceExistsAt(*it))
+        {
+            return false;
+        }
+    }
+    
+    return true;*/
+    
     int rankDifference = endSquare.rank() - startSquare.rank();
     int fileDifference = endSquare.file() - startSquare.file();
     

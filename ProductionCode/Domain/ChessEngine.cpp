@@ -143,6 +143,10 @@ void ChessEngine::detectEndGameConditions()
         {
             outputSystem_.declareCheck();
         }
+        else if (pieceThreateningKingCanBeBlockedWithoutLeavingKingInThreat(kingSquareThatMayBeInCheck, playerThatMadeLastMove))
+        {
+            outputSystem_.declareCheck();
+        }
         else
         {
             // This is an intermediate state: tests will force correct mate checking.
@@ -189,6 +193,44 @@ bool ChessEngine::pieceThreateningTheKingCanBeCapturedWithoutLeavingKingInThreat
     if (!moveValidator_->movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(proposedCounterMove))
     {
         return true;
+    }
+    
+    return false;
+}
+
+bool ChessEngine::pieceThreateningKingCanBeBlockedWithoutLeavingKingInThreat(const ChessSquare& kingSquareInThreat, Chess::PieceAffiliation attackingColor)
+{
+    PieceAffiliation defendingColor = oppositePieceAffiliation(attackingColor);
+    ChessSquare locationOfAttackingPiece = moveValidator_->findSquareOfPieceThatCouldCapture(kingSquareInThreat, attackingColor);
+    
+    // If attacking piece can jump other pieces, no block is possible.
+    if (board_->pieceAt(locationOfAttackingPiece)->pieceCanJumpOtherPieces())
+    {
+        return false;
+    }
+    
+    // Find the squares between the location of attacker and kingsquare, and see if it can be blocked.
+    list<ChessSquare> squaresBetweenEndPoints = board_->listOfSquaresBetweenEndPoints(kingSquareInThreat, locationOfAttackingPiece);
+    
+    for (auto it = squaresBetweenEndPoints.begin(); it != squaresBetweenEndPoints.end(); it++)
+    {
+        // TODO should be find square that can move to... make test for this
+        ChessSquare potentialBlockerSource = moveValidator_->findSquareOfPieceThatCouldCapture(*it, defendingColor);
+        
+        if (potentialBlockerSource.isSquareOnTheBoard())
+        {
+            InternalChessMove proposedCounterMove;
+            PieceType blockingPieceType = board_->pieceAt(potentialBlockerSource)->pieceType();
+            proposedCounterMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE, potentialBlockerSource,
+                                                                defendingColor, blockingPieceType));
+            proposedCounterMove.addValidMoveElement(MoveElement(MoveElementAction::PLACE_PIECE, *it,
+                                                                defendingColor, blockingPieceType));
+            
+            if (!moveValidator_->movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(proposedCounterMove))
+            {
+                return true;
+            }
+        }
     }
     
     return false;
