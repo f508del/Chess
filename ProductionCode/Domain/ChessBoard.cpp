@@ -197,6 +197,19 @@ std::list<ChessSquare> ChessBoard::listOfSquaresBetweenEndPoints(const ChessSqua
     int rankIncrement = (rankDifference == 0) ? 0 : (rankDifference / abs(rankDifference));
     int fileIncrement = (fileDifference == 0) ? 0 : (fileDifference / abs(fileDifference));
     
+    // handle the case for knight moves: (basically fancy math to avoid infinite loop below when checking knight moves)
+    if (rankDifference * fileDifference != 0) // ignore pieces that move cardinal directions to avoid divide by zero
+    {
+        if (abs(rankDifference / fileDifference) == 2) // only knight moves have this ratio
+        {
+            rankIncrement *= 2;
+        }
+        if (abs(fileDifference / rankDifference) == 2) // this is the other half of possible knight moves
+        {
+            fileIncrement *= 2;
+        }
+    }
+    
     unsigned int currentRank = startSquare.rank() + rankIncrement;
     char currentFile = startSquare.file() + fileIncrement;
     while ((currentRank != endSquare.rank()) || (currentFile != endSquare.file()))
@@ -210,8 +223,7 @@ std::list<ChessSquare> ChessBoard::listOfSquaresBetweenEndPoints(const ChessSqua
 
 bool ChessBoard::squaresBetweenEndPointsAreEmpty(const ChessSquare& startSquare, const ChessSquare& endSquare) const
 {
-    // TODO: make this duplication go away like so:
-    /*std::list<ChessSquare> pathSquares = listOfSquaresBetweenEndPoints(startSquare, endSquare);
+    std::list<ChessSquare> pathSquares = listOfSquaresBetweenEndPoints(startSquare, endSquare);
     
     for (auto it = pathSquares.begin(); it != pathSquares.end(); it++)
     {
@@ -221,26 +233,6 @@ bool ChessBoard::squaresBetweenEndPointsAreEmpty(const ChessSquare& startSquare,
         }
     }
     
-    return true;*/
-    
-    int rankDifference = endSquare.rank() - startSquare.rank();
-    int fileDifference = endSquare.file() - startSquare.file();
-    
-    // Will yield an increment of -1, 0, or 1 only.
-    int rankIncrement = (rankDifference == 0) ? 0 : (rankDifference / abs(rankDifference));
-    int fileIncrement = (fileDifference == 0) ? 0 : (fileDifference / abs(fileDifference));
-    
-    unsigned int currentRank = startSquare.rank() + rankIncrement;
-    char currentFile = startSquare.file() + fileIncrement;
-    while ((currentRank != endSquare.rank()) || (currentFile != endSquare.file()))
-    {
-        if (anyPieceExistsAt(ChessSquare(currentFile, currentRank)))
-        {
-            return false;
-        }
-        currentRank += rankIncrement;
-        currentFile += fileIncrement;
-    }
     return true;
 }
 
