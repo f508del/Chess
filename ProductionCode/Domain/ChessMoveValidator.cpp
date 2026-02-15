@@ -170,6 +170,33 @@ ChessSquare ChessMoveValidator::findSquareOfPieceThatCouldCapture(const ChessSqu
     return attackSourceSquare;
 }
 
+ChessSquare ChessMoveValidator::findSquareOfPieceThatCouldMoveTo(const ChessSquare& destinationSquare, Chess::PieceAffiliation movingColor)
+{
+    ChessSquare moveSourceSquare;
+    list<ChessSquare> movablePieces = board_.allSquaresOccupiedByColor(movingColor);
+    for (auto movingPieceLocationIterator = movablePieces.begin(); movingPieceLocationIterator != movablePieces.end();
+         movingPieceLocationIterator++)
+    {
+        const I_ChessPiece* currentPiece = board_.pieceAt(*movingPieceLocationIterator);
+        ExtendedSet<ChessSquare> potentialMoves = currentPiece->potentialEmptyBoardMovesFrom(*movingPieceLocationIterator);
+        if (!potentialMoves.contains(destinationSquare))
+        {
+            continue;
+        }
+        
+        ChessMoveRequest currentExaminedMove(*movingPieceLocationIterator, destinationSquare);
+        if (!board_.squaresBetweenEndPointsAreEmpty(currentExaminedMove.startingSquare(), currentExaminedMove.endingSquare()) &&
+            !currentPiece->pieceCanJumpOtherPieces())
+        {
+            continue;
+        }
+        
+        moveSourceSquare = currentExaminedMove.startingSquare();
+        break;
+    }
+    return moveSourceSquare;
+}
+
 bool ChessMoveValidator::enPassantIsCurrentlyPossible() const
 {
     if (abs((int)gameHistory_.mostRecentMoveStartingSquare().rank() - (int)gameHistory_.mostRecentMoveEndingSquare().rank()) == 2)

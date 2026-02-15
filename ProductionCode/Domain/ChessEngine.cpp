@@ -214,8 +214,7 @@ bool ChessEngine::pieceThreateningKingCanBeBlockedWithoutLeavingKingInThreat(con
     
     for (auto it = squaresBetweenEndPoints.begin(); it != squaresBetweenEndPoints.end(); it++)
     {
-        // TODO should be find square that can move to... make test for this
-        ChessSquare potentialBlockerSource = moveValidator_->findSquareOfPieceThatCouldCapture(*it, defendingColor);
+        ChessSquare potentialBlockerSource = moveValidator_->findSquareOfPieceThatCouldMoveTo(*it, defendingColor);
         
         if (potentialBlockerSource.isSquareOnTheBoard())
         {

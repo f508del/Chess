@@ -26,6 +26,7 @@ public:
     
     bool isSquareThreatenedByColor(const ChessSquare& square, Chess::PieceAffiliation attackingColor);
     ChessSquare findSquareOfPieceThatCouldCapture(const ChessSquare& squareInThreat, Chess::PieceAffiliation attackingColor);
+    ChessSquare findSquareOfPieceThatCouldMoveTo(const ChessSquare& destinationSquare, Chess::PieceAffiliation movingColor);
     bool movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(const InternalChessMove& move);
     
 private:
