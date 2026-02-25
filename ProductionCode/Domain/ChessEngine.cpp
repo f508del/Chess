@@ -253,6 +253,7 @@ bool ChessEngine::kingCanMoveOutOfThreat(const ChessSquare& kingSquareInThreat)
                                                                 board_->playerToMakeNextMove(), PieceType::KING));
             bool escapeSquareCanBeMovedTo = board_->playerToMakeNextMove() == PieceAffiliation::WHITE_PIECE ?
             !board_->whitePieceExistsAt(potentialEscapeSquare) : !board_->blackPieceExistsAt(potentialEscapeSquare);
+            escapeSquareCanBeMovedTo = escapeSquareCanBeMovedTo && potentialEscapeSquare.isSquareOnTheBoard();
             if (escapeSquareCanBeMovedTo &&
                 !moveValidator_->movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(proposedCounterMove))
             {

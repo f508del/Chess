@@ -19,8 +19,7 @@ TEST_CASE("Testing the logic around detecting Checkmate situations")
         
         testHarness.chessEngine().runChessEngine();
         
-        printf("SKIPPED test for simple checkmate");
-        //CHECK(testHarness.fakeOutput().checkmateHasBeenDeclared());
+        CHECK(testHarness.fakeOutput().checkmateHasBeenDeclared());
     }
     
     SECTION("Will not declare checkmate when the threat can be ended by capturing the offending piece, (but the threat can't be blocked, and the king can't step out of the way.)")
