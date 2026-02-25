@@ -7,8 +7,6 @@
 This is meant as a simple backlog of what refactorings and features are upcoming
  
  27. Detect Checkmate
- 27.1 Not checkmate if killing attacking piece eliminates the threat.
- 27.2 Not checkmate if blocking the attacking piece eliminates the threat.
  27.3 Not checkmate if king can step out of threat.
  27.4 Otherwise checkmate.
  28. Detect Stalemate

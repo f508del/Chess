@@ -147,12 +147,15 @@ void ChessEngine::detectEndGameConditions()
         {
             outputSystem_.declareCheck();
         }
+        else if (kingCanMoveOutOfThreat(kingSquareThatMayBeInCheck))
+        {
+            outputSystem_.declareCheck();
+        }
         else
         {
-            // This is an intermediate state: tests will force correct mate checking.
             outputSystem_.declareCheckmate();
         }
-        
+        // TODO: remove this line...
         outputSystem_.declareCheck();
     }
     
@@ -226,6 +229,32 @@ bool ChessEngine::pieceThreateningKingCanBeBlockedWithoutLeavingKingInThreat(con
                                                                 defendingColor, blockingPieceType));
             
             if (!moveValidator_->movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(proposedCounterMove))
+            {
+                return true;
+            }
+        }
+    }
+    
+    return false;
+}
+
+bool ChessEngine::kingCanMoveOutOfThreat(const ChessSquare& kingSquareInThreat)
+{
+    for (char file = kingSquareInThreat.file() - 1; file <= kingSquareInThreat.file() + 1; file++)
+    {
+        for (unsigned int rank = kingSquareInThreat.rank() - 1; rank <= kingSquareInThreat.rank() + 1; rank++)
+        {
+            ChessSquare potentialEscapeSquare(file, rank);
+            InternalChessMove proposedCounterMove;
+            proposedCounterMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE, kingSquareInThreat,
+                                                                board_->playerToMakeNextMove(),
+                                                                PieceType::KING));
+            proposedCounterMove.addValidMoveElement(MoveElement(MoveElementAction::PLACE_PIECE, potentialEscapeSquare,
+                                                                board_->playerToMakeNextMove(), PieceType::KING));
+            bool escapeSquareCanBeMovedTo = board_->playerToMakeNextMove() == PieceAffiliation::WHITE_PIECE ?
+            !board_->whitePieceExistsAt(potentialEscapeSquare) : !board_->blackPieceExistsAt(potentialEscapeSquare);
+            if (escapeSquareCanBeMovedTo &&
+                !moveValidator_->movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(proposedCounterMove))
             {
                 return true;
             }

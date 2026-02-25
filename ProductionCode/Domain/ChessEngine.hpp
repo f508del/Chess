@@ -44,6 +44,7 @@ private:
     void getNextInput();
     bool pieceThreateningTheKingCanBeCapturedWithoutLeavingKingInThreat(const ChessSquare& kingSquareInThreat, Chess::PieceAffiliation attackingColor);
     bool pieceThreateningKingCanBeBlockedWithoutLeavingKingInThreat(const ChessSquare& kingSquareInThreat, Chess::PieceAffiliation attackingColor);
+    bool kingCanMoveOutOfThreat(const ChessSquare& kingSquareInThreat);
     
 private:
     I_InputSystem& whiteInputSystem_;
