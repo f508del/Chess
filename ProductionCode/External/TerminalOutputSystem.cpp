@@ -102,6 +102,11 @@ void TerminalOutputSystem::declareCheckmate()
     showTextToUser("Checkmate!");
 }
 
+void TerminalOutputSystem::declareStalemate()
+{
+    showTextToUser("Stalemate!");
+}
+
 void TerminalOutputSystem::requestPromotionDecision()
 {
     showTextToUser("Choose a promotion: 1: knight 2: bishop 3: rook 4: queen");

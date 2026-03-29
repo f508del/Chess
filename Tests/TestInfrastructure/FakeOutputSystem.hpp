@@ -28,6 +28,7 @@ public:
     void rejectMoveAttempt(Chess::MoveValidity validity) override;
     void declareCheck() override;
     void declareCheckmate() override;
+    void declareStalemate() override;
     void requestPromotionDecision() override;
     void notifyUserOfPromotionTo(Chess::PieceType type) override;
     
@@ -41,6 +42,7 @@ public:
     bool resetUxForNewGameHasBeenCalled() const;
     bool checkHasBeenDeclared() const;
     bool checkmateHasBeenDeclared() const;
+    bool stalemateHasBeenDeclared() const;
     bool promotionPromptHasBeenRequested() const;
     Chess::PieceType lastNotifiedPromotion() const;
     
@@ -55,5 +57,6 @@ private:
     bool resetUxForNewGameHasBeenCalled_;
     bool checkHasBeenDeclared_;
     bool checkmateHasBeenDeclared_;
+    bool stalemateHasBeenDeclared_;
     bool promotionPromptHasBeenRequested_;
 };

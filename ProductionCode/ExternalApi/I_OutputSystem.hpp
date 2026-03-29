@@ -29,6 +29,7 @@ public:
     virtual void rejectMoveAttempt(Chess::MoveValidity validity) = 0;
     virtual void declareCheck() = 0;
     virtual void declareCheckmate() = 0;
+    virtual void declareStalemate() = 0;
     virtual void requestPromotionDecision() = 0;
     virtual void notifyUserOfPromotionTo(Chess::PieceType type) = 0;
 };
