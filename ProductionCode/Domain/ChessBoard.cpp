@@ -76,8 +76,7 @@ const I_ChessPiece* ChessBoard::pieceAt(const ChessSquare& square) const
 
 void ChessBoard::resetBoard()
 {
-    boardState_.clear();
-    touchedSquares_.clear();
+    clearBoard();
     for (char file = 'a'; file <= 'h'; file++)
     {
        boardState_[ChessSquare(file, 2)] = whitePawnCapabilities_.data();
@@ -166,6 +165,12 @@ bool ChessBoard::hasAnyPawnReachedFinalRank() const
 void ChessBoard::togglePlayerInitiative()
 {
     playerToMakeNextMove_ = oppositePieceAffiliation(playerToMakeNextMove_);
+}
+
+void ChessBoard::clearBoard()
+{
+    boardState_.clear();
+    touchedSquares_.clear();
 }
 
 bool ChessBoard::applyMove(const InternalChessMove& internalMove)

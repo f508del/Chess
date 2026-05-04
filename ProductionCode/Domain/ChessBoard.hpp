@@ -56,6 +56,7 @@ public:
     void removePieceAtSquare(const ChessSquare& square);
     void resetBoard();
     void togglePlayerInitiative();
+    void clearBoard();
 
 private:
     I_ChessPiece* chessPieceOfTypeAndAffiliation(Chess::PieceType type, Chess::PieceAffiliation affiliation) const;
