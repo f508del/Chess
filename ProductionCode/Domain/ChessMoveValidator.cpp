@@ -18,7 +18,7 @@
 using namespace std;
 using namespace Chess;
 
-ChessMoveValidator::ChessMoveValidator(ChessBoard& board, const ChessGameHistory& gameHistory)
+ChessMoveValidator::ChessMoveValidator(const ChessBoard& board, const ChessGameHistory& gameHistory)
 : board_(board)
 , gameHistory_(gameHistory)
 {
@@ -136,21 +136,22 @@ InternalChessMove ChessMoveValidator::validateMove(const ChessMoveRequest& curre
 
 bool ChessMoveValidator::isSquareThreatenedByColor(const ChessSquare& square, PieceAffiliation attackingColor)
 {
-    if (findSquareOfPieceThatCouldCapture(square, attackingColor) != ChessSquare())
+    if (findSquareOfPieceThatCouldCapture(square, attackingColor, board_) != ChessSquare())
     {
         return true;
     }
     return false;
 }
 
-ChessSquare ChessMoveValidator::findSquareOfPieceThatCouldCapture(const ChessSquare& squareInThreat, Chess::PieceAffiliation attackingColor)
+ChessSquare ChessMoveValidator::findSquareOfPieceThatCouldCapture(const ChessSquare& squareInThreat, Chess::PieceAffiliation attackingColor,
+                                                                  const ChessBoard& currentBoard)
 {
     ChessSquare attackSourceSquare;
-    list<ChessSquare> attackingPieces = board_.allSquaresOccupiedByColor(attackingColor);
+    list<ChessSquare> attackingPieces = currentBoard.allSquaresOccupiedByColor(attackingColor);
     for (auto attackingPieceLocationIterator = attackingPieces.begin(); attackingPieceLocationIterator != attackingPieces.end();
          attackingPieceLocationIterator++)
     {
-        const I_ChessPiece* currentPiece = board_.pieceAt(*attackingPieceLocationIterator);
+        const I_ChessPiece* currentPiece = currentBoard.pieceAt(*attackingPieceLocationIterator);
         ExtendedSet<ChessSquare> potentialCaptureMoves = currentPiece->potentialCaptureMovesFrom(*attackingPieceLocationIterator);
         if (!potentialCaptureMoves.contains(squareInThreat))
         {
@@ -158,7 +159,7 @@ ChessSquare ChessMoveValidator::findSquareOfPieceThatCouldCapture(const ChessSqu
         }
         
         ChessMoveRequest currentExaminedMove(*attackingPieceLocationIterator,squareInThreat);
-        if (!board_.squaresBetweenEndPointsAreEmpty(currentExaminedMove.startingSquare(), currentExaminedMove.endingSquare()) &&
+        if (!currentBoard.squaresBetweenEndPointsAreEmpty(currentExaminedMove.startingSquare(), currentExaminedMove.endingSquare()) &&
             !currentPiece->pieceCanJumpOtherPieces())
         {
             continue;
@@ -259,12 +260,13 @@ bool ChessMoveValidator::enPassantIsBeingAttempted(const ChessMoveRequest& move)
 
 bool ChessMoveValidator::movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(const InternalChessMove& move)
 {
-    board_.applyMove(move);
+    ChessBoard virtualBoard(board_);
+    virtualBoard.applyMove(move);
     
-    bool checkStillExists = isSquareThreatenedByColor(board_.currentKingSquare(board_.playerToMakeNextMove()),
-                                                      oppositePieceAffiliation(board_.playerToMakeNextMove()));
+    bool checkStillExists = findSquareOfPieceThatCouldCapture(virtualBoard.currentKingSquare(virtualBoard.playerToMakeNextMove()),
+                                                              oppositePieceAffiliation(virtualBoard.playerToMakeNextMove()),
+                                                              virtualBoard) != ChessSquare();
     
-    board_.reverseMove(move);
     return checkStillExists;
 }
 

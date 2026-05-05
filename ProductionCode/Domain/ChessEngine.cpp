@@ -183,8 +183,8 @@ void ChessEngine::getNextInput()
 bool ChessEngine::pieceThreateningTheKingCanBeCapturedWithoutLeavingKingInThreat(const ChessSquare& kingSquareInThreat, Chess::PieceAffiliation attackingColor)
 {
     PieceAffiliation defendingColor = oppositePieceAffiliation(attackingColor);
-    ChessSquare locationOfAttackingPiece = moveValidator_->findSquareOfPieceThatCouldCapture(kingSquareInThreat, attackingColor);
-    ChessSquare sourceSquareOfPotentialCounterMove = moveValidator_->findSquareOfPieceThatCouldCapture(locationOfAttackingPiece, defendingColor);
+    ChessSquare locationOfAttackingPiece = moveValidator_->findSquareOfPieceThatCouldCapture(kingSquareInThreat, attackingColor, *board_);
+    ChessSquare sourceSquareOfPotentialCounterMove = moveValidator_->findSquareOfPieceThatCouldCapture(locationOfAttackingPiece, defendingColor, *board_);
     
     if (!sourceSquareOfPotentialCounterMove.isSquareOnTheBoard())
     {
@@ -210,7 +210,7 @@ bool ChessEngine::pieceThreateningTheKingCanBeCapturedWithoutLeavingKingInThreat
 bool ChessEngine::pieceThreateningKingCanBeBlockedWithoutLeavingKingInThreat(const ChessSquare& kingSquareInThreat, Chess::PieceAffiliation attackingColor)
 {
     PieceAffiliation defendingColor = oppositePieceAffiliation(attackingColor);
-    ChessSquare locationOfAttackingPiece = moveValidator_->findSquareOfPieceThatCouldCapture(kingSquareInThreat, attackingColor);
+    ChessSquare locationOfAttackingPiece = moveValidator_->findSquareOfPieceThatCouldCapture(kingSquareInThreat, attackingColor, *board_);
     
     // If attacking piece can jump other pieces, no block is possible.
     if (board_->pieceAt(locationOfAttackingPiece)->pieceCanJumpOtherPieces())

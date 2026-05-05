@@ -20,13 +20,14 @@ class ChessGameHistory;
 class ChessMoveValidator
 {
 public:
-    ChessMoveValidator(ChessBoard& board, const ChessGameHistory& gameHistory);
+    ChessMoveValidator(const ChessBoard& board, const ChessGameHistory& gameHistory);
     virtual ~ChessMoveValidator();
 
     InternalChessMove validateMove(const ChessMoveRequest& currentMove);
     
     bool isSquareThreatenedByColor(const ChessSquare& square, Chess::PieceAffiliation attackingColor);
-    ChessSquare findSquareOfPieceThatCouldCapture(const ChessSquare& squareInThreat, Chess::PieceAffiliation attackingColor);
+    ChessSquare findSquareOfPieceThatCouldCapture(const ChessSquare& squareInThreat, Chess::PieceAffiliation attackingColor,
+                                                  const ChessBoard& currentBoard);
     ChessSquare findSquareOfPieceThatCouldMoveTo(const ChessSquare& destinationSquare, Chess::PieceAffiliation movingColor);
     std::list<InternalChessMove> findAllPotentialMovesFor(Chess::PieceAffiliation playerColor);
     bool movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(const InternalChessMove& move);
@@ -39,6 +40,6 @@ private:
     bool castlingPathIsNotThreatenedByColor(const ChessSquare& startingSquare, const ChessSquare& endingSquare, Chess::PieceAffiliation threateningColor);
     
 private:
-    ChessBoard& board_;
+    const ChessBoard& board_;
     const ChessGameHistory& gameHistory_;
 };
