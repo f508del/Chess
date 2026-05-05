@@ -20,22 +20,30 @@
 using namespace Chess;
 using namespace std;
 
+Pawn ChessBoard::whitePawnCapabilities_(PieceAffiliation::WHITE_PIECE);
+Pawn ChessBoard::blackPawnCapabilities_(PieceAffiliation::BLACK_PIECE);
+Knight ChessBoard::whiteKnightCapabilities_(PieceAffiliation::WHITE_PIECE);
+Knight ChessBoard::blackKnightCapabilities_(PieceAffiliation::BLACK_PIECE);
+Bishop ChessBoard::whiteBishopCapabilities_(PieceAffiliation::WHITE_PIECE);
+Bishop ChessBoard::blackBishopCapabilities_(PieceAffiliation::BLACK_PIECE);
+Rook ChessBoard::whiteRookCapabilities_(PieceAffiliation::WHITE_PIECE);
+Rook ChessBoard::blackRookCapabilities_(PieceAffiliation::BLACK_PIECE);
+Queen ChessBoard::whiteQueenCapabilities_(PieceAffiliation::WHITE_PIECE);
+Queen ChessBoard::blackQueenCapabilities_(PieceAffiliation::BLACK_PIECE);
+King ChessBoard::whiteKingCapabilities_(PieceAffiliation::WHITE_PIECE);
+King ChessBoard::blackKingCapabilities_(PieceAffiliation::BLACK_PIECE);
+
 ChessBoard::ChessBoard()
-: whitePawnCapabilities_(new Pawn(PieceAffiliation::WHITE_PIECE))
-, blackPawnCapabilities_(new Pawn(PieceAffiliation::BLACK_PIECE))
-, whiteKnightCapabilities_(new Knight(PieceAffiliation::WHITE_PIECE))
-, blackKnightCapabilities_(new Knight(PieceAffiliation::BLACK_PIECE))
-, whiteBishopCapabilities_(new Bishop(PieceAffiliation::WHITE_PIECE))
-, blackBishopCapabilities_(new Bishop(PieceAffiliation::BLACK_PIECE))
-, whiteRookCapabilities_(new Rook(PieceAffiliation::WHITE_PIECE))
-, blackRookCapabilities_(new Rook(PieceAffiliation::BLACK_PIECE))
-, whiteQueenCapabilities_(new Queen(PieceAffiliation::WHITE_PIECE))
-, blackQueenCapabilities_(new Queen(PieceAffiliation::BLACK_PIECE))
-, whiteKingCapabilities_(new King(PieceAffiliation::WHITE_PIECE))
-, blackKingCapabilities_(new King(PieceAffiliation::BLACK_PIECE))
-, playerToMakeNextMove_(PieceAffiliation::WHITE_PIECE)
+: playerToMakeNextMove_(PieceAffiliation::WHITE_PIECE)
 {
    resetBoard();
+}
+
+ChessBoard::ChessBoard(const ChessBoard& src)
+: playerToMakeNextMove_(src.playerToMakeNextMove_)
+{
+    touchedSquares_ = src.touchedSquares_;
+    boardState_ = src.boardState_;
 }
 
 ChessBoard::~ChessBoard()
@@ -79,35 +87,35 @@ void ChessBoard::resetBoard()
     clearBoard();
     for (char file = 'a'; file <= 'h'; file++)
     {
-       boardState_[ChessSquare(file, 2)] = whitePawnCapabilities_.data();
-       boardState_[ChessSquare(file, 7)] = blackPawnCapabilities_.data();
+       boardState_[ChessSquare(file, 2)] = &whitePawnCapabilities_;
+       boardState_[ChessSquare(file, 7)] = &blackPawnCapabilities_;
     }
 
     // setup the knights
-    boardState_[ChessSquare('b', 1)] = whiteKnightCapabilities_.data();
-    boardState_[ChessSquare('g', 1)] = whiteKnightCapabilities_.data();
-    boardState_[ChessSquare('b', 8)] = blackKnightCapabilities_.data();
-    boardState_[ChessSquare('g', 8)] = blackKnightCapabilities_.data();
+    boardState_[ChessSquare('b', 1)] = &whiteKnightCapabilities_;
+    boardState_[ChessSquare('g', 1)] = &whiteKnightCapabilities_;
+    boardState_[ChessSquare('b', 8)] = &blackKnightCapabilities_;
+    boardState_[ChessSquare('g', 8)] = &blackKnightCapabilities_;
     
     // setup the bishops
-    boardState_[ChessSquare('c', 1)] = whiteBishopCapabilities_.data();
-    boardState_[ChessSquare('f', 1)] = whiteBishopCapabilities_.data();
-    boardState_[ChessSquare('c', 8)] = blackBishopCapabilities_.data();
-    boardState_[ChessSquare('f', 8)] = blackBishopCapabilities_.data();
+    boardState_[ChessSquare('c', 1)] = &whiteBishopCapabilities_;
+    boardState_[ChessSquare('f', 1)] = &whiteBishopCapabilities_;
+    boardState_[ChessSquare('c', 8)] = &blackBishopCapabilities_;
+    boardState_[ChessSquare('f', 8)] = &blackBishopCapabilities_;
     
     // setup the rooks
-    boardState_[ChessSquare('a', 1)] = whiteRookCapabilities_.data();
-    boardState_[ChessSquare('h', 1)] = whiteRookCapabilities_.data();
-    boardState_[ChessSquare('a', 8)] = blackRookCapabilities_.data();
-    boardState_[ChessSquare('h', 8)] = blackRookCapabilities_.data();
+    boardState_[ChessSquare('a', 1)] = &whiteRookCapabilities_;
+    boardState_[ChessSquare('h', 1)] = &whiteRookCapabilities_;
+    boardState_[ChessSquare('a', 8)] = &blackRookCapabilities_;
+    boardState_[ChessSquare('h', 8)] = &blackRookCapabilities_;
     
     // setup the queens
-    boardState_[ChessSquare('d', 1)] = whiteQueenCapabilities_.data();
-    boardState_[ChessSquare('d', 8)] = blackQueenCapabilities_.data();
+    boardState_[ChessSquare('d', 1)] = &whiteQueenCapabilities_;
+    boardState_[ChessSquare('d', 8)] = &blackQueenCapabilities_;
     
     // setup the kings
-    boardState_[ChessSquare('e', 1)] = whiteKingCapabilities_.data();
-    boardState_[ChessSquare('e', 8)] = blackKingCapabilities_.data();
+    boardState_[ChessSquare('e', 1)] = &whiteKingCapabilities_;
+    boardState_[ChessSquare('e', 8)] = &blackKingCapabilities_;
 }
 
 PieceAffiliation ChessBoard::playerToMakeNextMove() const
@@ -117,7 +125,7 @@ PieceAffiliation ChessBoard::playerToMakeNextMove() const
 
 ChessSquare ChessBoard::currentKingSquare(Chess::PieceAffiliation affiliation) const
 {
-    King* kingOfInterest = (affiliation == Chess::PieceAffiliation::WHITE_PIECE ? whiteKingCapabilities_.data() : blackKingCapabilities_.data());
+    King* kingOfInterest = (affiliation == Chess::PieceAffiliation::WHITE_PIECE ? &whiteKingCapabilities_ : &blackKingCapabilities_);
     
     for(auto boardIterator = boardState_.begin(); boardIterator != boardState_.end(); boardIterator++)
     {
@@ -262,22 +270,22 @@ I_ChessPiece* ChessBoard::chessPieceOfTypeAndAffiliation(Chess::PieceType type, 
         switch(type)
         {
             case Chess::PieceType::PAWN:
-                piece = whitePawnCapabilities_.data();
+                piece = &whitePawnCapabilities_;
                 break;
             case Chess::PieceType::KNIGHT:
-                piece = whiteKnightCapabilities_.data();
+                piece = &whiteKnightCapabilities_;
                 break;
             case Chess::PieceType::BISHOP:
-                piece = whiteBishopCapabilities_.data();
+                piece = &whiteBishopCapabilities_;
                 break;
             case Chess::PieceType::ROOK:
-                piece = whiteRookCapabilities_.data();
+                piece = &whiteRookCapabilities_;
                 break;
             case Chess::PieceType::QUEEN:
-                piece = whiteQueenCapabilities_.data();
+                piece = &whiteQueenCapabilities_;
                 break;
             case Chess::PieceType::KING:
-                piece = whiteKingCapabilities_.data();
+                piece = &whiteKingCapabilities_;
                 break;
             default:
                 break;
@@ -288,22 +296,22 @@ I_ChessPiece* ChessBoard::chessPieceOfTypeAndAffiliation(Chess::PieceType type, 
         switch(type)
         {
             case Chess::PieceType::PAWN:
-                piece = blackPawnCapabilities_.data();
+                piece = &blackPawnCapabilities_;
                 break;
             case Chess::PieceType::KNIGHT:
-                piece = blackKnightCapabilities_.data();
+                piece = &blackKnightCapabilities_;
                 break;
             case Chess::PieceType::BISHOP:
-                piece = blackBishopCapabilities_.data();
+                piece = &blackBishopCapabilities_;
                 break;
             case Chess::PieceType::ROOK:
-                piece = blackRookCapabilities_.data();
+                piece = &blackRookCapabilities_;
                 break;
             case Chess::PieceType::QUEEN:
-                piece = blackQueenCapabilities_.data();
+                piece = &blackQueenCapabilities_;
                 break;
             case Chess::PieceType::KING:
-                piece = blackKingCapabilities_.data();
+                piece = &blackKingCapabilities_;
                 break;
             default:
                 break;

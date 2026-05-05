@@ -34,6 +34,7 @@ class ChessBoard : public I_ReadOnlyChessBoard
 {
 public:
     explicit ChessBoard();
+    explicit ChessBoard(const ChessBoard& src);
     virtual ~ChessBoard();
 
     bool anyPieceExistsAt(const ChessSquare& square) const;
@@ -65,18 +66,18 @@ private:
     bool applyRemovePieceMoveElement(const Chess::MoveElement& moveElement);
     bool reverseMoveElement(const Chess::MoveElement& moveElement);
     
-    ScopedPointer<Pawn> whitePawnCapabilities_;
-    ScopedPointer<Pawn> blackPawnCapabilities_;
-    ScopedPointer<Knight> whiteKnightCapabilities_;
-    ScopedPointer<Knight> blackKnightCapabilities_;
-    ScopedPointer<Bishop> whiteBishopCapabilities_;
-    ScopedPointer<Bishop> blackBishopCapabilities_;
-    ScopedPointer<Rook> whiteRookCapabilities_;
-    ScopedPointer<Rook> blackRookCapabilities_;
-    ScopedPointer<Queen> whiteQueenCapabilities_;
-    ScopedPointer<Queen> blackQueenCapabilities_;
-    ScopedPointer<King> whiteKingCapabilities_;
-    ScopedPointer<King> blackKingCapabilities_;
+    static Pawn whitePawnCapabilities_;
+    static Pawn blackPawnCapabilities_;
+    static Knight whiteKnightCapabilities_;
+    static Knight blackKnightCapabilities_;
+    static Bishop whiteBishopCapabilities_;
+    static Bishop blackBishopCapabilities_;
+    static Rook whiteRookCapabilities_;
+    static Rook blackRookCapabilities_;
+    static Queen whiteQueenCapabilities_;
+    static Queen blackQueenCapabilities_;
+    static King whiteKingCapabilities_;
+    static King blackKingCapabilities_;
 
     std::map<ChessSquare, const I_ChessPiece*> boardState_;
     std::map<ChessSquare, bool> touchedSquares_;
