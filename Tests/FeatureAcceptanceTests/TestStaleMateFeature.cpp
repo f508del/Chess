@@ -20,7 +20,6 @@ TEST_CASE("Testing the logic around detecting Stalemate situations")
         
         testHarness.chessEngine().runChessEngine();
         
-        fprintf(stderr, "SKIPPED TEST in stalemate suite\n");
-        //CHECK(testHarness.fakeOutput().stalemateHasBeenDeclared());
+        CHECK(testHarness.fakeOutput().stalemateHasBeenDeclared());
     }
 }

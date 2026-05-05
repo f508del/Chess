@@ -158,11 +158,10 @@ void ChessEngine::detectEndGameConditions()
     }
     else
     {
-        /*if (playerHasNoLegalMove(board_->playerToMakeNextMove()))
+        if (playerHasNoLegalMove(board_->playerToMakeNextMove()))
         {
             outputSystem_.declareStalemate();
-        }*/
-        // TODO: uncomment this and ensure all tests pass
+        }
     }
     
     return;
