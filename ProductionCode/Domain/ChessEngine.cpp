@@ -155,8 +155,6 @@ void ChessEngine::detectEndGameConditions()
         {
             outputSystem_.declareCheckmate();
         }
-        // TODO: remove this line...
-        outputSystem_.declareCheck();
     }
     
     return;
