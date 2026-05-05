@@ -197,6 +197,34 @@ ChessSquare ChessMoveValidator::findSquareOfPieceThatCouldMoveTo(const ChessSqua
     return moveSourceSquare;
 }
 
+list<InternalChessMove> ChessMoveValidator::findAllPotentialMovesFor(Chess::PieceAffiliation playerColor)
+{
+    list<InternalChessMove> potentialMoves;
+    
+    list<ChessSquare> movablePieces = board_.allSquaresOccupiedByColor(playerColor);
+    for (auto movingPieceLocationIterator = movablePieces.begin(); movingPieceLocationIterator != movablePieces.end();
+         movingPieceLocationIterator++)
+    {
+        const I_ChessPiece* currentPiece = board_.pieceAt(*movingPieceLocationIterator);
+        ExtendedSet<ChessSquare> currentPiecePotentialMoves = currentPiece->potentialEmptyBoardMovesFrom(*movingPieceLocationIterator);
+        //TODO: resolve the pawn capture problem here...
+        
+        for (auto destinationIterator = currentPiecePotentialMoves.begin(); destinationIterator != currentPiecePotentialMoves.end(); destinationIterator++)
+        {
+            ChessMoveRequest potentialRequest(*movingPieceLocationIterator, *destinationIterator);
+            
+            InternalChessMove potentialInternalMove = validateMove(potentialRequest);
+            
+            if (potentialInternalMove.isValid())
+            {
+                potentialMoves.push_back(potentialInternalMove);
+            }
+        }
+    }
+    
+    return potentialMoves;
+}
+
 bool ChessMoveValidator::enPassantIsCurrentlyPossible() const
 {
     if (abs((int)gameHistory_.mostRecentMoveStartingSquare().rank() - (int)gameHistory_.mostRecentMoveEndingSquare().rank()) == 2)

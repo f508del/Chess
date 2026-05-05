@@ -156,6 +156,14 @@ void ChessEngine::detectEndGameConditions()
             outputSystem_.declareCheckmate();
         }
     }
+    else
+    {
+        /*if (playerHasNoLegalMove(board_->playerToMakeNextMove()))
+        {
+            outputSystem_.declareStalemate();
+        }*/
+        // TODO: uncomment this and ensure all tests pass
+    }
     
     return;
 }
@@ -262,3 +270,18 @@ bool ChessEngine::kingCanMoveOutOfThreat(const ChessSquare& kingSquareInThreat)
     
     return false;
 }
+
+bool ChessEngine::playerHasNoLegalMove(Chess::PieceAffiliation playerColor)
+{
+    list<InternalChessMove> potentialMoves = moveValidator_->findAllPotentialMovesFor(playerColor);
+    
+    for (auto it = potentialMoves.begin(); it != potentialMoves.end(); it++)
+    {
+        if (!moveValidator_->movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(*it))
+        {
+            return false;
+        }
+    }
+    return true;
+}
+

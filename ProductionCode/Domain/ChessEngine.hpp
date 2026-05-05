@@ -45,6 +45,7 @@ private:
     bool pieceThreateningTheKingCanBeCapturedWithoutLeavingKingInThreat(const ChessSquare& kingSquareInThreat, Chess::PieceAffiliation attackingColor);
     bool pieceThreateningKingCanBeBlockedWithoutLeavingKingInThreat(const ChessSquare& kingSquareInThreat, Chess::PieceAffiliation attackingColor);
     bool kingCanMoveOutOfThreat(const ChessSquare& kingSquareInThreat);
+    bool playerHasNoLegalMove(Chess::PieceAffiliation playerColor);
     
 private:
     I_InputSystem& whiteInputSystem_;
