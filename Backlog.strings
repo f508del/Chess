@@ -6,7 +6,6 @@
 
 This is meant as a simple backlog of what refactorings and features are upcoming
  
- 28. Detect Stalemate: only happens when player to move cannot move without putting own king in danger
  29. Add Random legal move AI engine
  31. Unify duplication between chess move describer and Chess piece type associating strings to piece types
 */
