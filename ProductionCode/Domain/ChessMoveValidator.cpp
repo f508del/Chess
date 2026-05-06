@@ -207,8 +207,10 @@ list<InternalChessMove> ChessMoveValidator::findAllPotentialMovesFor(Chess::Piec
          movingPieceLocationIterator++)
     {
         const I_ChessPiece* currentPiece = board_.pieceAt(*movingPieceLocationIterator);
-        ExtendedSet<ChessSquare> currentPiecePotentialMoves = currentPiece->potentialEmptyBoardMovesFrom(*movingPieceLocationIterator);
-        //TODO: resolve the pawn capture problem here...
+        ExtendedSet<ChessSquare> nonCaptureMoves = currentPiece->potentialEmptyBoardMovesFrom(*movingPieceLocationIterator);
+        ExtendedSet<ChessSquare> captureMoves =  currentPiece->potentialCaptureMovesFrom(*movingPieceLocationIterator);
+        ExtendedSet<ChessSquare> currentPiecePotentialMoves;
+        std::set_union(nonCaptureMoves.begin(), nonCaptureMoves.end(), captureMoves.begin(), captureMoves.end(), std::inserter(currentPiecePotentialMoves, currentPiecePotentialMoves.begin()));
         
         for (auto destinationIterator = currentPiecePotentialMoves.begin(); destinationIterator != currentPiecePotentialMoves.end(); destinationIterator++)
         {
