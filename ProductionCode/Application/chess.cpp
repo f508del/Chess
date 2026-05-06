@@ -19,14 +19,17 @@
 #include "TerminalOutputSystem.hpp"
 #include "StringBasedInputSystem.hpp"
 #include "TerminalWrapper.hpp"
+#include "RandomAi.hpp"
 
 int main(int /*argc*/, char** /*argv*/)
 {
+    RandomAi aiPlayer;
+    
     TerminalWrapper wrapper;
     TerminalOutputSystem outputSystem(wrapper);
 	StringBasedInputSystem inputSystem(wrapper);
 
-	ChessEngine engine(inputSystem, inputSystem, outputSystem);
+	ChessEngine engine(inputSystem, aiPlayer, outputSystem);
 
 	engine.runChessEngine();
 	
