@@ -28,11 +28,7 @@ int main(int /*argc*/, char** /*argv*/)
     TerminalWrapper wrapper;
     TerminalOutputSystem outputSystem(wrapper);
 	StringBasedInputSystem inputSystem(wrapper);
-
-    std::list<I_OutputSystem*> outputList;
-    outputList.push_back(&aiPlayer);
-    outputList.push_back(&outputSystem);
-    OutputSystemMuxer outputMuxer(outputList);
+    OutputSystemMuxer outputMuxer({&aiPlayer, &outputSystem});
     
 	ChessEngine engine(inputSystem, aiPlayer, outputMuxer);
 
