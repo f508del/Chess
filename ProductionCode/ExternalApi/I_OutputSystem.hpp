@@ -32,4 +32,6 @@ public:
     virtual void declareStalemate() = 0;
     virtual void requestPromotionDecision() = 0;
     virtual void notifyUserOfPromotionTo(Chess::PieceType type) = 0;
+    
+    virtual void gameEndedDueToTenConsecutiveInvalidMoveAttempts() = 0;
 };

@@ -119,3 +119,9 @@ void TerminalOutputSystem::notifyUserOfPromotionTo(Chess::PieceType type)
     output.append(".");
     showTextToUser(output.c_str());
 }
+
+void TerminalOutputSystem::gameEndedDueToTenConsecutiveInvalidMoveAttempts()
+{ 
+    showTextToUser("GAME ENDED due to 10 consecutive invalid move attempts.\n");
+}
+

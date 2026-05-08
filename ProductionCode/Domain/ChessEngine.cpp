@@ -29,6 +29,7 @@ ChessEngine::ChessEngine(I_InputSystem& whiteInputSystem,
 , gameHistory_(new ChessGameHistory())
 , moveValidator_(new ChessMoveValidator(*board_, *gameHistory_))
 , userHasQuitTheProgram_(false)
+, invalidMoveAttemptCounter_(0)
 {
     whiteInputSystem_.registerNewGameCallback(std::bind(&ChessEngine::resetForNewGame, this));
     whiteInputSystem_.registerQuitCallback(std::bind(&ChessEngine::endEventLoop, this));
@@ -66,6 +67,7 @@ void ChessEngine::resetForNewGame()
     }
     board_->resetBoard();
     outputSystem_.resetUxForNewGame();
+    invalidMoveAttemptCounter_ = 0;
 }
 
 void ChessEngine::endEventLoop()
@@ -79,9 +81,16 @@ void ChessEngine::attemptMove(const ChessMoveRequest& move)
     if (!validatedMove.isValid())
     {
         outputSystem_.rejectMoveAttempt(validatedMove.validity());
+        invalidMoveAttemptCounter_++;
+        if (invalidMoveAttemptCounter_ >= 10)
+        {
+            outputSystem_.gameEndedDueToTenConsecutiveInvalidMoveAttempts();
+            resetForNewGame();
+        }
     }
     else
     {
+        invalidMoveAttemptCounter_ = 0;
         // order here matters, as output system needs access to board state before move is applied.
         outputSystem_.displayValidMoveToUser(validatedMove.moveElements());
         board_->applyMove(validatedMove);
