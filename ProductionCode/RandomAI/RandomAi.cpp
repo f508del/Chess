@@ -31,8 +31,10 @@ void RandomAi::getNextInput()
     ExtendedSet<ChessSquare> destinationSquares = pieceToMove->potentialEmptyBoardMovesFrom(*potentialStartingSquares.begin());
     
     ChessMoveRequest request(*potentialStartingSquares.begin(), *destinationSquares.begin());
-    
-    moveAttemptCallback_(request);
+    if (moveValidator_.validateMove(request).isValid())
+    {
+        moveAttemptCallback_(request);
+    }
     return;
 }
 
@@ -84,6 +86,7 @@ void RandomAi::displayValidMoveToUser(const std::list<Chess::MoveElement>& moveE
     }
     board_->applyMove(convertedMove);
     gameHistory_.recordMove(convertedMove);
+    board_->togglePlayerInitiative();
     return;
 }
 
