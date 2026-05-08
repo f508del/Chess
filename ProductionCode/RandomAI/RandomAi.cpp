@@ -16,6 +16,8 @@ RandomAi::RandomAi()
 : moveAttemptCallback_([](const ChessMoveRequest&){})
 , promotionCallback_([](Chess::PieceType){})
 , board_(new ChessBoard())
+, gameHistory_()
+, moveValidator_(*board_, gameHistory_)
 {
     
 }
@@ -81,6 +83,7 @@ void RandomAi::displayValidMoveToUser(const std::list<Chess::MoveElement>& moveE
         convertedMove.addValidMoveElement(*iterator);
     }
     board_->applyMove(convertedMove);
+    gameHistory_.recordMove(convertedMove);
     return;
 }
 

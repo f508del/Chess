@@ -9,6 +9,8 @@
 #include "I_OutputSystem.hpp"
 #include "ChessBoard.hpp"
 #include "ScopedPointer.hpp"
+#include "ChessGameHistory.hpp"
+#include "ChessMoveValidator.hpp"
 
 class RandomAi : public I_InputSystem, public I_OutputSystem
 {
@@ -41,5 +43,7 @@ private:
     std::function<void(Chess::PieceType)> promotionCallback_;
     
     ScopedPointer<ChessBoard> board_;
+    ChessGameHistory gameHistory_;
+    ChessMoveValidator moveValidator_;
 };
 
