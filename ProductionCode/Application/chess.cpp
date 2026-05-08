@@ -20,16 +20,21 @@
 #include "StringBasedInputSystem.hpp"
 #include "TerminalWrapper.hpp"
 #include "RandomAi.hpp"
+#include "OutputSystemMuxer.hpp"
 
 int main(int /*argc*/, char** /*argv*/)
 {
     RandomAi aiPlayer;
-    
     TerminalWrapper wrapper;
     TerminalOutputSystem outputSystem(wrapper);
 	StringBasedInputSystem inputSystem(wrapper);
 
-	ChessEngine engine(inputSystem, aiPlayer, outputSystem);
+    std::list<I_OutputSystem*> outputList;
+    outputList.push_back(&aiPlayer);
+    outputList.push_back(&outputSystem);
+    OutputSystemMuxer outputMuxer(outputList);
+    
+	ChessEngine engine(inputSystem, aiPlayer, outputMuxer);
 
 	engine.runChessEngine();
 	

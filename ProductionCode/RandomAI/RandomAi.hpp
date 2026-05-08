@@ -10,7 +10,7 @@
 #include "ChessBoard.hpp"
 #include "ScopedPointer.hpp"
 
-class RandomAi : public I_InputSystem, I_OutputSystem
+class RandomAi : public I_InputSystem, public I_OutputSystem
 {
 public:
     RandomAi();
