@@ -26,15 +26,27 @@ void RandomAi::getNextInput()
 {
     std::list<ChessSquare> potentialStartingSquares = board_->allSquaresOccupiedByColor(PieceAffiliation::BLACK_PIECE);
     
-    const I_ChessPiece* pieceToMove = board_->pieceAt(*potentialStartingSquares.begin());
-    
-    ExtendedSet<ChessSquare> destinationSquares = pieceToMove->potentialEmptyBoardMovesFrom(*potentialStartingSquares.begin());
-    
-    ChessMoveRequest request(*potentialStartingSquares.begin(), *destinationSquares.begin());
-    if (moveValidator_.validateMove(request).isValid())
+    for (auto startSquareIterator = potentialStartingSquares.begin(); startSquareIterator != potentialStartingSquares.end(); startSquareIterator++)
     {
-        moveAttemptCallback_(request);
+        const I_ChessPiece* pieceToMove = board_->pieceAt(*startSquareIterator);
+        
+        ExtendedSet<ChessSquare> nonCaptureMoves = pieceToMove->potentialEmptyBoardMovesFrom(*startSquareIterator);
+        ExtendedSet<ChessSquare> captureMoves =  pieceToMove->potentialCaptureMovesFrom(*startSquareIterator);
+        ExtendedSet<ChessSquare> currentPiecePotentialMoves;
+        std::set_union(nonCaptureMoves.begin(), nonCaptureMoves.end(), captureMoves.begin(), captureMoves.end(), std::inserter(currentPiecePotentialMoves, currentPiecePotentialMoves.begin()));
+        
+        
+        for (auto destinatinonIterator = currentPiecePotentialMoves.begin(); destinatinonIterator != currentPiecePotentialMoves.end(); destinatinonIterator++)
+        {
+            ChessMoveRequest request(*startSquareIterator, *destinatinonIterator);
+            if (moveValidator_.validateMove(request).isValid())
+            {
+                moveAttemptCallback_(request);
+                return;
+            }
+        }
     }
+    
     return;
 }
 
