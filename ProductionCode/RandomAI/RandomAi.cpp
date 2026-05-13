@@ -24,7 +24,7 @@ RandomAi::RandomAi()
 
 void RandomAi::getNextInput()
 {
-    std::list<ChessSquare> potentialStartingSquares = board_->allSquaresOccupiedByColor(PieceAffiliation::BLACK_PIECE);
+    std::list<ChessSquare> potentialStartingSquares = board_->allSquaresOccupiedByColor(PieceAffiliation::WHITE_PIECE);
     
     for (auto startSquareIterator = potentialStartingSquares.begin(); startSquareIterator != potentialStartingSquares.end(); startSquareIterator++)
     {

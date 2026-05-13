@@ -28,9 +28,10 @@ int main(int /*argc*/, char** /*argv*/)
     TerminalWrapper wrapper;
     TerminalOutputSystem outputSystem(wrapper);
 	StringBasedInputSystem inputSystem(wrapper);
+
     OutputSystemMuxer outputMuxer({&aiPlayer, &outputSystem});
     
-	ChessEngine engine(inputSystem, aiPlayer, outputMuxer);
+	ChessEngine engine(aiPlayer, inputSystem, outputMuxer);
 
 	engine.runChessEngine();
 	
