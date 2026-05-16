@@ -9,7 +9,7 @@
 #pragma once
 
 class ChessMoveDescriber;
-class TerminalWrapper;
+class I_StringOutputDestination;
 
 #include "I_OutputSystem.hpp"
 #include "ScopedPointer.hpp"
@@ -17,7 +17,7 @@ class TerminalWrapper;
 class TerminalOutputSystem : public I_OutputSystem
 {
 public:
-   explicit TerminalOutputSystem(TerminalWrapper& wrapper);
+   explicit TerminalOutputSystem(I_StringOutputDestination& wrapper);
    virtual ~TerminalOutputSystem();
 
     void initializeChessUserInterface() override;
@@ -37,5 +37,5 @@ private: // helper functions
     
 private:
     ScopedPointer<ChessMoveDescriber> moveDescriber_;
-    TerminalWrapper& stringDestination_;
+    I_StringOutputDestination& stringDestination_;
 };

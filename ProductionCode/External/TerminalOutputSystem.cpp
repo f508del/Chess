@@ -8,7 +8,7 @@
 
 #include "TerminalOutputSystem.hpp"
 #include "ChessMoveDescriber.hpp"
-#include "TerminalWrapper.hpp"
+#include "I_StringOutputDestination.hpp"
 #include "ChessMoveValidity.hpp"
 #include "OutputErrorDefines.hpp"
 #include "StringifyUtilities.hpp"
@@ -17,7 +17,7 @@
 using namespace Chess;
 using namespace std;
 
-TerminalOutputSystem::TerminalOutputSystem(TerminalWrapper& wrapper)
+TerminalOutputSystem::TerminalOutputSystem(I_StringOutputDestination& wrapper)
 : moveDescriber_(new ChessMoveDescriber())
 , stringDestination_(wrapper)
 {
