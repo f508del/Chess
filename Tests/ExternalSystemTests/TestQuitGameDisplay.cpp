@@ -7,7 +7,7 @@
 
 #include "Catch.hpp"
 #include "FakeTerminalWrapper.hpp"
-#include "TerminalOutputSystem.hpp"
+#include "StringBasedOutputSystem.hpp"
 #include "StringBasedInputSystem.hpp"
 
 TEST_CASE("Test that if quit is requested, the interaction systems behaves as expected")
@@ -15,7 +15,7 @@ TEST_CASE("Test that if quit is requested, the interaction systems behaves as ex
     SECTION("a quit event will display the correct string")
     {
         FakeTerminalWrapper terminalWrapper;
-        TerminalOutputSystem outputSystem(terminalWrapper);
+        StringBasedOutputSystem outputSystem(terminalWrapper);
         
         outputSystem.endUserInteraction();
         

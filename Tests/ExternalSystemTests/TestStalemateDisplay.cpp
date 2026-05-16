@@ -7,14 +7,14 @@
 
 #include "Catch.hpp"
 #include "FakeTerminalWrapper.hpp"
-#include "TerminalOutputSystem.hpp"
+#include "StringBasedOutputSystem.hpp"
 
 TEST_CASE("Test that if stalemate occurs, the interaction systems behaves as expected")
 {
     SECTION("A stalemate event will display the correct string")
     {
         FakeTerminalWrapper terminalWrapper;
-        TerminalOutputSystem outputSystem(terminalWrapper);
+        StringBasedOutputSystem outputSystem(terminalWrapper);
         
         outputSystem.declareStalemate();
         

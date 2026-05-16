@@ -7,7 +7,7 @@
 
 #include "Catch.hpp"
 #include "FakeTerminalWrapper.hpp"
-#include "TerminalOutputSystem.hpp"
+#include "StringBasedOutputSystem.hpp"
 #include "ChessMoveElement.hpp"
 
 using namespace Chess;
@@ -17,7 +17,7 @@ TEST_CASE("Testing the external system that en passant moves are displayed as in
     SECTION("Will indicate to user when en passant has ocurred")
     {
         FakeTerminalWrapper terminalWrapper;
-        TerminalOutputSystem outputSystem(terminalWrapper);
+        StringBasedOutputSystem outputSystem(terminalWrapper);
         
         std::list<MoveElement> elements;
         elements.push_back(MoveElement(MoveElementAction::REMOVE_PIECE, ChessSquare('b',4), PieceAffiliation::BLACK_PIECE, PieceType::PAWN));

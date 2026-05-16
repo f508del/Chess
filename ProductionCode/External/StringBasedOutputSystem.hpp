@@ -1,5 +1,5 @@
 //
-//  TerminalOutputSystem.h
+//  StringBasedOutputSystem.h
 //  Chess
 //
 //  Created by Trevor Phillips on 2020-12-25.
@@ -14,11 +14,11 @@ class I_StringOutputDestination;
 #include "I_OutputSystem.hpp"
 #include "ScopedPointer.hpp"
 
-class TerminalOutputSystem : public I_OutputSystem
+class StringBasedOutputSystem : public I_OutputSystem
 {
 public:
-   explicit TerminalOutputSystem(I_StringOutputDestination& wrapper);
-   virtual ~TerminalOutputSystem();
+   explicit StringBasedOutputSystem(I_StringOutputDestination& wrapper);
+   virtual ~StringBasedOutputSystem();
 
     void initializeChessUserInterface() override;
     void endUserInteraction() override;

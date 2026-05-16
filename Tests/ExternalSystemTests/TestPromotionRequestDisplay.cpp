@@ -9,14 +9,14 @@
 #include "Catch.hpp"
 #include "ChessMoveValidity.hpp"
 #include "FakeTerminalWrapper.hpp"
-#include "TerminalOutputSystem.hpp"
+#include "StringBasedOutputSystem.hpp"
 
 TEST_CASE("Test that if promotion trigger occurs, the user is asked to choose what to promote to, and told when it completes.")
 {
     SECTION("A promotion event will display the correct string")
     {
         FakeTerminalWrapper terminalWrapper;
-        TerminalOutputSystem outputSystem(terminalWrapper);
+        StringBasedOutputSystem outputSystem(terminalWrapper);
         
         outputSystem.requestPromotionDecision();
         
@@ -26,7 +26,7 @@ TEST_CASE("Test that if promotion trigger occurs, the user is asked to choose wh
     SECTION("Once a valid promotion to queen occurs, the user is told what it was promoted to")
     {
         FakeTerminalWrapper terminalWrapper;
-        TerminalOutputSystem outputSystem(terminalWrapper);
+        StringBasedOutputSystem outputSystem(terminalWrapper);
         
         outputSystem.notifyUserOfPromotionTo(Chess::PieceType::QUEEN);
         
@@ -36,7 +36,7 @@ TEST_CASE("Test that if promotion trigger occurs, the user is asked to choose wh
     SECTION("Once a valid promotion to rook occurs, the user is told what it was promoted to")
     {
         FakeTerminalWrapper terminalWrapper;
-        TerminalOutputSystem outputSystem(terminalWrapper);
+        StringBasedOutputSystem outputSystem(terminalWrapper);
         
         outputSystem.notifyUserOfPromotionTo(Chess::PieceType::ROOK);
         
@@ -46,7 +46,7 @@ TEST_CASE("Test that if promotion trigger occurs, the user is asked to choose wh
     SECTION("If a promotion input is given when not approprite, promotion will be rejected")
     {
         FakeTerminalWrapper terminalWrapper;
-        TerminalOutputSystem outputSystem(terminalWrapper);
+        StringBasedOutputSystem outputSystem(terminalWrapper);
         
         outputSystem.rejectMoveAttempt(Chess::MoveValidity::PROMOTION_NOT_LEGAL);
         

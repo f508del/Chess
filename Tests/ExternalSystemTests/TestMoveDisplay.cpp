@@ -11,7 +11,7 @@
 #include "ChessPieceAffiliation.hpp"
 #include "ChessPieceType.hpp"
 #include "FakeTerminalWrapper.hpp"
-#include "TerminalOutputSystem.hpp"
+#include "StringBasedOutputSystem.hpp"
 
 using namespace Chess;
 
@@ -20,7 +20,7 @@ TEST_CASE("Testing the external system that chess moves are displayed as intende
     SECTION("Pawn moves are described correctly")
     {
         FakeTerminalWrapper terminalWrapper;
-        TerminalOutputSystem outputSystem(terminalWrapper);
+        StringBasedOutputSystem outputSystem(terminalWrapper);
         std::list<MoveElement> elements;
         elements.push_back(MoveElement(MoveElementAction::REMOVE_PIECE, ChessSquare('a',2), PieceAffiliation::WHITE_PIECE, PieceType::PAWN));
         elements.push_back(MoveElement(MoveElementAction::PLACE_PIECE, ChessSquare('a',3), PieceAffiliation::WHITE_PIECE, PieceType::PAWN));
@@ -33,7 +33,7 @@ TEST_CASE("Testing the external system that chess moves are displayed as intende
     SECTION("Knight moves are described correctly")
     {
         FakeTerminalWrapper terminalWrapper;
-        TerminalOutputSystem outputSystem(terminalWrapper);
+        StringBasedOutputSystem outputSystem(terminalWrapper);
         std::list<MoveElement> elements;
         elements.push_back(MoveElement(MoveElementAction::REMOVE_PIECE, ChessSquare('b',1), PieceAffiliation::WHITE_PIECE, PieceType::KNIGHT));
         elements.push_back(MoveElement(MoveElementAction::PLACE_PIECE, ChessSquare('a',3), PieceAffiliation::WHITE_PIECE, PieceType::KNIGHT));
@@ -46,7 +46,7 @@ TEST_CASE("Testing the external system that chess moves are displayed as intende
     SECTION("Bishop moves are described correctly")
     {
         FakeTerminalWrapper terminalWrapper;
-        TerminalOutputSystem outputSystem(terminalWrapper);
+        StringBasedOutputSystem outputSystem(terminalWrapper);
         std::list<MoveElement> elements;
         elements.push_back(MoveElement(MoveElementAction::REMOVE_PIECE, ChessSquare('c',1), PieceAffiliation::WHITE_PIECE, PieceType::BISHOP));
         elements.push_back(MoveElement(MoveElementAction::PLACE_PIECE, ChessSquare('b',2), PieceAffiliation::WHITE_PIECE, PieceType::BISHOP));
@@ -59,7 +59,7 @@ TEST_CASE("Testing the external system that chess moves are displayed as intende
     SECTION("Rook moves are described correctly")
     {
         FakeTerminalWrapper terminalWrapper;
-        TerminalOutputSystem outputSystem(terminalWrapper);
+        StringBasedOutputSystem outputSystem(terminalWrapper);
         std::list<MoveElement> elements;
         elements.push_back(MoveElement(MoveElementAction::REMOVE_PIECE, ChessSquare('a',1), PieceAffiliation::WHITE_PIECE, PieceType::ROOK));
         elements.push_back(MoveElement(MoveElementAction::PLACE_PIECE, ChessSquare('a',2), PieceAffiliation::WHITE_PIECE, PieceType::ROOK));
@@ -72,7 +72,7 @@ TEST_CASE("Testing the external system that chess moves are displayed as intende
     SECTION("Queen moves are described correctly")
     {
         FakeTerminalWrapper terminalWrapper;
-        TerminalOutputSystem outputSystem(terminalWrapper);
+        StringBasedOutputSystem outputSystem(terminalWrapper);
         std::list<MoveElement> elements;
         elements.push_back(MoveElement(MoveElementAction::REMOVE_PIECE, ChessSquare('d',1), PieceAffiliation::WHITE_PIECE, PieceType::QUEEN));
         elements.push_back(MoveElement(MoveElementAction::PLACE_PIECE, ChessSquare('d',3), PieceAffiliation::WHITE_PIECE, PieceType::QUEEN));
@@ -85,7 +85,7 @@ TEST_CASE("Testing the external system that chess moves are displayed as intende
     SECTION("King moves are described correctly")
     {
         FakeTerminalWrapper terminalWrapper;
-        TerminalOutputSystem outputSystem(terminalWrapper);
+        StringBasedOutputSystem outputSystem(terminalWrapper);
         std::list<MoveElement> elements;
         elements.push_back(MoveElement(MoveElementAction::REMOVE_PIECE, ChessSquare('e',1), PieceAffiliation::WHITE_PIECE, PieceType::KING));
         elements.push_back(MoveElement(MoveElementAction::PLACE_PIECE, ChessSquare('e',2), PieceAffiliation::WHITE_PIECE, PieceType::KING));

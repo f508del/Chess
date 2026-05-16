@@ -16,7 +16,7 @@
 
 
 #include "ChessEngine.hpp"
-#include "TerminalOutputSystem.hpp"
+#include "StringBasedOutputSystem.hpp"
 #include "StringBasedInputSystem.hpp"
 #include "TerminalWrapper.hpp"
 #include "RandomAi.hpp"
@@ -26,7 +26,7 @@ int main(int /*argc*/, char** /*argv*/)
 {
     RandomAi aiPlayer;
     TerminalWrapper wrapper;
-    TerminalOutputSystem outputSystem(wrapper);
+    StringBasedOutputSystem outputSystem(wrapper);
 	StringBasedInputSystem inputSystem(wrapper);
 
     OutputSystemMuxer outputMuxer({&aiPlayer, &outputSystem});

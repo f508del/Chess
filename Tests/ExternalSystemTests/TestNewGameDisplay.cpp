@@ -8,7 +8,7 @@
 
 #include "Catch.hpp"
 #include "FakeTerminalWrapper.hpp"
-#include "TerminalOutputSystem.hpp"
+#include "StringBasedOutputSystem.hpp"
 #include "StringBasedInputSystem.hpp"
 
 TEST_CASE("Test that if new game is requsted, the output system displays the expected strings")
@@ -16,7 +16,7 @@ TEST_CASE("Test that if new game is requsted, the output system displays the exp
     SECTION("a new game event will display the correct strings")
     {
         FakeTerminalWrapper terminalWrapper;
-        TerminalOutputSystem outputSystem(terminalWrapper);
+        StringBasedOutputSystem outputSystem(terminalWrapper);
         
         outputSystem.initializeChessUserInterface();
         

@@ -1,12 +1,12 @@
 //
-//  TerminalOutputSystem.cpp
+//  StringBasedOutputSystem.cpp
 //  Chess
 //
 //  Created by Trevor Phillips on 2020-12-25.
 //
 //
 
-#include "TerminalOutputSystem.hpp"
+#include "StringBasedOutputSystem.hpp"
 #include "ChessMoveDescriber.hpp"
 #include "I_StringOutputDestination.hpp"
 #include "ChessMoveValidity.hpp"
@@ -17,49 +17,49 @@
 using namespace Chess;
 using namespace std;
 
-TerminalOutputSystem::TerminalOutputSystem(I_StringOutputDestination& wrapper)
+StringBasedOutputSystem::StringBasedOutputSystem(I_StringOutputDestination& wrapper)
 : moveDescriber_(new ChessMoveDescriber())
 , stringDestination_(wrapper)
 {
 
 }
 
-TerminalOutputSystem::~TerminalOutputSystem()
+StringBasedOutputSystem::~StringBasedOutputSystem()
 {
 
 }
 
-void TerminalOutputSystem::showTextToUser(const char* displayString)
+void StringBasedOutputSystem::showTextToUser(const char* displayString)
 {
     stringDestination_.writeOutputString(displayString);
 }
 
-void TerminalOutputSystem::initializeChessUserInterface()
+void StringBasedOutputSystem::initializeChessUserInterface()
 {
     showTextToUser("===============Main menu ================");
     showTextToUser("Press 'q' to quit.");
     showTextToUser("Press 'n' for a new game.");
 }
 
-void TerminalOutputSystem::endUserInteraction()
+void StringBasedOutputSystem::endUserInteraction()
 {
     showTextToUser("quitting chess...");
 }
 
-void TerminalOutputSystem::resetUxForNewGame()
+void StringBasedOutputSystem::resetUxForNewGame()
 {
     showTextToUser("New game requested...");
     showTextToUser("you are playing as white...");
     showTextToUser("please enter a move in fully specified notation...");
 }
 
-void TerminalOutputSystem::displayValidMoveToUser(const std::list<Chess::MoveElement>& moveElements)
+void StringBasedOutputSystem::displayValidMoveToUser(const std::list<Chess::MoveElement>& moveElements)
 {
     string moveDescription = moveDescriber_->describeValidMove(moveElements);
     showTextToUser(moveDescription.c_str());
 }
 
-void TerminalOutputSystem::rejectMoveAttempt(Chess::MoveValidity validity)
+void StringBasedOutputSystem::rejectMoveAttempt(Chess::MoveValidity validity)
 {
     switch (validity)
     {
@@ -92,27 +92,27 @@ void TerminalOutputSystem::rejectMoveAttempt(Chess::MoveValidity validity)
     }
 }
 
-void TerminalOutputSystem::declareCheck()
+void StringBasedOutputSystem::declareCheck()
 {
     showTextToUser("Check!");
 }
 
-void TerminalOutputSystem::declareCheckmate()
+void StringBasedOutputSystem::declareCheckmate()
 {
     showTextToUser("Checkmate!");
 }
 
-void TerminalOutputSystem::declareStalemate()
+void StringBasedOutputSystem::declareStalemate()
 {
     showTextToUser("Stalemate!");
 }
 
-void TerminalOutputSystem::requestPromotionDecision()
+void StringBasedOutputSystem::requestPromotionDecision()
 {
     showTextToUser("Choose a promotion: 1: knight 2: bishop 3: rook 4: queen");
 }
 
-void TerminalOutputSystem::notifyUserOfPromotionTo(Chess::PieceType type)
+void StringBasedOutputSystem::notifyUserOfPromotionTo(Chess::PieceType type)
 {
     string output("Pawn was promoted to a ");
     output.append(toString(type));
@@ -120,7 +120,7 @@ void TerminalOutputSystem::notifyUserOfPromotionTo(Chess::PieceType type)
     showTextToUser(output.c_str());
 }
 
-void TerminalOutputSystem::gameEndedDueToTenConsecutiveInvalidMoveAttempts()
+void StringBasedOutputSystem::gameEndedDueToTenConsecutiveInvalidMoveAttempts()
 {
     showTextToUser("GAME ENDED due to 10 consecutive invalid move attempts.\n");
 }
