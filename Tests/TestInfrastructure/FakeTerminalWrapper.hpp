@@ -14,7 +14,7 @@ public:
     FakeTerminalWrapper();
     
     // inherited
-    void writeToTerminal(const std::string& text) override;
+    void writeOutputString(const std::string& text) override;
     std::string readNextInputString() override;
     
     // helpers

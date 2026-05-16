@@ -14,7 +14,7 @@ public:
     TerminalWrapper() = default;
     virtual ~TerminalWrapper() = default;
     
-    virtual void writeToTerminal(const std::string& text);
+    virtual void writeOutputString(const std::string& text);
     virtual std::string readNextInputString() override;
 };
 

@@ -8,7 +8,7 @@
 #include "TerminalWrapper.hpp"
 using namespace std;
 
-void TerminalWrapper::writeToTerminal(const std::string& text)
+void TerminalWrapper::writeOutputString(const std::string& text)
 {
     fprintf(stdout, "%s\n", text.c_str());
 }

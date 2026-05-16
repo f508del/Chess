@@ -31,7 +31,7 @@ TerminalOutputSystem::~TerminalOutputSystem()
 
 void TerminalOutputSystem::showTextToUser(const char* displayString)
 {
-    terminalWrapper_.writeToTerminal(displayString);
+    terminalWrapper_.writeOutputString(displayString);
 }
 
 void TerminalOutputSystem::initializeChessUserInterface()
@@ -121,7 +121,7 @@ void TerminalOutputSystem::notifyUserOfPromotionTo(Chess::PieceType type)
 }
 
 void TerminalOutputSystem::gameEndedDueToTenConsecutiveInvalidMoveAttempts()
-{ 
+{
     showTextToUser("GAME ENDED due to 10 consecutive invalid move attempts.\n");
 }
 

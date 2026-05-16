@@ -13,7 +13,7 @@ FakeTerminalWrapper::FakeTerminalWrapper()
 {
 }
 
-void FakeTerminalWrapper::writeToTerminal(const string& text)
+void FakeTerminalWrapper::writeOutputString(const string& text)
 {
     lastOutput_ = text;
     capturedOutput_.push_back(text);
