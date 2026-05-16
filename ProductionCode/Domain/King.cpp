@@ -82,6 +82,11 @@ ExtendedSet<ChessSquare> King::potentialCaptureMovesFrom(const ChessSquare &star
     return potentialEmptyBoardMovesFrom(startingSquare);
 }
 
+ExtendedSet<ChessSquare> King::potentialEmptyOrCaptureMovesFrom(const ChessSquare &startingSquare) const
+{
+    return potentialEmptyBoardMovesFrom(startingSquare);
+}
+
 PieceAffiliation King::affiliation() const
 {
     return affiliation_;
@@ -96,3 +101,4 @@ bool King::pieceCanJumpOtherPieces() const
 {
     return false;
 }
+

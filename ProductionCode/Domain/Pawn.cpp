@@ -63,6 +63,15 @@ ExtendedSet<ChessSquare> Pawn::potentialCaptureMovesFrom(const ChessSquare& star
     return potentialMoves;
 }
 
+ExtendedSet<ChessSquare> Pawn::potentialEmptyOrCaptureMovesFrom(const ChessSquare &startingSquare) const
+{
+    ExtendedSet<ChessSquare> nonCaptureMoves = potentialEmptyBoardMovesFrom(startingSquare);
+    ExtendedSet<ChessSquare> captureMoves =  potentialCaptureMovesFrom(startingSquare);
+    ExtendedSet<ChessSquare> currentPiecePotentialMoves;
+    std::set_union(nonCaptureMoves.begin(), nonCaptureMoves.end(), captureMoves.begin(), captureMoves.end(), std::inserter(currentPiecePotentialMoves, currentPiecePotentialMoves.begin()));
+    return currentPiecePotentialMoves;
+}
+
 PieceAffiliation Pawn::affiliation() const
 {
    return affiliation_;

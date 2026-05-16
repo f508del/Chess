@@ -21,6 +21,8 @@ public:
 
     virtual ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) const = 0;
     virtual ExtendedSet<ChessSquare> potentialCaptureMovesFrom(const ChessSquare& startingSquare) const = 0;
+    virtual ExtendedSet<ChessSquare> potentialEmptyOrCaptureMovesFrom(const ChessSquare& startingSquare) const = 0;
+    
     virtual Chess::PieceAffiliation affiliation() const = 0;
     virtual Chess::PieceType pieceType() const = 0;
     virtual bool pieceCanJumpOtherPieces() const = 0;

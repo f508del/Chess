@@ -15,11 +15,13 @@ public:
     King(Chess::PieceAffiliation affiliation);
     virtual ~King();
     
-    ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) const;
-    ExtendedSet<ChessSquare> potentialCaptureMovesFrom(const ChessSquare& startingSquare) const;
-    Chess::PieceAffiliation affiliation() const;
-    Chess::PieceType pieceType() const;
-    bool pieceCanJumpOtherPieces() const;
+    ExtendedSet<ChessSquare> potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) const override;
+    ExtendedSet<ChessSquare> potentialCaptureMovesFrom(const ChessSquare& startingSquare) const override;
+    ExtendedSet<ChessSquare> potentialEmptyOrCaptureMovesFrom(const ChessSquare& startingSquare) const override;
+    
+    Chess::PieceAffiliation affiliation() const override;
+    Chess::PieceType pieceType() const override;
+    bool pieceCanJumpOtherPieces() const override;
     
 private:
     const Chess::PieceAffiliation affiliation_;

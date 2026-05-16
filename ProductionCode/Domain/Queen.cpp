@@ -89,6 +89,11 @@ ExtendedSet<ChessSquare> Queen::potentialCaptureMovesFrom(const ChessSquare &sta
     return potentialEmptyBoardMovesFrom(startingSquare);
 }
 
+ExtendedSet<ChessSquare> Queen::potentialEmptyOrCaptureMovesFrom(const ChessSquare &startingSquare) const
+{
+    return potentialEmptyBoardMovesFrom(startingSquare);
+}
+
 PieceAffiliation Queen::affiliation() const
 {
     return affiliation_;
@@ -103,3 +108,6 @@ bool Queen::pieceCanJumpOtherPieces() const
 {
     return false;
 }
+
+
+

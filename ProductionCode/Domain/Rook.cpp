@@ -76,3 +76,9 @@ ExtendedSet<ChessSquare> Rook::potentialCaptureMovesFrom(const ChessSquare& star
 {
     return potentialEmptyBoardMovesFrom(startingSquare);
 }
+
+ExtendedSet<ChessSquare> Rook::potentialEmptyOrCaptureMovesFrom(const ChessSquare &startingSquare) const
+{ 
+    return potentialEmptyBoardMovesFrom(startingSquare);
+}
+

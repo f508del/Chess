@@ -32,6 +32,8 @@ public:
     void requestPromotionDecision() override;
     void notifyUserOfPromotionTo(Chess::PieceType type) override;
     
+    void gameEndedDueToTenConsecutiveInvalidMoveAttempts() override;
+    
     // helpers
     ChessSquare lastMoveStartingSquare() const;
     ChessSquare lastMoveEndingSquare() const;

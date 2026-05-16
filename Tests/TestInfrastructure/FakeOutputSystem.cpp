@@ -163,3 +163,9 @@ Chess::PieceType FakeOutputSystem::lastNotifiedPromotion() const
 {
     return lastNotifiedPromotion_;
 }
+
+void FakeOutputSystem::gameEndedDueToTenConsecutiveInvalidMoveAttempts()
+{ 
+    return;
+}
+

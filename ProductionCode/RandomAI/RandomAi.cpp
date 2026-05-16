@@ -30,11 +30,7 @@ void RandomAi::getNextInput()
     {
         const I_ChessPiece* pieceToMove = board_->pieceAt(*startSquareIterator);
         
-        ExtendedSet<ChessSquare> nonCaptureMoves = pieceToMove->potentialEmptyBoardMovesFrom(*startSquareIterator);
-        ExtendedSet<ChessSquare> captureMoves =  pieceToMove->potentialCaptureMovesFrom(*startSquareIterator);
-        ExtendedSet<ChessSquare> currentPiecePotentialMoves;
-        std::set_union(nonCaptureMoves.begin(), nonCaptureMoves.end(), captureMoves.begin(), captureMoves.end(), std::inserter(currentPiecePotentialMoves, currentPiecePotentialMoves.begin()));
-        
+        ExtendedSet<ChessSquare> currentPiecePotentialMoves = pieceToMove->potentialEmptyOrCaptureMovesFrom(*startSquareIterator);
         
         for (auto destinationIterator = currentPiecePotentialMoves.begin(); destinationIterator != currentPiecePotentialMoves.end(); destinationIterator++)
         {
