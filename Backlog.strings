@@ -5,6 +5,6 @@
   Created by Trevor Phillips on 2021-04-02.
 
 This is meant as a simple backlog of what refactorings and features are upcoming
- 
- 31. Unify duplication between chess move describer and Chess piece type associating strings to piece types
+ 1. Add simple test coverage to RandomAI
+ 2. Setup infrastructure to allow AI candidates to be ran against each other
 */
