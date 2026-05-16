@@ -7,14 +7,15 @@
 
 #include <string>
 #include "I_StringInputSource.hpp"
+#include "I_StringOutputDestination.hpp"
 
-class TerminalWrapper : public I_StringInputSource
+class TerminalWrapper : public I_StringInputSource, public I_StringOutputDestination
 {
 public:
     TerminalWrapper() = default;
     virtual ~TerminalWrapper() = default;
     
-    virtual void writeOutputString(const std::string& text);
-    virtual std::string readNextInputString() override;
+    void writeOutputString(const std::string& text) override;
+    std::string readNextInputString() override;
 };
 
