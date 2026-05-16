@@ -37,5 +37,5 @@ private: // helper functions
     
 private:
     ScopedPointer<ChessMoveDescriber> moveDescriber_;
-    TerminalWrapper& terminalWrapper_;
+    TerminalWrapper& stringDestination_;
 };
