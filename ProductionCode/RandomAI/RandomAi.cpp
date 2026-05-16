@@ -36,9 +36,9 @@ void RandomAi::getNextInput()
         std::set_union(nonCaptureMoves.begin(), nonCaptureMoves.end(), captureMoves.begin(), captureMoves.end(), std::inserter(currentPiecePotentialMoves, currentPiecePotentialMoves.begin()));
         
         
-        for (auto destinatinonIterator = currentPiecePotentialMoves.begin(); destinatinonIterator != currentPiecePotentialMoves.end(); destinatinonIterator++)
+        for (auto destinationIterator = currentPiecePotentialMoves.begin(); destinationIterator != currentPiecePotentialMoves.end(); destinationIterator++)
         {
-            ChessMoveRequest request(*startSquareIterator, *destinatinonIterator);
+            ChessMoveRequest request(*startSquareIterator, *destinationIterator);
             if (moveValidator_.validateMove(request).isValid())
             {
                 moveAttemptCallback_(request);
