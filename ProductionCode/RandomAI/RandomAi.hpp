@@ -41,9 +41,11 @@ public:
 private:
     std::function<void(const ChessMoveRequest&)> moveAttemptCallback_;
     std::function<void(Chess::PieceType)> promotionCallback_;
+    ChessMoveRequest convertInternalMoveToRequest(const InternalChessMove& move);
     
     ScopedPointer<ChessBoard> board_;
     ChessGameHistory gameHistory_;
     ChessMoveValidator moveValidator_;
+    Chess::PieceAffiliation colorBeingPlayed_;
 };
 

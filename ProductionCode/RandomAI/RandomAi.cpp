@@ -18,30 +18,25 @@ RandomAi::RandomAi()
 , board_(new ChessBoard())
 , gameHistory_()
 , moveValidator_(*board_, gameHistory_)
+, colorBeingPlayed_(PieceAffiliation::WHITE_PIECE)
 {
-    
+    srand((unsigned int)time(NULL));
 }
 
 void RandomAi::getNextInput()
 {
-    std::list<ChessSquare> potentialStartingSquares = board_->allSquaresOccupiedByColor(PieceAffiliation::WHITE_PIECE);
-    
-    for (auto startSquareIterator = potentialStartingSquares.begin(); startSquareIterator != potentialStartingSquares.end(); startSquareIterator++)
+    std::list<InternalChessMove> potentialValidMoves = moveValidator_.findAllPotentialMovesFor(colorBeingPlayed_);
+    unsigned long int potentialMoveCount = potentialValidMoves.size();
+    unsigned long int moveIndexToMake = rand() % (potentialMoveCount);
+    auto validMoveIterator = potentialValidMoves.begin();
+    while (moveIndexToMake--)
     {
-        const I_ChessPiece* pieceToMove = board_->pieceAt(*startSquareIterator);
-        
-        ExtendedSet<ChessSquare> currentPiecePotentialMoves = pieceToMove->potentialEmptyOrCaptureMovesFrom(*startSquareIterator);
-        
-        for (auto destinationIterator = currentPiecePotentialMoves.begin(); destinationIterator != currentPiecePotentialMoves.end(); destinationIterator++)
-        {
-            ChessMoveRequest request(*startSquareIterator, *destinationIterator);
-            if (moveValidator_.validateMove(request).isValid())
-            {
-                moveAttemptCallback_(request);
-                return;
-            }
-        }
+        validMoveIterator++;
     }
+    
+    ChessMoveRequest moveRequest = convertInternalMoveToRequest(*validMoveIterator);
+           
+    moveAttemptCallback_(moveRequest);
     
     return;
 }
@@ -81,7 +76,12 @@ void RandomAi::endUserInteraction()
 }
 
 void RandomAi::resetUxForNewGame()
-{ 
+{
+    if (PieceAffiliation::BLACK_PIECE == board_->playerToMakeNextMove() )
+    {
+        board_->togglePlayerInitiative();
+    }
+    board_->resetBoard();
     return;
 }
 
@@ -132,4 +132,18 @@ void RandomAi::gameEndedDueToTenConsecutiveInvalidMoveAttempts()
 { 
     return;
 }
+
+ChessMoveRequest RandomAi::convertInternalMoveToRequest(const InternalChessMove &move)
+{
+    if (!move.isValid())
+    {
+        return ChessMoveRequest();
+    }
+    
+    ChessSquare startSquare = move.moveElements().front().square_;
+    ChessSquare endSquare = (++(move.moveElements().begin()))->square_;
+    
+    return ChessMoveRequest(startSquare, endSquare);
+}
+
 
