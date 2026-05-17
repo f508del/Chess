@@ -48,6 +48,13 @@ string ChessMoveDescriber::describeValidMove(const list<Chess::MoveElement>& mov
         output.append(" by en passant");
     }
     
+    if (moveElements.size() == 4)
+    {
+        output.append(", which also moves the rook ");
+        output.append(toString((----moveElements.end())->square_));
+        output.append(toString(moveElements.back().square_));
+    }
+    
     return output;
 }
 
