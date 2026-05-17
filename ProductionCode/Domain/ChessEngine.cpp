@@ -89,7 +89,7 @@ void ChessEngine::attemptMove(const ChessMoveRequest& move)
         consecutiveInvalidMoveAttemptCounter_++;
         if (consecutiveInvalidMoveAttemptCounter_ >= MAX_ALLOWABLE_CONSECUTIVE_INVALID_MOVE_ATTEMPTS)
         {
-            outputSystem_.gameEndedDueToTenConsecutiveInvalidMoveAttempts();
+            outputSystem_.gameEndedDueToTooManyConsecutiveInvalidMoveAttempts();
             resetForNewGame();
         }
     }

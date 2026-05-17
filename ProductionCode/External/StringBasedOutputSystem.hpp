@@ -30,7 +30,7 @@ public:
     void declareStalemate() override;
     void requestPromotionDecision() override;
     void notifyUserOfPromotionTo(Chess::PieceType type) override;
-    void gameEndedDueToTenConsecutiveInvalidMoveAttempts() override;
+    void gameEndedDueToTooManyConsecutiveInvalidMoveAttempts() override;
     
 private: // helper functions
     void showTextToUser(const char* displayString);

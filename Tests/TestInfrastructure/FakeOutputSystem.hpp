@@ -32,7 +32,7 @@ public:
     void requestPromotionDecision() override;
     void notifyUserOfPromotionTo(Chess::PieceType type) override;
     
-    void gameEndedDueToTenConsecutiveInvalidMoveAttempts() override;
+    void gameEndedDueToTooManyConsecutiveInvalidMoveAttempts() override;
     
     // helpers
     ChessSquare lastMoveStartingSquare() const;

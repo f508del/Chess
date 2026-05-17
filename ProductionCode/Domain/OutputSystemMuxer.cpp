@@ -133,13 +133,13 @@ void OutputSystemMuxer::notifyUserOfPromotionTo(Chess::PieceType type)
     return;
 }
 
-void OutputSystemMuxer::gameEndedDueToTenConsecutiveInvalidMoveAttempts()
+void OutputSystemMuxer::gameEndedDueToTooManyConsecutiveInvalidMoveAttempts()
 {
     for(auto& pointer : muxedOutputSystems_)
     {
         if (pointer)
         {
-            pointer->gameEndedDueToTenConsecutiveInvalidMoveAttempts();
+            pointer->gameEndedDueToTooManyConsecutiveInvalidMoveAttempts();
         }
     }
     return;

@@ -120,7 +120,7 @@ void StringBasedOutputSystem::notifyUserOfPromotionTo(Chess::PieceType type)
     showTextToUser(output.c_str());
 }
 
-void StringBasedOutputSystem::gameEndedDueToTenConsecutiveInvalidMoveAttempts()
+void StringBasedOutputSystem::gameEndedDueToTooManyConsecutiveInvalidMoveAttempts()
 {
     showTextToUser("GAME ENDED due to 10 consecutive invalid move attempts.\n");
 }

@@ -33,5 +33,5 @@ public:
     virtual void requestPromotionDecision() = 0;
     virtual void notifyUserOfPromotionTo(Chess::PieceType type) = 0;
     
-    virtual void gameEndedDueToTenConsecutiveInvalidMoveAttempts() = 0;
+    virtual void gameEndedDueToTooManyConsecutiveInvalidMoveAttempts() = 0;
 };

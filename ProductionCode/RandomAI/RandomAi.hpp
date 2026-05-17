@@ -36,7 +36,7 @@ public:
     void requestPromotionDecision() override;
     void notifyUserOfPromotionTo(Chess::PieceType type) override;
     
-    void gameEndedDueToTenConsecutiveInvalidMoveAttempts() override;
+    void gameEndedDueToTooManyConsecutiveInvalidMoveAttempts() override;
     
 private:
     std::function<void(const ChessMoveRequest&)> moveAttemptCallback_;

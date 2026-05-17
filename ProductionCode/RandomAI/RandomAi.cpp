@@ -128,7 +128,7 @@ void RandomAi::notifyUserOfPromotionTo(Chess::PieceType /*type*/)
     return;
 }
 
-void RandomAi::gameEndedDueToTenConsecutiveInvalidMoveAttempts()
+void RandomAi::gameEndedDueToTooManyConsecutiveInvalidMoveAttempts()
 { 
     return;
 }
