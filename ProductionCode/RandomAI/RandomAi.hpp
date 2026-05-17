@@ -47,5 +47,6 @@ private:
     ChessGameHistory gameHistory_;
     ChessMoveValidator moveValidator_;
     Chess::PieceAffiliation colorBeingPlayed_;
+    bool needToSubmitPromotionDecision_;
 };
 

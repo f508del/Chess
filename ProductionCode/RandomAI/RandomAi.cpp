@@ -19,12 +19,20 @@ RandomAi::RandomAi()
 , gameHistory_()
 , moveValidator_(*board_, gameHistory_)
 , colorBeingPlayed_(PieceAffiliation::WHITE_PIECE)
+, needToSubmitPromotionDecision_(false)
 {
     srand((unsigned int)time(NULL));
 }
 
 void RandomAi::getNextInput()
 {
+    if (needToSubmitPromotionDecision_)
+    {
+        promotionCallback_(PieceType::QUEEN);
+        needToSubmitPromotionDecision_ = false;
+        return;
+    }
+    
     std::list<InternalChessMove> potentialValidMoves = moveValidator_.findAllPotentialMovesFor(colorBeingPlayed_);
     unsigned long int potentialMoveCount = potentialValidMoves.size();
     unsigned long int moveIndexToMake = rand() % (potentialMoveCount);
@@ -119,7 +127,8 @@ void RandomAi::declareStalemate()
 }
 
 void RandomAi::requestPromotionDecision()
-{ 
+{
+    needToSubmitPromotionDecision_ = true;
     return;
 }
 
