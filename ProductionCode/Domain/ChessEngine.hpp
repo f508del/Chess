@@ -55,5 +55,5 @@ private:
     ScopedPointer<ChessGameHistory> gameHistory_;
     ScopedPointer<ChessMoveValidator> moveValidator_;
     bool userHasQuitTheProgram_;
-    unsigned int invalidMoveAttemptCounter_;
+    unsigned int consecutiveInvalidMoveAttemptCounter_;
 };
