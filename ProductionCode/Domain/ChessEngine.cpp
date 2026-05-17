@@ -19,6 +19,11 @@
 using namespace Chess;
 using namespace std;
 
+namespace {
+const unsigned int MAX_ALLOWABLE_CONSECUTIVE_INVALID_MOVE_ATTEMPTS = 10;
+}
+
+
 ChessEngine::ChessEngine(I_InputSystem& whiteInputSystem,
                          I_InputSystem& blackInputSystem,
                          I_OutputSystem& outputSystem)
@@ -82,7 +87,7 @@ void ChessEngine::attemptMove(const ChessMoveRequest& move)
     {
         outputSystem_.rejectMoveAttempt(validatedMove.validity());
         consecutiveInvalidMoveAttemptCounter_++;
-        if (consecutiveInvalidMoveAttemptCounter_ >= 10)
+        if (consecutiveInvalidMoveAttemptCounter_ >= MAX_ALLOWABLE_CONSECUTIVE_INVALID_MOVE_ATTEMPTS)
         {
             outputSystem_.gameEndedDueToTenConsecutiveInvalidMoveAttempts();
             resetForNewGame();
