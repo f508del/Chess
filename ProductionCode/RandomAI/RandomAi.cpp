@@ -12,13 +12,13 @@
 
 using namespace Chess;
 
-RandomAi::RandomAi()
+RandomAi::RandomAi(PieceAffiliation affiliationToPlay)
 : moveAttemptCallback_([](const ChessMoveRequest&){})
 , promotionCallback_([](Chess::PieceType){})
 , board_(new ChessBoard())
 , gameHistory_()
 , moveValidator_(*board_, gameHistory_)
-, colorBeingPlayed_(PieceAffiliation::WHITE_PIECE)
+, colorBeingPlayed_(affiliationToPlay)
 , needToSubmitPromotionDecision_(false)
 {
     srand((unsigned int)time(NULL));

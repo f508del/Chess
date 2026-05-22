@@ -14,7 +14,7 @@
 class RandomAi : public I_AiPlayer
 {
 public:
-    RandomAi();
+    RandomAi(Chess::PieceAffiliation affiliationToPlay);
     
     // I_InputSystem implementations:
     void getNextInput() override;

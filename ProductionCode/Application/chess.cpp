@@ -24,7 +24,7 @@
 
 int main(int /*argc*/, char** /*argv*/)
 {
-    RandomAi aiPlayer;
+    RandomAi aiPlayer(Chess::PieceAffiliation::WHITE_PIECE);
     TerminalWrapper wrapper;
     StringBasedOutputSystem outputSystem(wrapper);
 	StringBasedInputSystem inputSystem(wrapper);
