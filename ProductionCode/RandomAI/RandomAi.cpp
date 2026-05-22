@@ -155,4 +155,7 @@ ChessMoveRequest RandomAi::convertInternalMoveToRequest(const InternalChessMove 
     return ChessMoveRequest(startSquare, endSquare);
 }
 
-
+std::string RandomAi::playerIdentifier() const
+{
+    return "random";
+}

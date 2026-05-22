@@ -5,14 +5,13 @@
 //  Created by Trevor Phillips on 2026-05-06.
 //
 
-#include "I_InputSystem.hpp"
-#include "I_OutputSystem.hpp"
+#include "I_AiPlayer.hpp"
 #include "ChessBoard.hpp"
 #include "ScopedPointer.hpp"
 #include "ChessGameHistory.hpp"
 #include "ChessMoveValidator.hpp"
 
-class RandomAi : public I_InputSystem, public I_OutputSystem
+class RandomAi : public I_AiPlayer
 {
 public:
     RandomAi();
@@ -35,8 +34,10 @@ public:
     void declareStalemate() override;
     void requestPromotionDecision() override;
     void notifyUserOfPromotionTo(Chess::PieceType type) override;
-    
     void gameEndedDueToTooManyConsecutiveInvalidMoveAttempts() override;
+    
+    // I_AiPlayer implementation:
+    std::string playerIdentifier() const override;
     
 private:
     std::function<void(const ChessMoveRequest&)> moveAttemptCallback_;
