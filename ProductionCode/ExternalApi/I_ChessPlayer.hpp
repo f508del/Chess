@@ -1,5 +1,5 @@
 //
-//  I_AiPlayer.hpp
+//  I_ChessPlayer.hpp
 //  Chess
 //
 //  Created by Trevor Phillips on 2026-05-22.
@@ -9,7 +9,7 @@
 #include "I_OutputSystem.hpp"
 #include <string>
 
-class I_AiPlayer : public I_InputSystem, public I_OutputSystem
+class I_ChessPlayer : public I_InputSystem, public I_OutputSystem
 {
 public:
     virtual std::string playerIdentifier() const = 0;

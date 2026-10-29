@@ -5,13 +5,13 @@
 //  Created by Trevor Phillips on 2026-05-06.
 //
 
-#include "I_AiPlayer.hpp"
+#include "I_ChessPlayer.hpp"
 #include "ChessBoard.hpp"
 #include "ScopedPointer.hpp"
 #include "ChessGameHistory.hpp"
 #include "ChessMoveValidator.hpp"
 
-class RandomAi : public I_AiPlayer
+class RandomAi : public I_ChessPlayer
 {
 public:
     RandomAi(Chess::PieceAffiliation affiliationToPlay);
@@ -36,7 +36,7 @@ public:
     void notifyUserOfPromotionTo(Chess::PieceType type) override;
     void gameEndedDueToTooManyConsecutiveInvalidMoveAttempts() override;
     
-    // I_AiPlayer implementation:
+    // I_ChessPlayer implementation:
     std::string playerIdentifier() const override;
     
 private:
