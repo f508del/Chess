@@ -5,6 +5,8 @@
 //  Created by Trevor Phillips on 2026-05-22.
 //
 
+#pragma once
+
 #include "I_InputSystem.hpp"
 #include "I_OutputSystem.hpp"
 #include <string>

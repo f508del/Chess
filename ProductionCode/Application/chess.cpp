@@ -21,17 +21,16 @@
 #include "TerminalWrapper.hpp"
 #include "RandomAi.hpp"
 #include "OutputSystemMuxer.hpp"
+#include "TerminalBasedHumanChessPlayer.hpp"
 
 int main(int /*argc*/, char** /*argv*/)
 {
     RandomAi aiPlayer(Chess::PieceAffiliation::WHITE_PIECE);
-    TerminalWrapper wrapper;
-    StringBasedOutputSystem outputSystem(wrapper);
-	StringBasedInputSystem inputSystem(wrapper);
+    TerminalBasedHumanChessPlayer humanPlayer;
 
-    OutputSystemMuxer outputMuxer({&aiPlayer, &outputSystem});
+    OutputSystemMuxer outputMuxer({&aiPlayer, &humanPlayer});
     
-	ChessEngine engine(aiPlayer, inputSystem, outputMuxer);
+	ChessEngine engine(aiPlayer, humanPlayer, outputMuxer);
 
 	engine.runChessEngine();
 	

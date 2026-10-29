@@ -7,5 +7,4 @@
 This is meant as a simple backlog of what refactorings and features are upcoming
  1. Add simple test coverage to RandomAI
  2. Setup infrastructure to allow AI candidates to be ran against each other
- 2.2 Create TerminalBasedHumanChessPlayer : public I_ChessPlayer, to contain the terminal input and output systems
 */
