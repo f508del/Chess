@@ -10,7 +10,6 @@
 
 #include "ChessPieceAffiliation.hpp"
 #include "ChessPieceType.hpp"
-#include "ScopedPointer.hpp"
 #include "I_ReadOnlyChessBoard.hpp"
 #include <map>
 #include <list>

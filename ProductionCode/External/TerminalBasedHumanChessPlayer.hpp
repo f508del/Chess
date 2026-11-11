@@ -8,7 +8,7 @@
 #pragma once
 
 #include "I_ChessPlayer.hpp"
-#include "ScopedPointer.hpp"
+#include <memory>
 
 class TerminalWrapper;
 class StringBasedOutputSystem;
@@ -43,7 +43,7 @@ public:
     std::string playerIdentifier() const override;
     
 private:
-    ScopedPointer<TerminalWrapper> terminalWrapper_;
-    ScopedPointer<StringBasedOutputSystem> outputSystem_;
-    ScopedPointer<StringBasedInputSystem> inputSystem_;
+    std::unique_ptr<TerminalWrapper> terminalWrapper_;
+    std::unique_ptr<StringBasedOutputSystem> outputSystem_;
+    std::unique_ptr<StringBasedInputSystem> inputSystem_;
 };

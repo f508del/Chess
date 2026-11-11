@@ -8,9 +8,9 @@
 
 #pragma once
 
-#include "ScopedPointer.hpp"
 #include "ChessPieceType.hpp"
 #include "ChessMoveValidity.hpp"
+#include <memory>
 #include <list>
 #include <string>
 
@@ -40,9 +40,9 @@ public:
     bool promotionPromptHasBeenRequested();
 
 private:
-    ScopedPointer<InMemoryStringInputSource> fakeInputSource_;
-    ScopedPointer<StringBasedInputSystem> inputSystem_;
-    ScopedPointer<FakeOutputSystem> outputSystem_;
+    std::unique_ptr<InMemoryStringInputSource> fakeInputSource_;
+    std::unique_ptr<StringBasedInputSystem> inputSystem_;
+    std::unique_ptr<FakeOutputSystem> outputSystem_;
 
-    ScopedPointer<ChessEngine> engine_;
+    std::unique_ptr<ChessEngine> engine_;
 };

@@ -7,9 +7,9 @@
 
 #include "I_ChessPlayer.hpp"
 #include "ChessBoard.hpp"
-#include "ScopedPointer.hpp"
 #include "ChessGameHistory.hpp"
 #include "ChessMoveValidator.hpp"
+#include <memory>
 
 class RandomAi : public I_ChessPlayer
 {
@@ -44,7 +44,7 @@ private:
     std::function<void(Chess::PieceType)> promotionCallback_;
     ChessMoveRequest convertInternalMoveToRequest(const InternalChessMove& move);
     
-    ScopedPointer<ChessBoard> board_;
+    std::unique_ptr<ChessBoard> board_;
     ChessGameHistory gameHistory_;
     ChessMoveValidator moveValidator_;
     Chess::PieceAffiliation colorBeingPlayed_;

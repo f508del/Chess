@@ -12,7 +12,7 @@ class ChessMoveDescriber;
 class I_StringOutputDestination;
 
 #include "I_OutputSystem.hpp"
-#include "ScopedPointer.hpp"
+#include <memory>
 
 class StringBasedOutputSystem : public I_OutputSystem
 {
@@ -36,6 +36,6 @@ private: // helper functions
     void showTextToUser(const char* displayString);
     
 private:
-    ScopedPointer<ChessMoveDescriber> moveDescriber_;
+    std::unique_ptr<ChessMoveDescriber> moveDescriber_;
     I_StringOutputDestination& stringDestination_;
 };

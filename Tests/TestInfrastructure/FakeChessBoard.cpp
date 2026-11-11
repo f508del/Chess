@@ -48,30 +48,30 @@ const I_ChessPiece* FakeChessBoard::pieceAt(const ChessSquare& square) const
 
 void FakeChessBoard::placeBishopAtSquare(const ChessSquare& square)
 {
-    boardState_[square] = whiteBishopCapabilities_.data();
+    boardState_[square] = whiteBishopCapabilities_.get();
 }
 
 void FakeChessBoard::placeKingAtSquare(const ChessSquare& square)
 {
-    boardState_[square] = whiteKingCapabilities_.data();
+    boardState_[square] = whiteKingCapabilities_.get();
 }
 
 void FakeChessBoard::placeKnightAtSquare(const ChessSquare &square)
 {
-    boardState_[square] = whiteKnightCapabilities_.data();
+    boardState_[square] = whiteKnightCapabilities_.get();
 }
 
 void FakeChessBoard::placePawnAtSquare(const ChessSquare& square)
 {
-    boardState_[square] = whitePawnCapabilities_.data();
+    boardState_[square] = whitePawnCapabilities_.get();
 }
 
 void FakeChessBoard::placeQueenAtSquare(const ChessSquare& square)
 {
-    boardState_[square] = whiteQueenCapabilities_.data();
+    boardState_[square] = whiteQueenCapabilities_.get();
 }
 
 void FakeChessBoard::placeRookAtSquare(const ChessSquare& square)
 {
-    boardState_[square] = whiteRookCapabilities_.data();
+    boardState_[square] = whiteRookCapabilities_.get();
 }

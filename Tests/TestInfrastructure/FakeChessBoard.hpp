@@ -6,7 +6,7 @@
 //
 
 #include "I_ReadOnlyChessBoard.hpp"
-#include "ScopedPointer.hpp"
+#include <memory>
 #include <map>
 
 class Bishop;
@@ -37,11 +37,11 @@ public:
     void placeRookAtSquare(const ChessSquare& square);
     
 private:
-    ScopedPointer<Bishop> whiteBishopCapabilities_;
-    ScopedPointer<King> whiteKingCapabilities_;
-    ScopedPointer<Knight> whiteKnightCapabilities_;
-    ScopedPointer<Pawn> whitePawnCapabilities_;
-    ScopedPointer<Queen> whiteQueenCapabilities_;
-    ScopedPointer<Rook> whiteRookCapabilities_;
+    std::unique_ptr<Bishop> whiteBishopCapabilities_;
+    std::unique_ptr<King> whiteKingCapabilities_;
+    std::unique_ptr<Knight> whiteKnightCapabilities_;
+    std::unique_ptr<Pawn> whitePawnCapabilities_;
+    std::unique_ptr<Queen> whiteQueenCapabilities_;
+    std::unique_ptr<Rook> whiteRookCapabilities_;
     std::map<ChessSquare, const I_ChessPiece*> boardState_;
 };

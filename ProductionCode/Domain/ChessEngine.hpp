@@ -8,9 +8,9 @@
 
 #pragma once
 
-#include "ScopedPointer.hpp"
 #include "ChessPieceType.hpp"
 #include "ChessPieceAffiliation.hpp"
+#include <memory>
 
 class ChessBoard;
 class ChessGameHistory;
@@ -51,9 +51,9 @@ private:
     I_InputSystem& whiteInputSystem_;
     I_InputSystem& blackInputSystem_;
     I_OutputSystem& outputSystem_;
-    ScopedPointer<ChessBoard> board_;
-    ScopedPointer<ChessGameHistory> gameHistory_;
-    ScopedPointer<ChessMoveValidator> moveValidator_;
+    std::unique_ptr<ChessBoard> board_;
+    std::unique_ptr<ChessGameHistory> gameHistory_;
+    std::unique_ptr<ChessMoveValidator> moveValidator_;
     bool userHasQuitTheProgram_;
     unsigned int consecutiveInvalidMoveAttemptCounter_;
 };
