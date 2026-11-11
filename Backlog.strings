@@ -7,4 +7,8 @@
 This is meant as a simple backlog of what refactorings and features are upcoming
  1. Add simple test coverage to RandomAI
  2. Setup infrastructure to allow AI candidates to be ran against each other
+ 2.1 Split output system into player specific and common output systems.
+ 2.3 Refactor ChessEngine to allow user to decide human vs Ai player for each color before a game.
+ 3. Add simple "display" by outputting the current position in Forsyth-Edwards notation.
+ 4. Add game logging in algebraic notation.
 */
