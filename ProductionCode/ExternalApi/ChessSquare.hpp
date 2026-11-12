@@ -30,7 +30,7 @@ public:
     char file() const;
     unsigned int rank() const;
 
-    bool operator< (const ChessSquare& otherSquare) const;
+    bool operator< (const ChessSquare& otherSquare) const noexcept;
     bool operator==(const ChessSquare& otherSquare) const;
     bool operator!=(const ChessSquare& otherSquare) const;
 

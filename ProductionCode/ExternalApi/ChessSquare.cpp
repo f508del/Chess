@@ -8,6 +8,7 @@
 
 #include "ChessSquare.hpp"
 #include <cctype>
+#include <tuple>
 
 ChessSquare::ChessSquare()
 : file_('\0')
@@ -30,11 +31,9 @@ unsigned int ChessSquare::rank() const
    return rank_;
 }
 
-bool ChessSquare::operator<(const ChessSquare& otherSquare) const
+bool ChessSquare::operator<(const ChessSquare& otherSquare) const noexcept
 {
-   int hashNumber = (file_ << 8) + rank_;
-   int otherHashNumber = (otherSquare.file() << 8) + otherSquare.rank();
-   return hashNumber < otherHashNumber;
+    return std::tie(file_, rank_) < std::tie(otherSquare.file_, otherSquare.rank_);
 }
 
 bool ChessSquare::operator==(const ChessSquare& otherSquare) const
