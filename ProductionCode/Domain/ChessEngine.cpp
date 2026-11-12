@@ -20,7 +20,7 @@ using namespace Chess;
 using namespace std;
 
 namespace {
-const unsigned int MAX_ALLOWABLE_CONSECUTIVE_INVALID_MOVE_ATTEMPTS = 10;
+constexpr unsigned int MAX_ALLOWABLE_CONSECUTIVE_INVALID_MOVE_ATTEMPTS = 10u;
 }
 
 
