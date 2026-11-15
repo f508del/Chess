@@ -11,4 +11,8 @@ This is meant as a simple backlog of what refactorings and features are upcoming
  2.3 Refactor ChessEngine to allow user to decide human vs Ai player for each color before a game.
  3. Add simple "display" by outputting the current position in Forsyth-Edwards notation.
  4. Add game logging in algebraic notation.
+ 
+ AI improvements:
+ Consider strong types for file and rank
+    • Introduce enum class File : uint8_t { A, B, C, D, E, F, G, H }; and enum class Rank : uint8_t { R1, ..., R8 }; to eliminate invalid states at compile time. Provide conversion helpers from SAN/coordinate strings.
 */
