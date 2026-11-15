@@ -21,30 +21,28 @@ Pawn::~Pawn()
 
 ExtendedSet<ChessSquare> Pawn::potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) const
 {
-   ExtendedSet<ChessSquare> potentialMoves;
-   if (!startingSquare.isSquareOnTheBoard() || startingSquare.rank() == 1 ||
-       startingSquare.rank() == 8)
-   {
-      return potentialMoves;
-   }
+    ExtendedSet<ChessSquare> potentialMoves;
+    if (!isValidStartingSquare(startingSquare))
+    {
+        return potentialMoves;
+    }
 
-   potentialMoves.insert(ChessSquare(startingSquare.file(), startingSquare.rank()
-                                     + (1 * movementDirectionForCurrentAffiliation())));
-   if (startingSquare.rank() == startingRankForCurrentAffiliation())
-   {
-      potentialMoves.insert(ChessSquare(startingSquare.file(), startingSquare.rank()
-                                        + (2 * movementDirectionForCurrentAffiliation())));
-   }
-   return potentialMoves;
+    potentialMoves.insert(ChessSquare(startingSquare.file(), startingSquare.rank()
+                                      + (1 * movementDirectionForCurrentAffiliation())));
+    if (startingSquare.rank() == startingRankForCurrentAffiliation())
+    {
+       potentialMoves.insert(ChessSquare(startingSquare.file(), startingSquare.rank()
+                                         + (2 * movementDirectionForCurrentAffiliation())));
+    }
+    return potentialMoves;
 }
 
 ExtendedSet<ChessSquare> Pawn::potentialCaptureMovesFrom(const ChessSquare& startingSquare) const
 {
     ExtendedSet<ChessSquare> potentialMoves;
-    if (!startingSquare.isSquareOnTheBoard() || startingSquare.rank() == 1 ||
-        startingSquare.rank() == 8)
+    if (!isValidStartingSquare(startingSquare))
     {
-    return potentialMoves;
+        return potentialMoves;
     }
     
     // Capture moves
@@ -105,3 +103,7 @@ bool Pawn::pieceCanJumpOtherPieces() const
     return false;
 }
 
+bool Pawn::isValidStartingSquare(const ChessSquare& square) const noexcept
+{
+    return square.isSquareOnTheBoard() && square.rank() != 1 && square.rank() != 8;
+}
