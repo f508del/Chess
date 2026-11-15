@@ -25,18 +25,18 @@ public:
         
     }
 
-    bool isSquareOnTheBoard() const;
+    bool isSquareOnTheBoard() const noexcept;
 
-    char file() const;
-    unsigned int rank() const;
+    char file() const noexcept;
+    unsigned int rank() const noexcept;
 
     bool operator< (const ChessSquare& otherSquare) const noexcept;
-    bool operator==(const ChessSquare& otherSquare) const;
-    bool operator!=(const ChessSquare& otherSquare) const;
+    bool operator==(const ChessSquare& otherSquare) const noexcept;
+    bool operator!=(const ChessSquare& otherSquare) const noexcept;
 
 private:
-    bool isValidFile() const;
-    bool isValidRank() const;
+    bool isValidFile() const noexcept;
+    bool isValidRank() const noexcept;
 
 private:
     char file_;

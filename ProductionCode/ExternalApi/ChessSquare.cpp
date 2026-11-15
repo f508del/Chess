@@ -16,17 +16,17 @@ ChessSquare::ChessSquare()
 {
 }
 
-bool ChessSquare::isSquareOnTheBoard() const
+bool ChessSquare::isSquareOnTheBoard() const noexcept
 {
    return isValidFile() && isValidRank();
 }
 
-char ChessSquare::file() const
+char ChessSquare::file() const noexcept
 {
    return file_;
 }
 
-unsigned int ChessSquare::rank() const
+unsigned int ChessSquare::rank() const noexcept
 {
    return rank_;
 }
@@ -36,22 +36,22 @@ bool ChessSquare::operator<(const ChessSquare& otherSquare) const noexcept
     return std::tie(file_, rank_) < std::tie(otherSquare.file_, otherSquare.rank_);
 }
 
-bool ChessSquare::operator==(const ChessSquare& otherSquare) const
+bool ChessSquare::operator==(const ChessSquare& otherSquare) const noexcept
 {
     return ((file_ == otherSquare.file_) && (rank_ == otherSquare.rank_));
 }
 
-bool ChessSquare::operator!=(const ChessSquare& otherSquare) const
+bool ChessSquare::operator!=(const ChessSquare& otherSquare) const noexcept
 {
     return ((file_ != otherSquare.file_) || (rank_ != otherSquare.rank_));
 }
 
-bool ChessSquare::isValidFile() const
+bool ChessSquare::isValidFile() const noexcept
 {
    return (file_ >= 'a' && file_ <= 'h');
 }
 
-bool ChessSquare::isValidRank() const
+bool ChessSquare::isValidRank() const noexcept
 {
    return (rank_ >= 1 && rank_ <= 8);
 }
