@@ -13,6 +13,68 @@ using namespace Chess;
 Pawn::Pawn(PieceAffiliation affiliation)
 : affiliation_(affiliation)
 {
+    if (Chess::PieceAffiliation::WHITE_PIECE == affiliation)
+    {
+        std::vector<File> allFilesToMove = Chess::allFiles();
+        for (auto fileIterator = allFilesToMove.begin(); fileIterator != allFilesToMove.end(); ++fileIterator)
+        {
+            ExtendedSet<ChessSquare> moves;
+            moves.insert(ChessSquare(*fileIterator, 3));
+            moves.insert(ChessSquare(*fileIterator, 4));
+            emptyBoardMoves_[ChessSquare(*fileIterator, 2)] = moves;
+            
+            moves.clear();
+            moves.insert(ChessSquare(*fileIterator, 4));
+            emptyBoardMoves_[ChessSquare(*fileIterator, 3)] = moves;
+            
+            moves.clear();
+            moves.insert(ChessSquare(*fileIterator, 5));
+            emptyBoardMoves_[ChessSquare(*fileIterator, 4)] = moves;
+            
+            moves.clear();
+            moves.insert(ChessSquare(*fileIterator, 6));
+            emptyBoardMoves_[ChessSquare(*fileIterator, 5)] = moves;
+            
+            moves.clear();
+            moves.insert(ChessSquare(*fileIterator, 7));
+            emptyBoardMoves_[ChessSquare(*fileIterator, 6)] = moves;
+            
+            moves.clear();
+            moves.insert(ChessSquare(*fileIterator, 8));
+            emptyBoardMoves_[ChessSquare(*fileIterator, 7)] = moves;
+        }
+    }
+    else // Black pawn:
+    {
+        std::vector<File> allFilesToMove = Chess::allFiles();
+        for (auto fileIterator = allFilesToMove.begin(); fileIterator != allFilesToMove.end(); ++fileIterator)
+        {
+            ExtendedSet<ChessSquare> moves;
+            moves.insert(ChessSquare(*fileIterator, 5));
+            moves.insert(ChessSquare(*fileIterator, 6));
+            emptyBoardMoves_[ChessSquare(*fileIterator, 7)] = moves;
+            
+            moves.clear();
+            moves.insert(ChessSquare(*fileIterator, 5));
+            emptyBoardMoves_[ChessSquare(*fileIterator, 6)] = moves;
+            
+            moves.clear();
+            moves.insert(ChessSquare(*fileIterator, 4));
+            emptyBoardMoves_[ChessSquare(*fileIterator, 5)] = moves;
+            
+            moves.clear();
+            moves.insert(ChessSquare(*fileIterator, 3));
+            emptyBoardMoves_[ChessSquare(*fileIterator, 4)] = moves;
+            
+            moves.clear();
+            moves.insert(ChessSquare(*fileIterator, 2));
+            emptyBoardMoves_[ChessSquare(*fileIterator, 3)] = moves;
+            
+            moves.clear();
+            moves.insert(ChessSquare(*fileIterator, 1));
+            emptyBoardMoves_[ChessSquare(*fileIterator, 2)] = moves;
+        }
+    }
 }
 
 Pawn::~Pawn()
@@ -21,20 +83,12 @@ Pawn::~Pawn()
 
 ExtendedSet<ChessSquare> Pawn::potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) const
 {
-    ExtendedSet<ChessSquare> potentialMoves;
-    if (!isValidStartingSquare(startingSquare))
+    if (emptyBoardMoves_.find(startingSquare) != emptyBoardMoves_.end())
     {
-        return potentialMoves;
+        ExtendedSet<ChessSquare> moves = emptyBoardMoves_.at(startingSquare);
+        return emptyBoardMoves_.at(startingSquare);
     }
-
-    potentialMoves.insert(ChessSquare(startingSquare.file(), startingSquare.rank()
-                                      + (1 * movementDirectionForCurrentAffiliation())));
-    if (startingSquare.rank() == startingRankForCurrentAffiliation())
-    {
-       potentialMoves.insert(ChessSquare(startingSquare.file(), startingSquare.rank()
-                                         + (2 * movementDirectionForCurrentAffiliation())));
-    }
-    return potentialMoves;
+    return ExtendedSet<ChessSquare>();
 }
 
 ExtendedSet<ChessSquare> Pawn::potentialCaptureMovesFrom(const ChessSquare& startingSquare) const

@@ -9,6 +9,7 @@
 #pragma once
 
 #include "I_ChessPiece.hpp"
+#include <map>
 
 class Pawn : public I_ChessPiece
 {
@@ -31,5 +32,6 @@ private:
 
 private:
     const Chess::PieceAffiliation affiliation_;
+    std::map<ChessSquare, ExtendedSet<ChessSquare> > emptyBoardMoves_;
 };
 

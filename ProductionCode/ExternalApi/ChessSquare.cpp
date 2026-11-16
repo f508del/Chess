@@ -16,6 +16,38 @@ ChessSquare::ChessSquare()
 {
 }
 
+ChessSquare::ChessSquare(Chess::File file, unsigned int rank)
+: rank_(rank)
+{
+    switch(file)
+    {
+        case Chess::File::A:
+            file_ = 'a';
+            break;
+        case Chess::File::B:
+            file_ = 'b';
+            break;
+        case Chess::File::C:
+            file_ = 'c';
+            break;
+        case Chess::File::D:
+            file_ = 'd';
+            break;
+        case Chess::File::E:
+            file_ = 'e';
+            break;
+        case Chess::File::F:
+            file_ = 'f';
+            break;
+        case Chess::File::G:
+            file_ = 'g';
+            break;
+        case Chess::File::H:
+            file_ = 'h';
+            break;
+    }
+}
+
 bool ChessSquare::isSquareOnTheBoard() const noexcept
 {
    return isValidFile() && isValidRank();

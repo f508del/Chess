@@ -6,6 +6,8 @@
 //
 #pragma once
 
+#include <vector>
+
 namespace Chess
 {
 enum class File : uint8_t
@@ -19,4 +21,6 @@ enum class File : uint8_t
     G,
     H
 };
+
+std::vector<File> allFiles();
 }
