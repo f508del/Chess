@@ -27,11 +27,10 @@ public:
 
 private:
     int movementDirectionForCurrentAffiliation() const;
-    unsigned int startingRankForCurrentAffiliation() const;
-    bool isValidStartingSquare(const ChessSquare& s) const noexcept;
 
 private:
     const Chess::PieceAffiliation affiliation_;
     std::map<ChessSquare, ExtendedSet<ChessSquare> > emptyBoardMoves_;
+    std::map<ChessSquare, ExtendedSet<ChessSquare> > captureMoves_;
 };
 
