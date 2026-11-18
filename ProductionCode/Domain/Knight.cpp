@@ -13,6 +13,117 @@ using namespace Chess;
 Knight::Knight(PieceAffiliation affiliation)
 : affiliation_(affiliation)
 {
+    ExtendedSet<ChessSquare> moves;
+    moves.insert(ChessSquare(File::B, 3));
+    moves.insert(ChessSquare(File::C, 2));
+    emptyBoardMoves_[ChessSquare(File::A, 1)] = moves;
+    
+    moves.clear();
+    moves.insert(ChessSquare(File::B, 4));
+    moves.insert(ChessSquare(File::C, 3));
+    moves.insert(ChessSquare(File::C, 1));
+    emptyBoardMoves_[ChessSquare(File::A, 2)] = moves;
+    
+    moves.clear();
+    moves.insert(ChessSquare(File::B, 5));
+    moves.insert(ChessSquare(File::C, 4));
+    moves.insert(ChessSquare(File::C, 2));
+    moves.insert(ChessSquare(File::B, 1));
+    emptyBoardMoves_[ChessSquare(File::A, 3)] = moves;
+    
+    moves.clear();
+    moves.insert(ChessSquare(File::B, 6));
+    moves.insert(ChessSquare(File::C, 5));
+    moves.insert(ChessSquare(File::C, 3));
+    moves.insert(ChessSquare(File::B, 2));
+    emptyBoardMoves_[ChessSquare(File::A, 4)] = moves;
+    
+    moves.clear();
+    moves.insert(ChessSquare(File::B, 7));
+    moves.insert(ChessSquare(File::C, 6));
+    moves.insert(ChessSquare(File::C, 4));
+    moves.insert(ChessSquare(File::B, 3));
+    emptyBoardMoves_[ChessSquare(File::A, 5)] = moves;
+    
+    moves.clear();
+    moves.insert(ChessSquare(File::B, 8));
+    moves.insert(ChessSquare(File::C, 7));
+    moves.insert(ChessSquare(File::C, 5));
+    moves.insert(ChessSquare(File::B, 4));
+    emptyBoardMoves_[ChessSquare(File::A, 6)] = moves;
+    
+    moves.clear();
+    moves.insert(ChessSquare(File::C, 8));
+    moves.insert(ChessSquare(File::C, 6));
+    moves.insert(ChessSquare(File::B, 5));
+    emptyBoardMoves_[ChessSquare(File::A, 7)] = moves;
+    
+    moves.clear();
+    moves.insert(ChessSquare(File::C, 7));
+    moves.insert(ChessSquare(File::B, 6));
+    emptyBoardMoves_[ChessSquare(File::A, 8)] = moves;
+    
+    moves.clear();
+    moves.insert(ChessSquare(File::C, 3));
+    moves.insert(ChessSquare(File::D, 2));
+    moves.insert(ChessSquare(File::A, 3));
+    emptyBoardMoves_[ChessSquare(File::B, 1)] = moves;
+    
+    moves.clear();
+    moves.insert(ChessSquare(File::C, 4));
+    moves.insert(ChessSquare(File::D, 3));
+    moves.insert(ChessSquare(File::D, 1));
+    moves.insert(ChessSquare(File::A, 4));
+    emptyBoardMoves_[ChessSquare(File::B, 2)] = moves;
+    
+    moves.clear();
+    moves.insert(ChessSquare(File::C, 5));
+    moves.insert(ChessSquare(File::D, 4));
+    moves.insert(ChessSquare(File::D, 2));
+    moves.insert(ChessSquare(File::C, 1));
+    moves.insert(ChessSquare(File::A, 1));
+    moves.insert(ChessSquare(File::A, 5));
+    emptyBoardMoves_[ChessSquare(File::B, 3)] = moves;
+    
+    moves.clear();
+    moves.insert(ChessSquare(File::C, 6));
+    moves.insert(ChessSquare(File::D, 5));
+    moves.insert(ChessSquare(File::D, 3));
+    moves.insert(ChessSquare(File::C, 2));
+    moves.insert(ChessSquare(File::A, 2));
+    moves.insert(ChessSquare(File::A, 6));
+    emptyBoardMoves_[ChessSquare(File::B, 4)] = moves;
+    
+    moves.clear();
+    moves.insert(ChessSquare(File::C, 7));
+    moves.insert(ChessSquare(File::D, 6));
+    moves.insert(ChessSquare(File::D, 4));
+    moves.insert(ChessSquare(File::C, 3));
+    moves.insert(ChessSquare(File::A, 3));
+    moves.insert(ChessSquare(File::A, 7));
+    emptyBoardMoves_[ChessSquare(File::B, 5)] = moves;
+    
+    moves.clear();
+    moves.insert(ChessSquare(File::C, 8));
+    moves.insert(ChessSquare(File::D, 7));
+    moves.insert(ChessSquare(File::D, 5));
+    moves.insert(ChessSquare(File::C, 4));
+    moves.insert(ChessSquare(File::A, 4));
+    moves.insert(ChessSquare(File::A, 8));
+    emptyBoardMoves_[ChessSquare(File::B, 6)] = moves;
+    
+    moves.clear();
+    moves.insert(ChessSquare(File::D, 8));
+    moves.insert(ChessSquare(File::D, 6));
+    moves.insert(ChessSquare(File::C, 5));
+    moves.insert(ChessSquare(File::A, 5));
+    emptyBoardMoves_[ChessSquare(File::B, 7)] = moves;
+    
+    moves.clear();
+    moves.insert(ChessSquare(File::D, 7));
+    moves.insert(ChessSquare(File::C, 6));
+    moves.insert(ChessSquare(File::A, 6));
+    emptyBoardMoves_[ChessSquare(File::B, 8)] = moves;
 }
 
 Knight::~Knight()
@@ -21,6 +132,11 @@ Knight::~Knight()
 
 ExtendedSet<ChessSquare> Knight::potentialEmptyBoardMovesFrom(const ChessSquare& startingSquare) const
 {
+    if (emptyBoardMoves_.find(startingSquare) != emptyBoardMoves_.end())
+    {
+        return emptyBoardMoves_.at(startingSquare);
+    }
+    
    ExtendedSet<ChessSquare> potentialMoves;
 
    // forward "L"s:

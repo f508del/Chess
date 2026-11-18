@@ -9,6 +9,7 @@
 #pragma once
 
 #include "I_ChessPiece.hpp"
+#include <map>
 
 class Knight : public I_ChessPiece
 {
@@ -25,5 +26,6 @@ public:
     bool pieceCanJumpOtherPieces() const override;
 
 private:
+    std::map<ChessSquare, ExtendedSet<ChessSquare> > emptyBoardMoves_;
     const Chess::PieceAffiliation affiliation_;
 };
