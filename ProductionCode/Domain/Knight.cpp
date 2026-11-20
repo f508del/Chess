@@ -553,61 +553,7 @@ ExtendedSet<ChessSquare> Knight::potentialEmptyBoardMovesFrom(const ChessSquare&
         return emptyBoardMoves_.at(startingSquare);
     }
     
-   ExtendedSet<ChessSquare> potentialMoves;
-
-   // forward "L"s:
-   ChessSquare destinationSquare(char(startingSquare.file() + 1), startingSquare.rank() + 2);
-   if (destinationSquare.isSquareOnTheBoard())
-   {
-      potentialMoves.insert(destinationSquare);
-   }
-
-   destinationSquare = ChessSquare(char(startingSquare.file() - 1), startingSquare.rank() + 2);
-   if (destinationSquare.isSquareOnTheBoard())
-   {
-      potentialMoves.insert(destinationSquare);
-   }
-
-   // backward "L"s:
-   destinationSquare = ChessSquare(char(startingSquare.file() + 1), startingSquare.rank() - 2);
-   if (destinationSquare.isSquareOnTheBoard())
-   {
-      potentialMoves.insert(destinationSquare);
-   }
-
-   destinationSquare = ChessSquare(char(startingSquare.file() - 1), startingSquare.rank() - 2);
-   if (destinationSquare.isSquareOnTheBoard())
-   {
-      potentialMoves.insert(destinationSquare);
-   }
-
-
-   // rightward "L"s
-   destinationSquare = ChessSquare(char(startingSquare.file() + 2), startingSquare.rank() + 1);
-   if (destinationSquare.isSquareOnTheBoard())
-   {
-      potentialMoves.insert(destinationSquare);
-   }
-
-   destinationSquare = ChessSquare(char(startingSquare.file() + 2), startingSquare.rank() - 1);
-   if (destinationSquare.isSquareOnTheBoard())
-   {
-      potentialMoves.insert(destinationSquare);
-   }
-
-   // leftward "L"s
-   destinationSquare = ChessSquare(char(startingSquare.file() - 2), startingSquare.rank() + 1);
-   if (destinationSquare.isSquareOnTheBoard())
-   {
-      potentialMoves.insert(destinationSquare);
-   }
-
-   destinationSquare = ChessSquare(char(startingSquare.file() - 2), startingSquare.rank() - 1);
-   if (destinationSquare.isSquareOnTheBoard())
-   {
-      potentialMoves.insert(destinationSquare);
-   }
-   return potentialMoves;
+    return ExtendedSet<ChessSquare>();
 }
 
 ExtendedSet<ChessSquare> Knight::potentialCaptureMovesFrom(const ChessSquare& startingSquare) const
@@ -634,5 +580,3 @@ bool Knight::pieceCanJumpOtherPieces() const
 {
     return true;
 }
-
-
