@@ -23,4 +23,5 @@ enum class File : uint8_t
 };
 
 std::vector<File> allFiles();
+std::vector<File> allFilesExcept(const File file);
 }

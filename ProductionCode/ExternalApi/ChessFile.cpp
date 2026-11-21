@@ -22,3 +22,19 @@ std::vector<File> Chess::allFiles()
         File::H};
     return files;
 };
+
+std::vector<File> Chess::allFilesExcept(const File file)
+{
+    std::vector<File> files = allFiles();
+    
+    for (auto fileIterator = files.begin(); fileIterator != files.end(); ++fileIterator)
+    {
+        if (file == *fileIterator)
+        {
+            files.erase(fileIterator);
+            return files;
+        }
+    }
+    
+    return files;
+};
