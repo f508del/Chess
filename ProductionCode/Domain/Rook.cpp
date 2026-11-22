@@ -18,20 +18,7 @@ Rook::Rook(PieceAffiliation affiliation)
         std::vector<Rank> allRanksToMove = allRanks();
         for (auto startingRankIterator = allRanksToMove.begin(); startingRankIterator != allRanksToMove.end(); ++startingRankIterator)
         {
-            // Handle the file squares
-            ExtendedSet<ChessSquare> moves;
-            std::vector<Rank> destinationRanks = allRanksExcept(*startingRankIterator);
-            for (auto endingRankIterator = destinationRanks.begin(); endingRankIterator !=destinationRanks.end(); ++endingRankIterator)
-            {
-                moves.insert(ChessSquare(*startingFileIterator, *endingRankIterator));
-            }
-            // add rank squares
-            std::vector<File> destinationFiles = allFilesExcept(*startingFileIterator);
-            for (auto endingFileIterator = destinationFiles.begin(); endingFileIterator != destinationFiles.end(); ++endingFileIterator)
-            {
-                moves.insert(ChessSquare(*endingFileIterator, *startingRankIterator));
-            }
-            emptyBoardMoves_[ChessSquare(*startingFileIterator, *startingRankIterator)] = moves;
+            populateEmptyBoardMovesFromStartLocation(*startingFileIterator, *startingRankIterator);
         }
     }
 }
@@ -74,4 +61,23 @@ ExtendedSet<ChessSquare> Rook::potentialEmptyOrCaptureMovesFrom(const ChessSquar
 { 
     return potentialEmptyBoardMovesFrom(startingSquare);
 }
+
+void Rook::populateEmptyBoardMovesFromStartLocation(Chess::File startingFile, Chess::Rank startingRank)
+{
+    // Handle the file squares
+    ExtendedSet<ChessSquare> moves;
+    std::vector<Rank> destinationRanks = allRanksExcept(startingRank);
+    for (auto endingRankIterator = destinationRanks.begin(); endingRankIterator !=destinationRanks.end(); ++endingRankIterator)
+    {
+        moves.insert(ChessSquare(startingFile, *endingRankIterator));
+    }
+    // add rank squares
+    std::vector<File> destinationFiles = allFilesExcept(startingFile);
+    for (auto endingFileIterator = destinationFiles.begin(); endingFileIterator != destinationFiles.end(); ++endingFileIterator)
+    {
+        moves.insert(ChessSquare(*endingFileIterator, startingRank));
+    }
+    emptyBoardMoves_[ChessSquare(startingFile, startingRank)] = moves;
+}
+
 

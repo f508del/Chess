@@ -8,10 +8,11 @@
 #include "ChessFile.hpp"
 
 using namespace Chess;
+using namespace std;
 
-std::vector<File> Chess::allFiles()
+vector<File> Chess::allFiles()
 {
-    std::vector<File> files{
+    vector<File> files{
         File::A,
         File::B,
         File::C,
@@ -21,11 +22,11 @@ std::vector<File> Chess::allFiles()
         File::G,
         File::H};
     return files;
-};
+}
 
-std::vector<File> Chess::allFilesExcept(const File file)
+vector<File> Chess::allFilesExcept(const File file)
 {
-    std::vector<File> files = allFiles();
+    vector<File> files = allFiles();
     
     for (auto fileIterator = files.begin(); fileIterator != files.end(); ++fileIterator)
     {
@@ -37,4 +38,47 @@ std::vector<File> Chess::allFilesExcept(const File file)
     }
     
     return files;
-};
+}
+
+vector<File> Chess::allFilesIncreasingGreaterThan(const File file)
+{
+    vector<File> files = allFiles();
+    vector<File> resultFiles;
+    bool reachedStartPoint = false;
+    
+    for (auto fileIterator = files.begin(); fileIterator != files.end(); ++fileIterator)
+    {
+        if (reachedStartPoint)
+        {
+            resultFiles.push_back(*fileIterator);
+        }
+        if (file == *fileIterator)
+        {
+            reachedStartPoint = true;
+        }
+    }
+    
+    return resultFiles;
+}
+
+vector<File> Chess::allFilesDecreasingLessThan(const File file)
+{
+    vector<File> files = allFiles();
+    vector<File> resultFiles;
+    bool reachedStartPoint = false;
+    
+    for (auto fileIterator = files.rbegin(); fileIterator != files.rend(); ++fileIterator)
+    {
+        if (reachedStartPoint)
+        {
+            resultFiles.push_back(*fileIterator);
+        }
+        if (file == *fileIterator)
+        {
+            reachedStartPoint = true;
+        }
+    }
+    
+    return resultFiles;
+}
+

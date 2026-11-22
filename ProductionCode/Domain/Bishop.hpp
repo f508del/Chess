@@ -8,6 +8,7 @@
 #pragma once
 
 #include "I_ChessPiece.hpp"
+#include <map>
 
 class Bishop : public I_ChessPiece
 {
@@ -26,5 +27,8 @@ public:
     bool pieceCanJumpOtherPieces() const override;
     
 private:
-   const Chess::PieceAffiliation affiliation_;
+    const Chess::PieceAffiliation affiliation_;
+    std::map<ChessSquare, ExtendedSet<ChessSquare> > emptyBoardMoves_;
+    
+    void populateEmptyBoardMovesFromStartLocation(Chess::File startingFile, Chess::Rank startingRank);
 };

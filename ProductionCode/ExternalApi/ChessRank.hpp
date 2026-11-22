@@ -25,4 +25,6 @@ enum class Rank : uint8_t
 
 std::vector<Rank> allRanks();
 std::vector<Rank> allRanksExcept(const Rank rank);
+std::vector<Rank> allRanksIncreasingGreaterThan(const Rank rank);
+std::vector<Rank> allRanksDecreasingLessThan(const Rank rank);
 }

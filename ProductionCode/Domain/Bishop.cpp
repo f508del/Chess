@@ -8,11 +8,20 @@
 #include "Bishop.hpp"
 
 using namespace Chess;
+using namespace std;
 
 Bishop::Bishop(PieceAffiliation affiliation)
 : affiliation_(affiliation)
 {
-    
+    std::vector<File> allFilesToMove = allFiles();
+    for (auto startingFileIterator = allFilesToMove.begin(); startingFileIterator != allFilesToMove.end(); ++startingFileIterator)
+    {
+        std::vector<Rank> allRanksToMove = allRanks();
+        for (auto startingRankIterator = allRanksToMove.begin(); startingRankIterator != allRanksToMove.end(); ++startingRankIterator)
+        {
+            populateEmptyBoardMovesFromStartLocation(*startingFileIterator, *startingRankIterator);
+        }
+    }
 }
 
 Bishop::~Bishop()
@@ -22,39 +31,11 @@ Bishop::~Bishop()
 
 ExtendedSet<ChessSquare> Bishop::potentialEmptyBoardMovesFrom(const ChessSquare &startingSquare) const
 {
-    ExtendedSet<ChessSquare> potentialMoves;
-    
-    for (int i = 1; i < 8; i++)
+    if (emptyBoardMoves_.find(startingSquare) != emptyBoardMoves_.end())
     {
-        // top right array of squares
-        ChessSquare topRightDestination(char(startingSquare.file() + i), startingSquare.rank() + i);
-        if (topRightDestination.isSquareOnTheBoard())
-        {
-            potentialMoves.insert(topRightDestination);
-        }
-        
-        // Bottom right array of squares
-        ChessSquare bottomRightDestination(char(startingSquare.file() + i), startingSquare.rank() - i);
-        if (bottomRightDestination.isSquareOnTheBoard())
-        {
-            potentialMoves.insert(bottomRightDestination);
-        }
-        
-        // Bottom Left array of squares
-        ChessSquare bottomLeftDestination(char(startingSquare.file() - i), startingSquare.rank() - i);
-        if (bottomLeftDestination.isSquareOnTheBoard())
-        {
-            potentialMoves.insert(bottomLeftDestination);
-        }
-        
-        // top left array of squares
-        ChessSquare topLeftDestination(char(startingSquare.file() - i), startingSquare.rank() + i);
-        if (topLeftDestination.isSquareOnTheBoard())
-        {
-            potentialMoves.insert(topLeftDestination);
-        }
+        return emptyBoardMoves_.at(startingSquare);
     }
-    return potentialMoves;
+    return ExtendedSet<ChessSquare>();
 }
 
 ExtendedSet<ChessSquare> Bishop::potentialCaptureMovesFrom(const ChessSquare& startingSquare) const
@@ -82,3 +63,62 @@ bool Bishop::pieceCanJumpOtherPieces() const
     return false;
 }
 
+void Bishop::populateEmptyBoardMovesFromStartLocation(File startingFile, Rank startingRank)
+{
+    vector<Rank> ranksAboveStartingRank = allRanksIncreasingGreaterThan(startingRank);
+    vector<Rank> ranksBelowStartingRank = allRanksDecreasingLessThan(startingRank);
+    vector<File> filesAboveStartingFile = allFilesIncreasingGreaterThan(startingFile);
+    vector<File> filesBelowStartingFile = allFilesDecreasingLessThan(startingFile);
+    
+    ExtendedSet<ChessSquare> possibleMoves;
+    
+    // increasing rank and file path:
+    auto destinationRankIterator = ranksAboveStartingRank.begin();
+    for (auto destinationFileIterator = filesAboveStartingFile.begin(); destinationFileIterator != filesAboveStartingFile.end(); ++destinationFileIterator)
+    {
+        if (destinationRankIterator == ranksAboveStartingRank.end())
+        {
+            break;
+        }
+        possibleMoves.insert(ChessSquare(*destinationFileIterator, *destinationRankIterator));
+        destinationRankIterator++;
+    }
+    
+    // increasing rank, and decreasing file path:
+    destinationRankIterator = ranksAboveStartingRank.begin();
+    for (auto destinationFileIterator = filesBelowStartingFile.begin(); destinationFileIterator != filesBelowStartingFile.end(); ++destinationFileIterator)
+    {
+        if (destinationRankIterator == ranksAboveStartingRank.end())
+        {
+            break;
+        }
+        possibleMoves.insert(ChessSquare(*destinationFileIterator, *destinationRankIterator));
+        destinationRankIterator++;
+    }
+    
+    // decreasing rank, and decreasing file path:
+    destinationRankIterator = ranksBelowStartingRank.begin();
+    for (auto destinationFileIterator = filesBelowStartingFile.begin(); destinationFileIterator != filesBelowStartingFile.end(); ++destinationFileIterator)
+    {
+        if (destinationRankIterator == ranksBelowStartingRank.end())
+        {
+            break;
+        }
+        possibleMoves.insert(ChessSquare(*destinationFileIterator, *destinationRankIterator));
+        destinationRankIterator++;
+    }
+    
+    // decreasing rank and increasing file path:
+    destinationRankIterator = ranksBelowStartingRank.begin();
+    for (auto destinationFileIterator = filesAboveStartingFile.begin(); destinationFileIterator != filesAboveStartingFile.end(); ++destinationFileIterator)
+    {
+        if (destinationRankIterator == ranksBelowStartingRank.end())
+        {
+            break;
+        }
+        possibleMoves.insert(ChessSquare(*destinationFileIterator, *destinationRankIterator));
+        destinationRankIterator++;
+    }
+    
+    emptyBoardMoves_[ChessSquare(startingFile, startingRank)] = possibleMoves;
+}

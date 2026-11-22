@@ -27,4 +27,6 @@ public:
 private:
     const Chess::PieceAffiliation affiliation_;
     std::map<ChessSquare, ExtendedSet<ChessSquare> > emptyBoardMoves_;
+    
+    void populateEmptyBoardMovesFromStartLocation(Chess::File startingFile, Chess::Rank startingRank);
 };

@@ -8,10 +8,11 @@
 #include "ChessRank.hpp"
 
 using namespace Chess;
+using namespace std;
 
-std::vector<Rank> Chess::allRanks()
+vector<Rank> Chess::allRanks()
 {
-    std::vector<Rank> ranks{
+    vector<Rank> ranks{
         Rank::R1,
         Rank::R2,
         Rank::R3,
@@ -23,9 +24,9 @@ std::vector<Rank> Chess::allRanks()
     return ranks;
 };
 
-std::vector<Rank> Chess::allRanksExcept(const Rank rank)
+vector<Rank> Chess::allRanksExcept(const Rank rank)
 {
-    std::vector<Rank> ranks = allRanks();
+    vector<Rank> ranks = allRanks();
     
     for (auto rankIterator = ranks.begin(); rankIterator != ranks.end(); ++rankIterator)
     {
@@ -38,3 +39,45 @@ std::vector<Rank> Chess::allRanksExcept(const Rank rank)
     
     return ranks;
 };
+
+vector<Rank> Chess::allRanksIncreasingGreaterThan(const Rank rank)
+{
+    vector<Rank> ranks = allRanks();
+    vector<Rank> resultRanks;
+    bool reachedStartPoint = false;
+    
+    for (auto rankIterator = ranks.begin(); rankIterator != ranks.end(); ++rankIterator)
+    {
+        if (reachedStartPoint)
+        {
+            resultRanks.push_back(*rankIterator);
+        }
+        if (rank == *rankIterator)
+        {
+            reachedStartPoint = true;
+        }
+    }
+    
+    return resultRanks;
+}
+
+vector<Rank> Chess::allRanksDecreasingLessThan(const Rank rank)
+{
+    vector<Rank> ranks = allRanks();
+    vector<Rank> resultRanks;
+    bool reachedStartPoint = false;
+    
+    for (auto rankIterator = ranks.rbegin(); rankIterator != ranks.rend(); ++rankIterator)
+    {
+        if (reachedStartPoint)
+        {
+            resultRanks.push_back(*rankIterator);
+        }
+        if (rank == *rankIterator)
+        {
+            reachedStartPoint = true;
+        }
+    }
+    
+    return resultRanks;
+}
