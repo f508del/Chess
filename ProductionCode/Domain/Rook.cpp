@@ -12,7 +12,28 @@ using namespace Chess;
 Rook::Rook(PieceAffiliation affiliation)
 : affiliation_(affiliation)
 {
-    
+    std::vector<File> allFilesToMove = allFiles();
+    for (auto startingFileIterator = allFilesToMove.begin(); startingFileIterator != allFilesToMove.end(); ++startingFileIterator)
+    {
+        std::vector<Rank> allRanksToMove = allRanks();
+        for (auto startingRankIterator = allRanksToMove.begin(); startingRankIterator != allRanksToMove.end(); ++startingRankIterator)
+        {
+            // Handle the file squares
+            ExtendedSet<ChessSquare> moves;
+            std::vector<Rank> destinationRanks = allRanksExcept(*startingRankIterator);
+            for (auto endingRankIterator = destinationRanks.begin(); endingRankIterator !=destinationRanks.end(); ++endingRankIterator)
+            {
+                moves.insert(ChessSquare(*startingFileIterator, *endingRankIterator));
+            }
+            // add rank squares
+            std::vector<File> destinationFiles = allFilesExcept(*startingFileIterator);
+            for (auto endingFileIterator = destinationFiles.begin(); endingFileIterator != destinationFiles.end(); ++endingFileIterator)
+            {
+                moves.insert(ChessSquare(*endingFileIterator, *startingRankIterator));
+            }
+            emptyBoardMoves_[ChessSquare(*startingFileIterator, *startingRankIterator)] = moves;
+        }
+    }
 }
 
 Rook::~Rook()
@@ -37,39 +58,11 @@ Chess::PieceAffiliation Rook::affiliation() const
 
 ExtendedSet<ChessSquare> Rook::potentialEmptyBoardMovesFrom(const ChessSquare &startingSquare) const
 {
-    ExtendedSet<ChessSquare> potentialMoves;
-    
-    for (int i = 1; i < 8; i++)
+    if (emptyBoardMoves_.find(startingSquare) != emptyBoardMoves_.end())
     {
-        // increasing ranks:
-        ChessSquare increasingRankDestination(startingSquare.file(), startingSquare.rank() + i);
-        if (increasingRankDestination.isSquareOnTheBoard())
-        {
-            potentialMoves.insert(increasingRankDestination);
-        }
-        
-        // decreasing ranks
-        ChessSquare decreasingRankDestination(startingSquare.file(), startingSquare.rank() - i);
-        if (decreasingRankDestination.isSquareOnTheBoard())
-        {
-            potentialMoves.insert(decreasingRankDestination);
-        }
-        
-        // increasing files
-        ChessSquare increasingFileDestination(char(startingSquare.file() + i), startingSquare.rank());
-        if (increasingFileDestination.isSquareOnTheBoard())
-        {
-            potentialMoves.insert(increasingFileDestination);
-        }
-        
-        ChessSquare decreasingFileDestination(char(startingSquare.file() - i), startingSquare.rank());
-        if (decreasingFileDestination.isSquareOnTheBoard())
-        {
-            potentialMoves.insert(decreasingFileDestination);
-        }
+        return emptyBoardMoves_.at(startingSquare);
     }
-    
-    return potentialMoves;
+    return ExtendedSet<ChessSquare>();
 }
 
 ExtendedSet<ChessSquare> Rook::potentialCaptureMovesFrom(const ChessSquare& startingSquare) const

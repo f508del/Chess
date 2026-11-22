@@ -10,6 +10,8 @@
 #include <cctype>
 #include <tuple>
 
+using namespace Chess;
+
 ChessSquare::ChessSquare()
 : file_('\0')
 , rank_(0)
@@ -46,6 +48,66 @@ ChessSquare::ChessSquare(Chess::File file, unsigned int rank)
             file_ = 'h';
             break;
     }
+}
+
+ChessSquare::ChessSquare(File file, Rank rank)
+{
+    switch(file)
+    {
+        case File::A:
+            file_ = 'a';
+            break;
+        case File::B:
+            file_ = 'b';
+            break;
+        case File::C:
+            file_ = 'c';
+            break;
+        case File::D:
+            file_ = 'd';
+            break;
+        case File::E:
+            file_ = 'e';
+            break;
+        case File::F:
+            file_ = 'f';
+            break;
+        case File::G:
+            file_ = 'g';
+            break;
+        case File::H:
+            file_ = 'h';
+            break;
+    }
+
+    switch(rank)
+    {
+        case Rank::R1:
+            rank_ = 1;
+            break;
+        case Rank::R2:
+            rank_ = 2;
+            break;
+        case Rank::R3:
+            rank_ = 3;
+            break;
+        case Rank::R4:
+            rank_ = 4;
+            break;
+        case Rank::R5:
+            rank_ = 5;
+            break;
+        case Rank::R6:
+            rank_ = 6;
+            break;
+        case Rank::R7:
+            rank_ = 7;
+            break;
+        case Rank::R8:
+            rank_ = 8;
+            break;
+    }
+    
 }
 
 bool ChessSquare::isSquareOnTheBoard() const noexcept

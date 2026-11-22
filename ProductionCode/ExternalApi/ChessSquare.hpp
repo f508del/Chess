@@ -10,6 +10,7 @@
 #include <type_traits>
 #include <cctype>
 #include "ChessFile.hpp"
+#include "ChessRank.hpp"
 
 // Note: file() will return a lower case form of whatever file char was given.
 class ChessSquare
@@ -27,6 +28,7 @@ public:
     }
     
     ChessSquare(Chess::File file, unsigned int rank);
+    ChessSquare(Chess::File file, Chess::Rank rank);
 
     bool isSquareOnTheBoard() const noexcept;
 
