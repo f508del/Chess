@@ -11,6 +11,7 @@
 #include "ChessPieceAffiliation.hpp"
 #include "ChessSquare.hpp"
 #include <list>
+#include <optional>
 
 class InternalChessMove;
 class ChessMoveRequest;
@@ -28,7 +29,7 @@ public:
     bool isSquareThreatenedByColor(const ChessSquare& square, Chess::PieceAffiliation attackingColor);
     ChessSquare findSquareOfPieceThatCouldCapture(const ChessSquare& squareInThreat, Chess::PieceAffiliation attackingColor,
                                                   const ChessBoard& currentBoard);
-    ChessSquare findSquareOfPieceThatCouldMoveTo(const ChessSquare& destinationSquare, Chess::PieceAffiliation movingColor);
+    std::optional<ChessSquare> findSquareOfPieceThatCouldMoveTo(const ChessSquare& destinationSquare, Chess::PieceAffiliation movingColor);
     std::list<InternalChessMove> findAllPotentialMovesFor(Chess::PieceAffiliation playerColor);
     bool movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(const InternalChessMove& move);
     

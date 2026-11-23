@@ -236,13 +236,13 @@ bool ChessEngine::pieceThreateningKingCanBeBlockedWithoutLeavingKingInThreat(con
     
     for (auto it = squaresBetweenEndPoints.begin(); it != squaresBetweenEndPoints.end(); it++)
     {
-        ChessSquare potentialBlockerSource = moveValidator_->findSquareOfPieceThatCouldMoveTo(*it, defendingColor);
+        optional<ChessSquare> potentialBlockerSource = moveValidator_->findSquareOfPieceThatCouldMoveTo(*it, defendingColor);
         
-        if (potentialBlockerSource.isSquareOnTheBoard())
+        if (potentialBlockerSource)
         {
             InternalChessMove proposedCounterMove;
-            PieceType blockingPieceType = board_->pieceAt(potentialBlockerSource)->pieceType();
-            proposedCounterMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE, potentialBlockerSource,
+            PieceType blockingPieceType = board_->pieceAt(*potentialBlockerSource)->pieceType();
+            proposedCounterMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE, *potentialBlockerSource,
                                                                 defendingColor, blockingPieceType));
             proposedCounterMove.addValidMoveElement(MoveElement(MoveElementAction::PLACE_PIECE, *it,
                                                                 defendingColor, blockingPieceType));

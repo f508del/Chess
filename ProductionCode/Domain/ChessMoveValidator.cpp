@@ -171,9 +171,8 @@ ChessSquare ChessMoveValidator::findSquareOfPieceThatCouldCapture(const ChessSqu
     return attackSourceSquare;
 }
 
-ChessSquare ChessMoveValidator::findSquareOfPieceThatCouldMoveTo(const ChessSquare& destinationSquare, Chess::PieceAffiliation movingColor)
+optional<ChessSquare> ChessMoveValidator::findSquareOfPieceThatCouldMoveTo(const ChessSquare& destinationSquare, Chess::PieceAffiliation movingColor)
 {
-    ChessSquare moveSourceSquare;
     list<ChessSquare> movablePieces = board_.allSquaresOccupiedByColor(movingColor);
     for (auto movingPieceLocationIterator = movablePieces.begin(); movingPieceLocationIterator != movablePieces.end();
          movingPieceLocationIterator++)
@@ -192,10 +191,10 @@ ChessSquare ChessMoveValidator::findSquareOfPieceThatCouldMoveTo(const ChessSqua
             continue;
         }
         
-        moveSourceSquare = currentExaminedMove.startingSquare();
+        return currentExaminedMove.startingSquare();
         break;
     }
-    return moveSourceSquare;
+    return {};
 }
 
 list<InternalChessMove> ChessMoveValidator::findAllPotentialMovesFor(Chess::PieceAffiliation playerColor)
