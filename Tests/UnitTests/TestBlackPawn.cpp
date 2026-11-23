@@ -18,37 +18,37 @@ TEST_CASE("Testing the Pawn object when playing as black")
    SECTION("will allow one-step moves from starting position")
    {
    Pawn pawn(PieceAffiliation::BLACK_PIECE);
-   ExtendedSet<ChessSquare> allowedMoves = pawn.potentialEmptyBoardMovesFrom(ChessSquare('a', 7));
-   CHECK(allowedMoves.contains(ChessSquare('a', 6)));
+   ExtendedSet<ChessSquare> allowedMoves = pawn.potentialEmptyBoardMovesFrom(ChessSquare(File::A, Rank::R7));
+   CHECK(allowedMoves.contains(ChessSquare(File::A, Rank::R6)));
 
-   allowedMoves = pawn.potentialEmptyBoardMovesFrom(ChessSquare('b', 7));
-   CHECK(allowedMoves.contains(ChessSquare('b', 6)));
+   allowedMoves = pawn.potentialEmptyBoardMovesFrom(ChessSquare(File::B, Rank::R7));
+   CHECK(allowedMoves.contains(ChessSquare(File::B, Rank::R6)));
 
-   allowedMoves = pawn.potentialEmptyBoardMovesFrom(ChessSquare('h', 7));
-   CHECK(allowedMoves.contains(ChessSquare('h', 6)));
+   allowedMoves = pawn.potentialEmptyBoardMovesFrom(ChessSquare(File::H, Rank::R7));
+   CHECK(allowedMoves.contains(ChessSquare(File::H, Rank::R6)));
    }
 
    SECTION("will allow two step moves from starting position")
    {
    Pawn pawn(PieceAffiliation::BLACK_PIECE);
-   ExtendedSet<ChessSquare> allowedMoves = pawn.potentialEmptyBoardMovesFrom(ChessSquare('a', 7));
-   CHECK(allowedMoves.contains(ChessSquare('a', 5)));
+   ExtendedSet<ChessSquare> allowedMoves = pawn.potentialEmptyBoardMovesFrom(ChessSquare(File::A, Rank::R7));
+   CHECK(allowedMoves.contains(ChessSquare(File::A, Rank::R5)));
 
-   allowedMoves = pawn.potentialEmptyBoardMovesFrom(ChessSquare('b', 7));
-   CHECK(allowedMoves.contains(ChessSquare('b', 5)));
+   allowedMoves = pawn.potentialEmptyBoardMovesFrom(ChessSquare(File::B, Rank::R7));
+   CHECK(allowedMoves.contains(ChessSquare(File::B, Rank::R5)));
 
-   allowedMoves = pawn.potentialEmptyBoardMovesFrom(ChessSquare('h', 7));
-   CHECK(allowedMoves.contains(ChessSquare('h', 5)));
+   allowedMoves = pawn.potentialEmptyBoardMovesFrom(ChessSquare(File::H, Rank::R7));
+   CHECK(allowedMoves.contains(ChessSquare(File::H, Rank::R5)));
    }
 
    SECTION("will not allow two step moves from non-starting position")
    {
    Pawn pawn(PieceAffiliation::BLACK_PIECE);
-   ExtendedSet<ChessSquare> allowedMoves = pawn.potentialEmptyBoardMovesFrom(ChessSquare('a', 6));
-   CHECK(!allowedMoves.contains(ChessSquare('a', 4)));
+   ExtendedSet<ChessSquare> allowedMoves = pawn.potentialEmptyBoardMovesFrom(ChessSquare(File::A, Rank::R6));
+   CHECK(!allowedMoves.contains(ChessSquare(File::A, Rank::R4)));
 
-   allowedMoves = pawn.potentialEmptyBoardMovesFrom(ChessSquare('d', 6));
-   CHECK(!allowedMoves.contains(ChessSquare('d', 4)));
+   allowedMoves = pawn.potentialEmptyBoardMovesFrom(ChessSquare(File::D, Rank::R6));
+   CHECK(!allowedMoves.contains(ChessSquare(File::D, Rank::R4)));
    }
 
    SECTION("will give no potential moves for invalid starting position")
@@ -61,14 +61,14 @@ TEST_CASE("Testing the Pawn object when playing as black")
    SECTION("will give no potential moves for starting position at rank 1")
    {
    Pawn pawn(PieceAffiliation::BLACK_PIECE);
-   ExtendedSet<ChessSquare> allowedMoves = pawn.potentialEmptyBoardMovesFrom(ChessSquare('c', 1));
+   ExtendedSet<ChessSquare> allowedMoves = pawn.potentialEmptyBoardMovesFrom(ChessSquare(File::C, Rank::R1));
    CHECK(allowedMoves.empty());
    }
 
    SECTION("will give no potential moves for starting position at rank 8")
    {
    Pawn pawn(PieceAffiliation::BLACK_PIECE);
-   ExtendedSet<ChessSquare> allowedMoves = pawn.potentialEmptyBoardMovesFrom(ChessSquare('d', 8));
+   ExtendedSet<ChessSquare> allowedMoves = pawn.potentialEmptyBoardMovesFrom(ChessSquare(File::D, Rank::R8));
    CHECK(allowedMoves.empty());
    }
 

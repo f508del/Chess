@@ -18,56 +18,56 @@ TEST_CASE("Testing the Knight object")
    SECTION("will allow knight L-moves that move towards higher files")
    {
       Knight knight(randomPieceAffiliation());
-      ExtendedSet<ChessSquare> allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare('b', 4));
-      CHECK(allowedMoves.contains(ChessSquare('d', 5)));
+      ExtendedSet<ChessSquare> allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare(File::B, Rank::R4));
+      CHECK(allowedMoves.contains(ChessSquare(File::D, Rank::R5)));
 
-      allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare('b', 4));
-      CHECK(allowedMoves.contains(ChessSquare('d', 3)));
+      allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare(File::B, Rank::R4));
+       CHECK(allowedMoves.contains(ChessSquare(File::D, Rank::R3)));
    }
 
    SECTION("will allow knight L-moves that move towards lower files")
    {
       Knight knight(randomPieceAffiliation());
-      ExtendedSet<ChessSquare> allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare('g', 4));
-      CHECK(allowedMoves.contains(ChessSquare('e', 5)));
+      ExtendedSet<ChessSquare> allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare(File::G, Rank::R4));
+      CHECK(allowedMoves.contains(ChessSquare(File::E, Rank::R5)));
 
-      allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare('g', 4));
-      CHECK(allowedMoves.contains(ChessSquare('e', 3)));
+      allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare(File::G, Rank::R4));
+      CHECK(allowedMoves.contains(ChessSquare(File::E, Rank::R3)));
    }
 
    SECTION("will allow knight L-moves that move towards higher ranks")
    {
       Knight knight(randomPieceAffiliation());
-      ExtendedSet<ChessSquare> allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare('b', 4));
-      CHECK(allowedMoves.contains(ChessSquare('a', 6)));
+      ExtendedSet<ChessSquare> allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare(File::B, Rank::R4));
+      CHECK(allowedMoves.contains(ChessSquare(File::A, Rank::R6)));
 
-      allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare('b', 4));
-      CHECK(allowedMoves.contains(ChessSquare('c', 6)));
+      allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare(File::B, Rank::R4));
+      CHECK(allowedMoves.contains(ChessSquare(File::C, Rank::R6)));
    }
 
    SECTION("will allow knight L-moves that move towards lower ranks")
    {
       Knight knight(randomPieceAffiliation());
-      ExtendedSet<ChessSquare> allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare('c', 5));
-      CHECK(allowedMoves.contains(ChessSquare('b', 3)));
+      ExtendedSet<ChessSquare> allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare(File::C, Rank::R5));
+      CHECK(allowedMoves.contains(ChessSquare(File::B, Rank::R3)));
 
-      allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare('c', 5));
-      CHECK(allowedMoves.contains(ChessSquare('d', 3)));
+      allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare(File::C, Rank::R5));
+      CHECK(allowedMoves.contains(ChessSquare(File::D, Rank::R3)));
    }
 
    SECTION("wont allow moves that take the knight off the board")
    {
       Knight knight(randomPieceAffiliation());
-      ExtendedSet<ChessSquare> allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare('a', 5));
+      ExtendedSet<ChessSquare> allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare(File::A, Rank::R5));
       CHECK(allowedMoves.size() == 4);
 
-      allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare('h', 5));
+      allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare(File::H, Rank::R5));
       CHECK(allowedMoves.size() == 4);
 
-      allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare('d', 1));
+      allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare(File::D, Rank::R1));
       CHECK(allowedMoves.size() == 4);
 
-      allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare('d', 8));
+      allowedMoves = knight.potentialEmptyBoardMovesFrom(ChessSquare(File::D, Rank::R8));
       CHECK(allowedMoves.size() == 4);
    }
     
