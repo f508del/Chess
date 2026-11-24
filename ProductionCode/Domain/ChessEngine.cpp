@@ -196,21 +196,26 @@ void ChessEngine::getNextInput()
 bool ChessEngine::pieceThreateningTheKingCanBeCapturedWithoutLeavingKingInThreat(const ChessSquare& kingSquareInThreat, Chess::PieceAffiliation attackingColor)
 {
     PieceAffiliation defendingColor = oppositePieceAffiliation(attackingColor);
-    ChessSquare locationOfAttackingPiece = moveValidator_->findSquareOfPieceThatCouldCapture(kingSquareInThreat, attackingColor, *board_);
-    ChessSquare sourceSquareOfPotentialCounterMove = moveValidator_->findSquareOfPieceThatCouldCapture(locationOfAttackingPiece, defendingColor, *board_);
+    optional<ChessSquare> locationOfAttackingPiece = moveValidator_->findSquareOfPieceThatCouldCapture(kingSquareInThreat, attackingColor, *board_);
+    if (!locationOfAttackingPiece)
+    {
+        // No attaker makes this check irrelevant, return false
+        return false;
+    }
+    optional<ChessSquare> sourceSquareOfPotentialCounterMove = moveValidator_->findSquareOfPieceThatCouldCapture(*locationOfAttackingPiece, defendingColor, *board_);
     
-    if (!sourceSquareOfPotentialCounterMove.isSquareOnTheBoard())
+    if (!sourceSquareOfPotentialCounterMove)
     {
         return false;
     }
     
     InternalChessMove proposedCounterMove;
-    proposedCounterMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE, sourceSquareOfPotentialCounterMove,
-                                                        defendingColor, board_->pieceAt(sourceSquareOfPotentialCounterMove)->pieceType()));
-    proposedCounterMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE, locationOfAttackingPiece,
-                                                               attackingColor, board_->pieceAt(locationOfAttackingPiece)->pieceType()));
-    proposedCounterMove.addValidMoveElement(MoveElement(MoveElementAction::PLACE_PIECE, locationOfAttackingPiece,
-                                                        defendingColor, board_->pieceAt(sourceSquareOfPotentialCounterMove)->pieceType()));
+    proposedCounterMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE, *sourceSquareOfPotentialCounterMove,
+                                                        defendingColor, board_->pieceAt(*sourceSquareOfPotentialCounterMove)->pieceType()));
+    proposedCounterMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE, *locationOfAttackingPiece,
+                                                               attackingColor, board_->pieceAt(*locationOfAttackingPiece)->pieceType()));
+    proposedCounterMove.addValidMoveElement(MoveElement(MoveElementAction::PLACE_PIECE, *locationOfAttackingPiece,
+                                                        defendingColor, board_->pieceAt(*sourceSquareOfPotentialCounterMove)->pieceType()));
     
     if (!moveValidator_->movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(proposedCounterMove))
     {
@@ -223,16 +228,21 @@ bool ChessEngine::pieceThreateningTheKingCanBeCapturedWithoutLeavingKingInThreat
 bool ChessEngine::pieceThreateningKingCanBeBlockedWithoutLeavingKingInThreat(const ChessSquare& kingSquareInThreat, Chess::PieceAffiliation attackingColor)
 {
     PieceAffiliation defendingColor = oppositePieceAffiliation(attackingColor);
-    ChessSquare locationOfAttackingPiece = moveValidator_->findSquareOfPieceThatCouldCapture(kingSquareInThreat, attackingColor, *board_);
+    optional<ChessSquare> locationOfAttackingPiece = moveValidator_->findSquareOfPieceThatCouldCapture(kingSquareInThreat, attackingColor, *board_);
+    if (!locationOfAttackingPiece)
+    {
+        // No attaker makes this check irrelevant, return false
+        return false;
+    }
     
     // If attacking piece can jump other pieces, no block is possible.
-    if (board_->pieceAt(locationOfAttackingPiece)->pieceCanJumpOtherPieces())
+    if (board_->pieceAt(*locationOfAttackingPiece)->pieceCanJumpOtherPieces())
     {
         return false;
     }
     
     // Find the squares between the location of attacker and kingsquare, and see if it can be blocked.
-    list<ChessSquare> squaresBetweenEndPoints = board_->listOfSquaresBetweenEndPoints(kingSquareInThreat, locationOfAttackingPiece);
+    list<ChessSquare> squaresBetweenEndPoints = board_->listOfSquaresBetweenEndPoints(kingSquareInThreat, *locationOfAttackingPiece);
     
     for (auto it = squaresBetweenEndPoints.begin(); it != squaresBetweenEndPoints.end(); it++)
     {

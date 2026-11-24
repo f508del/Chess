@@ -136,17 +136,16 @@ InternalChessMove ChessMoveValidator::validateMove(const ChessMoveRequest& curre
 
 bool ChessMoveValidator::isSquareThreatenedByColor(const ChessSquare& square, PieceAffiliation attackingColor)
 {
-    if (findSquareOfPieceThatCouldCapture(square, attackingColor, board_) != ChessSquare())
+    if (findSquareOfPieceThatCouldCapture(square, attackingColor, board_))
     {
         return true;
     }
     return false;
 }
 
-ChessSquare ChessMoveValidator::findSquareOfPieceThatCouldCapture(const ChessSquare& squareInThreat, Chess::PieceAffiliation attackingColor,
+optional<ChessSquare> ChessMoveValidator::findSquareOfPieceThatCouldCapture(const ChessSquare& squareInThreat, Chess::PieceAffiliation attackingColor,
                                                                   const ChessBoard& currentBoard)
 {
-    ChessSquare attackSourceSquare;
     list<ChessSquare> attackingPieces = currentBoard.allSquaresOccupiedByColor(attackingColor);
     for (auto attackingPieceLocationIterator = attackingPieces.begin(); attackingPieceLocationIterator != attackingPieces.end();
          attackingPieceLocationIterator++)
@@ -165,10 +164,9 @@ ChessSquare ChessMoveValidator::findSquareOfPieceThatCouldCapture(const ChessSqu
             continue;
         }
         
-        attackSourceSquare = currentExaminedMove.startingSquare();
-        break;
+        return currentExaminedMove.startingSquare();
     }
-    return attackSourceSquare;
+    return {};
 }
 
 optional<ChessSquare> ChessMoveValidator::findSquareOfPieceThatCouldMoveTo(const ChessSquare& destinationSquare, Chess::PieceAffiliation movingColor)
@@ -263,7 +261,7 @@ bool ChessMoveValidator::movingPlayersKingWouldBeInCheckAfterApplyingProposedMov
     
     bool checkStillExists = findSquareOfPieceThatCouldCapture(virtualBoard.currentKingSquare(virtualBoard.playerToMakeNextMove()),
                                                               oppositePieceAffiliation(virtualBoard.playerToMakeNextMove()),
-                                                              virtualBoard) != ChessSquare();
+                                                              virtualBoard).has_value();
     
     return checkStillExists;
 }

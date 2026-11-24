@@ -27,8 +27,8 @@ public:
     InternalChessMove validateMove(const ChessMoveRequest& currentMove);
     
     bool isSquareThreatenedByColor(const ChessSquare& square, Chess::PieceAffiliation attackingColor);
-    ChessSquare findSquareOfPieceThatCouldCapture(const ChessSquare& squareInThreat, Chess::PieceAffiliation attackingColor,
-                                                  const ChessBoard& currentBoard);
+    std::optional<ChessSquare> findSquareOfPieceThatCouldCapture(const ChessSquare& squareInThreat, Chess::PieceAffiliation attackingColor,
+                                                                 const ChessBoard& currentBoard);
     std::optional<ChessSquare> findSquareOfPieceThatCouldMoveTo(const ChessSquare& destinationSquare, Chess::PieceAffiliation movingColor);
     std::list<InternalChessMove> findAllPotentialMovesFor(Chess::PieceAffiliation playerColor);
     bool movingPlayersKingWouldBeInCheckAfterApplyingProposedMove(const InternalChessMove& move);
