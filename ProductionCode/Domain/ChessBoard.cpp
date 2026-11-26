@@ -85,37 +85,38 @@ const I_ChessPiece* ChessBoard::pieceAt(const ChessSquare& square) const
 void ChessBoard::resetBoard()
 {
     clearBoard();
-    for (char file = 'a'; file <= 'h'; file++)
+    vector<File> allPawnFiles = allFiles();
+    for (auto fileIterator = allPawnFiles.begin(); fileIterator != allPawnFiles.end(); fileIterator++)
     {
-       boardState_[ChessSquare(file, 2)] = &whitePawnCapabilities_;
-       boardState_[ChessSquare(file, 7)] = &blackPawnCapabilities_;
+       boardState_[ChessSquare(*fileIterator, Rank::R2)] = &whitePawnCapabilities_;
+       boardState_[ChessSquare(*fileIterator, Rank::R7)] = &blackPawnCapabilities_;
     }
 
     // setup the knights
-    boardState_[ChessSquare('b', 1)] = &whiteKnightCapabilities_;
-    boardState_[ChessSquare('g', 1)] = &whiteKnightCapabilities_;
-    boardState_[ChessSquare('b', 8)] = &blackKnightCapabilities_;
-    boardState_[ChessSquare('g', 8)] = &blackKnightCapabilities_;
+    boardState_[ChessSquare(File::B, Rank::R1)] = &whiteKnightCapabilities_;
+    boardState_[ChessSquare(File::G, Rank::R1)] = &whiteKnightCapabilities_;
+    boardState_[ChessSquare(File::B, Rank::R8)] = &blackKnightCapabilities_;
+    boardState_[ChessSquare(File::G, Rank::R8)] = &blackKnightCapabilities_;
     
     // setup the bishops
-    boardState_[ChessSquare('c', 1)] = &whiteBishopCapabilities_;
-    boardState_[ChessSquare('f', 1)] = &whiteBishopCapabilities_;
-    boardState_[ChessSquare('c', 8)] = &blackBishopCapabilities_;
-    boardState_[ChessSquare('f', 8)] = &blackBishopCapabilities_;
+    boardState_[ChessSquare(File::C, Rank::R1)] = &whiteBishopCapabilities_;
+    boardState_[ChessSquare(File::F, Rank::R1)] = &whiteBishopCapabilities_;
+    boardState_[ChessSquare(File::C, Rank::R8)] = &blackBishopCapabilities_;
+    boardState_[ChessSquare(File::F, Rank::R8)] = &blackBishopCapabilities_;
     
     // setup the rooks
-    boardState_[ChessSquare('a', 1)] = &whiteRookCapabilities_;
-    boardState_[ChessSquare('h', 1)] = &whiteRookCapabilities_;
-    boardState_[ChessSquare('a', 8)] = &blackRookCapabilities_;
-    boardState_[ChessSquare('h', 8)] = &blackRookCapabilities_;
+    boardState_[ChessSquare(File::A, Rank::R1)] = &whiteRookCapabilities_;
+    boardState_[ChessSquare(File::H, Rank::R1)] = &whiteRookCapabilities_;
+    boardState_[ChessSquare(File::A, Rank::R8)] = &blackRookCapabilities_;
+    boardState_[ChessSquare(File::H, Rank::R8)] = &blackRookCapabilities_;
     
     // setup the queens
-    boardState_[ChessSquare('d', 1)] = &whiteQueenCapabilities_;
-    boardState_[ChessSquare('d', 8)] = &blackQueenCapabilities_;
+    boardState_[ChessSquare(File::D, Rank::R1)] = &whiteQueenCapabilities_;
+    boardState_[ChessSquare(File::D, Rank::R8)] = &blackQueenCapabilities_;
     
     // setup the kings
-    boardState_[ChessSquare('e', 1)] = &whiteKingCapabilities_;
-    boardState_[ChessSquare('e', 8)] = &blackKingCapabilities_;
+    boardState_[ChessSquare(File::E, Rank::R1)] = &whiteKingCapabilities_;
+    boardState_[ChessSquare(File::E, Rank::R8)] = &blackKingCapabilities_;
 }
 
 PieceAffiliation ChessBoard::playerToMakeNextMove() const
