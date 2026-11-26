@@ -35,44 +35,44 @@ TEST_CASE("Testing the Queen object")
     {
         Queen piece(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
-        piece.potentialEmptyBoardMovesFrom(ChessSquare('d', 4));
+        piece.potentialEmptyBoardMovesFrom(ChessSquare(File::D, Rank::R4));
         
-        CHECK(allowedMoves.contains(ChessSquare('d', 8)));
-        CHECK(allowedMoves.contains(ChessSquare('d', 1)));
+        CHECK(allowedMoves.contains(ChessSquare(File::D, Rank::R8)));
+        CHECK(allowedMoves.contains(ChessSquare(File::D, Rank::R1)));
     }
     
     SECTION("Queens can move along files")
     {
         Queen piece(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
-        piece.potentialEmptyBoardMovesFrom(ChessSquare('d', 4));
+        piece.potentialEmptyBoardMovesFrom(ChessSquare(File::D, Rank::R4));
         
-        CHECK(allowedMoves.contains(ChessSquare('a', 4)));
-        CHECK(allowedMoves.contains(ChessSquare('h', 4)));
+        CHECK(allowedMoves.contains(ChessSquare(File::A, Rank::R4)));
+        CHECK(allowedMoves.contains(ChessSquare(File::H, Rank::R4)));
     }
     
     SECTION("Queens can move diagonally")
     {
         Queen piece(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
-        piece.potentialEmptyBoardMovesFrom(ChessSquare('d', 4));
+        piece.potentialEmptyBoardMovesFrom(ChessSquare(File::D, Rank::R4));
         
-        CHECK(allowedMoves.contains(ChessSquare('e', 5)));
-        CHECK(allowedMoves.contains(ChessSquare('e', 3)));
-        CHECK(allowedMoves.contains(ChessSquare('c', 5)));
-        CHECK(allowedMoves.contains(ChessSquare('c', 3)));
+        CHECK(allowedMoves.contains(ChessSquare(File::E, Rank::R5)));
+        CHECK(allowedMoves.contains(ChessSquare(File::E, Rank::R3)));
+        CHECK(allowedMoves.contains(ChessSquare(File::C, Rank::R5)));
+        CHECK(allowedMoves.contains(ChessSquare(File::C, Rank::R3)));
     }
     
     SECTION("Queens cannot move like a knight")
     {
         Queen piece(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
-        piece.potentialEmptyBoardMovesFrom(ChessSquare('d', 4));
+        piece.potentialEmptyBoardMovesFrom(ChessSquare(File::D, Rank::R4));
         
-        CHECK(!allowedMoves.contains(ChessSquare('f', 5)));
-        CHECK(!allowedMoves.contains(ChessSquare('b', 5)));
-        CHECK(!allowedMoves.contains(ChessSquare('c', 2)));
-        CHECK(!allowedMoves.contains(ChessSquare('c', 6)));
+        CHECK(!allowedMoves.contains(ChessSquare(File::F, Rank::R5)));
+        CHECK(!allowedMoves.contains(ChessSquare(File::B, Rank::R5)));
+        CHECK(!allowedMoves.contains(ChessSquare(File::C, Rank::R2)));
+        CHECK(!allowedMoves.contains(ChessSquare(File::C, Rank::R6)));
     }
 }
 
