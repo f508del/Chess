@@ -6,6 +6,7 @@
 //
 
 #include "ChessPieceType.hpp"
+#include <algorithm>
 
 using namespace std;
 

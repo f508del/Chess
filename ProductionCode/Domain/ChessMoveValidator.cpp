@@ -143,7 +143,7 @@ bool ChessMoveValidator::isSquareThreatenedByColor(const ChessSquare& square, Pi
     return false;
 }
 
-optional<ChessSquare> ChessMoveValidator::findSquareOfPieceThatCouldCapture(const ChessSquare& squareInThreat, Chess::PieceAffiliation attackingColor,
+expected<ChessSquare, SquareLookupError> ChessMoveValidator::findSquareOfPieceThatCouldCapture(const ChessSquare& squareInThreat, Chess::PieceAffiliation attackingColor,
                                                                   const ChessBoard& currentBoard)
 {
     list<ChessSquare> attackingPieces = currentBoard.allSquaresOccupiedByColor(attackingColor);
@@ -166,10 +166,10 @@ optional<ChessSquare> ChessMoveValidator::findSquareOfPieceThatCouldCapture(cons
         
         return currentExaminedMove.startingSquare();
     }
-    return {};
+    return unexpected(SquareLookupError::SQUARE_NOT_FOUND);
 }
 
-optional<ChessSquare> ChessMoveValidator::findSquareOfPieceThatCouldMoveTo(const ChessSquare& destinationSquare, Chess::PieceAffiliation movingColor)
+expected<ChessSquare, SquareLookupError> ChessMoveValidator::findSquareOfPieceThatCouldMoveTo(const ChessSquare& destinationSquare, Chess::PieceAffiliation movingColor)
 {
     list<ChessSquare> movablePieces = board_.allSquaresOccupiedByColor(movingColor);
     for (auto movingPieceLocationIterator = movablePieces.begin(); movingPieceLocationIterator != movablePieces.end();
@@ -190,9 +190,8 @@ optional<ChessSquare> ChessMoveValidator::findSquareOfPieceThatCouldMoveTo(const
         }
         
         return currentExaminedMove.startingSquare();
-        break;
     }
-    return {};
+    return unexpected(SquareLookupError::SQUARE_NOT_FOUND);
 }
 
 list<InternalChessMove> ChessMoveValidator::findAllPotentialMovesFor(Chess::PieceAffiliation playerColor)

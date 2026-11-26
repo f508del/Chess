@@ -12,6 +12,11 @@
 #include "ChessFile.hpp"
 #include "ChessRank.hpp"
 
+namespace Chess
+{
+enum class SquareLookupError {SQUARE_NOT_FOUND};
+}
+
 // Note: file() will return a lower case form of whatever file char was given.
 class ChessSquare
 {
@@ -47,3 +52,4 @@ private:
     char file_;
     unsigned int rank_;
 };
+

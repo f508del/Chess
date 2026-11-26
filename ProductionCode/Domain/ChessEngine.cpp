@@ -196,13 +196,13 @@ void ChessEngine::getNextInput()
 bool ChessEngine::pieceThreateningTheKingCanBeCapturedWithoutLeavingKingInThreat(const ChessSquare& kingSquareInThreat, Chess::PieceAffiliation attackingColor)
 {
     PieceAffiliation defendingColor = oppositePieceAffiliation(attackingColor);
-    optional<ChessSquare> locationOfAttackingPiece = moveValidator_->findSquareOfPieceThatCouldCapture(kingSquareInThreat, attackingColor, *board_);
+    expected<ChessSquare, SquareLookupError> locationOfAttackingPiece = moveValidator_->findSquareOfPieceThatCouldCapture(kingSquareInThreat, attackingColor, *board_);
     if (!locationOfAttackingPiece)
     {
         // No attaker makes this check irrelevant, return false
         return false;
     }
-    optional<ChessSquare> sourceSquareOfPotentialCounterMove = moveValidator_->findSquareOfPieceThatCouldCapture(*locationOfAttackingPiece, defendingColor, *board_);
+    expected<ChessSquare, SquareLookupError> sourceSquareOfPotentialCounterMove = moveValidator_->findSquareOfPieceThatCouldCapture(*locationOfAttackingPiece, defendingColor, *board_);
     
     if (!sourceSquareOfPotentialCounterMove)
     {
@@ -228,7 +228,7 @@ bool ChessEngine::pieceThreateningTheKingCanBeCapturedWithoutLeavingKingInThreat
 bool ChessEngine::pieceThreateningKingCanBeBlockedWithoutLeavingKingInThreat(const ChessSquare& kingSquareInThreat, Chess::PieceAffiliation attackingColor)
 {
     PieceAffiliation defendingColor = oppositePieceAffiliation(attackingColor);
-    optional<ChessSquare> locationOfAttackingPiece = moveValidator_->findSquareOfPieceThatCouldCapture(kingSquareInThreat, attackingColor, *board_);
+    expected<ChessSquare, SquareLookupError> locationOfAttackingPiece = moveValidator_->findSquareOfPieceThatCouldCapture(kingSquareInThreat, attackingColor, *board_);
     if (!locationOfAttackingPiece)
     {
         // No attaker makes this check irrelevant, return false
@@ -246,7 +246,7 @@ bool ChessEngine::pieceThreateningKingCanBeBlockedWithoutLeavingKingInThreat(con
     
     for (auto it = squaresBetweenEndPoints.begin(); it != squaresBetweenEndPoints.end(); it++)
     {
-        optional<ChessSquare> potentialBlockerSource = moveValidator_->findSquareOfPieceThatCouldMoveTo(*it, defendingColor);
+        expected<ChessSquare, SquareLookupError> potentialBlockerSource = moveValidator_->findSquareOfPieceThatCouldMoveTo(*it, defendingColor);
         
         if (potentialBlockerSource)
         {

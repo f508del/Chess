@@ -7,6 +7,8 @@
 //
 
 #include "Pawn.hpp"
+#include <algorithm>
+#include <iterator>
 
 using namespace Chess;
 
