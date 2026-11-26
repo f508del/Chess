@@ -13,39 +13,39 @@
 using namespace Chess;
 
 ChessSquare::ChessSquare()
-: file_('\0')
-, rank_(0)
+: deprecatedFile_('\0')
+, deprecatedRank_(0)
 {
 }
 
 ChessSquare::ChessSquare(Chess::File file, unsigned int rank)
-: rank_(rank)
+: deprecatedRank_(rank)
 {
     switch(file)
     {
         case Chess::File::A:
-            file_ = 'a';
+            deprecatedFile_ = 'a';
             break;
         case Chess::File::B:
-            file_ = 'b';
+            deprecatedFile_ = 'b';
             break;
         case Chess::File::C:
-            file_ = 'c';
+            deprecatedFile_ = 'c';
             break;
         case Chess::File::D:
-            file_ = 'd';
+            deprecatedFile_ = 'd';
             break;
         case Chess::File::E:
-            file_ = 'e';
+            deprecatedFile_ = 'e';
             break;
         case Chess::File::F:
-            file_ = 'f';
+            deprecatedFile_ = 'f';
             break;
         case Chess::File::G:
-            file_ = 'g';
+            deprecatedFile_ = 'g';
             break;
         case Chess::File::H:
-            file_ = 'h';
+            deprecatedFile_ = 'h';
             break;
     }
 }
@@ -55,56 +55,56 @@ ChessSquare::ChessSquare(File file, Rank rank)
     switch(file)
     {
         case File::A:
-            file_ = 'a';
+            deprecatedFile_ = 'a';
             break;
         case File::B:
-            file_ = 'b';
+            deprecatedFile_ = 'b';
             break;
         case File::C:
-            file_ = 'c';
+            deprecatedFile_ = 'c';
             break;
         case File::D:
-            file_ = 'd';
+            deprecatedFile_ = 'd';
             break;
         case File::E:
-            file_ = 'e';
+            deprecatedFile_ = 'e';
             break;
         case File::F:
-            file_ = 'f';
+            deprecatedFile_ = 'f';
             break;
         case File::G:
-            file_ = 'g';
+            deprecatedFile_ = 'g';
             break;
         case File::H:
-            file_ = 'h';
+            deprecatedFile_ = 'h';
             break;
     }
 
     switch(rank)
     {
         case Rank::R1:
-            rank_ = 1;
+            deprecatedRank_ = 1;
             break;
         case Rank::R2:
-            rank_ = 2;
+            deprecatedRank_ = 2;
             break;
         case Rank::R3:
-            rank_ = 3;
+            deprecatedRank_ = 3;
             break;
         case Rank::R4:
-            rank_ = 4;
+            deprecatedRank_ = 4;
             break;
         case Rank::R5:
-            rank_ = 5;
+            deprecatedRank_ = 5;
             break;
         case Rank::R6:
-            rank_ = 6;
+            deprecatedRank_ = 6;
             break;
         case Rank::R7:
-            rank_ = 7;
+            deprecatedRank_ = 7;
             break;
         case Rank::R8:
-            rank_ = 8;
+            deprecatedRank_ = 8;
             break;
     }
     
@@ -117,35 +117,35 @@ bool ChessSquare::isSquareOnTheBoard() const noexcept
 
 char ChessSquare::file() const noexcept
 {
-   return file_;
+   return deprecatedFile_;
 }
 
 unsigned int ChessSquare::rank() const noexcept
 {
-   return rank_;
+   return deprecatedRank_;
 }
 
 bool ChessSquare::operator<(const ChessSquare& otherSquare) const noexcept
 {
-    return std::tie(file_, rank_) < std::tie(otherSquare.file_, otherSquare.rank_);
+    return std::tie(deprecatedFile_, deprecatedRank_) < std::tie(otherSquare.deprecatedFile_, otherSquare.deprecatedRank_);
 }
 
 bool ChessSquare::operator==(const ChessSquare& otherSquare) const noexcept
 {
-    return ((file_ == otherSquare.file_) && (rank_ == otherSquare.rank_));
+    return ((deprecatedFile_ == otherSquare.deprecatedFile_) && (deprecatedRank_ == otherSquare.deprecatedRank_));
 }
 
 bool ChessSquare::operator!=(const ChessSquare& otherSquare) const noexcept
 {
-    return ((file_ != otherSquare.file_) || (rank_ != otherSquare.rank_));
+    return ((deprecatedFile_ != otherSquare.deprecatedFile_) || (deprecatedRank_ != otherSquare.deprecatedRank_));
 }
 
 bool ChessSquare::isValidFile() const noexcept
 {
-   return (file_ >= 'a' && file_ <= 'h');
+   return (deprecatedFile_ >= 'a' && deprecatedFile_ <= 'h');
 }
 
 bool ChessSquare::isValidRank() const noexcept
 {
-   return (rank_ >= 1 && rank_ <= 8);
+   return (deprecatedRank_ >= 1 && deprecatedRank_ <= 8);
 }

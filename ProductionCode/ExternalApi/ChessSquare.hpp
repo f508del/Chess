@@ -26,8 +26,8 @@ public:
              typename = typename std::enable_if<
                 std::is_same<char, T>::value>::type>
     ChessSquare(T file, unsigned int rank)
-    : file_(std::tolower(file))
-    , rank_(rank)
+    : deprecatedFile_(std::tolower(file))
+    , deprecatedRank_(rank)
     {
         
     }
@@ -49,7 +49,7 @@ private:
     bool isValidRank() const noexcept;
 
 private:
-    char file_;
-    unsigned int rank_;
+    char deprecatedFile_;
+    unsigned int deprecatedRank_;
 };
 
