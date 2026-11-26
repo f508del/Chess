@@ -35,47 +35,47 @@ TEST_CASE("Testing the Rook object")
     {
         Rook piece(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
-        piece.potentialEmptyBoardMovesFrom(ChessSquare('d', 1));
+        piece.potentialEmptyBoardMovesFrom(ChessSquare(File::D, Rank::R1));
         
-        CHECK(allowedMoves.contains(ChessSquare('d', 8)));
+        CHECK(allowedMoves.contains(ChessSquare(File::D, Rank::R8)));
     }
     
     SECTION("Rooks can move in decreasing ranks")
     {
         Rook piece(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
-        piece.potentialEmptyBoardMovesFrom(ChessSquare('f', 8));
+        piece.potentialEmptyBoardMovesFrom(ChessSquare(File::F, Rank::R8));
         
-        CHECK(allowedMoves.contains(ChessSquare('f', 1)));
+        CHECK(allowedMoves.contains(ChessSquare(File::F, Rank::R1)));
     }
     
     SECTION("Rooks can move in increasing files")
     {
         Rook piece(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
-        piece.potentialEmptyBoardMovesFrom(ChessSquare('a', 1));
+        piece.potentialEmptyBoardMovesFrom(ChessSquare(File::A, Rank::R1));
         
-        CHECK(allowedMoves.contains(ChessSquare('h', 1)));
+        CHECK(allowedMoves.contains(ChessSquare(File::H, Rank::R1)));
     }
     
     SECTION("Rooks can move in decreasing files")
     {
         Rook piece(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
-        piece.potentialEmptyBoardMovesFrom(ChessSquare('h', 3));
+        piece.potentialEmptyBoardMovesFrom(ChessSquare(File::H, Rank::R3));
         
-        CHECK(allowedMoves.contains(ChessSquare('a', 3)));
+        CHECK(allowedMoves.contains(ChessSquare(File::A, Rank::R3)));
     }
     
     SECTION("Rooks Cannot move diagonally")
     {
         Rook piece(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
-        piece.potentialEmptyBoardMovesFrom(ChessSquare('d', 3));
+        piece.potentialEmptyBoardMovesFrom(ChessSquare(File::D, Rank::R3));
         
-        CHECK(!allowedMoves.contains(ChessSquare('c', 2)));
-        CHECK(!allowedMoves.contains(ChessSquare('c', 4)));
-        CHECK(!allowedMoves.contains(ChessSquare('e', 2)));
-        CHECK(!allowedMoves.contains(ChessSquare('e', 4)));
+        CHECK(!allowedMoves.contains(ChessSquare(File::C, Rank::R2)));
+        CHECK(!allowedMoves.contains(ChessSquare(File::C, Rank::R4)));
+        CHECK(!allowedMoves.contains(ChessSquare(File::E, Rank::R2)));
+        CHECK(!allowedMoves.contains(ChessSquare(File::E, Rank::R4)));
     }
 }
