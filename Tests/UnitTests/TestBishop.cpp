@@ -22,43 +22,43 @@ TEST_CASE("Testing the Bishop object")
     {
         Bishop bishop(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
-        bishop.potentialEmptyBoardMovesFrom(ChessSquare('a', 1));
-        CHECK(allowedMoves.contains(ChessSquare('h', 8)));
+        bishop.potentialEmptyBoardMovesFrom(ChessSquare(File::A, Rank::R1));
+        CHECK(allowedMoves.contains(ChessSquare(File::H, Rank::R8)));
     }
     
     SECTION("Will allow bishop to move diagonally towards the bottom right")
     {
         Bishop bishop(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
-        bishop.potentialEmptyBoardMovesFrom(ChessSquare('d', 2));
-        CHECK(allowedMoves.contains(ChessSquare('e', 1)));
+        bishop.potentialEmptyBoardMovesFrom(ChessSquare(File::D, Rank::R2));
+        CHECK(allowedMoves.contains(ChessSquare(File::E, Rank::R1)));
     }
     
     SECTION("Will allow bishops to move diagonally towards bottom left")
     {
         Bishop bishop(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
-        bishop.potentialEmptyBoardMovesFrom(ChessSquare('d', 4));
-        CHECK(allowedMoves.contains(ChessSquare('c', 3)));
+        bishop.potentialEmptyBoardMovesFrom(ChessSquare(File::D, Rank::R4));
+        CHECK(allowedMoves.contains(ChessSquare(File::C, Rank::R3)));
     }
     
     SECTION("Will allow bishops to move diagonally towards top left")
     {
         Bishop bishop(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
-        bishop.potentialEmptyBoardMovesFrom(ChessSquare('d', 4));
-        CHECK(allowedMoves.contains(ChessSquare('c', 5)));
+        bishop.potentialEmptyBoardMovesFrom(ChessSquare(File::D, Rank::R4));
+        CHECK(allowedMoves.contains(ChessSquare(File::C, Rank::R5)));
     }
     
     SECTION("Will not allow bishops to move in cardinal directions")
     {
         Bishop bishop(randomPieceAffiliation());
         ExtendedSet<ChessSquare> allowedMoves =
-        bishop.potentialEmptyBoardMovesFrom(ChessSquare('d', 4));
-        CHECK(!allowedMoves.contains(ChessSquare('d', 5)));
-        CHECK(!allowedMoves.contains(ChessSquare('d', 3)));
-        CHECK(!allowedMoves.contains(ChessSquare('c', 4)));
-        CHECK(!allowedMoves.contains(ChessSquare('e', 4)));
+        bishop.potentialEmptyBoardMovesFrom(ChessSquare(File::D, Rank::R4));
+        CHECK(!allowedMoves.contains(ChessSquare(File::D, Rank::R5)));
+        CHECK(!allowedMoves.contains(ChessSquare(File::D, Rank::R3)));
+        CHECK(!allowedMoves.contains(ChessSquare(File::C, Rank::R4)));
+        CHECK(!allowedMoves.contains(ChessSquare(File::E, Rank::R4)));
     }
     
     SECTION("Will not allow bishop to jump other pieces")
