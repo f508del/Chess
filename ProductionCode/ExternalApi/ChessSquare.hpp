@@ -28,6 +28,8 @@ public:
     ChessSquare(T file, unsigned int rank)
     : deprecatedFile_(std::tolower(file))
     , deprecatedRank_(rank)
+    , file_(toFile(std::tolower(file)))
+    , rank_(toRank(rank))
     {
         
     }
@@ -36,6 +38,9 @@ public:
     ChessSquare(Chess::File file, Chess::Rank rank);
 
     bool isSquareOnTheBoard() const noexcept;
+    
+    Chess::File file() const noexcept;
+    Chess::Rank rank() const noexcept;
 
     char dep_File() const noexcept;
     unsigned int dep_Rank() const noexcept;
@@ -47,9 +52,15 @@ public:
 private:
     bool isValidFile() const noexcept;
     bool isValidRank() const noexcept;
+    
+    Chess::File toFile(char file) const;
+    Chess::Rank toRank(unsigned int rank) const;
 
 private:
     char deprecatedFile_;
     unsigned int deprecatedRank_;
+    
+    Chess::File file_;
+    Chess::Rank rank_;
 };
 

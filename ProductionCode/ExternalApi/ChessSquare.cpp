@@ -15,11 +15,15 @@ using namespace Chess;
 ChessSquare::ChessSquare()
 : deprecatedFile_('\0')
 , deprecatedRank_(0)
+, file_(File::A)
+, rank_(Rank::R1)
 {
 }
 
 ChessSquare::ChessSquare(Chess::File file, unsigned int rank)
 : deprecatedRank_(rank)
+, file_(file)
+, rank_(toRank(rank))
 {
     switch(file)
     {
@@ -51,6 +55,8 @@ ChessSquare::ChessSquare(Chess::File file, unsigned int rank)
 }
 
 ChessSquare::ChessSquare(File file, Rank rank)
+: file_(file)
+, rank_(rank)
 {
     switch(file)
     {
@@ -115,6 +121,16 @@ bool ChessSquare::isSquareOnTheBoard() const noexcept
    return isValidFile() && isValidRank();
 }
 
+File ChessSquare::file() const noexcept
+{
+    return file_;
+}
+
+Rank ChessSquare::rank() const noexcept
+{
+    return rank_;
+}
+
 char ChessSquare::dep_File() const noexcept
 {
    return deprecatedFile_;
@@ -148,4 +164,54 @@ bool ChessSquare::isValidFile() const noexcept
 bool ChessSquare::isValidRank() const noexcept
 {
    return (deprecatedRank_ >= 1 && deprecatedRank_ <= 8);
+}
+
+Chess::File ChessSquare::toFile(char file) const
+{
+    switch(file)
+    {
+        case 'a':
+            return File::A;
+        case 'b':
+            return File::B;
+        case 'c':
+            return File::C;
+        case 'd':
+            return File::D;
+        case 'e':
+            return File::E;
+        case 'f':
+            return File::F;
+        case 'g':
+            return File::G;
+        case 'h':
+            return File::H;
+    }
+    // invalid, but will be removed later
+    return File::A;
+}
+
+Chess::Rank ChessSquare::toRank(unsigned int rank) const
+{
+    switch(rank)
+    {
+        case 1:
+            return Rank::R1;
+        case 2:
+            return Rank::R2;
+        case 3:
+            return Rank::R3;
+        case 4:
+            return Rank::R4;
+        case 5:
+            return Rank::R5;
+        case 6:
+            return Rank::R6;
+        case 7:
+            return Rank::R7;
+        case 8:
+            return Rank::R8;
+    }
+    // invalid, but will be removed later
+    return Rank::R1;
 }
