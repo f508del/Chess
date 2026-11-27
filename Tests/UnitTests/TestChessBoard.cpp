@@ -112,8 +112,8 @@ TEST_CASE("Testing the ChessBoard object")
         ChessBoard board;
         board.resetBoard();
         
-        CHECK(1 == board.currentKingSquare(Chess::PieceAffiliation::WHITE_PIECE).rank());
-        CHECK('e' == board.currentKingSquare(Chess::PieceAffiliation::WHITE_PIECE).file());
+        CHECK(1 == board.currentKingSquare(Chess::PieceAffiliation::WHITE_PIECE).dep_Rank());
+        CHECK('e' == board.currentKingSquare(Chess::PieceAffiliation::WHITE_PIECE).dep_File());
     }
     
     SECTION("When the board is reset, the black king is at e 8")
@@ -121,8 +121,8 @@ TEST_CASE("Testing the ChessBoard object")
         ChessBoard board;
         board.resetBoard();
         
-        CHECK(8 == board.currentKingSquare(Chess::PieceAffiliation::BLACK_PIECE).rank());
-        CHECK('e' == board.currentKingSquare(Chess::PieceAffiliation::BLACK_PIECE).file());
+        CHECK(8 == board.currentKingSquare(Chess::PieceAffiliation::BLACK_PIECE).dep_Rank());
+        CHECK('e' == board.currentKingSquare(Chess::PieceAffiliation::BLACK_PIECE).dep_File());
     }
     
     SECTION("Current king square will be updated as game progresses")
@@ -141,8 +141,8 @@ TEST_CASE("Testing the ChessBoard object")
         board.applyMove(pawnMove);
         board.applyMove(kingMove);
         
-        CHECK(2 == board.currentKingSquare(Chess::PieceAffiliation::WHITE_PIECE).rank());
-        CHECK('e' == board.currentKingSquare(Chess::PieceAffiliation::WHITE_PIECE).file());
+        CHECK(2 == board.currentKingSquare(Chess::PieceAffiliation::WHITE_PIECE).dep_Rank());
+        CHECK('e' == board.currentKingSquare(Chess::PieceAffiliation::WHITE_PIECE).dep_File());
     }
     
     SECTION("Squares can be queried as to whether any move has touched them yet")

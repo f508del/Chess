@@ -115,12 +115,12 @@ bool ChessSquare::isSquareOnTheBoard() const noexcept
    return isValidFile() && isValidRank();
 }
 
-char ChessSquare::file() const noexcept
+char ChessSquare::dep_File() const noexcept
 {
    return deprecatedFile_;
 }
 
-unsigned int ChessSquare::rank() const noexcept
+unsigned int ChessSquare::dep_Rank() const noexcept
 {
    return deprecatedRank_;
 }

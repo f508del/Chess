@@ -37,8 +37,8 @@ public:
 
     bool isSquareOnTheBoard() const noexcept;
 
-    char file() const noexcept;
-    unsigned int rank() const noexcept;
+    char dep_File() const noexcept;
+    unsigned int dep_Rank() const noexcept;
 
     bool operator< (const ChessSquare& otherSquare) const noexcept;
     bool operator==(const ChessSquare& otherSquare) const noexcept;

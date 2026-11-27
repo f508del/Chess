@@ -23,53 +23,53 @@ King::~King()
 ExtendedSet<ChessSquare> King::potentialEmptyBoardMovesFrom(const ChessSquare &startingSquare) const
 {
     ExtendedSet<ChessSquare> potentialMoves;
-    ChessSquare increasingRankDestination(startingSquare.file(), startingSquare.rank() + 1);
+    ChessSquare increasingRankDestination(startingSquare.dep_File(), startingSquare.dep_Rank() + 1);
     if (increasingRankDestination.isSquareOnTheBoard())
     {
         potentialMoves.insert(increasingRankDestination);
     }
     
-    ChessSquare decreasingRankDestination(startingSquare.file(), startingSquare.rank() - 1);
+    ChessSquare decreasingRankDestination(startingSquare.dep_File(), startingSquare.dep_Rank() - 1);
     if (decreasingRankDestination.isSquareOnTheBoard())
     {
         potentialMoves.insert(decreasingRankDestination);
     }
     
-    ChessSquare increasingFileDestination(char(startingSquare.file() + 1), startingSquare.rank());
+    ChessSquare increasingFileDestination(char(startingSquare.dep_File() + 1), startingSquare.dep_Rank());
     if (increasingFileDestination.isSquareOnTheBoard())
     {
         potentialMoves.insert(increasingFileDestination);
     }
     
-    ChessSquare decreasingFileDestination(char(startingSquare.file() - 1), startingSquare.rank());
+    ChessSquare decreasingFileDestination(char(startingSquare.dep_File() - 1), startingSquare.dep_Rank());
     if (decreasingFileDestination.isSquareOnTheBoard())
     {
         potentialMoves.insert(decreasingFileDestination);
     }
     
     // top right array of squares
-    ChessSquare topRightDestination(char(startingSquare.file() + 1), startingSquare.rank() + 1);
+    ChessSquare topRightDestination(char(startingSquare.dep_File() + 1), startingSquare.dep_Rank() + 1);
     if (topRightDestination.isSquareOnTheBoard())
     {
         potentialMoves.insert(topRightDestination);
     }
     
     // Bottom right array of squares
-    ChessSquare bottomRightDestination(char(startingSquare.file() + 1), startingSquare.rank() - 1);
+    ChessSquare bottomRightDestination(char(startingSquare.dep_File() + 1), startingSquare.dep_Rank() - 1);
     if (bottomRightDestination.isSquareOnTheBoard())
     {
         potentialMoves.insert(bottomRightDestination);
     }
     
     // Bottom Left array of squares
-    ChessSquare bottomLeftDestination(char(startingSquare.file() - 1), startingSquare.rank() - 1);
+    ChessSquare bottomLeftDestination(char(startingSquare.dep_File() - 1), startingSquare.dep_Rank() - 1);
     if (bottomLeftDestination.isSquareOnTheBoard())
     {
         potentialMoves.insert(bottomLeftDestination);
     }
     
     // top left array of squares
-    ChessSquare topLeftDestination(char(startingSquare.file() - 1), startingSquare.rank() + 1);
+    ChessSquare topLeftDestination(char(startingSquare.dep_File() - 1), startingSquare.dep_Rank() + 1);
     if (topLeftDestination.isSquareOnTheBoard())
     {
         potentialMoves.insert(topLeftDestination);

@@ -27,55 +27,55 @@ ExtendedSet<ChessSquare> Queen::potentialEmptyBoardMovesFrom(const ChessSquare &
     for (int i = 1; i < 8; i++)
     {
         // increasing ranks:
-        ChessSquare increasingRankDestination(startingSquare.file(), startingSquare.rank() + i);
+        ChessSquare increasingRankDestination(startingSquare.dep_File(), startingSquare.dep_Rank() + i);
         if (increasingRankDestination.isSquareOnTheBoard())
         {
             potentialMoves.insert(increasingRankDestination);
         }
         
         // decreasing ranks
-        ChessSquare decreasingRankDestination(startingSquare.file(), startingSquare.rank() - i);
+        ChessSquare decreasingRankDestination(startingSquare.dep_File(), startingSquare.dep_Rank() - i);
         if (decreasingRankDestination.isSquareOnTheBoard())
         {
             potentialMoves.insert(decreasingRankDestination);
         }
         
         // increasing files
-        ChessSquare increasingFileDestination(char(startingSquare.file() + i), startingSquare.rank());
+        ChessSquare increasingFileDestination(char(startingSquare.dep_File() + i), startingSquare.dep_Rank());
         if (increasingFileDestination.isSquareOnTheBoard())
         {
             potentialMoves.insert(increasingFileDestination);
         }
         
-        ChessSquare decreasingFileDestination(char(startingSquare.file() - i), startingSquare.rank());
+        ChessSquare decreasingFileDestination(char(startingSquare.dep_File() - i), startingSquare.dep_Rank());
         if (decreasingFileDestination.isSquareOnTheBoard())
         {
             potentialMoves.insert(decreasingFileDestination);
         }
         
         // top right array of squares
-        ChessSquare topRightDestination(char(startingSquare.file() + i), startingSquare.rank() + i);
+        ChessSquare topRightDestination(char(startingSquare.dep_File() + i), startingSquare.dep_Rank() + i);
         if (topRightDestination.isSquareOnTheBoard())
         {
             potentialMoves.insert(topRightDestination);
         }
         
         // Bottom right array of squares
-        ChessSquare bottomRightDestination(char(startingSquare.file() + i), startingSquare.rank() - i);
+        ChessSquare bottomRightDestination(char(startingSquare.dep_File() + i), startingSquare.dep_Rank() - i);
         if (bottomRightDestination.isSquareOnTheBoard())
         {
             potentialMoves.insert(bottomRightDestination);
         }
         
         // Bottom Left array of squares
-        ChessSquare bottomLeftDestination(char(startingSquare.file() - i), startingSquare.rank() - i);
+        ChessSquare bottomLeftDestination(char(startingSquare.dep_File() - i), startingSquare.dep_Rank() - i);
         if (bottomLeftDestination.isSquareOnTheBoard())
         {
             potentialMoves.insert(bottomLeftDestination);
         }
         
         // top left array of squares
-        ChessSquare topLeftDestination(char(startingSquare.file() - i), startingSquare.rank() + i);
+        ChessSquare topLeftDestination(char(startingSquare.dep_File() - i), startingSquare.dep_Rank() + i);
         if (topLeftDestination.isSquareOnTheBoard())
         {
             potentialMoves.insert(topLeftDestination);

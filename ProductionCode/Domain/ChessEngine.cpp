@@ -122,7 +122,7 @@ void ChessEngine::applyPromotion(Chess::PieceType type)
         return;
     }
     
-    if (gameHistory_->mostRecentMoveEndingSquare().rank() != 8 && gameHistory_->mostRecentMoveEndingSquare().rank() != 1)
+    if (gameHistory_->mostRecentMoveEndingSquare().dep_Rank() != 8 && gameHistory_->mostRecentMoveEndingSquare().dep_Rank() != 1)
     {
         outputSystem_.rejectMoveAttempt(MoveValidity::PROMOTION_NOT_LEGAL);
         return;
@@ -269,9 +269,9 @@ bool ChessEngine::pieceThreateningKingCanBeBlockedWithoutLeavingKingInThreat(con
 
 bool ChessEngine::kingCanMoveOutOfThreat(const ChessSquare& kingSquareInThreat)
 {
-    for (char file = kingSquareInThreat.file() - 1; file <= kingSquareInThreat.file() + 1; file++)
+    for (char file = kingSquareInThreat.dep_File() - 1; file <= kingSquareInThreat.dep_File() + 1; file++)
     {
-        for (unsigned int rank = kingSquareInThreat.rank() - 1; rank <= kingSquareInThreat.rank() + 1; rank++)
+        for (unsigned int rank = kingSquareInThreat.dep_Rank() - 1; rank <= kingSquareInThreat.dep_Rank() + 1; rank++)
         {
             ChessSquare potentialEscapeSquare(file, rank);
             InternalChessMove proposedCounterMove;

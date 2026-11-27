@@ -56,8 +56,8 @@ InternalChessMove ChessMoveValidator::validateMove(const ChessMoveRequest& curre
     if (enPassantIsCurrentlyPossible() && enPassantIsBeingAttempted(currentMove))
     {
         InternalChessMove internalMove = assembleValidMove(currentMove);
-        ChessSquare bypassedSquare(currentMove.endingSquare().file(),
-                                   currentMove.startingSquare().rank());
+        ChessSquare bypassedSquare(currentMove.endingSquare().dep_File(),
+                                   currentMove.startingSquare().dep_Rank());
         internalMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE,
                                              bypassedSquare,
                                              oppositePieceAffiliation(board_.playerToMakeNextMove()),
@@ -76,13 +76,13 @@ InternalChessMove ChessMoveValidator::validateMove(const ChessMoveRequest& curre
         ExtendedSet<ChessSquare> potentialEmptyBoardMoves = currentPiece->potentialEmptyBoardMovesFrom(currentMove.startingSquare());
         if ((currentPiece->pieceType() == PieceType::KING) && (!board_.hasAnyMoveTouchedSquare(currentMove.startingSquare())))
         {
-            char rookStartingFile = currentMove.endingSquare().file() == 'g' ? 'h' : 'a';
-            if (!board_.hasAnyMoveTouchedSquare(ChessSquare(rookStartingFile, currentMove.startingSquare().rank()))
+            char rookStartingFile = currentMove.endingSquare().dep_File() == 'g' ? 'h' : 'a';
+            if (!board_.hasAnyMoveTouchedSquare(ChessSquare(rookStartingFile, currentMove.startingSquare().dep_Rank()))
                 && castlingPathIsNotThreatenedByColor(currentMove.startingSquare(), currentMove.endingSquare(), oppositePieceAffiliation(board_.playerToMakeNextMove())))
             {
                 // Castling may be possible...
-                potentialEmptyBoardMoves.insert(ChessSquare('g', currentMove.startingSquare().rank()));
-                potentialEmptyBoardMoves.insert(ChessSquare('c', currentMove.startingSquare().rank()));
+                potentialEmptyBoardMoves.insert(ChessSquare('g', currentMove.startingSquare().dep_Rank()));
+                potentialEmptyBoardMoves.insert(ChessSquare('c', currentMove.startingSquare().dep_Rank()));
             }
         }
         
@@ -109,17 +109,17 @@ InternalChessMove ChessMoveValidator::validateMove(const ChessMoveRequest& curre
     
     InternalChessMove potentiallyValidMove = assembleValidMove(currentMove);
     
-    if ((currentPiece->pieceType() == PieceType::KING) && (abs(currentMove.startingSquare().file() - currentMove.endingSquare().file()) == 2))
+    if ((currentPiece->pieceType() == PieceType::KING) && (abs(currentMove.startingSquare().dep_File() - currentMove.endingSquare().dep_File()) == 2))
     {
-        char rookStartingFile = currentMove.endingSquare().file() == 'g' ? 'h' : 'a';
+        char rookStartingFile = currentMove.endingSquare().dep_File() == 'g' ? 'h' : 'a';
         char rookEndingFile = rookStartingFile == 'h' ? 'f' : 'd';
         // castling is requested, add the rook shift into the move.
         potentiallyValidMove.addValidMoveElement(MoveElement(MoveElementAction::REMOVE_PIECE,
-                                             ChessSquare(rookStartingFile, currentMove.startingSquare().rank()),
+                                             ChessSquare(rookStartingFile, currentMove.startingSquare().dep_Rank()),
                                              board_.playerToMakeNextMove(),
                                              Chess::PieceType::ROOK));
         potentiallyValidMove.addValidMoveElement(MoveElement(MoveElementAction::PLACE_PIECE,
-                                             ChessSquare(rookEndingFile, currentMove.startingSquare().rank()),
+                                             ChessSquare(rookEndingFile, currentMove.startingSquare().dep_Rank()),
                                              board_.playerToMakeNextMove(),
                                              Chess::PieceType::ROOK));
     }
@@ -223,7 +223,7 @@ list<InternalChessMove> ChessMoveValidator::findAllPotentialMovesFor(Chess::Piec
 
 bool ChessMoveValidator::enPassantIsCurrentlyPossible() const
 {
-    if (abs((int)gameHistory_.mostRecentMoveStartingSquare().rank() - (int)gameHistory_.mostRecentMoveEndingSquare().rank()) == 2)
+    if (abs((int)gameHistory_.mostRecentMoveStartingSquare().dep_Rank() - (int)gameHistory_.mostRecentMoveEndingSquare().dep_Rank()) == 2)
     {
         if (gameHistory_.mostRecentMovedPiece() == PieceType::PAWN)
         {
@@ -236,12 +236,12 @@ bool ChessMoveValidator::enPassantIsCurrentlyPossible() const
 bool ChessMoveValidator::enPassantIsBeingAttempted(const ChessMoveRequest& move) const
 {
     unsigned int validEnPassantRank =
-    ((int)gameHistory_.mostRecentMoveStartingSquare().rank() + (int)gameHistory_.mostRecentMoveEndingSquare().rank()) / 2;
-    ChessSquare onlyValidEndingSquareForEnPassantMove(gameHistory_.mostRecentMoveStartingSquare().file(), validEnPassantRank);
+    ((int)gameHistory_.mostRecentMoveStartingSquare().dep_Rank() + (int)gameHistory_.mostRecentMoveEndingSquare().dep_Rank()) / 2;
+    ChessSquare onlyValidEndingSquareForEnPassantMove(gameHistory_.mostRecentMoveStartingSquare().dep_File(), validEnPassantRank);
     
     if (move.endingSquare() == onlyValidEndingSquareForEnPassantMove)
     {
-        if (abs(move.startingSquare().file() - move.endingSquare().file()) == 1)
+        if (abs(move.startingSquare().dep_File() - move.endingSquare().dep_File()) == 1)
         {
             if (board_.pieceAt(move.startingSquare())->pieceType() == PieceType::PAWN)
             {
@@ -304,8 +304,8 @@ bool ChessMoveValidator::castlingPathIsNotThreatenedByColor(const ChessSquare& s
     {
         return false;
     }
-    char skippedFile = endingSquare.file() == 'g' ? 'f' : 'd';
-    if (isSquareThreatenedByColor(ChessSquare(skippedFile, startingSquare.rank()), threateningColor))
+    char skippedFile = endingSquare.dep_File() == 'g' ? 'f' : 'd';
+    if (isSquareThreatenedByColor(ChessSquare(skippedFile, startingSquare.dep_Rank()), threateningColor))
     {
         return false;
     }

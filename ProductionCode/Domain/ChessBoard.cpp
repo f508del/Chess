@@ -162,7 +162,7 @@ bool ChessBoard::hasAnyPawnReachedFinalRank() const
     {
         if (boardIterator->second->pieceType() == PieceType::PAWN)
         {
-            if (boardIterator->first.rank() == 1 || boardIterator->first.rank() == 8)
+            if (boardIterator->first.dep_Rank() == 1 || boardIterator->first.dep_Rank() == 8)
             {
                 return true;
             }
@@ -204,8 +204,8 @@ std::list<ChessSquare> ChessBoard::listOfSquaresBetweenEndPoints(const ChessSqua
 {
     std::list<ChessSquare> pathBetweenEndPoints;
     
-    int rankDifference = endSquare.rank() - startSquare.rank();
-    int fileDifference = endSquare.file() - startSquare.file();
+    int rankDifference = endSquare.dep_Rank() - startSquare.dep_Rank();
+    int fileDifference = endSquare.dep_File() - startSquare.dep_File();
     
     // Will yield an increment of -1, 0, or 1 only.
     int rankIncrement = (rankDifference == 0) ? 0 : (rankDifference / abs(rankDifference));
@@ -224,9 +224,9 @@ std::list<ChessSquare> ChessBoard::listOfSquaresBetweenEndPoints(const ChessSqua
         }
     }
     
-    unsigned int currentRank = startSquare.rank() + rankIncrement;
-    char currentFile = startSquare.file() + fileIncrement;
-    while ((currentRank != endSquare.rank()) || (currentFile != endSquare.file()))
+    unsigned int currentRank = startSquare.dep_Rank() + rankIncrement;
+    char currentFile = startSquare.dep_File() + fileIncrement;
+    while ((currentRank != endSquare.dep_Rank()) || (currentFile != endSquare.dep_File()))
     {
         pathBetweenEndPoints.push_back(ChessSquare(currentFile, currentRank));
         currentRank += rankIncrement;

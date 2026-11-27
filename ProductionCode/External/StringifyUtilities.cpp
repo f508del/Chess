@@ -48,7 +48,7 @@ std::string Chess::toString(const ChessSquare& square)
 {
     std::string stringSquare;
     char resultString[3];
-    snprintf(resultString, 3, "%c%u", square.file(), square.rank());
+    snprintf(resultString, 3, "%c%u", square.dep_File(), square.dep_Rank());
     resultString[2] = '\0';
     stringSquare = resultString;
     return stringSquare;
