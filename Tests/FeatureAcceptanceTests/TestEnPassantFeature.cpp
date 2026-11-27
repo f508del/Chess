@@ -23,7 +23,7 @@ TEST_CASE("Testing the logic around detecting en Passant")
         
         CHECK(testHarness.lastMoveRejectionReason() == MoveValidity::VALID_MOVE);
         CHECK(testHarness.lastKindOfPieceMoved() == PieceType::PAWN);
-        CHECK(testHarness.lastMoveDisplayedMatches(ChessSquare('b',4), ChessSquare('c',3)));
+        CHECK(testHarness.lastMoveDisplayedMatches(ChessSquare(File::B,Rank::R4), ChessSquare(File::C,Rank::R3)));
     }
     
     SECTION("Will not allow en passant if not done immediately after the 2 step pawn move")
