@@ -10,6 +10,7 @@
 
 #include <string>
 #include "ChessSquare.hpp"
+#include <optional>
 
 class ChessMoveRequest
 {
@@ -27,8 +28,14 @@ public:
 
 private:
     void resetState();
+    
+    bool isValidFile(char file) const noexcept;
+    bool isValidRank(unsigned int rank) const noexcept;
+    Chess::File toFile(char file) const;
+    Chess::Rank toRank(unsigned int rank) const;
+    std::optional<ChessSquare> convertFileAndRankIntoSquare(char file, unsigned int rank) const;
 
 private:
-    ChessSquare startingSquare_;
-    ChessSquare endingSquare_;
+    std::optional<ChessSquare> startingSquare_;
+    std::optional<ChessSquare> endingSquare_;
 };
